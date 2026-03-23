@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bareboat Rental — Wireframe</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #f4f4f2;
+      --surface:  #ffffff;
+      --border:   #c8c8c4;
+      --muted:    #9a9a96;
+      --text:     #2a2a28;
+      --accent:   #3a3a36;
+      --pill-bg:  #e4e4e0;
+      --radius:   6px;
+      --shadow:   0 1px 3px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.06);
+    }
+
+    body {
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+
+    /* ── WIREFRAME LABEL ─────────────────────────────────── */
+    .wf-badge {
+      position: fixed; top: 12px; right: 12px; z-index: 999;
+      background: var(--accent); color: #fff;
+      font-size: 10px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; padding: 4px 10px;
+      border-radius: 20px; pointer-events: none;
+    }
+
+    /* ── HEADER ──────────────────────────────────────────── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .logo-mark {
+      width: 32px; height: 32px;
+      background: var(--accent); border-radius: 4px;
+    }
+    .logo-text { font-size: 16px; font-weight: 700; letter-spacing: -.02em; }
+    nav { display: flex; gap: 24px; }
+    nav a {
+      color: var(--muted); text-decoration: none; font-size: 13px;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* ── SEARCH HERO ─────────────────────────────────────── */
+    .hero {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 32px 32px;
+    }
+    .hero h1 {
+      font-size: 26px; font-weight: 700; letter-spacing: -.03em;
+      margin-bottom: 6px;
+    }
+    .hero p { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+
+    /* ── SEARCH FORM ─────────────────────────────────────── */
+    .search-form {
+      display: flex; gap: 12px; align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 11px; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .field select,
+    .field input[type="date"] {
+      height: 42px; padding: 0 12px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--bg); color: var(--text);
+      font-size: 14px; font-family: inherit;
+      appearance: none; -webkit-appearance: none;
+      cursor: pointer; min-width: 160px;
+    }
+    .field select:focus,
+    .field input[type="date"]:focus {
+      outline: 2px solid var(--accent); outline-offset: 2px;
+      border-color: var(--accent);
+    }
+    .field--dates { display: flex; flex-direction: column; gap: 6px; }
+    .date-range { display: flex; gap: 8px; align-items: center; }
+    .date-range span { color: var(--muted); font-size: 12px; }
+
+    .btn-search {
+      height: 42px; padding: 0 28px;
+      background: var(--accent); color: #fff;
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 600; font-family: inherit;
+      cursor: pointer; white-space: nowrap;
+      align-self: flex-end;
+    }
+    .btn-search:hover { background: #1a1a18; }
+
+    /* ── RESULTS AREA ────────────────────────────────────── */
+    .results-area {
+      max-width: 1080px; margin: 0 auto;
+      padding: 32px;
+    }
+
+    /* empty state */
+    .empty-state {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 80px 0; color: var(--muted);
+      gap: 12px;
+    }
+    .empty-state svg { opacity: .3; }
+    .empty-state p { font-size: 15px; }
+
+    /* results header */
+    .results-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .results-count { font-size: 14px; color: var(--muted); }
+    .results-count strong { color: var(--text); }
+
+    .sort-bar { display: flex; gap: 8px; align-items: center; }
+    .sort-bar span { font-size: 12px; color: var(--muted); }
+    .sort-bar select {
+      height: 32px; padding: 0 10px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--surface); font-size: 13px; font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* boat cards grid */
+    .boats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .boat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+    }
+    .boat-card:hover { border-color: var(--accent); }
+
+    .card-img {
+      width: 100%; height: 160px;
+      background: var(--pill-bg);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .card-img svg { opacity: .25; }
+    .card-category {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--accent); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+    }
+
+    .card-body { padding: 16px; flex: 1; }
+    .card-title {
+      font-size: 16px; font-weight: 700; margin-bottom: 4px;
+    }
+    .card-marina {
+      font-size: 12px; color: var(--muted); margin-bottom: 12px;
+    }
+    .card-specs {
+      display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px;
+    }
+    .spec {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .spec-label {
+      font-size: 10px; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .spec-value { font-size: 13px; font-weight: 600; }
+
+    .card-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .price { display: flex; flex-direction: column; }
+    .price-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .price-value { font-size: 18px; font-weight: 700; }
+    .price-per { font-size: 11px; color: var(--muted); }
+
+    .btn-details {
+      padding: 8px 18px;
+      border: 1.5px solid var(--accent);
+      border-radius: var(--radius);
+      background: transparent; color: var(--accent);
+      font-size: 13px; font-weight: 600; font-family: inherit;
+      cursor: pointer;
+    }
+    .btn-details:hover { background: var(--accent); color: #fff; }
+
+    /* hidden by default */
+    #results { display: none; }
+    #empty   { display: flex; }
+  </style>
+</head>
+<body>
+
+<div class="wf-badge">Wireframe</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-mark"></div>
+    <span class="logo-text">SailAway</span>
+  </div>
+  <nav>
+    <a href="#">Destinations</a>
+    <a href="#">Boats</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<!-- SEARCH HERO -->
+<div class="hero">
+  <h1>Find your bareboat charter</h1>
+  <p>Choose a destination, pick your dates, and select a boat type.</p>
+
+  <form class="search-form" id="searchForm">
+
+    <div class="field">
+      <label>Destination</label>
+      <select name="location" required>
+        <option value="" disabled selected>Select location…</option>
+        <optgroup label="Croatia">
+          <option>Split</option>
+          <option>Dubrovnik</option>
+          <option>Šibenik</option>
+          <option>Zadar</option>
+        </optgroup>
+        <optgroup label="Greece">
+          <option>Athens (Alimos)</option>
+          <option>Corfu</option>
+          <option>Rhodes</option>
+        </optgroup>
+        <optgroup label="Spain">
+          <option>Palma de Mallorca</option>
+          <option>Barcelona</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="field field--dates">
+      <label>Dates</label>
+      <div class="date-range">
+        <input type="date" name="from" required />
+        <span>—</span>
+        <input type="date" name="to" required />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Boat category</label>
+      <select name="category">
+        <option value="all">All categories</option>
+        <option>Monohull (sailing)</option>
+        <option>Catamaran (sailing)</option>
+        <option>Motor yacht</option>
+        <option>Gulet</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn-search">Search boats</button>
+
+  </form>
+</div>
+
+<!-- RESULTS AREA -->
+<div class="results-area">
+
+  <!-- empty state -->
+  <div class="empty-state" id="empty">
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+      <path d="M8 44 L32 12 L56 44 Z" stroke="#2a2a28" stroke-width="2" fill="none"/>
+      <line x1="20" y1="44" x2="44" y2="44" stroke="#2a2a28" stroke-width="2"/>
+      <line x1="32" y1="12" x2="32" y2="52" stroke="#2a2a28" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <line x1="4" y1="52" x2="60" y2="52" stroke="#2a2a28" stroke-width="2"/>
+    </svg>
+    <p>Enter your destination and dates to see available boats.</p>
+  </div>
+
+  <!-- results (shown after search) -->
+  <div id="results">
+    <div class="results-header">
+      <div class="results-count">Showing <strong>6</strong> boats in <strong id="locationLabel">—</strong></div>
+      <div class="sort-bar">
+        <span>Sort by</span>
+        <select>
+          <option>Price: low to high</option>
+          <option>Price: high to low</option>
+          <option>Length: longest first</option>
+          <option>Year: newest first</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="boats-grid" id="boatsGrid"></div>
+  </div>
+
+</div>
+
+<script>
+  const BOATS = [
+    { name: "Bavaria C42", category: "Monohull", marina: "ACI Marina", year: 2021, length: "12.8 m", cabins: 3, berths: 6, price: "€ 1 450", period: "/ week" },
+    { name: "Jeanneau 54", category: "Monohull", marina: "Marina Lav", year: 2020, length: "16.5 m", cabins: 5, berths: 10, price: "€ 3 200", period: "/ week" },
+    { name: "Lagoon 42", category: "Catamaran", marina: "Marina Kaštela", year: 2022, length: "12.9 m", cabins: 4, berths: 8, price: "€ 3 800", period: "/ week" },
+    { name: "Fountaine Pajot 47", category: "Catamaran", marina: "ACI Marina", year: 2023, length: "14.3 m", cabins: 5, berths: 10, price: "€ 5 100", period: "/ week" },
+    { name: "Greenline 45", category: "Motor yacht", marina: "Marina Spinut", year: 2021, length: "13.7 m", cabins: 3, berths: 6, price: "€ 4 600", period: "/ week" },
+    { name: "Elan 45", category: "Monohull", marina: "Marina Trogir", year: 2019, length: "13.9 m", cabins: 4, berths: 8, price: "€ 2 100", period: "/ week" },
+  ];
+
+  function renderCard(boat) {
+    return `
+      <div class="boat-card">
+        <div class="card-img">
+          <svg width="80" height="48" viewBox="0 0 80 48" fill="none">
+            <path d="M10 38 L40 8 L70 38 Z" stroke="#2a2a28" stroke-width="1.5" fill="none"/>
+            <line x1="20" y1="38" x2="60" y2="38" stroke="#2a2a28" stroke-width="1.5"/>
+            <line x1="40" y1="8" x2="40" y2="44" stroke="#2a2a28" stroke-width="1" stroke-dasharray="3 2"/>
+            <line x1="4" y1="44" x2="76" y2="44" stroke="#2a2a28" stroke-width="2"/>
+          </svg>
+          <span class="card-category">${boat.category}</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">${boat.name}</div>
+          <div class="card-marina">📍 ${boat.marina}</div>
+          <div class="card-specs">
+            <div class="spec">
+              <span class="spec-label">Length</span>
+              <span class="spec-value">${boat.length}</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">Cabins</span>
+              <span class="spec-value">${boat.cabins}</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">Berths</span>
+              <span class="spec-value">${boat.berths}</span>
+            </div>
+            <div class="spec">
+              <span class="spec-label">Year</span>
+              <span class="spec-value">${boat.year}</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="price">
+            <span class="price-label">From</span>
+            <span class="price-value">${boat.price}</span>
+            <span class="price-per">${boat.period}</span>
+          </div>
+          <button class="btn-details">View details</button>
+        </div>
+      </div>
+    `;
+  }
+
+  document.getElementById("searchForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const location = this.location.value || "Selected location";
+    const category = this.category.value;
+
+    const filtered = category === "all"
+      ? BOATS
+      : BOATS.filter(b => b.category.toLowerCase().includes(category.split(" ")[0].toLowerCase()));
+
+    const boats = filtered.length > 0 ? filtered : BOATS;
+
+    document.getElementById("locationLabel").textContent = location;
+    document.getElementById("boatsGrid").innerHTML = boats.map(renderCard).join("");
+    document.getElementById("empty").style.display = "none";
+    document.getElementById("results").style.display = "block";
+
+    document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+</script>
+
+</body>
+</html>
