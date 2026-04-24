@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ověření — Yachtnet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-verify">
+  <div class="auth-wrap">
+    <div class="auth-nav">
+      <a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:28px;filter:brightness(0);" /></a>
+    </div>
+    <div class="auth-body">
+      <div class="auth-card">
+        <div class="auth-title">Ověření e-mailu</div>
+        <div class="auth-sub">Na vas@email.cz jsme zaslali 6místný ověřovací kód. Zadejte ho níže.</div>
+        <div class="otp-row">
+          <input class="otp-input" type="text" maxlength="1" />
+          <input class="otp-input" type="text" maxlength="1" />
+          <input class="otp-input" type="text" maxlength="1" />
+          <input class="otp-input" type="text" maxlength="1" />
+          <input class="otp-input" type="text" maxlength="1" />
+          <input class="otp-input" type="text" maxlength="1" />
+        </div>
+        <button class="auth-btn" onclick="window.location.href='ucet.html'">Ověřit e-mailovou adresu</button>
+        <div style="margin-top:12px;text-align:center;font-size:13px;color:var(--muted);">
+          Kód nedorazil? <a href="#" style="color:var(--int);font-weight:600;text-decoration:none;">Odeslat znovu</a>
+        </div>
+        <div class="auth-links" style="margin-top:14px;">
+          <div class="auth-link"><a  href="prihlaseni.html">← Zpět na přihlášení</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: ACCOUNT
+════════════════════════════════════════════════════════ -->
+
+<script src="assets/script.js"></script>
+</body>
+</html>

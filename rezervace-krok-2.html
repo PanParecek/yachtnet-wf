@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rezervace — 2. krok — Yachtnet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-booking-2">
+
+  <nav class="bk-nav"><div class="bk-nav-inner">
+    <a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a>
+    <button class="bk-nav-back" onclick="window.location.href='rezervace-krok-1.html'">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Zpět na osobní údaje
+    </button>
+    <div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select></div>
+  </div></nav>
+
+  <!-- STEPPER -->
+  <div class="bk-stepper-wrap"><div class="bk-stepper">
+    <div class="bk-step done">
+      <div class="bk-step-num"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="bk-step-label">Osobní údaje</div>
+    </div>
+    <div class="bk-step active">
+      <div class="bk-step-num">2</div>
+      <div class="bk-step-label">Kontrola a platba</div>
+    </div>
+  </div></div>
+
+  <!-- OBSAH -->
+  <div class="bk-body">
+
+    <!-- HLAVNÍ SLOUPEC -->
+    <div class="bk-main">
+
+      <!-- Časový hold -->
+      <div class="hold-box">
+        <div class="hold-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div style="flex:1;">
+          <div class="hold-title">Loď je pro vás dočasně rezervovaná</div>
+          <div class="hold-desc">Dokončete rezervaci — loď bude uvolněna ostatním zákazníkům po vypršení limitu.</div>
+        </div>
+        <div class="hold-timer">14:58</div>
+      </div>
+
+      <!-- Souhrn osobních údajů -->
+      <div class="bk-card">
+        <div class="bk-card-head">
+          <div class="bk-card-title">Vaše kontaktní údaje</div>
+          <button class="bk-card-edit" onclick="window.location.href='rezervace-krok-1.html'">Upravit</button>
+        </div>
+        <div class="bk-card-body">
+          <div class="recap-grid">
+            <div class="recap-field"><div class="recap-field-label">Jméno</div><div class="recap-field-val">Jan</div></div>
+            <div class="recap-field"><div class="recap-field-label">Příjmení</div><div class="recap-field-val">Novák</div></div>
+            <div class="recap-field"><div class="recap-field-label">E-mail</div><div class="recap-field-val">jan.novak@email.cz</div></div>
+            <div class="recap-field"><div class="recap-field-label">Telefon</div><div class="recap-field-val">+420 775 123 456</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metoda platby -->
+      <div class="bk-card">
+        <div class="bk-card-head"><div class="bk-card-title">Způsob platby</div></div>
+        <div class="bk-card-body">
+
+          <!-- Kreditní / debetní karta -->
+          <div class="payment-option selected">
+            <input type="radio" name="payment" checked />
+            <div class="payment-option-label">
+              <div class="payment-option-title">Platební karta</div>
+              <div class="payment-option-desc">Okamžitá platba — Visa, Mastercard, Maestro</div>
+            </div>
+            <div class="payment-logos">
+              <span class="payment-logo visa">VISA</span>
+              <span class="payment-logo mc">MC</span>
+              <span class="payment-logo">Maestro</span>
+              <span class="payment-logo secure">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                SSL
+              </span>
+              <span class="payment-logo" style="font-size:9px;letter-spacing:.01em;">PayU</span>
+            </div>
+          </div>
+          <!-- Pole karty (viditelná jen u vybrané metody) -->
+          <div class="payment-card-fields" style="margin-bottom:16px;">
+            <div class="bk-field" style="grid-column:1/-1;">
+              <label class="bk-label">Číslo karty</label>
+              <input class="bk-input" type="text" placeholder="1234  5678  9012  3456" />
+            </div>
+            <div class="bk-field">
+              <label class="bk-label">Platnost (MM/RR)</label>
+              <input class="bk-input" type="text" placeholder="07 / 28" />
+            </div>
+            <div class="bk-field">
+              <label class="bk-label">CVV / CVC</label>
+              <input class="bk-input" type="text" placeholder="•••" />
+            </div>
+          </div>
+
+          <!-- Google Pay / Apple Pay -->
+          <div class="payment-option">
+            <input type="radio" name="payment" />
+            <div class="payment-option-label">
+              <div class="payment-option-title">Google Pay / Apple Pay</div>
+              <div class="payment-option-desc">Rychlá platba přes váš mobilní účet</div>
+            </div>
+            <div class="payment-logos">
+              <span class="payment-logo" style="font-weight:700;">G Pay</span>
+              <span class="payment-logo" style="font-weight:700;">Pay</span>
+            </div>
+          </div>
+
+          <!-- Bankovní převod -->
+          <div class="payment-option">
+            <input type="radio" name="payment" />
+            <div class="payment-option-label">
+              <div class="payment-option-title">Bankovní převod</div>
+              <div class="payment-option-desc">Platba převodem — rezervace potvrzena po připsání</div>
+            </div>
+            <div class="payment-logos">
+              <span style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+                2–3 pracovní dny
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /bk-main -->
+
+    <!-- POSTRANNÍ PANEL (stejný souhrn jako krok 1) -->
+    <div class="bk-sidebar">
+      <div class="bk-card">
+        <div class="bk-card-head"><div class="bk-card-title">Zvolená loď</div></div>
+        <div class="bk-card-body">
+          <div class="bk-boat">
+            <div class="bk-boat-img"></div>
+            <div>
+              <div class="bk-boat-name">Bavaria C42 <span style="font-weight:400;color:var(--muted);">"Lady One"</span></div>
+              <div class="bk-boat-sub" style="font-size:12px;color:var(--muted);">🇭🇷 ACI Marina Split · 12. – 19. 7. 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bk-card">
+        <div class="bk-card-head"><div class="bk-card-title">Souhrn cen</div></div>
+        <div class="bk-card-body">
+          <div class="price-line"><span>Pronájem lodi (7 nocí)</span><span>36 000 Kč</span></div>
+          <div class="price-line"><span>Záloha na škody (vratná)</span><span>20 000 Kč</span></div>
+          <div class="price-line"><span>Závěrečný úklid</span><span>2 500 Kč</span></div>
+          <div class="price-line discount"><span>Sleva 10 % (early bird)</span><span>−3 600 Kč</span></div>
+          <div class="price-line total"><span>Celkem k úhradě</span><span>54 900 Kč</span></div>
+          <div class="cancel-info">
+            <strong>Podmínky zrušení</strong>
+            Bezplatně do <strong>12. 6. 2025</strong>.<br>
+            Po tomto datu: storno poplatek 50 %.
+          </div>
+        </div>
+      </div>
+
+      <!-- STICKY CTA -->
+      <div class="bk-sidebar-cta">
+        <div class="vop-row" style="margin:0 0 14px;">
+          <input type="checkbox" id="vop" />
+          <label for="vop" style="font-size:12px;">Souhlasím s <a href="#" style="color:var(--int);font-weight:600;">VOP</a> a <a href="#" style="color:var(--int);font-weight:600;">Zásadami ochrany osobních údajů</a></label>
+        </div>
+        <button class="btn-booking reserve" onclick="window.location.href='rezervace-potvrzeni.html'">Rezervovat a zaplatit — 54 900 Kč</button>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.5;">Platba je okamžitá a bezpečná. Kliknutím souhlasíte s podmínkami.</p>
+      </div>
+
+    </div><!-- /bk-sidebar -->
+
+  </div><!-- /bk-body -->
+
+</div><!-- /page-booking-2 -->
+
+<script src="assets/script.js"></script>
+</body>
+</html>

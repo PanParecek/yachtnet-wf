@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oblíbené lodě — Yachtnet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-favorites">
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a>
+      <ul class="nav-links">
+        <li><a href="pronajem-lodi.html">Pronájem lodí</a></li>
+        <li><a href="destinace.html">Destinace</a></li>
+        <li><a href="kapitanske-kurzy.html">Kapitánské kurzy</a></li>
+        <li><a href="o-nas.html">O nás</a></li>
+        <li><a href="magazin.html">Magazín</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" style="color:var(--int);" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Domů</a><span class="breadcrumb-sep">›</span>
+      <span>Oblíbené lodě</span>
+    </div>
+  </div>
+
+  <div class="favorites-wrap">
+    <header class="favorites-header">
+      <div>
+        <h1 class="favorites-h1">Oblíbené lodě</h1>
+        <p class="favorites-sub"><span id="favCount">0</span> uložených lodí · zobrazte si je kdykoli a porovnejte mezi sebou.</p>
+      </div>
+      <div class="favorites-actions">
+        <button type="button" class="btn-secondary" id="favClearAll">Vyčistit seznam</button>
+      </div>
+    </header>
+
+    <div class="boats-list" id="favoritesGrid"></div>
+
+    <div class="favorites-empty" id="favoritesEmpty" hidden>
+      <div class="favorites-empty-icon"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <div class="favorites-empty-title">Zatím nemáte žádné oblíbené lodě</div>
+      <div class="favorites-empty-text">Klikněte na srdíčko u lodi v přehledu nebo na detailu a uložte si ji sem.</div>
+      <a href="pronajem-lodi.html" class="btn-primary">Procházet lodě →</a>
+    </div>
+  </div>
+
+  <div class="fav-confirm" id="favConfirmModal" hidden role="dialog" aria-label="Potvrzení">
+    <div class="fav-confirm-card">
+      <div class="fav-confirm-title">Odstranit z oblíbených?</div>
+      <div class="fav-confirm-text">Opravdu chcete odstranit <strong id="favConfirmName">tuto loď</strong> ze seznamu oblíbených?</div>
+      <div class="fav-confirm-actions">
+        <button type="button" class="fav-confirm-btn fav-confirm-btn--ghost" id="favConfirmCancel">Zrušit</button>
+        <button type="button" class="fav-confirm-btn fav-confirm-btn--danger" id="favConfirmOk">Odstranit</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>
+    <div class="footer-cols-wrap"><div class="footer-cols">
+      <div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Affiliate Program</a></li><li><a href="#">Kariéra</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Destinace</div><ul><li><a href="#">Země</a></li><li><a href="#">Města</a></li><li><a href="#">Maríny</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="#">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Speciální nabídky</div><ul><li><a href="#">Last minute</a></li><li><a href="#">Nové lodě 2025–2026</a></li><li><a href="#">Přídavný motor zdarma</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Další</div><ul><li><a href="#">Charterové společnosti</a></li><li><a href="#">Výrobci lodí</a></li><li><a href="#">Modely lodí</a></li><li><a href="#">FAQs k pronájmu</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Sledujte nás</div><div class="footer-social"><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div></div><div class="footer-help" style="margin-top:20px;"><strong>Jak vám můžeme pomoci?</strong>Potřebujete poradit s výběrem?<button class="footer-help-btn">Kontaktovat podporu</button></div><div class="yp-badge" style="margin-top:18px;"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div></div>
+    </div></div>
+    <div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div>
+  </footer>
+</div><!-- /page-favorites -->
+
+<script src="assets/script.js"></script>
+</body>
+</html>

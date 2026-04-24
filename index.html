@@ -1,846 +1,692 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yachtnet — Wireframe</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:      #f4f4f2;
-      --surface: #ffffff;
-      --border:  #c8c8c4;
-      --muted:   #9a9a96;
-      --text:    #2a2a28;
-      --accent:  #3a3a36;
-      --radius:  6px;
-      --shadow:  0 1px 3px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.06);
-    }
-
-    body { font-family: "Inter","Helvetica Neue",Arial,sans-serif; font-size: 14px; color: var(--text); background: var(--bg); }
-
-    /* ── WIREFRAME BADGE ───────────────────────────────── */
-    .wf-badge {
-      position: fixed; top: 12px; right: 12px; z-index: 9999;
-      background: var(--accent); color: #fff;
-      font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      padding: 4px 10px; border-radius: 20px; pointer-events: none;
-    }
-
-    /* ── NAV ───────────────────────────────────────────── */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      height: 56px; padding: 0 40px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
-    .nav-logo-mark { width: 30px; height: 30px; background: var(--accent); border-radius: 4px; flex-shrink: 0; }
-    .nav-logo-text { font-size: 16px; font-weight: 700; letter-spacing: -.02em; }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; }
-    .nav-links a:hover { color: var(--text); }
-
-    /* ── HERO ──────────────────────────────────────────── */
-    .hero {
-      height: 400px;
-      background: linear-gradient(160deg, #1c2e40 0%, #243b52 60%, #1a2a38 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: "[ Background photo — sailing scene ]";
-      position: absolute; inset: 0;
-      display: flex; align-items: flex-start; justify-content: flex-end;
-      padding: 14px 18px;
-      font-size: 10px; letter-spacing: .06em; text-transform: uppercase;
-      color: rgba(255,255,255,.2); pointer-events: none;
-    }
-    .hero-content { text-align: center; z-index: 1; padding: 0 24px; }
-    .hero-title {
-      font-size: 30px; font-weight: 700; letter-spacing: -.03em; color: #fff;
-      margin-bottom: 6px;
-    }
-    .hero-sub { font-size: 14px; color: rgba(255,255,255,.55); margin-bottom: 28px; }
-
-    /* ── SEARCH FORM ───────────────────────────────────── */
-    .search-form {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.15);
-      backdrop-filter: blur(8px);
-      border-radius: 10px;
-      padding: 20px 24px;
-      display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap;
-    }
-    .sf-field { display: flex; flex-direction: column; gap: 5px; }
-    .sf-label {
-      font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      color: rgba(255,255,255,.6);
-    }
-    .sf-field select,
-    .sf-field .date-combined {
-      height: 40px;
-      border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius);
-      background: rgba(255,255,255,.1);
-      color: #fff; font-size: 13px; font-family: inherit;
-    }
-    .sf-field select {
-      padding: 0 12px; appearance: none; cursor: pointer; min-width: 160px;
-    }
-    .sf-field select option { color: var(--text); background: #fff; }
-    .sf-field select:focus { outline: 2px solid rgba(255,255,255,.5); outline-offset: 2px; }
-
-    /* combined date range */
-    .date-combined {
-      display: flex; align-items: center; gap: 4px;
-      padding: 0 10px; min-width: 240px;
-    }
-    .date-combined input[type="date"] {
-      border: none; background: transparent; color: #fff;
-      font-size: 13px; font-family: inherit; height: 100%; flex: 1;
-      color-scheme: dark;
-    }
-    .date-combined input[type="date"]:focus { outline: none; }
-    .date-combined:focus-within {
-      outline: 2px solid rgba(255,255,255,.5); outline-offset: 2px;
-      border-color: transparent;
-    }
-    .date-sep { color: rgba(255,255,255,.4); font-size: 12px; flex-shrink: 0; }
-
-    .btn-search {
-      height: 40px; padding: 0 28px; align-self: flex-end;
-      background: #fff; color: var(--accent);
-      border: none; border-radius: var(--radius);
-      font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer;
-    }
-    .btn-search:hover { background: #f0f0ee; }
-
-    /* ── SECTION WRAPPER ───────────────────────────────── */
-    .section { padding: 64px 40px; }
-    .section-header { margin-bottom: 36px; }
-    .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 8px;
-    }
-    .section-title { font-size: 26px; font-weight: 700; letter-spacing: -.03em; }
-
-    /* ── COUNTRIES MOSAIC ──────────────────────────────── */
-    .countries { background: var(--surface); border-bottom: 1px solid var(--border); }
-    .mosaic {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 220px 220px;
-      gap: 6px;
-      border-radius: var(--radius); overflow: hidden;
-    }
-    .country {
-      position: relative; overflow: hidden; cursor: pointer;
-      display: flex; align-items: flex-end;
-      background: #d0d0cc;
-    }
-    .country:hover .country-overlay { opacity: 1; }
-    .country-img {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: rgba(0,0,0,.3);
-    }
-    .country-overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,.15); opacity: 0; transition: opacity .2s;
-    }
-    .country-label {
-      position: relative; z-index: 1;
-      padding: 14px 16px; width: 100%;
-      background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 100%);
-    }
-    .country-name {
-      font-size: 16px; font-weight: 700; color: #fff; letter-spacing: -.01em;
-    }
-    .country-count { font-size: 11px; color: rgba(255,255,255,.6); margin-top: 2px; }
-
-    /* Croatia — dominant */
-    .country-hr { grid-column: 1; grid-row: 1 / 3; background: #b8c4cc; }
-    .country-hr .country-img { font-size: 12px; }
-    .country-hr .country-name { font-size: 22px; }
-    .country-it { grid-column: 2; grid-row: 1; background: #c8c8c4; }
-    .country-gr { grid-column: 2; grid-row: 2; background: #bcc4c8; }
-    .country-fr { grid-column: 3; grid-row: 1; background: #c4c8c0; }
-    .country-nl { grid-column: 3; grid-row: 2; background: #ccc8c0; }
-
-    /* ── SKIPPER COURSES ───────────────────────────────── */
-    .courses { background: var(--bg); border-bottom: 1px solid var(--border); }
-    .courses-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-    }
-    .course-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
-    }
-    .course-img {
-      width: 100%; height: 160px; background: #dcdcd8;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: rgba(0,0,0,.3);
-    }
-    .course-body { padding: 18px; }
-    .course-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-    .course-title a { color: var(--text); text-decoration: none; }
-    .course-title a:hover { text-decoration: underline; color: #000; }
-    .course-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
-
-    /* ── TESTIMONIALS ──────────────────────────────────── */
-    .testimonials { background: var(--surface); border-bottom: 1px solid var(--border); }
-    .carousel-wrap {
-      max-width: 680px; margin: 0 auto;
-      display: flex; flex-direction: column; align-items: center; gap: 24px;
-    }
-    .carousel-track { width: 100%; position: relative; }
-    .testimonial {
-      display: none; text-align: center; padding: 32px 40px;
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 10px;
-    }
-    .testimonial.active { display: block; }
-    .quote-mark {
-      font-size: 48px; line-height: 1; color: var(--border);
-      font-family: Georgia, serif; margin-bottom: 8px;
-    }
-    .quote-text {
-      font-size: 16px; line-height: 1.7; color: var(--text);
-      font-style: italic; margin-bottom: 20px;
-    }
-    .quote-author { font-size: 13px; font-weight: 700; }
-    .quote-location { font-size: 12px; color: var(--muted); margin-top: 2px; }
-
-    .carousel-controls { display: flex; align-items: center; gap: 16px; }
-    .carousel-btn {
-      width: 36px; height: 36px; border-radius: 50%;
-      border: 1.5px solid var(--border); background: var(--surface);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--text); font-size: 14px;
-    }
-    .carousel-btn:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
-    .carousel-dots { display: flex; gap: 6px; }
-    .dot {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer;
-    }
-    .dot.active { background: var(--accent); }
-
-    /* ═══════════════════════════════════════════════════
-       RESULTS PAGE
-    ═══════════════════════════════════════════════════ */
-    #page-results { display: none; }
-
-    .results-layout {
-      display: grid; grid-template-columns: 1fr 3fr;
-      min-height: calc(100vh - 56px);
-    }
-
-    /* ── SIDEBAR FILTERS ─────────────────────────────── */
-    .sidebar {
-      border-right: 1px solid var(--border);
-      background: var(--surface);
-      padding: 24px 20px;
-      display: flex; flex-direction: column; gap: 0;
-    }
-    .sidebar-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 20px;
-    }
-    .sidebar-title { font-size: 14px; font-weight: 700; }
-    .sidebar-reset { font-size: 12px; color: var(--muted); cursor: pointer; text-decoration: underline; }
-
-    /* current search chips */
-    .search-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-    .chip {
-      display: flex; align-items: center; gap: 5px;
-      background: var(--accent); color: #fff;
-      font-size: 11px; font-weight: 600; padding: 4px 10px;
-      border-radius: 20px; letter-spacing: .03em;
-    }
-    .chip-remove { cursor: pointer; opacity: .7; }
-    .chip-remove:hover { opacity: 1; }
-
-    /* filter groups */
-    .filter-group {
-      border-top: 1px solid var(--border); padding: 14px 0;
-    }
-    .filter-group-title {
-      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 10px;
-    }
-    .filter-checks { display: flex; flex-direction: column; gap: 8px; }
-    .filter-check { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-    .filter-check input { accent-color: var(--accent); cursor: pointer; }
-    .filter-check span { font-size: 13px; }
-    .filter-check .count { color: var(--muted); font-size: 11px; }
-
-    /* price range */
-    .price-inputs { display: flex; gap: 8px; align-items: center; }
-    .price-inputs input {
-      flex: 1; height: 34px; padding: 0 10px;
-      border: 1px solid var(--border); border-radius: var(--radius);
-      font-size: 13px; font-family: inherit; background: var(--bg);
-    }
-    .price-inputs span { color: var(--muted); font-size: 12px; }
-
-    /* cabin pills */
-    .cabin-pills { display: flex; gap: 6px; flex-wrap: wrap; }
-    .cabin-pill {
-      padding: 5px 12px; border: 1.5px solid var(--border); border-radius: 20px;
-      font-size: 12px; font-weight: 600; cursor: pointer; background: var(--surface);
-    }
-    .cabin-pill:hover, .cabin-pill.active { border-color: var(--accent); background: var(--accent); color: #fff; }
-
-    .btn-apply {
-      margin-top: 20px; width: 100%; height: 38px;
-      background: var(--accent); color: #fff;
-      border: none; border-radius: var(--radius);
-      font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer;
-    }
-    .btn-apply:hover { background: #1a1a18; }
-
-    /* ── BOATS MAIN AREA ─────────────────────────────── */
-    .boats-main { background: var(--bg); padding: 24px 28px; }
-
-    .boats-topbar {
-      display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;
-    }
-    .results-meta { font-size: 14px; }
-    .results-meta strong { font-weight: 700; }
-    .results-meta .loc { color: var(--muted); }
-
-    .view-sort { display: flex; align-items: center; gap: 12px; }
-    .view-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-    .view-btn {
-      width: 32px; height: 32px; background: var(--surface); border: none;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--muted);
-    }
-    .view-btn.active { background: var(--accent); color: #fff; }
-    .sort-select {
-      height: 32px; padding: 0 10px;
-      border: 1px solid var(--border); border-radius: var(--radius);
-      background: var(--surface); font-size: 13px; font-family: inherit; cursor: pointer;
-    }
-
-    /* boat cards grid */
-    .boats-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;
-    }
-    .boat-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
-      display: flex; flex-direction: column;
-    }
-    .boat-card:hover { border-color: var(--accent); }
-    .card-img {
-      width: 100%; height: 150px; background: #dcdcd8;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    .card-img svg { opacity: .2; }
-    .card-cat-pill {
-      position: absolute; top: 10px; left: 10px;
-      background: var(--accent); color: #fff;
-      font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-      padding: 3px 8px; border-radius: 4px;
-    }
-    .card-body { padding: 14px 16px; flex: 1; }
-    .card-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
-    .card-marina { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-    .card-specs { display: flex; gap: 14px; flex-wrap: wrap; }
-    .spec { display: flex; flex-direction: column; gap: 1px; }
-    .spec-l { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-    .spec-v { font-size: 13px; font-weight: 600; }
-    .card-foot {
-      padding: 10px 16px;
-      border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .card-price { display: flex; flex-direction: column; }
-    .price-from { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-    .price-val { font-size: 17px; font-weight: 700; }
-    .price-unit { font-size: 11px; color: var(--muted); }
-    .btn-view {
-      padding: 7px 16px; border: 1.5px solid var(--accent); border-radius: var(--radius);
-      background: transparent; color: var(--accent);
-      font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer;
-    }
-    .btn-view:hover { background: var(--accent); color: #fff; }
-  </style>
+  <title>Yachtnet — pronájem lodí bez prostředníků</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
 
-<div class="wf-badge">Wireframe</div>
-
-<!-- ═════════════════════════════════════════════
-     PAGE: HOMEPAGE
-═════════════════════════════════════════════ -->
 <div id="page-home">
 
   <!-- NAV -->
-  <nav class="nav">
-    <a class="nav-logo" href="#">
-      <div class="nav-logo-mark"></div>
-      <span class="nav-logo-text">Yachtnet</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#">Boat rental</a></li>
-      <li><a href="#">Skipper courses</a></li>
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+  <nav class="nav" id="homeNav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">
+        <img src="img/logo-yachtnet.svg" alt="Yachtnet" />
+      </a>
+      <ul class="nav-links">
+        <li><a  href="pronajem-lodi.html">Pronájem lodí</a></li>
+        <li><a  href="destinace.html">Destinace</a></li>
+        <li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li>
+        <li><a  href="o-nas.html">O nás</a></li>
+        <li><a  href="magazin.html">Magazín</a></li>
+        <li><a  href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button>
+      </div>
+      <!-- Hamburger (mobile only) -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Otevřít menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile menu overlay -->
+    <div class="nav-mobile-menu" id="navMobileMenu" role="navigation" aria-label="Mobilní navigace">
+      <div class="nav-mobile-group">
+        <button type="button" class="nav-mobile-link nav-mobile-group-toggle" aria-expanded="false">
+          <span>Pronájem lodí</span>
+          <svg class="nav-mobile-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav-mobile-group-panel">
+          <a class="nav-mobile-sublink nav-mobile-sublink-cta" href="pronajem-lodi.html">
+            Najít loď
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <div class="nav-mobile-sub-title">Hledat podle</div>
+          <a class="nav-mobile-sublink" href="destinace.html">Destinace</a>
+          <a class="nav-mobile-sublink" href="kategorie-lodi.html">Kategorie</a>
+          <a class="nav-mobile-sublink" href="detail-znacky.html">Značky</a>
+          <a class="nav-mobile-sublink" href="charterove-spolecnosti.html">Charterové společnosti</a>
+          <div class="nav-mobile-sub-title">Z magazínu</div>
+          <a class="nav-mobile-sublink" href="detail-clanku.html">Jak vybrat správnou loď?</a>
+        </div>
+      </div>
+      <button class="nav-mobile-link" onclick="window.location.href='kapitanske-kurzy.html'">Kapitánské kurzy</button>
+      <button class="nav-mobile-link" onclick="window.location.href='o-nas.html'">O nás</button>
+      <button class="nav-mobile-link" onclick="window.location.href='magazin.html'">Magazín</button>
+      <button class="nav-mobile-link" onclick="window.location.href='kontakt.html'">Kontakt</button>
+      <div class="nav-mobile-actions">
+        <div class="nav-select-wrap">
+          <svg class="nav-sel-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <select class="nav-select"><option>CS</option><option>EN</option><option>DE</option></select>
+        </div>
+        <div class="nav-select-wrap">
+          <svg class="nav-sel-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9h3a2 2 0 0 1 0 4H11v1.5M11 7.5V9"/></svg>
+          <select class="nav-select"><option>Kč</option><option>€</option><option>$</option></select>
+        </div>
+        <button class="nav-login-btn" onclick="closeMobileNav();"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button>
+      </div>
+    </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO + SEARCH FORM -->
   <section class="hero">
     <div class="hero-content">
-      <h1 class="hero-title">Find your perfect bareboat charter</h1>
-      <p class="hero-sub">Croatia, Greece, Italy and more — book directly, no middleman.</p>
-
-      <form class="search-form" id="searchForm">
-
+      <h1 class="hero-title">Najděte si svůj ideální pronájem lodi</h1>
+      <p class="hero-sub">Chorvatsko, Řecko, Itálie a další — rezervujte přímo, bez zprostředkovatelů.</p>
+      <form class="search-form" id="searchForm" novalidate>
         <div class="sf-field">
-          <span class="sf-label">Destination</span>
-          <select name="location" required>
-            <option value="" disabled selected>Select location…</option>
-            <optgroup label="Croatia">
-              <option>Split</option>
-              <option>Dubrovnik</option>
-              <option>Šibenik</option>
-              <option>Zadar</option>
-            </optgroup>
-            <optgroup label="Greece">
-              <option>Athens (Alimos)</option>
-              <option>Corfu</option>
-              <option>Rhodes</option>
-            </optgroup>
-            <optgroup label="Italy">
-              <option>Sicily</option>
-              <option>Sardinia</option>
-            </optgroup>
-            <optgroup label="France">
-              <option>French Riviera</option>
-              <option>Corsica</option>
-            </optgroup>
-            <optgroup label="Netherlands">
-              <option>Amsterdam (IJmeer)</option>
-              <option>Frisian Islands</option>
-            </optgroup>
+          <span class="sf-label">Destinace</span>
+          <select name="location" data-multi data-optgroup-selectable data-placeholder="Vyberte destinaci…">
+            <option value="" disabled selected>Vyberte destinaci…</option>
+            <optgroup label="Chorvatsko"><option>Split</option><option>Dubrovník</option><option>Šibenik</option><option>Zadar</option></optgroup>
+            <optgroup label="Řecko"><option>Athény (Alimos)</option><option>Korfu</option><option>Rhodos</option></optgroup>
+            <optgroup label="Itálie"><option>Sicílie</option><option>Sardinie</option></optgroup>
+            <optgroup label="Španělsko"><option>Palma de Mallorca</option><option>Barcelona</option></optgroup>
+            <optgroup label="Francie"><option>Francouzská riviéra</option><option>Korsika</option></optgroup>
+            <optgroup label="Holandsko"><option>Amsterdam (IJmeer)</option><option>Fríské ostrovy</option></optgroup>
           </select>
         </div>
-
         <div class="sf-field">
-          <span class="sf-label">Dates</span>
+          <span class="sf-label">Termín</span>
           <div class="date-combined">
-            <input type="date" name="from" required />
+            <input type="date" name="from" />
             <span class="date-sep">→</span>
-            <input type="date" name="to" required />
+            <input type="date" name="to" />
           </div>
         </div>
-
         <div class="sf-field">
-          <span class="sf-label">Boat type</span>
-          <select name="category">
-            <option value="all">All types</option>
-            <option>Monohull (sailing)</option>
-            <option>Catamaran (sailing)</option>
-            <option>Motor yacht</option>
-            <option>Gulet</option>
+          <span class="sf-label">Typ lodi</span>
+          <select name="category" data-multi data-placeholder="Všechny typy">
+            <option value="" disabled selected>Všechny typy</option>
+            <option value="sailing">Plachetnice</option>
+            <option value="catamaran">Katamarán</option>
+            <option value="motor">Motorová loď</option>
+            <option value="gulet">Gulet</option>
+            <option value="river">Říční loď</option>
           </select>
         </div>
-
-        <button type="submit" class="btn-search">Search boats</button>
-
+        <button type="button" class="btn-search" onclick="window.location.href='pronajem-lodi.html'">Hledat lodě</button>
       </form>
     </div>
   </section>
 
-  <!-- COUNTRIES MOSAIC -->
-  <section class="section countries">
-    <div class="section-header">
-      <div class="section-label">Where do you want to sail?</div>
-      <h2 class="section-title">Top destinations</h2>
+  <!-- SOCIAL PROOF STRIP -->
+  <div class="social-proof">
+    <div class="social-proof-inner">
+      <div class="sp-item">
+        <span class="sp-google-icon" aria-label="Google">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+        </span>
+        <span class="sp-score">5,0</span>
+        <div>
+          <div class="sp-stars">★★★★★</div>
+          <div class="sp-label">Průměrné hodnocení ze 192 recenzí na Googlu</div>
+        </div>
+      </div>
+      <div class="sp-divider"></div>
+      <div class="sp-testimonial">
+        <span class="sp-quote-icon" aria-hidden="true">"</span>
+        <span class="sp-quote-text">Rezervace hladká, loď přesně podle popisu.</span>
+        <span class="sp-quote-author">— Martin K.</span>
+      </div>
     </div>
-    <div class="mosaic">
+  </div>
 
-      <div class="country country-hr">
-        <div class="country-img">[ Photo ]</div>
-        <div class="country-overlay"></div>
-        <div class="country-label">
-          <div class="country-name">Croatia</div>
-          <div class="country-count">142 boats available</div>
+  <!-- DESTINATION MOSAIC -->
+  <div class="band">
+    <div class="inner">
+      <div class="sec-header sec-header-row">
+        <div>
+          <div class="sec-label">Kam chcete vyplout?</div>
+          <h2 class="sec-title">Nejoblíbenější destinace</h2>
+        </div>
+        <a class="sec-all-link" href="destinace.html">Všechny destinace →</a>
+      </div>
+      <div class="mosaic-wrap">
+        <div class="mosaic">
+          <div class="country country-hr" onclick="Nonewindow.location.href='oblast.html'" style="cursor:pointer;">
+            <div class="country-overlay"></div>
+            <div class="country-label"><div class="country-name">Chorvatsko</div><div class="country-count">142 dostupných lodí</div></div>
+          </div>
+          <div class="country country-it" onclick="Nonewindow.location.href='oblast.html'" style="cursor:pointer;">
+            <div class="country-overlay"></div>
+            <div class="country-label"><div class="country-name">Itálie</div><div class="country-count">68 lodí</div></div>
+          </div>
+          <div class="country country-es" onclick="Nonewindow.location.href='oblast.html'" style="cursor:pointer;">
+            <div class="country-overlay"></div>
+            <div class="country-label"><div class="country-name">Španělsko</div><div class="country-count">54 lodí</div></div>
+          </div>
+          <div class="country country-gr" onclick="Nonewindow.location.href='oblast.html'" style="cursor:pointer;">
+            <div class="country-overlay"></div>
+            <div class="country-label"><div class="country-name">Řecko</div><div class="country-count">95 lodí</div></div>
+          </div>
+          <div class="country country-nl" onclick="Nonewindow.location.href='oblast.html'" style="cursor:pointer;">
+            <div class="country-overlay"></div>
+            <div class="country-label"><div class="country-name">Holandsko</div><div class="country-count">29 lodí</div></div>
+          </div>
+        </div>
+        <div class="mosaic-promo">
+          <div>
+            <div class="mosaic-promo-text" style="display:flex;align-items:center;gap:7px;"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>348 lodí ve slevě — až 40 % dolů</div>
+            <div class="mosaic-promo-sub">Omezená dostupnost · Last-minute nabídky aktualizovány každý den</div>
+          </div>
+          <div class="mosaic-promo-cta">Zobrazit nabídky →</div>
         </div>
       </div>
-
-      <div class="country country-it">
-        <div class="country-img">[ Photo ]</div>
-        <div class="country-overlay"></div>
-        <div class="country-label">
-          <div class="country-name">Italy</div>
-          <div class="country-count">68 boats</div>
-        </div>
-      </div>
-
-      <div class="country country-fr">
-        <div class="country-img">[ Photo ]</div>
-        <div class="country-overlay"></div>
-        <div class="country-label">
-          <div class="country-name">France</div>
-          <div class="country-count">41 boats</div>
-        </div>
-      </div>
-
-      <div class="country country-gr">
-        <div class="country-img">[ Photo ]</div>
-        <div class="country-overlay"></div>
-        <div class="country-label">
-          <div class="country-name">Greece</div>
-          <div class="country-count">95 boats</div>
-        </div>
-      </div>
-
-      <div class="country country-nl">
-        <div class="country-img">[ Photo ]</div>
-        <div class="country-overlay"></div>
-        <div class="country-label">
-          <div class="country-name">Netherlands</div>
-          <div class="country-count">29 boats</div>
-        </div>
-      </div>
-
     </div>
-  </section>
+  </div>
 
   <!-- SKIPPER COURSES -->
-  <section class="section courses">
-    <div class="section-header">
-      <div class="section-label">Learn to sail</div>
-      <h2 class="section-title">Skipper courses</h2>
+  <div class="band-alt">
+    <div class="inner">
+      <div class="courses-intro">
+        <div class="sec-label">Naučte se plout</div>
+        <h2 class="courses-h2">Chcete si pronajmout loď, ale nemáte kapitánský průkaz?</h2>
+        <p class="courses-h3" style="margin-top:8px;">Zažijte svobodu na vlnách — staňte se certifikovaným kapitánem pod vedením zkušených lektorů.</p>
+      </div>
+      <div class="courses-grid-wrap">
+      <div class="courses-grid" id="coursesGrid">
+
+        <a class="course-card course-card--link" href="detail-prukazu.html">
+          <div class="course-img"></div>
+          <div class="course-body">
+            <h3 class="course-title">Průkaz MDČR C</h3>
+            <p class="course-desc">Základní osvědčení pro plavbu v pobřežních vodách, vyžadované pro pronájem lodi v Chorvatsku, Řecku a Itálii.</p>
+            <div class="course-tags">
+              <span class="course-tag">Pobřežní plavba</span>
+              <span class="course-tag">Chorvatsko · Řecko · Itálie</span>
+            </div>
+            <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">12 900 Kč</span></div>
+          </div>
+        </a>
+
+        <a class="course-card course-card--link" href="detail-prukazu.html">
+          <div class="course-img"></div>
+          <div class="course-body">
+            <h3 class="course-title">VMP — Velitel malého plavidla</h3>
+            <p class="course-desc">Český průkaz pro plavbu na řekách, jezerech a vnitrozemských vodách — motor i plachta, pro začínající kapitány.</p>
+            <div class="course-tags">
+              <span class="course-tag">Řeky + jezera</span>
+              <span class="course-tag">Teorie online</span>
+            </div>
+            <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">4 500 Kč</span></div>
+          </div>
+        </a>
+
+        <a class="course-card course-card--link" href="detail-prukazu.html">
+          <div class="course-img"></div>
+          <div class="course-body">
+            <h3 class="course-title">SRC — Radiotelefon</h3>
+            <p class="course-desc">Průkaz pro krátký dosah VHF, povinný pro plavbu na otevřeném moři a pro lodě vybavené radiostanicí.</p>
+            <div class="course-tags">
+              <span class="course-tag">Všechny destinace</span>
+              <span class="course-tag">Jednodenní kurz</span>
+            </div>
+            <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">3 900 Kč</span></div>
+          </div>
+        </a>
+
+      </div>
+      <div class="courses-arrows" aria-hidden="true">
+        <button type="button" class="courses-arrow" data-dir="-1" aria-label="Předchozí kurzy">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button type="button" class="courses-arrow" data-dir="1" aria-label="Další kurzy">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      </div><!-- /courses-grid-wrap -->
+      <div class="courses-cta-wrap">
+        <a class="btn-primary-lg" href="kapitanske-kurzy.html">
+          Vše o kapitánských kurzech
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
     </div>
-    <div class="courses-grid">
-
-      <div class="course-card">
-        <div class="course-img">[ Photo ]</div>
-        <div class="course-body">
-          <h3 class="course-title"><a href="#">RYA Day Skipper</a></h3>
-          <p class="course-desc">A practical one-week course covering coastal navigation, boat handling, and basic seamanship for short passages.</p>
-        </div>
-      </div>
-
-      <div class="course-card">
-        <div class="course-img">[ Photo ]</div>
-        <div class="course-body">
-          <h3 class="course-title"><a href="#">RYA Coastal Skipper</a></h3>
-          <p class="course-desc">Advanced navigation and passage planning for overnight and offshore sailing in European waters.</p>
-        </div>
-      </div>
-
-      <div class="course-card">
-        <div class="course-img">[ Photo ]</div>
-        <div class="course-body">
-          <h3 class="course-title"><a href="#">ICC — Helmsman's Certificate</a></h3>
-          <p class="course-desc">The internationally recognised certificate required to charter a bareboat in most Mediterranean countries.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
+  </div>
 
   <!-- TESTIMONIALS -->
-  <section class="section testimonials">
-    <div class="section-header" style="text-align:center; max-width:600px; margin: 0 auto 36px;">
-      <div class="section-label">Happy sailors</div>
-      <h2 class="section-title">What our clients say</h2>
+  <div class="band">
+    <div class="inner">
+      <div class="sec-header" style="text-align:center; max-width:600px; margin: 0 auto 28px;">
+        <div class="sec-label">Spokojení námořníci</div>
+        <h2 class="sec-title">Co říkají naši klienti</h2>
+      </div>
+      <div style="max-width:680px; margin: 0 auto;">
+        <div class="testi-tabs">
+          <div class="testi-tab active" data-panel="rental">Pronájem lodi</div>
+          <div class="testi-tab" data-panel="courses">Kapitánské kurzy</div>
+        </div>
+      </div>
+      <div class="carousel-wrap">
+        <div class="carousel-track">
+          <div class="testimonial active" data-panel="rental">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Pronájem přes Yachtnet byl naprosto bezproblémový — loď byla v perfektním stavu a celý tým byl od rezervace až po odevzdání neskutečně nápomocný.</p>
+            <div class="quote-author">Martin K.</div><div class="quote-location">Praha, Česká republika</div>
+          </div>
+          <div class="testimonial" data-panel="rental">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Pluli jsme podél dalmatského pobřeží dva týdny a byl to výlet života. Rezervace byla jednoduchá, transparentní a loď předčila naše očekávání.</p>
+            <div class="quote-author">Anna &amp; Tom R.</div><div class="quote-location">Vídeň, Rakousko</div>
+          </div>
+          <div class="testimonial" data-panel="rental">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Katamaran Lagoon 42 v Trogiru byla trefa do černého — stabilita pro rodinu s dětmi, prostor i pro čtyři páry kamarádů. Přebírání lodi proběhlo během 20 minut.</p>
+            <div class="quote-author">Jakub &amp; Petra S.</div><div class="quote-location">Plzeň, Česká republika</div>
+          </div>
+          <div class="testimonial" data-panel="rental">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Přepnuli jsme ze Sicílie do Chorvatska na poslední chvíli — operátoři našli dostupnou loď za 15 minut a celou rezervaci vyřešili ještě ten den.</p>
+            <div class="quote-author">Ondřej H.</div><div class="quote-location">Bratislava, Slovensko</div>
+          </div>
+          <div class="testimonial" data-panel="rental">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Už potřetí rok co rok. Ceny bez zprostředkovatelů jsou férové a s podporou jsem vždy řešila vše v češtině. Yachtnet je pro nás první volba.</p>
+            <div class="quote-author">Klára N.</div><div class="quote-location">Olomouc, Česká republika</div>
+          </div>
+          <div class="testimonial" data-panel="courses" style="display:none;">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Průkaz C jsem složil na první pokus — lektoři byli trpěliví, profesionální a celý průběh kurzu byl příjemný i pro naprostého začátečníka.</p>
+            <div class="quote-author">Lukáš M.</div><div class="quote-location">Brno, Česká republika</div>
+          </div>
+          <div class="testimonial" data-panel="courses" style="display:none;">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Kurz radiostanice SRC byl kompaktní a skvěle strukturovaný. Průkaz jsem získala za jeden den a hned si zarezervovala první charter.</p>
+            <div class="quote-author">Sophie L.</div><div class="quote-location">Amsterdam, Holandsko</div>
+          </div>
+          <div class="testimonial" data-panel="courses" style="display:none;">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Chorvatský VMP za víkend v Brně — teorie v pátek, praxe v sobotu na jezeře, v pondělí už jsem měla průkaz v ruce. Skvělá investice před první charterovou plavbou.</p>
+            <div class="quote-author">Tereza V.</div><div class="quote-location">Hradec Králové, Česká republika</div>
+          </div>
+          <div class="testimonial" data-panel="courses" style="display:none;">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Lektoři mají za sebou tisíce hodin na moři — to je na každém cvičení poznat. Teorie se nikdy nezvrhla v nudné memorování, všechno mělo praktický přesah.</p>
+            <div class="quote-author">David K.</div><div class="quote-location">Liberec, Česká republika</div>
+          </div>
+          <div class="testimonial" data-panel="courses" style="display:none;">
+            <div class="quote-mark">"</div>
+            <p class="quote-text">Jako úplný začátečník jsem měla obavy, ale po pěti dnech na moři jsem sama vedla loď do přístavu. Yachtnet kurz mě naučil sebevědomí, ne jen pravidla.</p>
+            <div class="quote-author">Markéta B.</div><div class="quote-location">Praha, Česká republika</div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="carouselPrev">&#8592;</button>
+          <div class="carousel-dots" id="carouselDots"></div>
+          <button class="carousel-btn" id="carouselNext">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMAGE DIVIDER BANNER -->
+  <div class="img-banner">
+    <div class="img-banner-content">
+      <div class="img-banner-title">Plujte bez starostí — každý pronájem je plně pojištěn</div>
+      <div class="img-banner-sub">Komplexní pojištění jachty je součástí každé rezervace. Žádné skryté poplatky, žádná překvapení.</div>
+      <a href="#" class="btn-banner">Zjistit více o pojištění</a>
+    </div>
+  </div>
+
+  <!-- BOAT CATEGORIES -->
+  <div class="band-alt">
+    <div class="inner">
+      <div class="sec-header">
+        <div class="sec-label">Na čem chcete plout?</div>
+        <h2 class="sec-title">Kategorie lodí</h2>
+      </div>
+      <div class="categories-grid">
+        <a class="cat-tile" href="detail-kategorie.html">
+          <div class="cat-img"></div>
+          <div class="cat-label"><div class="cat-name">Plachetnice</div><div class="cat-count">213 lodí</div></div>
+        </a>
+        <a class="cat-tile" href="detail-kategorie.html">
+          <div class="cat-img"></div>
+          <div class="cat-label"><div class="cat-name">Katamarán</div><div class="cat-count">84 lodí</div></div>
+        </a>
+        <a class="cat-tile" href="detail-kategorie.html">
+          <div class="cat-img"></div>
+          <div class="cat-label"><div class="cat-name">Motorová loď</div><div class="cat-count">67 lodí</div></div>
+        </a>
+        <a class="cat-tile" href="detail-kategorie.html">
+          <div class="cat-img"></div>
+          <div class="cat-label"><div class="cat-name">Gulet</div><div class="cat-count">18 lodí</div></div>
+        </a>
+        <a class="cat-tile" href="detail-kategorie.html">
+          <div class="cat-img"></div>
+          <div class="cat-label"><div class="cat-name">Říční loď</div><div class="cat-count">29 lodí</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAGAZINE ARTICLES -->
+  <div class="band">
+    <div class="inner">
+      <div class="sec-header">
+        <div class="sec-label">Yachtnet Magazín</div>
+        <h2 class="sec-title">Tipy, průvodci a destinace</h2>
+      </div>
+      <div class="articles-grid">
+
+        <a class="article-card" href="detail-clanku.html">
+          <div class="article-img"></div>
+          <div class="article-body">
+            <span class="article-cat">Destinace</span>
+            <h3 class="article-title">7denní itinerář po Chorvatsku: ze Splitu do Dubrovníku přes ostrovy</h3>
+            <p class="article-desc">Naše nejoblíbenější trasa — kotviště, mariny a skryté zátoky podél dalmatského pobřeží.</p>
+            <div class="article-meta">10 min čtení · Průvodce destinací</div>
+          </div>
+        </a>
+
+        <a class="article-card" href="detail-clanku.html">
+          <div class="article-img"></div>
+          <div class="article-body">
+            <span class="article-cat">Bezpečnost</span>
+            <h3 class="article-title">10 věcí, které musí každý charterista zkontrolovat před vyplutím</h3>
+            <p class="article-desc">Kontrolní seznam před odplutím, který může zachránit váš výlet — od světlic po čerpadlo sentiny.</p>
+            <div class="article-meta">8 min čtení · Bezpečnost</div>
+          </div>
+        </a>
+
+        <a class="article-card" href="detail-clanku.html">
+          <div class="article-img"></div>
+          <div class="article-body">
+            <span class="article-cat">Dovednosti</span>
+            <h3 class="article-title">Jak číst námořní předpověď počasí pro plavbu na moři</h3>
+            <p class="article-desc">Vítr, vlny a tlak vzduchu — co čísla znamenají a jak se podle nich rozhodovat.</p>
+            <div class="article-meta">6 min čtení · Kapitánské dovednosti</div>
+          </div>
+        </a>
+
+      </div>
+      <div class="courses-cta-wrap">
+        <a class="btn-primary-lg" href="magazin.html">
+          Všechny články z magazínu
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPULAR BOAT MODELS -->
+  <div class="band-alt">
+    <div class="inner">
+      <div class="models-header">
+        <div>
+          <div class="sec-label">Nejoblíbenější</div>
+          <h2 class="sec-title">Oblíbené modely lodí</h2>
+        </div>
+        <a href="detail-znacky.html" class="link-all">Zobrazit všechny modely →</a>
+      </div>
+      <div class="models-wrap">
+      <div class="models-grid" id="modelsGrid">
+
+        <a class="model-card" href="detail-znacky.html">
+          <div class="model-img">
+            <span class="model-cat">Plachetnice</span>
+          </div>
+          <div class="model-body">
+            <div class="model-name">Bavaria C42</div>
+            <div class="model-specs">12.8 m · 3 cab · 2019–2023</div>
+            <div class="model-price">Od 31 000 Kč / týden</div>
+          </div>
+        </a>
+
+        <a class="model-card" href="detail-znacky.html">
+          <div class="model-img">
+            <span class="model-cat">Katamarán</span>
+          </div>
+          <div class="model-body">
+            <div class="model-name">Lagoon 42</div>
+            <div class="model-specs">12.9 m · 4 cab · 2020–2023</div>
+            <div class="model-price">Od 85 000 Kč / týden</div>
+          </div>
+        </a>
+
+        <a class="model-card" href="detail-znacky.html">
+          <div class="model-img">
+            <span class="model-cat">Plachetnice</span>
+          </div>
+          <div class="model-body">
+            <div class="model-name">Jeanneau Sun Odyssey 410</div>
+            <div class="model-specs">12.4 m · 3 cab · 2019–2023</div>
+            <div class="model-price">Od 36 000 Kč / týden</div>
+          </div>
+        </a>
+
+        <a class="model-card" href="detail-znacky.html">
+          <div class="model-img">
+            <span class="model-cat">Katamarán</span>
+          </div>
+          <div class="model-body">
+            <div class="model-name">Fountaine Pajot Elba 45</div>
+            <div class="model-specs">13.9 m · 4 cab · 2021–2023</div>
+            <div class="model-price">Od 120 000 Kč / týden</div>
+          </div>
+        </a>
+
+        <a class="model-card" href="detail-znacky.html">
+          <div class="model-img">
+            <span class="model-cat">Plachetnice</span>
+          </div>
+          <div class="model-body">
+            <div class="model-name">Bénéteau Oceanis 51.1</div>
+            <div class="model-specs">15.4 m · 5 cab · 2020–2023</div>
+            <div class="model-price">Od 72 000 Kč / týden</div>
+          </div>
+        </a>
+
+        <a class="model-card" href="detail-znacky.html">
+          <div class="model-img">
+            <span class="model-cat">Plachetnice</span>
+          </div>
+          <div class="model-body">
+            <div class="model-name">Hanse 548</div>
+            <div class="model-specs">16.7 m · 5 cab · 2021–2023</div>
+            <div class="model-price">Od 88 000 Kč / týden</div>
+          </div>
+        </a>
+
+        <a class="model-card" href="detail-znacky.html">
+          <div class="model-img">
+            <span class="model-cat">Katamarán</span>
+          </div>
+          <div class="model-body">
+            <div class="model-name">Lagoon 50</div>
+            <div class="model-specs">15.0 m · 6 cab · 2021–2023</div>
+            <div class="model-price">Od 175 000 Kč / týden</div>
+          </div>
+        </a>
+
+        <a class="model-card" href="detail-znacky.html">
+          <div class="model-img">
+            <span class="model-cat">Katamarán</span>
+          </div>
+          <div class="model-body">
+            <div class="model-name">Bali 4.8</div>
+            <div class="model-specs">14.6 m · 4 cab · 2022–2023</div>
+            <div class="model-price">Od 112 000 Kč / týden</div>
+          </div>
+        </a>
+
+        <a class="model-card" href="detail-znacky.html">
+          <div class="model-img">
+            <span class="model-cat">Motorová loď</span>
+          </div>
+          <div class="model-body">
+            <div class="model-name">Prestige 520</div>
+            <div class="model-specs">15.7 m · 4 cab · 2020–2023</div>
+            <div class="model-price">Od 145 000 Kč / týden</div>
+          </div>
+        </a>
+
+        <a class="model-card" href="detail-znacky.html">
+          <div class="model-img">
+            <span class="model-cat">Plachetnice</span>
+          </div>
+          <div class="model-body">
+            <div class="model-name">Dufour 470</div>
+            <div class="model-specs">14.3 m · 4 cab · 2022–2023</div>
+            <div class="model-price">Od 58 000 Kč / týden</div>
+          </div>
+        </a>
+
+      </div>
+      <div class="models-arrows" aria-hidden="true">
+        <button type="button" class="models-arrow" data-dir="-1" aria-label="Předchozí modely">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button type="button" class="models-arrow" data-dir="1" aria-label="Další modely">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      </div><!-- /models-wrap -->
+    </div>
+  </div>
+
+  <!-- CHARTER COMPANY LOGOS -->
+  <div class="band">
+    <div class="inner-sm">
+      <div class="logos-header">
+        <div>
+          <div class="sec-label">Naši partneři</div>
+          <h2 class="sec-title" style="font-size:20px;">Doporučené charterové společnosti</h2>
+        </div>
+        <a href="charterove-spolecnosti.html" class="link-all">Zobrazit všechny společnosti →</a>
+      </div>
+      <div class="logos-row">
+        <a class="logo-box" href="charterova-spolecnost.html" aria-label="Sunsail">Sunsail</a>
+        <a class="logo-box" href="charterova-spolecnost.html" aria-label="Navigare Yachting">Navigare</a>
+        <a class="logo-box" href="charterova-spolecnost.html" aria-label="Moorings">Moorings</a>
+        <a class="logo-box" href="charterova-spolecnost.html" aria-label="Dream Yacht Charter">Dream Yacht</a>
+        <a class="logo-box" href="charterova-spolecnost.html" aria-label="MareSail">MareSail</a>
+        <a class="logo-box" href="charterova-spolecnost.html" aria-label="Pitter Yachtcharter">Pitter</a>
+        <a class="logo-box" href="charterova-spolecnost.html" aria-label="Kiriacoulis">Kiriacoulis</a>
+        <a class="logo-box" href="charterova-spolecnost.html" aria-label="Ultra Sailing">Ultra Sailing</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-newsletter">
+      <div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div>
+      <div class="footer-nl-form">
+        <div class="footer-nl-row">
+          <input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" />
+          <button class="footer-nl-btn">Odebírat</button>
+        </div>
+        <label class="footer-nl-consent">
+          <input type="checkbox" />
+          Souhlasím se zásadami ochrany osobních údajů
+        </label>
+      </div>
     </div>
 
-    <div class="carousel-wrap">
-      <div class="carousel-track">
+    <div class="footer-cols-wrap">
+      <div class="footer-cols">
 
-        <div class="testimonial active" data-index="0">
-          <div class="quote-mark">"</div>
-          <p class="quote-text">Renting through Yachtnet was effortless — the boat was in perfect condition and the whole team was incredibly helpful from booking to drop-off.</p>
-          <div class="quote-author">Martin K.</div>
-          <div class="quote-location">Prague, Czech Republic</div>
+        <!-- Col 1 — Brand -->
+        <div class="footer-col">
+          <div class="footer-logo-mark">
+            <img src="img/logo-yachtnet.svg" alt="Yachtnet" />
+          </div>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a  href="kontakt.html">Kontakt</a></li>
+            <li><a href="#">Ochrana osobních údajů</a></li>
+            <li><a href="#">Nastavení cookies</a></li>
+            <li><a href="#">Obchodní podmínky</a></li>
+            <li><a href="#">Obsahová spolupráce</a></li>
+            <li><a href="#">Affiliate Program</a></li>
+            <li><a href="#">Kariéra</a></li>
+          </ul>
         </div>
 
-        <div class="testimonial" data-index="1">
-          <div class="quote-mark">"</div>
-          <p class="quote-text">We sailed the Dalmatian coast for two weeks and it was the trip of a lifetime. Booking was simple, transparent, and the boat exceeded our expectations.</p>
-          <div class="quote-author">Anna &amp; Tom R.</div>
-          <div class="quote-location">Vienna, Austria</div>
+        <!-- Col 2 — Destinace -->
+        <div class="footer-col">
+          <div class="footer-col-title">Destinace</div>
+          <ul>
+            <li><a href="#">Země</a></li>
+            <li><a href="#">Města</a></li>
+            <li><a href="#">Maríny</a></li>
+          </ul>
         </div>
 
-        <div class="testimonial" data-index="2">
-          <div class="quote-mark">"</div>
-          <p class="quote-text">As first-time charterers we were nervous, but the team guided us through every step. We'll definitely be back next summer.</p>
-          <div class="quote-author">Sophie L.</div>
-          <div class="quote-location">Amsterdam, Netherlands</div>
+        <!-- Col 3 — Typ pronájmu -->
+        <div class="footer-col">
+          <div class="footer-col-title">Typ pronájmu</div>
+          <ul><li><a href="#">Plachetnice</a></li><li><a href="#">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul>
         </div>
 
-        <div class="testimonial" data-index="3">
-          <div class="quote-mark">"</div>
-          <p class="quote-text">Best boat rental experience we've had. Great selection, fair prices, and excellent on-water support when we needed it.</p>
-          <div class="quote-author">James R.</div>
-          <div class="quote-location">London, UK</div>
+        <!-- Col 4 — Speciální nabídky -->
+        <div class="footer-col">
+          <div class="footer-col-title">Speciální nabídky</div>
+          <ul>
+            <li><a href="#">Last minute nabídky</a></li>
+            <li><a href="#">Nové lodě 2025–2026</a></li>
+            <li><a href="#">Přídavný motor zdarma</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5 — Další -->
+        <div class="footer-col">
+          <div class="footer-col-title">Další</div>
+          <ul>
+            <li><a href="#">Charterové společnosti</a></li>
+            <li><a href="#">Výrobci lodí</a></li>
+            <li><a href="#">Modely lodí</a></li>
+            <li><a href="#">FAQs k pronájmu lodí</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 6 — Sledujte nás + pomoc -->
+        <div class="footer-col">
+          <div class="footer-col-title">Sledujte nás</div>
+          <div class="footer-social">
+            <div class="social-box"></div>
+            <div class="social-box"></div>
+            <div class="social-box"></div>
+            <div class="social-box"></div>
+          </div>
+          <div class="footer-help" style="margin-top:24px;">
+            <strong>Jak vám můžeme pomoci?</strong>
+            Potřebujete poradit s výběrem lodě nebo destinace?
+            <button class="footer-help-btn">Kontaktovat podporu</button>
+          </div><div class="yp-badge" style="margin-top:18px;"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div>
         </div>
 
       </div>
-
-      <div class="carousel-controls">
-        <button class="carousel-btn" id="carouselPrev">&#8592;</button>
-        <div class="carousel-dots" id="carouselDots"></div>
-        <button class="carousel-btn" id="carouselNext">&#8594;</button>
-      </div>
     </div>
-  </section>
+
+    <div class="footer-bottom">
+      <span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span>
+      <img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" />
+    </div>
+  </footer>
+
+  <div class="wf-sitemap-bar">
+    <a  href="mapa-stranek.html" class="wf-sitemap-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Wireframe sitemap
+    </a>
+  </div>
 
 </div><!-- /page-home -->
 
-
-<!-- ═════════════════════════════════════════════
-     PAGE: RESULTS
-═════════════════════════════════════════════ -->
-<div id="page-results">
-
-  <!-- NAV (same) -->
-  <nav class="nav">
-    <a class="nav-logo" href="#" id="backHome">
-      <div class="nav-logo-mark"></div>
-      <span class="nav-logo-text">Yachtnet</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#">Boat rental</a></li>
-      <li><a href="#">Skipper courses</a></li>
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
-
-  <div class="results-layout">
-
-    <!-- SIDEBAR FILTERS -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <span class="sidebar-title">Filters</span>
-        <span class="sidebar-reset">Reset all</span>
-      </div>
-
-      <!-- current search chips -->
-      <div class="search-chips" id="searchChips"></div>
-
-      <!-- Boat type -->
-      <div class="filter-group">
-        <div class="filter-group-title">Boat type</div>
-        <div class="filter-checks">
-          <label class="filter-check"><input type="checkbox" checked /> <span>Monohull <span class="count">(58)</span></span></label>
-          <label class="filter-check"><input type="checkbox" checked /> <span>Catamaran <span class="count">(31)</span></span></label>
-          <label class="filter-check"><input type="checkbox" /> <span>Motor yacht <span class="count">(24)</span></span></label>
-          <label class="filter-check"><input type="checkbox" /> <span>Gulet <span class="count">(9)</span></span></label>
-        </div>
-      </div>
-
-      <!-- Price -->
-      <div class="filter-group">
-        <div class="filter-group-title">Price per week (€)</div>
-        <div class="price-inputs">
-          <input type="number" placeholder="From" value="800" />
-          <span>—</span>
-          <input type="number" placeholder="To" value="8000" />
-        </div>
-      </div>
-
-      <!-- Cabins -->
-      <div class="filter-group">
-        <div class="filter-group-title">Cabins</div>
-        <div class="cabin-pills">
-          <div class="cabin-pill active">Any</div>
-          <div class="cabin-pill">2</div>
-          <div class="cabin-pill">3</div>
-          <div class="cabin-pill">4</div>
-          <div class="cabin-pill">5+</div>
-        </div>
-      </div>
-
-      <!-- Boat length -->
-      <div class="filter-group">
-        <div class="filter-group-title">Boat length (m)</div>
-        <div class="price-inputs">
-          <input type="number" placeholder="Min" value="8" />
-          <span>—</span>
-          <input type="number" placeholder="Max" value="20" />
-        </div>
-      </div>
-
-      <!-- Year -->
-      <div class="filter-group">
-        <div class="filter-group-title">Year of build</div>
-        <div class="filter-checks">
-          <label class="filter-check"><input type="checkbox" checked /> <span>2023 or newer</span></label>
-          <label class="filter-check"><input type="checkbox" checked /> <span>2020 – 2022</span></label>
-          <label class="filter-check"><input type="checkbox" /> <span>2017 – 2019</span></label>
-          <label class="filter-check"><input type="checkbox" /> <span>Before 2017</span></label>
-        </div>
-      </div>
-
-      <!-- Equipment -->
-      <div class="filter-group">
-        <div class="filter-group-title">Equipment</div>
-        <div class="filter-checks">
-          <label class="filter-check"><input type="checkbox" /> <span>Air conditioning</span></label>
-          <label class="filter-check"><input type="checkbox" /> <span>Outboard motor</span></label>
-          <label class="filter-check"><input type="checkbox" /> <span>Bimini top</span></label>
-          <label class="filter-check"><input type="checkbox" /> <span>Bow thruster</span></label>
-          <label class="filter-check"><input type="checkbox" /> <span>Generator</span></label>
-        </div>
-      </div>
-
-      <button class="btn-apply">Apply filters</button>
-    </aside>
-
-    <!-- BOATS MAIN -->
-    <main class="boats-main">
-      <div class="boats-topbar">
-        <div class="results-meta">
-          <strong id="resultCount">6</strong> boats in <span class="loc" id="resultLocation">—</span>
-        </div>
-        <div class="view-sort">
-          <div class="view-toggle">
-            <button class="view-btn active" title="Grid">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0" width="6" height="6"/><rect x="8" y="0" width="6" height="6"/><rect x="0" y="8" width="6" height="6"/><rect x="8" y="8" width="6" height="6"/></svg>
-            </button>
-            <button class="view-btn" title="List">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="0" y="0" width="14" height="2.5"/><rect x="0" y="5.5" width="14" height="2.5"/><rect x="0" y="11" width="14" height="2.5"/></svg>
-            </button>
-          </div>
-          <select class="sort-select">
-            <option>Price: low to high</option>
-            <option>Price: high to low</option>
-            <option>Length: longest first</option>
-            <option>Year: newest first</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="boats-grid" id="boatsGrid"></div>
-    </main>
-
-  </div>
-</div><!-- /page-results -->
-
-
-<script>
-  // ── DATA ──────────────────────────────────────
-  const BOATS = [
-    { name:"Bavaria C42",            cat:"Monohull",    marina:"ACI Marina Split",     year:2021, len:"12.8 m", cabins:3, berths:6,  price:"€ 1 450" },
-    { name:"Jeanneau Sun Odyssey 54", cat:"Monohull",    marina:"Marina Lav",           year:2020, len:"16.5 m", cabins:5, berths:10, price:"€ 3 200" },
-    { name:"Lagoon 42",              cat:"Catamaran",   marina:"Marina Kaštela",       year:2022, len:"12.9 m", cabins:4, berths:8,  price:"€ 3 800" },
-    { name:"Fountaine Pajot 47",     cat:"Catamaran",   marina:"ACI Marina Split",     year:2023, len:"14.3 m", cabins:5, berths:10, price:"€ 5 100" },
-    { name:"Greenline 45",           cat:"Motor yacht", marina:"Marina Spinut",        year:2021, len:"13.7 m", cabins:3, berths:6,  price:"€ 4 600" },
-    { name:"Elan 45",                cat:"Monohull",    marina:"Marina Trogir",        year:2019, len:"13.9 m", cabins:4, berths:8,  price:"€ 2 100" },
-  ];
-
-  function boatCard(b) {
-    return `
-      <div class="boat-card">
-        <div class="card-img">
-          <svg width="72" height="44" viewBox="0 0 72 44" fill="none">
-            <path d="M8 36L36 6L64 36Z" stroke="#2a2a28" stroke-width="1.5" fill="none"/>
-            <line x1="18" y1="36" x2="54" y2="36" stroke="#2a2a28" stroke-width="1.5"/>
-            <line x1="36" y1="6" x2="36" y2="42" stroke="#2a2a28" stroke-width="1" stroke-dasharray="3 2"/>
-            <line x1="2" y1="42" x2="70" y2="42" stroke="#2a2a28" stroke-width="2"/>
-          </svg>
-          <span class="card-cat-pill">${b.cat}</span>
-        </div>
-        <div class="card-body">
-          <div class="card-name">${b.name}</div>
-          <div class="card-marina">📍 ${b.marina}</div>
-          <div class="card-specs">
-            <div class="spec"><span class="spec-l">Length</span><span class="spec-v">${b.len}</span></div>
-            <div class="spec"><span class="spec-l">Cabins</span><span class="spec-v">${b.cabins}</span></div>
-            <div class="spec"><span class="spec-l">Berths</span><span class="spec-v">${b.berths}</span></div>
-            <div class="spec"><span class="spec-l">Year</span><span class="spec-v">${b.year}</span></div>
-          </div>
-        </div>
-        <div class="card-foot">
-          <div class="card-price">
-            <span class="price-from">From</span>
-            <span class="price-val">${b.price}</span>
-            <span class="price-unit">/ week</span>
-          </div>
-          <button class="btn-view">View details</button>
-        </div>
-      </div>`;
-  }
-
-  // ── FORM → RESULTS ────────────────────────────
-  document.getElementById("searchForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const loc = this.location.value || "Selected location";
-    const from = this.from.value;
-    const to   = this.to.value;
-    const cat  = this.category.value;
-
-    const boats = cat === "all" ? BOATS
-      : BOATS.filter(b => b.cat.toLowerCase().startsWith(cat.split(" ")[0].toLowerCase()));
-
-    // populate results
-    document.getElementById("resultLocation").textContent = loc;
-    document.getElementById("resultCount").textContent = (boats.length || BOATS.length);
-    document.getElementById("boatsGrid").innerHTML = (boats.length ? boats : BOATS).map(boatCard).join("");
-
-    // search chips
-    const chips = [loc, from && to ? `${from} → ${to}` : null, cat !== "all" ? cat : null].filter(Boolean);
-    document.getElementById("searchChips").innerHTML = chips.map(c =>
-      `<div class="chip">${c} <span class="chip-remove">×</span></div>`
-    ).join("");
-
-    // switch page
-    document.getElementById("page-home").style.display = "none";
-    document.getElementById("page-results").style.display = "block";
-    window.scrollTo(0, 0);
-  });
-
-  // ── BACK TO HOME ──────────────────────────────
-  document.getElementById("backHome").addEventListener("click", function(e) {
-    e.preventDefault();
-    document.getElementById("page-results").style.display = "none";
-    document.getElementById("page-home").style.display = "block";
-    window.scrollTo(0, 0);
-  });
-
-  // ── TESTIMONIALS CAROUSEL ─────────────────────
-  const testimonials = document.querySelectorAll(".testimonial");
-  const dotsWrap = document.getElementById("carouselDots");
-  let current = 0;
-
-  testimonials.forEach((_, i) => {
-    const d = document.createElement("div");
-    d.className = "dot" + (i === 0 ? " active" : "");
-    d.addEventListener("click", () => goTo(i));
-    dotsWrap.appendChild(d);
-  });
-
-  function goTo(n) {
-    testimonials[current].classList.remove("active");
-    dotsWrap.children[current].classList.remove("active");
-    current = (n + testimonials.length) % testimonials.length;
-    testimonials[current].classList.add("active");
-    dotsWrap.children[current].classList.add("active");
-  }
-
-  document.getElementById("carouselPrev").addEventListener("click", () => goTo(current - 1));
-  document.getElementById("carouselNext").addEventListener("click", () => goTo(current + 1));
-
-  // ── CABIN PILLS ───────────────────────────────
-  document.querySelectorAll(".cabin-pill").forEach(p => {
-    p.addEventListener("click", () => {
-      document.querySelectorAll(".cabin-pill").forEach(x => x.classList.remove("active"));
-      p.classList.add("active");
-    });
-  });
-</script>
-
+<script src="assets/script.js"></script>
 </body>
 </html>

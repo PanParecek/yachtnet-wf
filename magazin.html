@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magazín — Yachtnet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-magazine">
+
+  <nav class="nav"><div class="nav-inner">
+    <a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a>
+    <ul class="nav-links">
+      <li><a  href="pronajem-lodi.html">Pronájem lodí</a></li>
+      <li><a  href="destinace.html">Destinace</a></li>
+      <li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li>
+      <li><a  href="o-nas.html">O nás</a></li>
+      <li><a  href="magazin.html" style="color:var(--int);">Magazín</a></li>
+      <li><a  href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div>
+  </div></nav>
+
+  <!-- HERO -->
+  <div class="mag-hero">
+    <div class="mag-hero-inner">
+      <div class="mag-hero-label">Yachtnet Magazín</div>
+      <h1 class="mag-hero-h1">Tipy, průvodci a zkušenosti<br>ze světa jachtingu</h1>
+      <p class="mag-hero-perex">Itineráře, kapitánské tipy, přehledy destinací a vše, co potřebujete vědět před vyplutím. Nový článek každý týden.</p>
+    </div>
+  </div>
+
+  <!-- FILTR KATEGORIÍ -->
+  <div class="mag-filter-bar">
+    <div class="mag-filter-inner">
+      <span class="mag-filter-label">Kategorie:</span>
+      <button class="mag-chip active">Vše</button>
+      <button class="mag-chip">Tipy na trasy</button>
+      <button class="mag-chip">Kapitánské zkušenosti</button>
+      <button class="mag-chip">Technologie</button>
+      <button class="mag-chip">Lodě</button>
+      <button class="mag-chip">Bezpečnost</button>
+      <button class="mag-chip">Destinace</button>
+      <span class="mag-chip-clear">Zrušit vše</span>
+    </div>
+  </div>
+
+  <!-- VÝPIS ČLÁNKŮ -->
+  <div class="mag-wrap">
+
+    <!-- Řada 1: 2 × 50 % -->
+    <div class="mag-row halves">
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Tipy na trasy</span>
+          <div class="mag-card-title">7denní itinerář po Chorvatsku: ze Splitu do Dubrovníku přes ostrovy</div>
+          <div class="mag-card-desc">Naše nejoblíbenější trasa — kotviště, mariny a skryté zátoky podél dalmatského pobřeží. Ideální pro první i zkušené kapitány.</div>
+          <div class="mag-card-meta">10 min čtení · 12. 3. 2025</div>
+      </div>
+    </a>
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Kapitánské zkušenosti</span>
+          <div class="mag-card-title">Jak číst námořní předpověď počasí pro plavbu na moři</div>
+          <div class="mag-card-desc">Vítr, vlny a tlak vzduchu — co čísla znamenají a jak se podle nich rozhodovat v různých situacích.</div>
+          <div class="mag-card-meta">6 min čtení · 5. 3. 2025</div>
+      </div>
+    </a>
+    </div>
+
+    <!-- Řada 2: 3 × 33 % -->
+    <div class="mag-row thirds">
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Bezpečnost</span>
+          <div class="mag-card-title">10 věcí, které musíte zkontrolovat před vyplutím</div>
+          <div class="mag-card-desc">Kontrolní seznam, který může zachránit váš výlet.</div>
+          <div class="mag-card-meta">8 min čtení · 27. 2. 2025</div>
+      </div>
+    </a>
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Lodě</span>
+          <div class="mag-card-title">Plachetnice nebo katamaran? Srovnání pro rodiny</div>
+          <div class="mag-card-desc">Klady a zápory obou typů lodí z pohledu komfortu a výkonu.</div>
+          <div class="mag-card-meta">7 min čtení · 20. 2. 2025</div>
+      </div>
+    </a>
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Destinace</span>
+          <div class="mag-card-title">Top 10 ostrovů v Dalmácii, které musíte navštívit</div>
+          <div class="mag-card-desc">Od Hvaru po Mljet — průvodce nejkrásnějšími zastávkami.</div>
+          <div class="mag-card-meta">12 min čtení · 14. 2. 2025</div>
+      </div>
+    </a>
+    </div>
+
+    <!-- Řada 3: 4 × 25 % -->
+    <div class="mag-row quarters">
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Technologie</span>
+          <div class="mag-card-title">Navigační aplikace pro charter 2025</div>
+          <div class="mag-card-meta">5 min čtení · 7. 2. 2025</div>
+      </div>
+    </a>
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Tipy na trasy</span>
+          <div class="mag-card-title">Řecké Kyklady na dvou týdnech</div>
+          <div class="mag-card-meta">9 min čtení · 1. 2. 2025</div>
+      </div>
+    </a>
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Kapitánské zkušenosti</span>
+          <div class="mag-card-title">Kotvení na bouřku: praktický návod</div>
+          <div class="mag-card-meta">6 min čtení · 25. 1. 2025</div>
+      </div>
+    </a>
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Lodě</span>
+          <div class="mag-card-title">Bavaria C42 — test v Trogiru</div>
+          <div class="mag-card-meta">4 min čtení · 18. 1. 2025</div>
+      </div>
+    </a>
+    </div>
+
+    <!-- NEWSLETTER PANEL -->
+    <div class="mag-nl-panel">
+      <div class="mag-nl-text">
+        <div class="mag-nl-title">Nové články přímo do e-mailu</div>
+        <div class="mag-nl-sub">Itineráře, tipy a novinky ze světa jachtingu. Bez spamu, kdykoli se odhlásíte.</div>
+      </div>
+      <div class="mag-nl-form">
+        <input class="mag-nl-input" type="email" placeholder="Vaše e-mailová adresa" />
+        <button class="mag-nl-btn">Odebírat</button>
+      </div>
+    </div>
+
+    <!-- Řada 4: 2 × 50 % -->
+    <div class="mag-row halves">
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Destinace</span>
+          <div class="mag-card-title">Turecká Egejská riviéra — průvodce pro charteristy</div>
+          <div class="mag-card-desc">Fethiye, Göcek, Marmaris a Bodrum: čtyři základny a nejlepší kotviště v zátoce.</div>
+          <div class="mag-card-meta">11 min čtení · 11. 1. 2025</div>
+      </div>
+    </a>
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Kapitánské zkušenosti</span>
+          <div class="mag-card-title">Jak přijmout loď od charterové společnosti: na co se ptát</div>
+          <div class="mag-card-desc">Předávací protokol krok za krokem — od motoru po záchranné vesty.</div>
+          <div class="mag-card-meta">8 min čtení · 4. 1. 2025</div>
+      </div>
+    </a>
+    </div>
+
+    <!-- Řada 5: 3 × 33 % -->
+    <div class="mag-row thirds">
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Tipy na trasy</span>
+          <div class="mag-card-title">Chorvatsko s dětmi: best anchorages s mělkou vodou</div>
+          <div class="mag-card-desc">Zátoky vhodné pro rodiny s dětmi do 10 let podél středodalmatského pobřeží.</div>
+          <div class="mag-card-meta">7 min čtení · 28. 12. 2024</div>
+      </div>
+    </a>
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Technologie</span>
+          <div class="mag-card-title">AIS, VHF a satelitní telefon: co vzít na moře</div>
+          <div class="mag-card-desc">Přehled komunikační a navigační elektroniky pro bareboat charter.</div>
+          <div class="mag-card-meta">6 min čtení · 20. 12. 2024</div>
+      </div>
+    </a>
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Lodě</span>
+          <div class="mag-card-title">Fountaine Pajot Lucia 40 — rodina na Jadranu</div>
+          <div class="mag-card-desc">Praktický test katamaránu s posádkou čtyři dospělí + dvě děti.</div>
+          <div class="mag-card-meta">9 min čtení · 13. 12. 2024</div>
+      </div>
+    </a>
+    </div>
+
+    <!-- Řada 6: 2 × 50 % (doplní na 16) -->
+    <div class="mag-row halves">
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Bezpečnost</span>
+          <div class="mag-card-title">Pojištění plachetnice: co kryje a co ne</div>
+          <div class="mag-card-desc">Přehled nejčastějších pojistných produktů pro charterové lodě a na co si dát pozor.</div>
+          <div class="mag-card-meta">5 min čtení · 6. 12. 2024</div>
+      </div>
+    </a>
+      <a class="mag-article-card" href="detail-clanku.html">
+        <div class="mag-card-img"></div>
+        <div class="mag-card-body"><span class="mag-card-cat">Destinace</span>
+          <div class="mag-card-title">Řecko vs. Chorvatsko: kde si pronajmout loď?</div>
+          <div class="mag-card-desc">Srovnání dvou nejoblíbenějších evropských charterových destinací z pohledu ceny, počasí a zázemí.</div>
+          <div class="mag-card-meta">8 min čtení · 29. 11. 2024</div>
+      </div>
+    </a>
+    </div>
+
+    <!-- STRÁNKOVÁNÍ -->
+    <div class="pagination" style="margin-top:40px;">
+      <button class="pg-btn pg-arrow" disabled>←</button>
+      <button class="pg-btn pg-active">1</button>
+      <button class="pg-btn pg-dots">…</button>
+      <button class="pg-btn">4</button>
+      <button class="pg-btn">5</button>
+      <button class="pg-btn">6</button>
+      <button class="pg-btn pg-dots">…</button>
+      <button class="pg-btn">12</button>
+      <button class="pg-btn pg-arrow">→</button>
+    </div>
+    <div style="text-align:center;margin-top:14px;">
+      <button style="padding:10px 28px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;color:var(--text);">Načíst dalších 16 článků</button>
+    </div>
+
+  </div><!-- /mag-wrap -->
+
+  <footer class="footer">
+    <div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>
+    <div class="footer-cols-wrap"><div class="footer-cols">
+      <div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a  href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Affiliate Program</a></li><li><a href="#">Kariéra</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Destinace</div><ul><li><a href="#">Země</a></li><li><a href="#">Města</a></li><li><a href="#">Maríny</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="#">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Speciální nabídky</div><ul><li><a href="#">Last minute</a></li><li><a href="#">Nové lodě 2025–2026</a></li><li><a href="#">Přídavný motor zdarma</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Další</div><ul><li><a href="#">Charterové společnosti</a></li><li><a href="#">Výrobci lodí</a></li><li><a href="#">Modely lodí</a></li><li><a href="#">FAQs k pronájmu</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Sledujte nás</div><div class="footer-social"><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div></div><div class="footer-help" style="margin-top:20px;"><strong>Jak vám můžeme pomoci?</strong>Potřebujete poradit s výběrem?<button class="footer-help-btn">Kontaktovat podporu</button></div><div class="yp-badge" style="margin-top:18px;"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div></div>
+    </div></div>
+    <div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div>
+  </footer>
+
+</div><!-- /page-magazine -->
+
+<script src="assets/script.js"></script>
+</body>
+</html>

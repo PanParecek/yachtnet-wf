@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kapitánské kurzy — Yachtnet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-courses">
+  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html">Pronájem lodí</a></li><li><a  href="destinace.html">Destinace</a></li><li><a  href="kapitanske-kurzy.html" style="color:var(--int);">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div></div></nav>
+  <div class="courses-hero"><div class="courses-hero-inner">
+    <div class="courses-hero-text">
+      <div class="sec-label" style="color:rgba(255,255,255,.55);">Vzdělávání</div>
+      <h1 style="font-size:42px;font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:-.02em;">Kapitánské kurzy</h1>
+      <p style="font-size:16px;color:rgba(255,255,255,.82);max-width:560px;line-height:1.55;margin:0 0 24px;">Vychováme z vás kapitány, na které se moře i řeky budou těšit. Učí vás tým, co má za sebou stovky tisíc námořních mil — vy budete mít za pár dní průkaz a sebevědomí vyplout.</p>
+      <div class="sp-item sp-item--on-dark">
+        <span class="sp-google-icon" aria-label="Google">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+        </span>
+        <span class="sp-score">5,0</span>
+        <div>
+          <div class="sp-stars">★★★★★</div>
+          <div class="sp-label">Průměrné hodnocení ze <strong>192 recenzí</strong> na Googlu</div>
+        </div>
+      </div>
+    </div>
+    <div class="wizard-box wizard-box--vertical" id="kkWizard" data-current-step="1" data-total-steps="1">
+      <div class="wizard-header">
+        <div class="wizard-eyebrow">Průvodce výběrem</div>
+        <div class="wizard-title">Jaký průkaz potřebujete?</div>
+      </div>
+      <div class="wizard-stepper">
+        <div class="wizard-step-dot is-current" data-step="1">1</div>
+        <div class="wizard-step-line"></div>
+        <div class="wizard-step-dot" data-step="2">2</div>
+        <div class="wizard-step-line"></div>
+        <div class="wizard-step-dot" data-step="3">3</div>
+      </div>
+      <div class="wizard-step" data-step="1">
+        <div class="wizard-q">Kde chcete plout?</div>
+        <div class="wizard-opts">
+          <button type="button" class="wizard-opt" data-value="more">Moře</button>
+          <button type="button" class="wizard-opt" data-value="reka">Řeka / jezero</button>
+          <button type="button" class="wizard-opt" data-value="oboji">Obojí</button>
+        </div>
+      </div>
+      <button type="button" class="wizard-next" id="kkWizardNext" disabled>Doporučit průkaz →</button>
+      <div class="wizard-result" id="kkWizardResult" hidden>
+        <div class="wizard-result-label">Doporučení</div>
+        <div class="wizard-result-text"><strong>Průkaz MDČR C</strong> + <strong>SRC</strong> — ideální kombinace pro samostatnou plavbu po moři. <a href="detail-prukazu.html" style="color:var(--int);">Zobrazit detail kurzu →</a></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px 32px;">
+    <div class="about-stats" style="margin-bottom:56px;">
+      <div class="about-stat"><div class="about-stat-val">7</div><div class="about-stat-lbl">Aktivních lektorů</div></div>
+      <div class="about-stat"><div class="about-stat-val">1 200+</div><div class="about-stat-lbl">Praktických kurzů</div></div>
+      <div class="about-stat"><div class="about-stat-val">4 800+</div><div class="about-stat-lbl">Absolventů</div></div>
+      <div class="about-stat"><div class="about-stat-val">14</div><div class="about-stat-lbl">Držitelů průkazu MDČR A</div></div>
+    </div>
+
+    <div class="sec-label">Nejoblíbenější</div>
+    <h2 class="sec-title">Oblíbené průkazy</h2>
+    <div class="courses-grid">
+      <a class="course-card course-card--link" href="detail-prukazu.html">
+        <div class="course-img"></div>
+        <div class="course-body">
+          <h3 class="course-title">Průkaz MDČR C</h3>
+          <p class="course-desc">Pro plavbu na moři bez omezení vzdálenosti od pobřeží — uznávaný v Chorvatsku, Řecku i Itálii.</p>
+          <div class="course-tags">
+            <span class="course-tag">Bez omezení</span>
+            <span class="course-tag">Mezinárodně uznávaný</span>
+          </div>
+          <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">12 900 Kč</span></div>
+        </div>
+      </a>
+      <a class="course-card course-card--link" href="detail-prukazu.html">
+        <div class="course-img"></div>
+        <div class="course-body">
+          <h3 class="course-title">SRC — Radiotelefon</h3>
+          <p class="course-desc">Krátkodosahový VHF průkaz povinný pro plavbu na otevřeném moři a obsluhu lodní radiostanice.</p>
+          <div class="course-tags">
+            <span class="course-tag">Povinný na moři</span>
+            <span class="course-tag">Jednodenní</span>
+          </div>
+          <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">3 900 Kč</span></div>
+        </div>
+      </a>
+      <a class="course-card course-card--link" href="detail-prukazu.html">
+        <div class="course-img"></div>
+        <div class="course-body">
+          <h3 class="course-title">VMP — Velitel malého plavidla</h3>
+          <p class="course-desc">Český průkaz pro plavbu na řekách, jezerech a vnitrozemských cestách — motor i plachta.</p>
+          <div class="course-tags">
+            <span class="course-tag">Řeky + jezera</span>
+            <span class="course-tag">Teorie online</span>
+          </div>
+          <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">4 500 Kč</span></div>
+        </div>
+      </a>
+    </div>
+    <div class="courses-cta-wrap">
+      <a class="btn-primary-lg" href="vsechny-kurzy.html">Přehled všech průkazů a kurzů →</a>
+    </div>
+  </div></div>
+
+  <div class="band">
+    <div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+      <div class="sec-header" style="text-align:center; max-width:600px; margin: 0 auto 24px;">
+        <div class="sec-label">Reference</div>
+        <h2 class="sec-title">Co říkají absolventi našich kurzů</h2>
+      </div>
+      <div class="testi-tabs" hidden>
+        <div class="testi-tab active" data-panel="courses">Kapitánské kurzy</div>
+      </div>
+      <div class="carousel-wrap" style="max-width:900px;">
+        <div class="carousel-track">
+          <div class="testimonial testimonial--video active" data-panel="courses">
+            <div class="testi-with-video">
+              <div class="testi-video">
+                <button class="testi-video-play" type="button" aria-label="Přehrát video">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                </button>
+                <div class="testi-video-tag">0:42</div>
+              </div>
+              <div class="testi-text-col">
+                <div class="quote-mark">"</div>
+                <p class="quote-text">Průkaz MDČR C jsem dělal po čtyřicítce a měl jsem obavy, jestli mi to půjde. Tomáš mě vedl tak klidně a srozumitelně, že jsem zkoušku zvládl napoprvé. Praktickou plavbu jsme měli v Splitu — nezapomenutelný týden.</p>
+                <div class="quote-author">Karel D.</div>
+                <div class="quote-location">Praha · MDČR C</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial testimonial--video" data-panel="courses">
+            <div class="testi-with-video">
+              <div class="testi-video">
+                <button class="testi-video-play" type="button" aria-label="Přehrát video">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                </button>
+                <div class="testi-video-tag">0:38</div>
+              </div>
+              <div class="testi-text-col">
+                <div class="quote-mark">"</div>
+                <p class="quote-text">Chorvatský průkaz B za víkend v Brně — pátek teorie, sobota zkouška, v pondělí scan v mailu. Petr má skvělý přehled, vysvětluje srozumitelně a u zkoušky se nikdo nestresoval.</p>
+                <div class="quote-author">Anna H.</div>
+                <div class="quote-location">Brno · Chorvatský B</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial testimonial--video" data-panel="courses">
+            <div class="testi-with-video">
+              <div class="testi-video">
+                <button class="testi-video-play" type="button" aria-label="Přehrát video">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                </button>
+                <div class="testi-video-tag">1:05</div>
+              </div>
+              <div class="testi-text-col">
+                <div class="quote-mark">"</div>
+                <p class="quote-text">SRC kurz s Radkem — bývalým radiooperátorem — byla parádní zkušenost. Místo bifľování jsme dělali simulace skutečných nouzových situací. Po dni jsem volala přes VHF jako profík.</p>
+                <div class="quote-author">Hana V.</div>
+                <div class="quote-location">Praha · SRC</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial testimonial--video" data-panel="courses">
+            <div class="testi-with-video">
+              <div class="testi-video">
+                <button class="testi-video-play" type="button" aria-label="Přehrát video">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                </button>
+                <div class="testi-video-tag">0:55</div>
+              </div>
+              <div class="testi-text-col">
+                <div class="quote-mark">"</div>
+                <p class="quote-text">Měl jsem strach z meteorologie — přišlo mi to jako černá magie. Klára z toho udělala srozumitelnou nauku za jeden den. Dnes čtu předpověď před každou plavbou a vím, co dělám.</p>
+                <div class="quote-author">Filip R.</div>
+                <div class="quote-location">České Budějovice · MDČR C</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial testimonial--video" data-panel="courses">
+            <div class="testi-with-video">
+              <div class="testi-video">
+                <button class="testi-video-play" type="button" aria-label="Přehrát video">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                </button>
+                <div class="testi-video-tag">1:18</div>
+              </div>
+              <div class="testi-text-col">
+                <div class="quote-mark">"</div>
+                <p class="quote-text">Bála jsem se, že kurz bude přetechnizovaný. Místo toho jsem se naučila navigovat, kotvit i řešit krizové situace. Po pěti dnech jsem sama vyplula ze splitu na Brač.</p>
+                <div class="quote-author">Eliška N.</div>
+                <div class="quote-location">Bratislava · MDČR C + SRC</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="carouselPrev">&#8592;</button>
+          <div class="carousel-dots" id="carouselDots"></div>
+          <button class="carousel-btn" id="carouselNext">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+    <div class="ebook-panel">
+      <div class="ebook-panel-image"></div>
+      <div class="ebook-panel-content">
+        <div class="ebook-eyebrow">E-book zdarma</div>
+        <h2 class="ebook-title">Jak se stát kapitánem</h2>
+        <p class="ebook-text">Praktický průvodce od našich lektorů — 60+ stran, které vás vezmou od první otázky „odkud vůbec začít" až k přebírání lodi v marině. Vše, co se na klasickém kurzu nedozvíte.</p>
+        <form class="ebook-form" onsubmit="event.preventDefault();">
+          <input type="email" class="ebook-input" placeholder="Vaše e-mailová adresa" required />
+          <button type="submit" class="ebook-btn">Stáhnout zdarma →</button>
+        </form>
+        <label class="ebook-disclaimer"><input type="checkbox" /> Souhlasím se zasíláním novinek a se zpracováním e-mailu pro marketing.</label>
+      </div>
+    </div>
+  </div></div>
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+    <div class="gift-banner gift-banner--bottom">
+      <div class="gift-banner-content">
+        <h2 class="gift-banner-title">Darujte kapitánský kurz</h2>
+        <p class="gift-banner-text">Originální dárek pro milovníky vody — poukaz vystavíme ihned po objednávce a platí 12 měsíců.</p>
+        <button type="button" class="gift-banner-btn">Objednat poukaz →</button>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="dest-section-head">
+      <div>
+        <div class="sec-label">Náš tým</div>
+        <h2 class="sec-title">Naši lektoři</h2>
+      </div>
+      <div class="mini-cards-arrows">
+        <button class="mini-cards-arrow" type="button" data-target="lektoriList" data-dir="-1" aria-label="Předchozí"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="mini-cards-arrow" type="button" data-target="lektoriList" data-dir="1" aria-label="Další"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+    <p class="lektori-intro">Lektoři Yachtnetu mají dohromady přes <strong>168 000 nautických mil</strong> za zády a každý z nich učí už minimálně pět let. Co je ale podstatnější — víme, jak vysvětlit i nudné věci tak, aby zůstaly v hlavě, a u zkoušek nikdo neodjíždí ve stresu. Na našich kurzech se budete smát, dozvíte se spoustu příběhů z moře a po týdnu si budete jistí, že na palubu patříte.</p>
+    <div class="lektori-list" id="lektoriList">
+      <button type="button" class="team-card" data-tm-name="Mgr. Tomáš Krejčí" data-tm-role="Lektor MDČR C, B, A" data-tm-miles="22 000" data-tm-email="tomas@yachtnet.cz" data-tm-phone="+420 603 222 333" data-tm-photos="6" data-tm-bio="Tomáš učí kapitány už osmým rokem. Má dar vysvětlit i tu nejnudnější část COLREGu tak, že ji zapamatujete na první poslech. V létě skipper, v zimě teorie."><div class="team-photo"></div><div class="team-name">Mgr. Tomáš Krejčí</div><div class="team-role">Lektor MDČR C, B, A</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>22 000 NM</div></button>
+      <button type="button" class="team-card" data-tm-name="Radek Novotný" data-tm-role="Lektor SRC a LRC" data-tm-miles="15 600" data-tm-email="radek@yachtnet.cz" data-tm-phone="+420 603 444 555" data-tm-photos="5" data-tm-bio="Radek vede kurzy SRC a LRC. Bývalý radiooperátor obchodního loďstva — pokud existuje frekvence, na které se nedovolá pomoc, ještě se s ní nesetkal."><div class="team-photo"></div><div class="team-name">Radek Novotný</div><div class="team-role">Lektor SRC a LRC</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>15 600 NM</div></button>
+      <button type="button" class="team-card" data-tm-name="Ing. Pavel Voženílek" data-tm-role="Hlavní instruktor MDČR A" data-tm-miles="40 000" data-tm-email="pavel@yachtnet.cz" data-tm-phone="+420 602 100 200" data-tm-photos="5" data-tm-bio="Zakladatel Yachtnet a vášnivý kapitán s více než 25 lety na moři. Plavil přes Atlantik, Středozemí i Jadran. U kurzů A vede praktické plavby."><div class="team-photo"></div><div class="team-name">Ing. Pavel Voženílek</div><div class="team-role">Hlavní instruktor MDČR A</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>40 000 NM</div></button>
+      <button type="button" class="team-card" data-tm-name="Mgr. Petr Hájek" data-tm-role="Lektor Chorvatského B" data-tm-miles="18 400" data-tm-email="petr@yachtnet.cz" data-tm-phone="+420 775 800 100" data-tm-photos="4" data-tm-bio="Petr žije půl roku v Splitu a půl roku v Brně. Chorvatský průkaz B učí na rodné půdě — víkendové kurzy v Trogiru a Šibeniku se zkouškou přímo u chorvatské pobřežní stráže."><div class="team-photo"></div><div class="team-name">Mgr. Petr Hájek</div><div class="team-role">Lektor Chorvatského B</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>18 400 NM</div></button>
+      <button type="button" class="team-card" data-tm-name="Bc. Klára Müllerová" data-tm-role="Lektorka teorie a meteo" data-tm-miles="9 800" data-tm-email="klara@yachtnet.cz" data-tm-phone="+420 775 900 200" data-tm-photos="4" data-tm-bio="Klára je vyhlášená vykladačka meteorologie pro plavbu. Z její přednášky o Adriatic weather patterns si studenti pamatují i to, kdy fouká bóra, ještě roky po kurzu."><div class="team-photo"></div><div class="team-name">Bc. Klára Müllerová</div><div class="team-role">Lektorka teorie a meteo</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>9 800 NM</div></button>
+      <button type="button" class="team-card" data-tm-name="Kpt. Martin Dvořák" data-tm-role="Praktická plavba — moře" data-tm-miles="35 200" data-tm-email="martin@yachtnet.cz" data-tm-phone="+420 602 333 444" data-tm-photos="6" data-tm-bio="Martin vede praktické plavby v Chorvatsku už dvanáctým rokem. Bývalý kapitán námořní obchodní lodi, dnes nejtvrdší a zároveň nejoblíbenější instruktor naší flotily."><div class="team-photo"></div><div class="team-name">Kpt. Martin Dvořák</div><div class="team-role">Praktická plavba — moře</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>35 200 NM</div></button>
+      <button type="button" class="team-card" data-tm-name="Ing. Jan Sedláček" data-tm-role="Lektor navigace a astronavigace" data-tm-miles="27 500" data-tm-email="jan@yachtnet.cz" data-tm-phone="+420 775 555 666" data-tm-photos="5" data-tm-bio="Jan je expertem na elektronickou i klasickou navigaci. Učí všechno od GPS chartplotteru až po sextant — je jeden z mála lektorů v ČR, který stále provozuje astronavigační kurzy."><div class="team-photo"></div><div class="team-name">Ing. Jan Sedláček</div><div class="team-role">Lektor navigace</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>27 500 NM</div></button>
+    </div>
+  </div></div>
+
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+    <div class="sec-label">Proč Yachtnet?</div>
+    <h2 class="sec-title">Proč jít na kurz s námi?</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div style="text-align:center;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:10px;"><div style="font-size:28px;margin-bottom:8px;color:var(--int);">★</div><div style="font-weight:700;margin-bottom:6px;">Nejvyšší certifikace</div><div style="font-size:13px;color:var(--muted);">Nejkvalitnější certifikace na radiostanice v ČR</div></div>
+      <div style="text-align:center;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:10px;"><div style="font-size:28px;margin-bottom:8px;color:var(--int);">⚓</div><div style="font-weight:700;margin-bottom:6px;">Moderní výuka</div><div style="font-size:13px;color:var(--muted);">Nejmodernější školicí středisko v ČR</div></div>
+      <div style="text-align:center;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:10px;"><div style="font-size:28px;margin-bottom:8px;color:var(--int);">🌊</div><div style="font-weight:700;margin-bottom:6px;">26 let zkušeností</div><div style="font-size:13px;color:var(--muted);">Desítky tisíc absolventů na sladké i slané vodě</div></div>
+    </div>
+
+    <div style="margin-top:56px;">
+      <div class="sec-label">Ze zákulisí</div>
+      <h2 class="sec-title">Z kurzů a praktických plaveb</h2>
+    </div>
+    <div class="media-gallery">
+      <div class="media-tile media-tile--video">
+        <button class="media-play" type="button" aria-label="Přehrát video">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        </button>
+        <div class="media-overlay">
+          <div class="media-name">Praktická plavba ze Splitu</div>
+          <div class="media-meta">Video · 2 min 34 s · MDČR C</div>
+        </div>
+      </div>
+      <div class="media-tile">
+        <div class="media-overlay"><div class="media-name">Teorie v učebně Brno</div></div>
+      </div>
+      <div class="media-tile">
+        <div class="media-overlay"><div class="media-name">SRC simulace nouzového volání</div></div>
+      </div>
+      <div class="media-tile">
+        <div class="media-overlay"><div class="media-name">Mariana Trogir — check-in</div></div>
+      </div>
+      <div class="media-tile">
+        <div class="media-overlay"><div class="media-name">Závěrečná zkouška Lipno</div></div>
+      </div>
+    </div>
+
+    <div class="dest-section-head" style="margin-top:56px;">
+      <div>
+        <div class="sec-label">Pro pokročilé</div>
+        <h2 class="sec-title">Zdokonalovací a speciální kurzy</h2>
+      </div>
+      <div class="mini-cards-arrows">
+        <button class="mini-cards-arrow" type="button" data-target="advancedCoursesList" data-dir="-1" aria-label="Předchozí"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="mini-cards-arrow" type="button" data-target="advancedCoursesList" data-dir="1" aria-label="Další"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+    <div class="courses-grid courses-grid--scroll" id="advancedCoursesList" style="margin-top:0;">
+      <a class="course-card course-card--link" href="detail-kurzu.html">
+        <div class="course-img"></div>
+        <div class="course-body">
+          <h3 class="course-title">Manévrování na moři</h3>
+          <p class="course-desc">Pokročilé manévry pod motorem i plachtou — couvání s vlnou, kotvení v marině za bóry, slip do úzkého prostoru.</p>
+          <div class="course-tags">
+            <span class="course-tag">3 dny · Chorvatsko</span>
+            <span class="course-tag">Pro držitele MDČR</span>
+          </div>
+          <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">14 900 Kč</span></div>
+        </div>
+      </a>
+      <a class="course-card course-card--link" href="detail-kurzu.html">
+        <div class="course-img"></div>
+        <div class="course-body">
+          <h3 class="course-title">Noční plavba</h3>
+          <p class="course-desc">Orientace v noci, čtení svítících bójek, navigace bez denního světla, pravidla nočního provozu na vodě.</p>
+          <div class="course-tags">
+            <span class="course-tag">2 noci na moři</span>
+            <span class="course-tag">Praxe + teorie</span>
+          </div>
+          <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">9 900 Kč</span></div>
+        </div>
+      </a>
+      <a class="course-card course-card--link" href="detail-kurzu.html">
+        <div class="course-img"></div>
+        <div class="course-body">
+          <h3 class="course-title">Trim plachet a regata</h3>
+          <p class="course-desc">Naučíte se vyždímat z lodi maximum — trim plachet, taktika kurzů, závodní starty a obraty.</p>
+          <div class="course-tags">
+            <span class="course-tag">Víkendový kurz</span>
+            <span class="course-tag">Plachetnice</span>
+          </div>
+          <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">8 900 Kč</span></div>
+        </div>
+      </a>
+      <a class="course-card course-card--link" href="detail-kurzu.html">
+        <div class="course-img"></div>
+        <div class="course-body">
+          <h3 class="course-title">Plavba ve špatném počasí</h3>
+          <p class="course-desc">Jak číst meteo, kdy nevyplout, jak zvládnout bóru nebo bouřku — praktický nácvik na simulátoru i na vodě.</p>
+          <div class="course-tags">
+            <span class="course-tag">Simulátor + praxe</span>
+            <span class="course-tag">Bezpečnost</span>
+          </div>
+          <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">7 500 Kč</span></div>
+        </div>
+      </a>
+      <a class="course-card course-card--link" href="detail-kurzu.html">
+        <div class="course-img"></div>
+        <div class="course-body">
+          <h3 class="course-title">Astronavigace se sextantem</h3>
+          <p class="course-desc">Klasická navigace bez GPS — práce se sextantem, almanachem a tabulkami. Pro dálkové plavby a romantické duše.</p>
+          <div class="course-tags">
+            <span class="course-tag">5 dnů</span>
+            <span class="course-tag">Klasická škola</span>
+          </div>
+          <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">11 900 Kč</span></div>
+        </div>
+      </a>
+      <a class="course-card course-card--link" href="detail-kurzu.html">
+        <div class="course-img"></div>
+        <div class="course-body">
+          <h3 class="course-title">MOB a krizové situace</h3>
+          <p class="course-desc">Muž přes palubu, požár, ucpaná pumpa, ztracené kormidlo — co dělat, když se na moři něco pokazí.</p>
+          <div class="course-tags">
+            <span class="course-tag">2 dny</span>
+            <span class="course-tag">Bezpečnost</span>
+          </div>
+          <div class="course-price-line"><span class="course-price-label">Od</span> <span class="course-price-val">6 500 Kč</span></div>
+        </div>
+      </a>
+    </div>
+    <div class="courses-cta-wrap" style="margin-top:24px;">
+      <a class="btn-primary-lg" href="vsechny-kurzy.html">Všechny zdokonalovací kurzy →</a>
+    </div>
+
+    <div class="equip-banner" style="margin-top:48px;" role="button" tabindex="0" aria-label="Přehrát video o vybavení">
+      <button class="equip-banner-play" type="button" aria-label="Přehrát video">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+      </button>
+      <div class="equip-banner-content">
+        <div class="equip-banner-eyebrow">Video · 3 min 24 s</div>
+        <h2 class="equip-banner-title">Vybavení, ze kterého máme radost</h2>
+        <p class="equip-banner-text">Vlastníme dvě plachetnice Bavaria 38 v Splitu, motorový člun na Lipně a plnohodnotnou simulační místnost s VHF, radarem i nautickými mapami v Brně. Podívejte se, na čem se učí naši studenti — a proč to děláme jinak.</p>
+      </div>
+    </div>
+  </div></div>
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+    <div class="sec-label">FAQ</div><h2 class="sec-title">Časté dotazy ke kurzům</h2>
+    <div class="faq-grid-2col">
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Kdy mohu nastoupit na kurz? <span class="faq-q-icon">+</span></button><div class="faq-a">Termíny kurzů vypisujeme průběžně po celý rok — teorie probíhá zpravidla na podzim a v zimě, praxe od jara do podzimu. Přehled všech aktuálních termínů najdete na stránce <a href="terminy-kurzu.html" style="color:var(--int);">Termíny kurzů</a>.</div></div>
+        <div class="faq-item"><button class="faq-q">Jaké jsou podmínky přijetí na kurz MDČR C? <span class="faq-q-icon">+</span></button><div class="faq-a">Pro kurz MDČR C musí být uchazeč starší 18 let, mít platný průkaz totožnosti a doložit zdravotní způsobilost. Pro nižší kategorie (B, A) jsou podmínky mírnější — průkaz B je možné získat již od 15 let s doprovodem.</div></div>
+        <div class="faq-item"><button class="faq-q">Kolik kurz stojí a co je v ceně? <span class="faq-q-icon">+</span></button><div class="faq-a">Cena kurzu MDČR C startuje na 12 900 Kč, Chorvatský průkaz B od 5 900 Kč a SRC od 3 900 Kč. V ceně je teorie, praktická plavba (u příslušných kurzů), učební materiály a první termín zkoušky. Případný opakovaný termín 700 Kč.</div></div>
+        <div class="faq-item"><button class="faq-q">Lze absolvovat kurz jako dárek? <span class="faq-q-icon">+</span></button><div class="faq-a">Ano, vystavujeme <a href="#" style="color:var(--int);">dárkové poukazy</a> na všechny naše kurzy. Poukaz je platný 12 měsíců od vydání a obdarovaný si může sám vybrat libovolný termín. Doručíme jej do 24 hodin do e-mailu nebo poštou.</div></div>
+        <div class="faq-item"><button class="faq-q">Jak dlouho kurz trvá? <span class="faq-q-icon">+</span></button><div class="faq-a">Teoretická část MDČR C trvá obvykle 4 víkendové dny (cca 32 hodin), praktická plavba 5–7 dnů na moři. Chorvatský průkaz B zvládnete za jeden víkend (teorie pátek + zkouška sobota). SRC je jednodenní intenzivní kurz včetně zkoušky.</div></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Probíhá kurz online, nebo prezenčně? <span class="faq-q-icon">+</span></button><div class="faq-a">Nabízíme obě varianty. Prezenční kurzy probíhají v Praze, Brně a Ostravě, online verze přes Zoom s živým lektorem (záznamy k dispozici 60 dní zpětně). Praktická část musí proběhnout vždy fyzicky — buď na jezeře v ČR, nebo přímo v Chorvatsku.</div></div>
+        <div class="faq-item"><button class="faq-q">Jak vypadá zkouška a kde probíhá? <span class="faq-q-icon">+</span></button><div class="faq-a">U MDČR C zkouška obsahuje teoretický test (60 otázek, hranice 80 %) a praktickou plavbu před komisařem Ministerstva dopravy. Konání zkoušek typicky v Praze (teorie) a Lipně/Macha (praxe). U Chorvatského B se zkouší přímo v Chorvatsku v jurisdikci pobřežní stráže.</div></div>
+        <div class="faq-item"><button class="faq-q">Jak dlouho průkaz platí a obnovuje se? <span class="faq-q-icon">+</span></button><div class="faq-a">České MDČR průkazy mají platnost 10 let, poté se obnovují přes lékařskou prohlídku (bez další zkoušky). Chorvatský průkaz B je doživotní bez nutnosti obnovy. SRC platí celosvětově bez časového omezení.</div></div>
+        <div class="faq-item"><button class="faq-q">Je MDČR průkaz uznávaný v zahraničí? <span class="faq-q-icon">+</span></button><div class="faq-a">Ano, mezinárodní průkaz MDČR (kategorie C, B nebo A) je uznáván ve většině evropských zemí včetně Chorvatska, Řecka, Itálie, Španělska, Francie i Turecka. Pro plavbu mimo EU doporučujeme ověřit lokální požadavky předem.</div></div>
+        <div class="faq-item"><button class="faq-q">Co když u zkoušky neuspěji? <span class="faq-q-icon">+</span></button><div class="faq-a">Opakovaný termín lze složit za 700 Kč. Nabízíme i konzultační hodiny zdarma s lektorem před opakovanou zkouškou. V průměru 92 % našich studentů projde napoprvé.</div></div>
+        <div class="faq-item"><button class="faq-q">Můžu kurz zrušit nebo přeobjednat termín? <span class="faq-q-icon">+</span></button><div class="faq-a">Bez poplatku do 14 dní před začátkem kurzu — vrátíme plnou cenu nebo přesuneme na jiný termín. Při zrušení 14–7 dní před nástupem účtujeme storno 30 %, později 50 %. Nemoc s lékařským potvrzením vždy bezplatně.</div></div>
+      </div>
+    </div>
+  </div></div>
+  <div class="team-modal" id="teamModal" hidden aria-hidden="true" role="dialog" aria-label="Profil lektora">
+    <div class="team-modal-backdrop" data-tm-close></div>
+    <div class="team-modal-card">
+      <button class="team-modal-close" type="button" data-tm-close aria-label="Zavřít">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="tm-gallery">
+        <div class="tm-gal-frame" id="tmGalFrame"></div>
+        <button class="tm-gal-arrow tm-gal-prev" type="button" data-tm-prev aria-label="Předchozí"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="tm-gal-arrow tm-gal-next" type="button" data-tm-next aria-label="Další"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+        <div class="tm-gal-counter"><span id="tmGalIdx">1</span> / <span id="tmGalTotal">5</span></div>
+      </div>
+      <div class="tm-body">
+        <div class="tm-name" id="tmName">Jméno</div>
+        <div class="tm-role" id="tmRole">Pozice</div>
+        <div class="tm-bio" id="tmBio"></div>
+        <div class="tm-contact">
+          <a class="tm-contact-item" id="tmEmail" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span id="tmEmailText"></span></a>
+          <a class="tm-contact-item" id="tmPhone" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span id="tmPhoneText"></span></a>
+          <div class="tm-contact-item tm-contact-static"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg><span id="tmMilesText"></span> NM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>
+    <div class="footer-cols-wrap"><div class="footer-cols">
+      <div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Affiliate Program</a></li><li><a href="#">Kariéra</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Destinace</div><ul><li><a href="#">Země</a></li><li><a href="#">Města</a></li><li><a href="#">Maríny</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="#">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Speciální nabídky</div><ul><li><a href="#">Last minute</a></li><li><a href="#">Nové lodě 2025–2026</a></li><li><a href="#">Přídavný motor zdarma</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Další</div><ul><li><a href="#">Charterové společnosti</a></li><li><a href="#">Výrobci lodí</a></li><li><a href="#">Modely lodí</a></li><li><a href="#">FAQs k pronájmu</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Sledujte nás</div><div class="footer-social"><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div></div><div class="footer-help" style="margin-top:20px;"><strong>Jak vám můžeme pomoci?</strong>Potřebujete poradit s výběrem?<button class="footer-help-btn">Kontaktovat podporu</button></div><div class="yp-badge" style="margin-top:18px;"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div></div>
+    </div></div>
+    <div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: COURSES ALL (přehled všech průkazů a kurzů)
+════════════════════════════════════════════════════════ -->
+
+<script src="assets/script.js"></script>
+</body>
+</html>

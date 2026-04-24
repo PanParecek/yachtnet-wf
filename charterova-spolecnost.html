@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charterová společnost — Yachtnet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-company">
+  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html">Pronájem lodí</a></li><li><a  href="destinace.html">Destinace</a></li><li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div></div></nav>
+  <div class="brand-hero">
+    <div class="brand-hero-inner">
+      <div class="brand-logo-box"><div class="brand-logo-img"></div></div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+          <h1 style="font-size:26px;font-weight:800;">Sun Charter d.o.o.</h1>
+          <span style="background:var(--int);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;">Doporučujeme</span>
+        </div>
+        <div style="font-size:14px;color:var(--muted);">Chorvatsko · Split · 127 lodí ve flotile</div>
+      </div>
+    </div>
+  </div>
+  <div class="qs-band"><div class="qs-inner"><div class="qs-title">Hledat loď u Sun Charter</div><div class="qs-form"><div class="qs-field"><label>Destinace</label><select class="qs-select"><option>Split</option><option>Trogir</option><option>Šibenik</option></select></div><div class="qs-field"><label>Termín od</label><input type="date" class="qs-select" /></div><div class="qs-field"><label>Termín do</label><input type="date" class="qs-select" /></div><div class="qs-field"><label>Typ lodi</label><select class="qs-select"><option>Všechny typy</option><option>Plachetnice</option><option>Katamarán</option></select></div><button class="qs-btn" onclick="window.location.href='pronajem-lodi.html'">Vyhledat →</button></div></div></div>
+  <div class="stats-band"><div class="stats-inner"><div class="stat-item"><div class="stat-val">4,84</div><div class="stat-lbl">Spokojenost</div></div><div class="stat-item"><div class="stat-val">4 446</div><div class="stat-lbl">Recenzí</div></div><div class="stat-item"><div class="stat-val">96,8 %</div><div class="stat-lbl">Doporučuje</div></div><div class="stat-item"><div class="stat-val">127</div><div class="stat-lbl">Lodí ve flotile</div></div></div></div>
+  <div class="band">
+    <div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+      <div class="sec-label">Flotila</div>
+      <h2 class="sec-title">Lodě Sun Charter</h2>
+      <div style="height:320px;background:var(--bg);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;">Výpis lodí s filtrem — stejná komponenta jako stránka Výpis lodí</div>
+      <div style="margin-top:16px;text-align:center;"><button class="btn-view" onclick="window.location.href='pronajem-lodi.html'">Zobrazit všechny lodě →</button></div>
+    </div>
+  </div>
+  <div class="band-alt">
+    <div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+      <div class="sec-label">O společnosti</div>
+      <h2 class="sec-title">Sun Charter — váš partner na Jadranu</h2>
+      <details class="seo-expand"><summary>Přečíst celý popis společnosti</summary><div class="seo-expand-body">Sun Charter d.o.o. je přední chorvatská charterová společnost se sídlem v Splitu. S více než 20 lety zkušeností nabízí flotilu moderních plachetnic, katamaránů a motorových jachet na celém chorvatském pobřeží. Všechny lodě jsou pravidelně servisovány a certifikovány dle nejpřísnějších standardů bezpečnosti.</div></details>
+    </div>
+  </div>
+  <footer class="footer"><div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div><div class="yp-badge yp-badge--inline"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div><div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div></footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: CATEGORIES
+════════════════════════════════════════════════════════ -->
+
+<script src="assets/script.js"></script>
+</body>
+</html>

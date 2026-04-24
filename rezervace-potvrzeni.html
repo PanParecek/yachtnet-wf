@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rezervace — potvrzení — Yachtnet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-booking-confirm">
+
+  <nav class="bk-nav"><div class="bk-nav-inner">
+    <a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a>
+    <div style="font-size:13px;color:var(--muted);">Potvrzení rezervace bylo odesláno na váš e-mail</div>
+    <div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select></div>
+  </div></nav>
+
+  <!-- HERO -->
+  <div class="confirm-hero">
+    <div class="confirm-check">
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h1 class="confirm-title">Skvěle! Loď je vaše.</h1>
+    <p class="confirm-sub">Rezervace Bavaria C42 „Lady One" · Split · 12. – 19. 7. 2025 je potvrzena.</p>
+    <div class="confirm-ref">Číslo rezervace: <strong>YN-2025-084712</strong></div>
+  </div>
+
+  <!-- Co dál — kroky -->
+  <div class="confirm-next-steps">
+    <div class="next-steps-title">Co vás čeká dál</div>
+    <div class="next-steps-grid">
+      <div class="next-step-card">
+        <div class="next-step-num">1</div>
+        <div class="next-step-title">Potvrzení e-mailem</div>
+        <div class="next-step-desc">Do 5 minut obdržíte e-mail s potvrzením rezervace, fakturou a pokyny k nástupnímu briefingu.</div>
+      </div>
+      <div class="next-step-card">
+        <div class="next-step-num">2</div>
+        <div class="next-step-title">Dokumenty charterovky</div>
+        <div class="next-step-desc">Charterová společnost MareSail vás kontaktuje 48 h před nástupem s pokyny k předání lodi a přístupovými kódy.</div>
+      </div>
+      <div class="next-step-card">
+        <div class="next-step-num">3</div>
+        <div class="next-step-title">Nastupte na palubu</div>
+        <div class="next-step-desc">V sobotu 12. 7. 2025 od 17:00 vás čeká loď v ACI Marina Split, molo B, místo č. 24. Hodně zdaru na moři!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Karty: souhrn + stažení + sociální + magazín -->
+  <div class="confirm-body">
+
+    <!-- Shrnutí rezervace -->
+    <div class="confirm-card" style="grid-column:1/-1;">
+      <div class="confirm-card-head">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Shrnutí rezervace
+      </div>
+      <div class="confirm-card-body" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px 32px;">
+        <div class="recap-field"><div class="recap-field-label">Loď</div><div class="recap-field-val">Bavaria C42 „Lady One"</div></div>
+        <div class="recap-field"><div class="recap-field-label">Přístav</div><div class="recap-field-val">ACI Marina Split, HR</div></div>
+        <div class="recap-field"><div class="recap-field-label">Charterová spol.</div><div class="recap-field-val">MareSail d.o.o.</div></div>
+        <div class="recap-field"><div class="recap-field-label">Příjezd</div><div class="recap-field-val">12. 7. 2025 od 17:00</div></div>
+        <div class="recap-field"><div class="recap-field-label">Odjezd</div><div class="recap-field-val">19. 7. 2025 do 9:00</div></div>
+        <div class="recap-field"><div class="recap-field-label">Celkem uhrazeno</div><div class="recap-field-val" style="color:var(--int);font-size:16px;">54 900 Kč</div></div>
+      </div>
+    </div>
+
+    <!-- Soubory ke stažení -->
+    <div class="confirm-card">
+      <div class="confirm-card-head">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Soubory ke stažení
+      </div>
+      <div class="confirm-card-body">
+        <div class="dl-item">
+          <div class="dl-item-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div class="dl-item-info">
+            <div class="dl-item-name">Potvrzení rezervace</div>
+            <div class="dl-item-meta">PDF · YN-2025-084712 · 85 KB</div>
+          </div>
+          <button class="dl-item-btn">Stáhnout</button>
+        </div>
+        <div class="dl-item">
+          <div class="dl-item-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div class="dl-item-info">
+            <div class="dl-item-name">Faktura č. 2025-8471</div>
+            <div class="dl-item-meta">PDF · 54 900 Kč · 62 KB</div>
+          </div>
+          <button class="dl-item-btn">Stáhnout</button>
+        </div>
+        <div class="dl-item">
+          <div class="dl-item-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="22"/><path d="M5 15H2a10 10 0 0 0 20 0h-3"/></svg></div>
+          <div class="dl-item-info">
+            <div class="dl-item-name">Průvodce lodí Bavaria C42</div>
+            <div class="dl-item-meta">PDF · manuál + vybavení · 1.4 MB</div>
+          </div>
+          <button class="dl-item-btn">Stáhnout</button>
+        </div>
+        <div class="dl-item">
+          <div class="dl-item-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="dl-item-info">
+            <div class="dl-item-name">Mapa přístaviště a pokyny k nastoupení</div>
+            <div class="dl-item-meta">PDF · ACI Marina Split, molo B · 240 KB</div>
+          </div>
+          <button class="dl-item-btn">Stáhnout</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sociální sítě -->
+    <div class="confirm-card">
+      <div class="confirm-card-head">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Sledujte nás
+      </div>
+      <div class="confirm-card-body">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Sdílejte svůj zážitek a sledujte nás na sociálních sítích — tipy na trasy, fotky od zákazníků a novinky každý týden.</p>
+        <div class="social-grid">
+          <button class="social-follow-btn">
+            <div class="social-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
+            Facebook
+          </button>
+          <button class="social-follow-btn">
+            <div class="social-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            Instagram
+          </button>
+          <button class="social-follow-btn">
+            <div class="social-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></div>
+            YouTube
+          </button>
+          <button class="social-follow-btn">
+            <div class="social-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+            LinkedIn
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Magazín -->
+    <div class="confirm-card" style="grid-column:1/-1;">
+      <div class="confirm-card-head">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Připravte se na plavbu — tipy z Magazínu
+      </div>
+      <div class="confirm-card-body">
+        <div class="mag-teaser-list">
+          <div class="mag-teaser-item" onclick="Nonewindow.location.href='detail-clanku.html'">
+            <div class="mag-teaser-thumb"></div>
+            <div>
+              <div class="mag-teaser-title">7denní itinerář po Chorvatsku: ze Splitu do Dubrovníku přes ostrovy</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:3px;">10 min čtení · Tipy na trasy</div>
+            </div>
+          </div>
+          <div class="mag-teaser-item" onclick="Nonewindow.location.href='detail-clanku.html'">
+            <div class="mag-teaser-thumb"></div>
+            <div>
+              <div class="mag-teaser-title">10 věcí, které musí každý charterista zkontrolovat před vyplutím</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:3px;">8 min čtení · Bezpečnost</div>
+            </div>
+          </div>
+          <div class="mag-teaser-item" onclick="Nonewindow.location.href='detail-clanku.html'">
+            <div class="mag-teaser-thumb"></div>
+            <div>
+              <div class="mag-teaser-title">Jak číst námořní předpověď počasí pro plavbu na moři</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:3px;">6 min čtení · Kapitánské zkušenosti</div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:20px;">
+          <button onclick="window.location.href='magazin.html'" style="padding:10px 28px;background:var(--int);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;">Otevřít Yachtnet Magazín →</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /confirm-body -->
+
+  <div style="max-width:860px;margin:0 auto;padding:0 40px 48px;text-align:center;">
+    <button onclick="window.location.href='index.html'" style="padding:10px 24px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;color:var(--text);">← Zpět na úvodní stránku</button>
+  </div>
+
+  <footer class="footer" style="margin-top:0;">
+    <div class="footer-bottom" style="max-width:var(--max);margin:0 auto;padding:16px 40px;border-top:1px solid var(--border);background:var(--dark);display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.3);">
+      <span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span>
+      <img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" />
+    </div>
+  </footer>
+
+</div><!-- /page-booking-confirm -->
+
+<script src="assets/script.js"></script>
+</body>
+</html>

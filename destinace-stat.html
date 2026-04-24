@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stát — Yachtnet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-country">
+  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html">Pronájem lodí</a></li><li><a  href="destinace.html" style="color:var(--int);">Destinace</a></li><li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div></div></nav>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Destinace</div>
+      <h1 class="hero-title">🇭🇷 Pronájem lodi v Chorvatsku</h1>
+      <p class="hero-sub">Nejoblíbenější jachtařská destinace střední Evropy — přes 1 200 ostrovů, čisté moře, skvělá infrastruktura.</p>
+      <form class="search-form" id="searchForm" novalidate>
+        <div class="sf-field">
+          <span class="sf-label">Destinace</span>
+          <select name="location" data-multi data-optgroup-selectable data-placeholder="Celé Chorvatsko">
+            <option value="" disabled selected>Celé Chorvatsko</option>
+            <optgroup label="Střední Dalmácie"><option>Split</option><option>Trogir</option><option>Hvar</option><option>Brač</option></optgroup>
+            <optgroup label="Jižní Dalmácie"><option>Dubrovník</option><option>Korčula</option><option>Mljet</option></optgroup>
+            <optgroup label="Severní Dalmácie"><option>Zadar</option><option>Biograd</option><option>Pag</option></optgroup>
+            <optgroup label="Kvarner"><option>Pula</option><option>Rijeka</option><option>Krk</option><option>Cres</option></optgroup>
+            <optgroup label="Šibeník a okolí"><option>Šibenik</option><option>Murter</option><option>Skradin</option></optgroup>
+          </select>
+        </div>
+        <div class="sf-field">
+          <span class="sf-label">Termín</span>
+          <div class="date-combined">
+            <input type="date" name="from" />
+            <span class="date-sep">→</span>
+            <input type="date" name="to" />
+          </div>
+        </div>
+        <div class="sf-field">
+          <span class="sf-label">Typ lodi</span>
+          <select name="category" data-multi data-placeholder="Všechny typy">
+            <option value="" disabled selected>Všechny typy</option>
+            <option value="sailing">Plachetnice</option>
+            <option value="catamaran">Katamarán</option>
+            <option value="motor">Motorová loď</option>
+            <option value="gulet">Gulet</option>
+            <option value="river">Říční loď</option>
+          </select>
+        </div>
+        <button type="button" class="btn-search" onclick="window.location.href='pronajem-lodi.html'">Hledat lodě</button>
+      </form>
+    </div>
+  </section>
+  <div class="social-proof">
+    <div class="social-proof-inner">
+      <div class="sp-item">
+        <span class="sp-google-icon" aria-label="Google">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+        </span>
+        <span class="sp-score">5,0</span>
+        <div>
+          <div class="sp-stars">★★★★★</div>
+          <div class="sp-label">Průměrné hodnocení ze 192 recenzí na Googlu</div>
+        </div>
+      </div>
+      <div class="sp-divider"></div>
+      <div class="sp-testimonial">
+        <span class="sp-quote-icon" aria-hidden="true">"</span>
+        <span class="sp-quote-text">Z Splitu na Hvar jako po másle — Yachtnet vyřídil vše do 24 hodin.</span>
+        <span class="sp-quote-author">— Tomáš K.</span>
+      </div>
+    </div>
+  </div>
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="dest-section-head">
+      <div>
+        <div class="sec-label">Vybíráme pro vás</div>
+        <h2 class="sec-title">Nejoblíbenější lodě v Chorvatsku</h2>
+      </div>
+      <div class="mini-cards-arrows">
+        <button class="mini-cards-arrow" type="button" data-target="croatiaTopBoats" data-dir="-1" aria-label="Předchozí"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="mini-cards-arrow" type="button" data-target="croatiaTopBoats" data-dir="1" aria-label="Další"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+    <div class="mini-cards-slider" style="margin-bottom:18px;">
+      <div class="mini-cards mini-cards--scroll" id="croatiaTopBoats">
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Bavaria C42 "Lady One"</div><div class="mini-card-meta">Plachetnice · ACI Marina Split · 2021</div><div class="mini-card-price">od 36 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Lagoon 42 "Marina Star"</div><div class="mini-card-meta">Katamaran · Marina Kaštela · 2022</div><div class="mini-card-price">od 95 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Jeanneau Sun Odyssey 440</div><div class="mini-card-meta">Plachetnice · Trogir · 2022</div><div class="mini-card-price">od 39 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Beneteau Oceanis 41.1</div><div class="mini-card-meta">Plachetnice · Šibenik · 2021</div><div class="mini-card-price">od 34 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Fountaine Pajot 47</div><div class="mini-card-meta">Katamaran · ACI Marina Split · 2023</div><div class="mini-card-price">od 128 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Bavaria C45 "Blue Star"</div><div class="mini-card-meta">Plachetnice · Marina Lav · 2022</div><div class="mini-card-price">od 45 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Sun Loft 47 "Andante"</div><div class="mini-card-meta">Plachetnice · Marina Punat · 2023</div><div class="mini-card-price">od 68 000 Kč / týden</div></div></div>
+      </div>
+    </div>
+    <button class="btn-view" onclick="window.location.href='pronajem-lodi.html'">Zobrazit všech 769 lodí v Chorvatsku →</button>
+  </div></div>
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+    <div class="dest-section-head">
+      <div>
+        <div class="sec-label">Oblasti</div>
+        <h2 class="sec-title">Nejoblíbenější oblasti</h2>
+      </div>
+      <div class="dest-section-actions">
+        <a href="destinace.html" class="dest-section-link">Všechny oblasti →</a>
+        <div class="mini-cards-arrows">
+          <button class="mini-cards-arrow" type="button" data-target="croatiaAreas" data-dir="-1" aria-label="Předchozí"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="mini-cards-arrow" type="button" data-target="croatiaAreas" data-dir="1" aria-label="Další"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="mini-cards-slider">
+      <div class="mini-cards mini-cards--scroll mini-cards--4col" id="croatiaAreas">
+        <a class="mini-card" href="oblast.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Střední Dalmácie</div><div class="mini-card-meta">Split, Trogir, Hvar, Brač</div><div class="mini-card-price">312 lodí</div></div></a>
+        <a class="mini-card" href="oblast.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Jižní Dalmácie</div><div class="mini-card-meta">Dubrovník, Korčula, Mljet</div><div class="mini-card-price">186 lodí</div></div></a>
+        <a class="mini-card" href="oblast.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Šibeník a okolí</div><div class="mini-card-meta">Kornati, Murter, Skradin</div><div class="mini-card-price">128 lodí</div></div></a>
+        <a class="mini-card" href="oblast.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Kvarner</div><div class="mini-card-meta">Pula, Rijeka, Krk, Cres</div><div class="mini-card-price">94 lodí</div></div></a>
+        <a class="mini-card" href="oblast.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Severní Dalmácie</div><div class="mini-card-meta">Zadar, Biograd, Pag</div><div class="mini-card-price">87 lodí</div></div></a>
+        <a class="mini-card" href="oblast.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Istrie</div><div class="mini-card-meta">Pula, Rovinj, Poreč</div><div class="mini-card-price">62 lodí</div></div></a>
+      </div>
+    </div>
+  </div></div>
+  <div class="band-alt" style="border-top:none;"><div style="max-width:var(--max);margin:0 auto;padding:36px 28px;">
+    <div class="sec-label" style="margin-bottom:14px;">Přístavy</div>
+    <h2 class="sec-title">Nejoblíbenější přístavy</h2>
+    <div class="ports-grid">
+      <a class="port-tile port-tile--hero" href="pristav.html">
+        <div class="port-tile-overlay">
+          <div class="port-tile-name">Split ACI Marina</div>
+          <div class="port-tile-count">48 lodí · největší marína Střední Dalmácie</div>
+        </div>
+      </a>
+      <a class="port-tile port-tile--wide" href="pristav.html">
+        <div class="port-tile-overlay">
+          <div class="port-tile-name">Dubrovník — Komolac</div>
+          <div class="port-tile-count">32 lodí</div>
+        </div>
+      </a>
+      <a class="port-tile" href="pristav.html">
+        <div class="port-tile-overlay"><div class="port-tile-name">Šibenik D-Marin</div><div class="port-tile-count">27 lodí</div></div>
+      </a>
+      <a class="port-tile" href="pristav.html">
+        <div class="port-tile-overlay"><div class="port-tile-name">Trogir Marina</div><div class="port-tile-count">19 lodí</div></div>
+      </a>
+      <a class="port-tile" href="pristav.html">
+        <div class="port-tile-overlay"><div class="port-tile-name">Marina Kaštela</div><div class="port-tile-count">22 lodí</div></div>
+      </a>
+      <a class="port-tile" href="pristav.html">
+        <div class="port-tile-overlay"><div class="port-tile-name">Marina Punat</div><div class="port-tile-count">17 lodí</div></div>
+      </a>
+      <a class="port-tile" href="pristav.html">
+        <div class="port-tile-overlay"><div class="port-tile-name">Marina Zadar</div><div class="port-tile-count">24 lodí</div></div>
+      </a>
+      <a class="port-tile" href="pristav.html">
+        <div class="port-tile-overlay"><div class="port-tile-name">Pula ACI Marina</div><div class="port-tile-count">15 lodí</div></div>
+      </a>
+    </div>
+
+    <div style="margin-top:48px;">
+      <div class="sec-label">Průkazy a oprávnění</div>
+      <h2 class="sec-title">Co potřebujete pro vyplutí v Chorvatsku</h2>
+    </div>
+    <div class="licences-block">
+      <div class="licences-row">
+        <div>
+          <div class="licences-section-label licences-section-label--required">Povinné průkazy</div>
+          <div class="licences-section">
+            <a class="licence-item" href="detail-prukazu.html">
+              <div>
+                <div class="licence-item-name">MDČR průkaz (kategorie C / B / A)</div>
+                <div class="licence-item-desc">Český mezinárodní průkaz uznávaný v Chorvatsku — pro plavbu na moři až do délky odpovídající kategorii.</div>
+              </div>
+              <svg class="licence-item-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="licence-item" href="detail-prukazu.html">
+              <div>
+                <div class="licence-item-name">Chorvatský průkaz B (Voditelj brodice B)</div>
+                <div class="licence-item-desc">Místní oprávnění pro plavidla do 30 BRT a 12 m délky — alternativa k MDČR, lze složit přímo v Chorvatsku.</div>
+              </div>
+              <svg class="licence-item-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="licences-section-label licences-section-label--recommended">Doporučené</div>
+          <div class="licences-section">
+            <a class="licence-item" href="detail-prukazu.html">
+              <div>
+                <div class="licence-item-name">SRC — Short Range Certificate</div>
+                <div class="licence-item-desc">Průkaz pro obsluhu lodní VHF radiostanice — formálně povinný pro vysílání, prakticky nezbytný pro nouzové situace na moři.</div>
+              </div>
+              <svg class="licence-item-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="licence-item" href="kapitanske-kurzy.html">
+              <div>
+                <div class="licence-item-name">Praktický kurz s instruktorem</div>
+                <div class="licence-item-desc">Pokud máte průkaz, ale chybí vám 100+ NM v logbooku, charterové společnosti vyžadují buď doklad praxe, nebo skipperem na palubě.</div>
+              </div>
+              <svg class="licence-item-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+    <div class="sec-label">Na čem chcete plout?</div>
+    <h2 class="sec-title">Co si lze v Chorvatsku půjčit?</h2>
+    <div class="categories-grid">
+      <a class="cat-tile" href="detail-kategorie.html"><div class="cat-img"></div><div class="cat-label"><div class="cat-name">Plachetnice</div><div class="cat-count">421 lodí v Chorvatsku</div></div></a>
+      <a class="cat-tile" href="detail-kategorie.html"><div class="cat-img"></div><div class="cat-label"><div class="cat-name">Katamarán</div><div class="cat-count">168 lodí v Chorvatsku</div></div></a>
+      <a class="cat-tile" href="detail-kategorie.html"><div class="cat-img"></div><div class="cat-label"><div class="cat-name">Motorová loď</div><div class="cat-count">124 lodí v Chorvatsku</div></div></a>
+      <a class="cat-tile" href="detail-kategorie.html"><div class="cat-img"></div><div class="cat-label"><div class="cat-name">Gulet</div><div class="cat-count">36 lodí v Chorvatsku</div></div></a>
+      <a class="cat-tile" href="detail-kategorie.html"><div class="cat-img"></div><div class="cat-label"><div class="cat-name">Říční loď</div><div class="cat-count">20 lodí v Chorvatsku</div></div></a>
+    </div>
+  </div></div>
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+    <div class="dest-section-head">
+      <div>
+        <div class="sec-label">Z magazínu</div>
+        <h2 class="sec-title">Vše pro plavbu chorvatskými vodami</h2>
+      </div>
+      <a href="magazin.html" class="dest-section-link">Všechny články o Chorvatsku →</a>
+    </div>
+    <div class="articles-grid">
+      <a class="article-card" href="detail-clanku.html"><div class="article-img"></div><div class="article-body"><span class="article-cat">Destinace</span><h3 class="article-title">Nejkrásnější kotviště Dalmácie</h3><p class="article-desc">12 zátok a marín, které byste neměli minout — od Hvaru po Korčulu.</p><div class="article-meta">8 min čtení · 15. 4. 2025</div></div></a>
+      <a class="article-card" href="detail-clanku.html"><div class="article-img"></div><div class="article-body"><span class="article-cat">Itinerář</span><h3 class="article-title">Itinerář Split → Dubrovník za 7 dní</h3><p class="article-desc">Klasická týdenní trasa s tipy na kotvení a mistními taverny.</p><div class="article-meta">10 min čtení · 8. 4. 2025</div></div></a>
+      <a class="article-card" href="detail-clanku.html"><div class="article-img"></div><div class="article-body"><span class="article-cat">Předpisy</span><h3 class="article-title">Chorvatské předpisy pro jachting 2025</h3><p class="article-desc">Co se mění oproti loňsku — vinjety, povinnosti kapitána, čistota plavidla.</p><div class="article-meta">6 min čtení · 22. 3. 2025</div></div></a>
+      <a class="article-card" href="detail-clanku.html"><div class="article-img"></div><div class="article-body"><span class="article-cat">Tipy</span><h3 class="article-title">Kornati: jak naplánovat plavbu národním parkem</h3><p class="article-desc">Vstupní poplatky, kotvení, povolení a 7 nejhezčích zátok.</p><div class="article-meta">7 min čtení · 18. 3. 2025</div></div></a>
+      <a class="article-card" href="detail-clanku.html"><div class="article-img"></div><div class="article-body"><span class="article-cat">Počasí</span><h3 class="article-title">Bóra a Maestral: chorvatské větry, které musíte znát</h3><p class="article-desc">Jak rozpoznat, kdy nevyplout, a kdy si rozvinout plnou plachtu.</p><div class="article-meta">5 min čtení · 5. 3. 2025</div></div></a>
+      <a class="article-card" href="detail-clanku.html"><div class="article-img"></div><div class="article-body"><span class="article-cat">Gastro</span><h3 class="article-title">Konobas, peka a víno: gastronomický průvodce Dalmácií</h3><p class="article-desc">Kde přistát na večeři pod hvězdami a co si nechat doporučit.</p><div class="article-meta">9 min čtení · 28. 2. 2025</div></div></a>
+    </div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="logos-header">
+      <div>
+        <div class="sec-label">Naši partneři</div>
+        <h2 class="sec-title" style="font-size:20px;">Charterové společnosti v Chorvatsku</h2>
+      </div>
+      <a href="charterove-spolecnosti.html" class="link-all">Zobrazit všechny společnosti →</a>
+    </div>
+    <div class="logos-row">
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Sunsail">Sunsail</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Navigare Yachting">Navigare</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Moorings">Moorings</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Dream Yacht Charter">Dream Yacht</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="MareSail">MareSail</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Pitter Yachtcharter">Pitter</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Kiriacoulis">Kiriacoulis</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Ultra Sailing">Ultra Sailing</a>
+    </div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="sec-label">Časté dotazy</div>
+    <h2 class="sec-title">Co se nejčastěji ptáte o Chorvatsku</h2>
+    <div class="faq-grid-2col">
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Jaký kapitánský průkaz potřebuji k pronájmu lodě v Chorvatsku? <span class="faq-q-icon">+</span></button><div class="faq-a">Pro plavbu po chorvatských vodách potřebujete oprávnění uznávané chorvatskou pobřežní stráží — typicky <a href="detail-prukazu.html">Chorvatský průkaz B (Voditelj brodice B)</a> nebo český mezinárodní průkaz MDČR. Spolu s ním je vyžadován i průkaz <a href="detail-kurzu.html">SRC (Short Range Certificate)</a> pro obsluhu lodní radiostanice.</div></div>
+        <div class="faq-item"><button class="faq-q">Kdy je nejlepší doba na plavbu po chorvatském pobřeží? <span class="faq-q-icon">+</span></button><div class="faq-a">Hlavní sezóna trvá od května do října. Květen a červen nabízejí mírné počasí, méně turistů a nižší ceny. Červenec a srpen jsou nejteplejší (a nejdražší). Září a začátek října jsou ideální kombinací stabilního počasí, teplého moře a klidnějších přístavů.</div></div>
+        <div class="faq-item"><button class="faq-q">Jak funguje vinjeta a turistická taxa v Chorvatsku? <span class="faq-q-icon">+</span></button><div class="faq-a">Každá loď v chorvatských vodách musí mít vinjetu (cca 50–250 € podle délky lodi) a uhrazenou turistickou taxu za posádku (asi 1 € / osoba / den). Standardně to za vás zařídí <a href="charterova-spolecnost.html">charterová společnost</a> při check-inu — vyžádejte si potvrzení o úhradě, které je nutné mít při kontrole.</div></div>
+        <div class="faq-item"><button class="faq-q">Kolik stojí kotvení v marínách a pohonné hmoty? <span class="faq-q-icon">+</span></button><div class="faq-a">Cena za noc v <a href="pristav.html">marínách</a> typu Split, Trogir nebo Šibenik se pohybuje mezi 60–120 € pro 12m loď v hlavní sezóně. V odlehlejších přístavech kolem 30–60 €. Diesel stojí cca 1,60 €/l a do plné nádrže 130 l plachetnice se vejde za 200 € — pro běžnou týdenní plavbu počítejte se spotřebou 50–80 l.</div></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Můžu plout v Národním parku Kornati bez povolení? <span class="faq-q-icon">+</span></button><div class="faq-a">Ne. Vstup do parku vyžaduje denní povolení (cca 50–95 € podle délky lodi a místa zakoupení), které lze koupit online předem nebo na vstupních bójkách. Kotvit lze pouze na vyhrazených bójkách. Detaily i tipy najdete v <a href="magazin.html">magazínu</a>.</div></div>
+        <div class="faq-item"><button class="faq-q">Co se stane, když mě v Chorvatsku přepadne bóra? <span class="faq-q-icon">+</span></button><div class="faq-a">Bóra je silný severovýchodní vítr, který může v Kvarneru i Velebitském průlivu dosáhnout 60+ uzlů během několika hodin. Sledujte <a href="https://meteo.hr" target="_blank" rel="noopener">předpověď DHMZ</a>, vyhněte se otevřenému moři, najděte si chráněnou marínu nebo zátoku za závětrným břehem a počkejte, než přejde — typicky 12–48 hodin.</div></div>
+        <div class="faq-item"><button class="faq-q">Potřebuji pojištění depositní zálohy? <span class="faq-q-icon">+</span></button><div class="faq-a">Standardní deposit u 12m plachetnice je 1 500–2 500 €, u katamaránu i přes 4 000 €. Pojištění depositu (kauce) za cca 100–200 € na týden vám pokryje případnou škodu na lodi do výše depositu — bez něj přicházíte o celou kauci za jakékoli poškození. Můžete si jej přiobjednat při <a href="rezervace-krok-1.html">rezervaci</a>.</div></div>
+        <div class="faq-item"><button class="faq-q">Můžu jet na bareboat charter bez praktických zkušeností? <span class="faq-q-icon">+</span></button><div class="faq-a">Charterové společnosti vyžadují kromě průkazu i logbook s alespoň 100–200 NM nebo praktické zkoušení v marině. Pokud zkušenosti chybí, můžete si <a href="kapitanske-kurzy.html">objednat skippera</a> (5 000 Kč/den + strava) nebo se přihlásit na náš <a href="terminy-kurzu.html">víkendový praktický kurz</a> v Chorvatsku.</div></div>
+      </div>
+    </div>
+
+    <div class="seo-text">
+      <p><strong>Chorvatsko patří mezi nejvyhledávanější jachtařské destinace v Evropě</strong> — a není divu. Více než 1 200 ostrovů, 5 800 km členitého pobřeží a hustá síť dobře vybavených marín z něj činí ráj pro začínající i zkušené kapitány. Ať už vás láká dynamická <a href="oblast.html">Střední Dalmácie</a> s ostrovy Hvar, Brač a Vis, nebo klidnější <a href="oblast.html">Kvarner</a> kolem Krku a Cresu, najdete v naší nabídce <a href="pronajem-lodi.html">přes 769 lodí</a> všech typů.</p>
+
+      <p>Hlavními výchozími přístavy pro charterové plavby jsou <a href="pristav.html">ACI Marina Split</a>, <a href="pristav.html">Marina Kaštela</a>, <a href="pristav.html">Marina Trogir</a> a <a href="pristav.html">Marina Punat</a> na ostrově Krk. Ze Splitu se otevírají možnosti směrem na Brač, Hvar, Vis nebo Korčulu — klasický týdenní okruh trvá zhruba 7 dní a zahrnuje 120–180 NM. Z <a href="pristav.html">Marina Punat</a> v Kvarneru se zase nabízí trasa kolem Cresu, Lošinje a Rabu, kde je vítr stabilnější a marín méně přeplněných.</p>
+
+      <p>Volba lodi závisí na velikosti posádky a stylu plavby. Pro klasickou plavbu si typicky vyberete <a href="detail-kategorie.html">plachetnici Bavaria, Jeanneau Sun Odyssey nebo Beneteau Oceanis</a> ve velikosti 38–45 stop. Rodiny a větší skupiny preferují <a href="detail-kategorie.html">katamarány Lagoon nebo Fountaine Pajot</a> kvůli stabilitě, prostoru a soukromí jednotlivých kajut. Tradičnější <a href="detail-kategorie.html">gulety</a> nabízejí komfort hotelu na vodě s posádkou, zatímco <a href="detail-kategorie.html">motorové jachty</a> jsou volbou pro ty, kdo chtějí pokrýt větší vzdálenosti za den.</p>
+
+      <p><strong>Před vyplutím z chorvatského přístavu</strong> musí mít kapitán platný průkaz uznávaný chorvatskou pobřežní stráží. České <a href="detail-prukazu.html">průkazy MDČR (kategorie C, B nebo A)</a> jsou plně uznávány — alternativou je přímo <a href="detail-prukazu.html">Chorvatský průkaz B (Voditelj brodice B)</a>, který lze složit u jakékoliv chorvatské pobřežní stráže nebo přes naše <a href="kapitanske-kurzy.html">víkendové kurzy</a> v Brně, Praze a Splitu. Kromě průkazu kapitána je nutný i <a href="detail-kurzu.html">SRC (Short Range Certificate)</a> pro obsluhu radiostanice. Posádka by měla znát i základní pravidla COLREG a chorvatská specifika kotvení.</p>
+
+      <p><strong>Specifické podmínky chorvatských vod</strong> jsou věc, kterou neměla žádná učebnice popsat lépe než zkušenost. <a href="magazin.html">Bóra</a> — silný severovýchodní vítr — může v zimě i létě dosáhnout 60–80 uzlů, zejména v Kvarneru a Velebitském průlivu. V létě fouká pravidelný odpolední <strong>maestral</strong> (severozápadní termický vítr 12–18 uzlů), který je ideální pro plachtění. Pro orientaci se vyplatí znát i <strong>jugo</strong> — vlhký jihovýchodní vítr přinášející bouřky. Přesnou předpověď zajišťuje <a href="https://meteo.hr" target="_blank" rel="noopener">chorvatský meteorologický ústav DHMZ</a>, jehož předpověď je dostupná i přes VHF kanál 67.</p>
+
+      <p><strong>Co se týče poplatků a administrativy</strong>, každá loď v chorvatských vodách musí mít zaplacenou vinjetu (jednorázově za sezónu, podle délky lodi) a turistickou taxu (denní poplatek za posádku). Standardně toto všechno řeší <a href="charterova-spolecnost.html">charterová společnost</a> při check-inu — od vás stačí seznam posádky s pasovými údaji nejpozději 24 hodin před nástupem. Vstup do <a href="magazin.html">národních parků Kornati a Mljet</a> vyžaduje samostatné denní povolení (50–95 € podle velikosti lodi).</p>
+
+      <p>Pokud teprve plánujete svou první plavbu nebo si chcete osvojit potřebné dovednosti, doporučujeme začít naším <a href="kapitanske-kurzy.html">kapitánským kurzem</a> v Praze, Brně nebo přímo u moře. Termíny <a href="terminy-kurzu.html">teoretických i praktických kurzů</a> nabízíme od února do října, praktická část probíhá většinou v <a href="oblast.html">Střední Dalmácii</a> z Marina Kaštela. Po kurzu získáte mezinárodně uznávaný průkaz a můžete se vydat na svou první samostatnou charterovou plavbu — třeba s některou z lodí, které právě teď máme <a href="pronajem-lodi.html">k dispozici v Chorvatsku</a>.</p>
+    </div>
+  </div></div>
+
+  <footer class="footer"><div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div><div class="yp-badge yp-badge--inline"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div><div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div></footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: COURSES (kapitánské kurzy — landing)
+════════════════════════════════════════════════════════ -->
+
+<script src="assets/script.js"></script>
+</body>
+</html>
