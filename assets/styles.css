@@ -1702,8 +1702,13 @@
     .footer-social { display: flex; gap: 8px; margin-top: 4px; }
     .social-box {
       width: 32px; height: 32px; border-radius: 6px;
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.75); text-decoration: none;
+      transition: background .15s, border-color .15s, color .15s, transform .15s;
     }
+    .social-box:hover { background: var(--int); border-color: var(--int); color: #fff; transform: translateY(-1px); }
+    .social-box svg { width: 16px; height: 16px; display: block; }
 
     .footer-help {
       background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
