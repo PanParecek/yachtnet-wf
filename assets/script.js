@@ -465,8 +465,8 @@
         '</a>' +
         '<div class="nav-mobile-sub-title">Hledat podle</div>' +
         '<a class="nav-mobile-sublink" href="destinace.html">Destinace</a>' +
-        '<a class="nav-mobile-sublink" href="kategorie-lodi.html">Kategorie</a>' +
-        '<a class="nav-mobile-sublink" href="detail-znacky.html">Značky</a>' +
+        '<a class="nav-mobile-sublink" href="kategorie-lodi.html">Kategorie lodí</a>' +
+        '<a class="nav-mobile-sublink" href="prehled-znacek.html">Značky lodí</a>' +
         '<a class="nav-mobile-sublink" href="charterove-spolecnosti.html">Charterové společnosti</a>' +
         '<div class="nav-mobile-sub-title">Z magazínu</div>' +
         '<a class="nav-mobile-sublink" href="detail-clanku.html">Jak vybrat správnou loď?</a>' +
@@ -589,8 +589,8 @@
           '<div class="nav-dropdown-col-title">Hledat podle</div>' +
           '<ul class="nav-dropdown-list">' +
             '<li><a href="destinace.html">Destinace</a></li>' +
-            '<li><a href="kategorie-lodi.html">Kategorie</a></li>' +
-            '<li><a href="detail-znacky.html">Značky</a></li>' +
+            '<li><a href="kategorie-lodi.html">Kategorie lodí</a></li>' +
+            '<li><a href="prehled-znacek.html">Značky lodí</a></li>' +
             '<li><a href="charterove-spolecnosti.html">Charterové společnosti</a></li>' +
           '</ul>' +
         '</div>' +
@@ -619,7 +619,7 @@
       '<svg class="nav-dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' +
     '</button>' +
     '<div class="nav-dropdown-panel nav-dropdown-panel--kurzy" role="menu">' +
-      '<div class="nav-dropdown-grid nav-dropdown-grid--4">' +
+      '<div class="nav-dropdown-grid--kurzy">' +
         '<a class="nav-dropdown-cta" href="kapitanske-kurzy.html">' +
           '<div>' +
             '<div class="nav-dropdown-cta-label">Vše o kapitánských kurzech</div>' +
@@ -629,37 +629,41 @@
             '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
           '</span>' +
         '</a>' +
-        '<div class="nav-dropdown-col">' +
-          '<div class="nav-dropdown-col-title">Moře</div>' +
-          '<ul class="nav-dropdown-list">' +
-            '<li><a href="detail-prukazu.html">MDČR C</a></li>' +
-            '<li><a href="detail-prukazu.html">Chorvatský průkaz B</a></li>' +
-          '</ul>' +
+        '<div class="nav-dropdown-kurzy-right">' +
+          '<div class="nav-dropdown-kurzy-cols">' +
+            '<div class="nav-dropdown-col">' +
+              '<a class="nav-dropdown-col-title nav-dropdown-col-title--link" href="kurzy-na-mori.html">Moře</a>' +
+              '<ul class="nav-dropdown-list">' +
+                '<li><a href="detail-prukazu.html">MDČR C</a></li>' +
+                '<li><a href="detail-prukazu.html">Chorvatský průkaz B</a></li>' +
+              '</ul>' +
+            '</div>' +
+            '<div class="nav-dropdown-col">' +
+              '<a class="nav-dropdown-col-title nav-dropdown-col-title--link" href="kurzy-na-mori.html">Řeky</a>' +
+              '<ul class="nav-dropdown-list">' +
+                '<li><a href="detail-prukazu.html">Velitel malého plavidla</a></li>' +
+                '<li><a href="detail-prukazu.html">Velitel rekreačního plavidla</a></li>' +
+              '</ul>' +
+            '</div>' +
+            '<div class="nav-dropdown-col">' +
+              '<div class="nav-dropdown-col-title">Speciality</div>' +
+              '<ul class="nav-dropdown-list">' +
+                '<li><a href="detail-prukazu.html">SRC — Radiotelefon</a></li>' +
+                '<li><a href="detail-kurzu.html">Zdokonalovací kurzy</a></li>' +
+              '</ul>' +
+            '</div>' +
+          '</div>' +
+          '<div class="nav-dropdown-kurzy-actions">' +
+            '<a href="vsechny-kurzy.html" class="nav-dropdown-footer-link">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="12" width="18" height="4" rx="1"/><rect x="3" y="20" width="18" height="0.5"/></svg>' +
+              'Všechny průkazy a kurzy' +
+            '</a>' +
+            '<a href="terminy-kurzu.html" class="nav-dropdown-footer-link">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' +
+              'Termíny kurzů' +
+            '</a>' +
+          '</div>' +
         '</div>' +
-        '<div class="nav-dropdown-col">' +
-          '<div class="nav-dropdown-col-title">Řeky</div>' +
-          '<ul class="nav-dropdown-list">' +
-            '<li><a href="detail-prukazu.html">Velitel malého plavidla</a></li>' +
-            '<li><a href="detail-prukazu.html">Velitel rekreačního plavidla</a></li>' +
-          '</ul>' +
-        '</div>' +
-        '<div class="nav-dropdown-col">' +
-          '<div class="nav-dropdown-col-title">Speciality</div>' +
-          '<ul class="nav-dropdown-list">' +
-            '<li><a href="detail-prukazu.html">SRC — Radiotelefon</a></li>' +
-            '<li><a href="detail-kurzu.html">Zdokonalovací kurzy</a></li>' +
-          '</ul>' +
-        '</div>' +
-      '</div>' +
-      '<div class="nav-dropdown-footer">' +
-        '<a href="vsechny-kurzy.html" class="nav-dropdown-footer-link">' +
-          '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="12" width="18" height="4" rx="1"/><rect x="3" y="20" width="18" height="0.5"/></svg>' +
-          'Všechny průkazy a kurzy' +
-        '</a>' +
-        '<a href="terminy-kurzu.html" class="nav-dropdown-footer-link">' +
-          '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' +
-          'Termíny kurzů' +
-        '</a>' +
       '</div>' +
     '</div>';
 

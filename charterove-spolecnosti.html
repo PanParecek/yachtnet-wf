@@ -12,45 +12,688 @@
 <body>
 
 <div id="page-companies">
-  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html" style="color:var(--int);">Pronájem lodí</a></li><li><a  href="destinace.html">Destinace</a></li><li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div></div></nav>
+  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html" style="color:var(--int);">Pronájem lodí</a></li><li><a  href="destinace.html">Destinace</a></li><li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="eshop.html">E-shop</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div></div></nav>
+
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Domů</a><span class="breadcrumb-sep">›</span>
+      <a href="pronajem-lodi.html">Pronájem lodí</a><span class="breadcrumb-sep">›</span>
+      <span>Charterové společnosti</span>
+    </div>
+  </div>
+
   <div class="band">
     <div style="max-width:var(--max);margin:0 auto;padding:40px 28px;">
       <div class="sec-label">Partneři</div>
-      <h1 style="font-size:28px;font-weight:800;margin-bottom:8px;">Charterové společnosti</h1>
-      <p style="font-size:14px;color:var(--muted);margin-bottom:0;">Kompletní přehled ověřených charterových společností seřazený abecedně</p>
+      <h1 style="font-size:32px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;">Charterové společnosti</h1>
+      <p style="font-size:15px;color:var(--muted);line-height:1.6;max-width:720px;margin:0 0 8px;">Kompletní přehled ověřených charterových společností, jejichž lodě nabízíme. Seřazeno abecedně. Kliknutím na společnost zobrazíte její profil a aktuální flotilu.</p>
       <div class="alpha-nav">
-        <a class="alpha-btn active" href="#">A</a><a class="alpha-btn" href="#">B</a><a class="alpha-btn" href="#">C</a><a class="alpha-btn" href="#">D</a><a class="alpha-btn" href="#">E</a><a class="alpha-btn" href="#">F</a><a class="alpha-btn" href="#">G</a><a class="alpha-btn" href="#">H</a><a class="alpha-btn" href="#">Ch</a><a class="alpha-btn" href="#">I</a><a class="alpha-btn" href="#">J</a><a class="alpha-btn" href="#">K</a><a class="alpha-btn" href="#">L</a><a class="alpha-btn" href="#">M</a><a class="alpha-btn" href="#">N</a><a class="alpha-btn" href="#">O</a><a class="alpha-btn" href="#">P</a><a class="alpha-btn" href="#">R</a><a class="alpha-btn" href="#">S</a><a class="alpha-btn" href="#">T</a><a class="alpha-btn" href="#">U</a><a class="alpha-btn" href="#">V</a><a class="alpha-btn" href="#">Z</a>
+        <a class="alpha-btn" href="#g-09">0–9</a>
+        <a class="alpha-btn active" href="#g-A">A</a>
+        <a class="alpha-btn" href="#g-B">B</a>
+        <a class="alpha-btn" href="#g-C">C</a>
+        <a class="alpha-btn" href="#g-D">D</a>
+        <a class="alpha-btn" href="#g-E">E</a>
+        <a class="alpha-btn" href="#g-F">F</a>
+        <a class="alpha-btn" href="#g-G">G</a>
+        <a class="alpha-btn" href="#g-H">H</a>
+        <a class="alpha-btn" href="#g-I">I</a>
+        <a class="alpha-btn" href="#g-J">J</a>
+        <a class="alpha-btn" href="#g-K">K</a>
+        <a class="alpha-btn" href="#g-L">L</a>
+        <a class="alpha-btn" href="#g-M">M</a>
+        <a class="alpha-btn" href="#g-N">N</a>
+        <a class="alpha-btn" href="#g-O">O</a>
+        <a class="alpha-btn" href="#g-P">P</a>
+        <a class="alpha-btn" href="#g-Q">Q</a>
+        <a class="alpha-btn" href="#g-R">R</a>
+        <a class="alpha-btn" href="#g-S">S</a>
+        <a class="alpha-btn" href="#g-T">T</a>
+        <a class="alpha-btn" href="#g-U">U</a>
+        <a class="alpha-btn" href="#g-V">V</a>
+        <a class="alpha-btn" href="#g-W">W</a>
+        <a class="alpha-btn" href="#g-X">X</a>
+        <a class="alpha-btn" href="#g-Y">Y</a>
+        <a class="alpha-btn" href="#g-Z">Z</a>
       </div>
-      <div class="company-alpha-group">
+
+      <div class="company-alpha-group" id="g-09">
+        <div class="company-alpha-letter">0–9</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">3Lacs Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">4U Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">7 Waves Yachting</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-A">
         <div class="company-alpha-letter">A</div>
-        <a  href="charterova-spolecnost.html" class="company-link-item">Adriatic Sailing d.o.o.</a>
-        <a  href="charterova-spolecnost.html" class="company-link-item">ACI Marina Charter</a>
-        <a  href="charterova-spolecnost.html" class="company-link-item">Albatros Charter Řecko</a>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">A Toda Vela Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">A&amp;C Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aba Vela</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">AciSail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">ACM Catamaran</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Adria Luxury Boats</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Adria Sail Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Adria Service Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Adria Yachten</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Adriatic Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Adriatic Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Adriatic Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Adventure Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aegean Blue Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aegean Cruises</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aegeas Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aeolian Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">AF Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aladar sail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Albatros Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Albatross Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Alboran</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aldebaran Charter Company</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">All-Seas</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Almarea Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Almira Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aloha Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Altair International bvba</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Alternautika</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Amfitriti Discovery</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">AMS Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Anassa Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Ancyra Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Anemos</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Angelina</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Anka Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Ankereva Yacht Charters</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aqua Charters</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aqua Libra</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aquarius Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aquatoria Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aquatrotters</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Arcadie Plaisance</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">ARCHON Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Arctic Cruise In Norway AS</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Arctic Ice Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Arundel yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">ASC Gomar</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Asia Marine Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Asta Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Astarea</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Asterion Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Athenian Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Atoll Comfort Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Aura Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Avdiros Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Avele Cazzate</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Axion Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">AYC</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Azimuth Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Azmarine</a>
+        </div>
       </div>
-      <div class="company-alpha-group">
+
+      <div class="company-alpha-group" id="g-B">
         <div class="company-alpha-letter">B</div>
-        <a  href="charterova-spolecnost.html" class="company-link-item">Bavaria Yachts Charter</a>
-        <a  href="charterova-spolecnost.html" class="company-link-item">Blue Ocean Sailing</a>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Bali Catamarans Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">BaMa Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Ban Tours</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Baotic Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Barcando Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Batana Navtik</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">BavAdria</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Bax Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">BB Jezera</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">BBS Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">BeCharter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">BeExperience</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Bemex</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Beta Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Beyond Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Black Pearl</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Bleyachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Blue Dream Charter &amp; Service</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Blue emotion</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Blue Emotion</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">BLUE MARLIN YACHTS</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Blue Memories</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Blue Nautica</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Blue Sails</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Blue Trend</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">BlueLife Ltd</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Boatin France</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Bodrumtour</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Boomerang</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Boreal Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Bosfor</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Brasil Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Bravasail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Braves sailors</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Bruneko charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Butch Sailing</a>
+        </div>
       </div>
-      <div class="company-alpha-group">
+
+      <div class="company-alpha-group" id="g-C">
+        <div class="company-alpha-letter">C</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Cagliari Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Canal Boats Telemark</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Candor</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Caraibes Catamarans Grenadines</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Carloforte Sail Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Cata Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Cataexperience</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Catamaran Company</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Cavo Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Charter International</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Charter Novak</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Charter4fun</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Chilla Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Chrom-Nautica</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Classic Adria</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Codezero Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Color Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Commodore Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Controvento</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Cordelia Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">CRO-MAR</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Croatia Sailing Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Croatia Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Croatia-Adriatic</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Crosail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">CroSails</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Cruising Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Crystal Sea</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">CS Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">CV Yachts</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-D">
+        <div class="company-alpha-letter">D</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Dalmatia Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">De Drait</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Dea dei Mari</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Denebola</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">DeToni</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Discovery Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">DMS Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">DN Nautica</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Dolphin Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Dragut Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Dream Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Dubrovnik Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Dufi Sail Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Dynamic Sailing</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-E">
+        <div class="company-alpha-letter">E</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">E-Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">E.G.G.Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">ECC</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">EGO Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Ekvator Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">El Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">EMU Yachting — Nautic Alliance</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Eol Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Eolian Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Euromarine</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Euronautic</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Europe Sail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Eurospectra</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">EuroYacht</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Eversails Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Exadas Yachts</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-F">
+        <div class="company-alpha-letter">F</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Fair Wind</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Fancy Lobster SL</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Fancy Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Feel Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Fiji</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">First Class Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">First Class Sailing Spain</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Five Seasons Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Flamingo Yacht Charters</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Florida Yacht</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Fortek Nautica</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Free Charter Srl</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">FreeWave</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Full Team</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Fun In The Sun</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Fyly Yachting</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-G">
+        <div class="company-alpha-letter">G</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">GAIS s.r.o.</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Genoa Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">George Vlamis Yachts and Yacht Managment</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Georgina Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Globus Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">GMM-Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">GOA Catamaranes</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Gota Kanal Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Grecosail Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Greek Isles Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Green Wave</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-H">
+        <div class="company-alpha-letter">H</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">H.C. Sea Service</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Hamble Point Yacht Charters Ltd</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Happy Captain</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Have Fun Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">HDM Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Heads Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Helios Sails</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Helios Stratos</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Hellenic Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Hermes Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Higanas Boats</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Horizon Yacht Charters</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Houseboat Holidays Italia</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-I">
+        <div class="company-alpha-letter">I</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Ida Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Imbat Yacht</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Indian Ocean Cruises</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Inti</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Invictus Sicily</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Ionian Catamarans</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Ionian Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Ionian Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">IonionSails</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Iris Yachtcharter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Istion Yachting</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-J">
+        <div class="company-alpha-letter">J</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Jachtwerf Oost</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Jadranka Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">JF Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Jonio Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Just Sail charter</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-K">
+        <div class="company-alpha-letter">K</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">K2 Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Katopodis Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Kavas</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Kekeris Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Kiriacoulis</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Kralj Centar</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Kroki</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Kyone Yachting</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-L">
+        <div class="company-alpha-letter">L</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Lagoon Life</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Lagoon NEPA</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Le Bateau Blanc</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Le Boat</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Leut Vagabundo Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">LM Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Loc Voile Armor</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Luna Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">LUXURY SAILING</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-M">
+        <div class="company-alpha-letter">M</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">MadMax Franchising Nautico</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Magic Sails Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Magna Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">MainSail Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Maldives Charters</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Malta Charters</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Mare Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Marea Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">MarGeo Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Marimari</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Marina &amp; Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Marina Hramina</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Marina Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Master Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Master Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Matrix Sailing Turizm</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Matrix Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Max Yacht</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Mayer</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">MDM Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Med Sailing Holidays</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Medcat Group</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Mediterranean Yachting Holidays</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Meridijan</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">MG Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">MidAdria Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Midnight Sun Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Minas Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Mondovela Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Moorings</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">More Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Morska lastavica</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Most Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">My Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">MY SeaTime Yachtcharter</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-N">
         <div class="company-alpha-letter">N</div>
-        <a  href="charterova-spolecnost.html" class="company-link-item">Nava Charter d.o.o.</a>
-        <a  href="charterova-spolecnost.html" class="company-link-item">Neptune Yachting</a>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Na pola puta</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">NAS Sailing Center</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Nautic Alliance</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Nautika Koren</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Nautika Kufner</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Nava</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Navigare Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Navigator charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Navigo</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">NCP</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">ND SAILS</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Nimbus Center Croatia</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Noa Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Nomicos</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">North Sardinia Sail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Now Charter</a>
+        </div>
       </div>
-      <div class="company-alpha-group">
+
+      <div class="company-alpha-group" id="g-O">
+        <div class="company-alpha-letter">O</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Ocean Sailing House</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">OceanMed Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Octopus sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Offshore Boote</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Okej-Czarter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Olympic Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Omegasail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">One Yacht</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Open Sail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Ortsa Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Orvas Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Outsail Srl</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-P">
+        <div class="company-alpha-letter">P</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Palm Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Palmayachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Panouseris Yacht Charters</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Papoulakis Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Parallelo 38 Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Paralos</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Perfect Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Perfect-Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Phillip Yachtsun Charte</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Pianeta Mare Charter — Salivolivela</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Pika Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Platten Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Ploče sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Portiate</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Premium Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Prima Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Prime Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Profilo Race ´n´ Fun</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Pure Sail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Puresailing Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">PUUR Yachtcharter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Pyxis Nautica</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-Q">
+        <div class="company-alpha-letter">Q</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Q-Yacht</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-R">
+        <div class="company-alpha-letter">R</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Race &amp; Cruise</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Reful Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Riginos Yachts / White Sails</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Rinia Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">RM Croisieres</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Rosa dei Venti Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Rumbo Norte</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-S">
         <div class="company-alpha-letter">S</div>
-        <a  href="charterova-spolecnost.html" class="company-link-item">Sailing Holidays Ltd.</a>
-        <a  href="charterova-spolecnost.html" class="company-link-item">Sun Charter d.o.o.</a>
-        <a  href="charterova-spolecnost.html" class="company-link-item">Sunway Yachting</a>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail &amp; Surf Rügen</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail 42</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail Adventures</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail Aegean Europe</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail and Experience</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail Azores</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail Caribe</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail Club Croatia</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail Fast Experience</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail Italia</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sail Your Soul</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailera Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailfleet</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailhunt</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailing club Vranjic</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailing Europe</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailing Forever</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailing in Blue</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailing in Italy</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailing Sicily</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailing Sweden</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailing.ee</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailink Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailman Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailmarine</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailme</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailoé</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailor's Moon</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailor.tex</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailorsbreeze</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailty</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sailway</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">SailWays</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sardinia Week</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sardinia Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sea Alliance Group</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sea Drive</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sea Folk Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sea Novels</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sea Sail &amp; Sun</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Seafarer Cruising &amp; Sailing Holidays</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Seafarer Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Seagma Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">SeaStar Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sebleke Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">SERAPHILUS marine charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Shamandura Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sightsea Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Simpson yacht charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">SK-Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Smart Sail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">SoFun Yachts &amp; Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Solar Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">South Sea Sail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">SP Travel</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Spartivento</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Spice Of Life</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Splendid Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Star Voyage</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Starsail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Starsails Yachtcharter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Stavento Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Suda Sailing</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Summer Sail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sun Life</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sun Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sunsail</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sunsicily Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Sunturist</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Surcando Mares</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-T">
+        <div class="company-alpha-letter">T</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">T.O. Mate</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">TEHNOMONT</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">The Ocean Week</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Time Charter Náutica</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Timeless</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Torete</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Travel Boat</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Trend Travel Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">triM Nautica Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Tsirigotis Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">TZENNET Yachting</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-U">
+        <div class="company-alpha-letter">U</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Ultra</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Uniko Yacht Club</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Union Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">UTH Sailing</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-V">
+        <div class="company-alpha-letter">V</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Val Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Vala Charter — Studio Tim</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Valentino Yachts</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Vastardis Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Vela Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Vela Dream</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Vela Nomada</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Velamica</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Velasquez</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Veleasegno Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Vernicos</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Virgin Islands Yacht Charters</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Vishe Radugi</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">VM Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">VOG FLEET</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Vogue Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Vourazelis Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Voyage Charters</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">VPM Bestsail — EIS Finance SARL</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-W">
+        <div class="company-alpha-letter">W</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Way Point Rovinj</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Waypoint</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Westsails Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">White Sails</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Wimmer Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Wind Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">WIND ROSE &amp; SAILING</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">World Wide Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">World Yachting Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">WTT Sailing</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-X">
+        <div class="company-alpha-letter">X</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">X-Yachting Sailing Center</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-Y">
+        <div class="company-alpha-letter">Y</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Yacht &amp; Fun</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yacht Explorer</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yacht In</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yacht Maldives</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yacht-Center GmbH</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yacht4You</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yachtcharter Sweden</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yachting Aeolos</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yachting in Sardinia</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yachtingadria</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yates Mallorca</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yelkenli Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Yildiz Yachting</a>
+        </div>
+      </div>
+
+      <div class="company-alpha-group" id="g-Z">
+        <div class="company-alpha-letter">Z</div>
+        <div class="company-alpha-list">
+          <a href="charterova-spolecnost.html" class="company-link-item">Zantium Travel</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Zanzibar Catamaran Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Zanzibar Yachtfun</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Zen Yacht Charter</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Zen Yachting</a>
+          <a href="charterova-spolecnost.html" class="company-link-item">Zoom Boats</a>
+        </div>
       </div>
     </div>
   </div>
-  <footer class="footer"><div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div><div class="footer-cols-wrap"><div class="footer-cols"><div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a  href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Obchodní podmínky</a></li></ul></div><div class="footer-col"><div class="footer-col-title">Destinace</div><ul><li><a href="#">Chorvatsko</a></li><li><a href="#">Řecko</a></li><li><a href="#">Itálie</a></li></ul></div><div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="#">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div><div class="footer-col"><div class="footer-col-title">Kapitánské kurzy</div><ul><li><a href="#">Průkaz MDČR C</a></li><li><a href="#">Chorvatský průkaz B</a></li><li><a href="#">VMP &amp; VRP</a></li></ul></div></div></div><div class="yp-badge yp-badge--inline"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div><div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div></footer>
-</div>
 
-<!-- ══════════════════════════════════════════════════════
-     PAGE: COMPANY (detail charterovky)
-════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>
+    <div class="footer-cols-wrap"><div class="footer-cols">
+      <div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Affiliate Program</a></li><li><a href="#">Kariéra</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Destinace</div><ul><li><a href="#">Země</a></li><li><a href="#">Města</a></li><li><a href="#">Maríny</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="#">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Speciální nabídky</div><ul><li><a href="#">Last minute</a></li><li><a href="#">Nové lodě 2025–2026</a></li><li><a href="#">Přídavný motor zdarma</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Další</div><ul><li><a href="charterove-spolecnosti.html">Charterové společnosti</a></li><li><a href="prehled-znacek.html">Výrobci lodí</a></li><li><a href="#">Modely lodí</a></li><li><a href="#">FAQs k pronájmu</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Sledujte nás</div><div class="footer-social"><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div></div><div class="footer-help" style="margin-top:20px;"><strong>Jak vám můžeme pomoci?</strong>Potřebujete poradit s výběrem?<button class="footer-help-btn">Kontaktovat podporu</button></div><div class="yp-badge" style="margin-top:18px;"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div></div>
+    </div></div>
+    <div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div>
+  </footer>
+</div>
 
 <script src="assets/script.js"></script>
 </body>

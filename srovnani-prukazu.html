@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Srovnání kapitánských průkazů — Yachtnet</title>
+  <meta name="description" content="Srovnávací tabulka všech kapitánských průkazů — MDČR C, B, A, Chorvatský B, SRC, VMP a VRP. Cena, rozsah, délka kurzu a uznání v zahraničí na jedné stránce." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-compare">
+  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html">Pronájem lodí</a></li><li><a  href="destinace.html">Destinace</a></li><li><a  href="kapitanske-kurzy.html" style="color:var(--int);">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="eshop.html">E-shop</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div></div></nav>
+
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Domů</a><span class="breadcrumb-sep">›</span>
+      <a href="kapitanske-kurzy.html">Kapitánské kurzy</a><span class="breadcrumb-sep">›</span>
+      <span>Srovnání průkazů</span>
+    </div>
+  </div>
+
+  <div class="band">
+    <div style="max-width:var(--max);margin:0 auto;padding:48px 28px 24px;text-align:center;">
+      <div class="sec-label">Vyberte si průkaz</div>
+      <h1 style="font-size:36px;font-weight:800;letter-spacing:-.02em;margin:8px 0 14px;">Srovnání kapitánských průkazů</h1>
+      <p style="font-size:15px;color:var(--muted);line-height:1.7;max-width:720px;margin:0 auto 24px;">Všechny průkazy a jejich parametry přehledně vedle sebe — od českého VMP pro řeky až po mezinárodní MDČR A pro oceány. Srovnejte cenu, rozsah, délku kurzu i uznání v zahraničí, ať víte, co potřebujete.</p>
+      <div style="display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;">
+        <div class="compare-switch" role="tablist" aria-label="Filtr typu">
+          <button type="button" class="compare-switch-btn is-active" data-filter="sea">Pro moře</button>
+          <button type="button" class="compare-switch-btn" data-filter="river">Pro řeky</button>
+          <button type="button" class="compare-switch-btn" data-filter="radio">Rádiové</button>
+        </div>
+        <div class="kurzy-switch kurzy-view-toggle" role="tablist" aria-label="Zobrazení">
+          <a class="kurzy-switch-btn" href="vsechny-kurzy.html" title="Seznam" aria-label="Zobrazit jako seznam"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></a>
+          <a class="kurzy-switch-btn is-active" href="srovnani-prukazu.html" title="Tabulka" aria-label="Zobrazit jako tabulku"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div style="max-width:var(--max);margin:0 auto;padding:0 28px 56px;">
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="compare-feature-col">Co srovnáváme</th>
+              <th class="compare-plan-head">
+                <div class="compare-plan-name">Chorvatský B</div>
+                <div class="compare-plan-tag">Nejrychlejší start</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">5 900 Kč</span></div>
+                <a class="compare-plan-btn" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+              <th class="compare-plan-head compare-plan-head--featured">
+                <div class="compare-plan-ribbon">Nejoblíbenější</div>
+                <div class="compare-plan-name">MDČR C</div>
+                <div class="compare-plan-tag">Pobřežní plavba</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">12 900 Kč</span></div>
+                <a class="compare-plan-btn compare-plan-btn--primary" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+              <th class="compare-plan-head">
+                <div class="compare-plan-name">MDČR B</div>
+                <div class="compare-plan-tag">Offshore plavba</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">16 500 Kč</span></div>
+                <a class="compare-plan-btn" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+              <th class="compare-plan-head">
+                <div class="compare-plan-name">MDČR A</div>
+                <div class="compare-plan-tag">Oceánská plavba</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">28 000 Kč</span></div>
+                <a class="compare-plan-btn" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+              <th class="compare-plan-head">
+                <div class="compare-plan-name">SRC</div>
+                <div class="compare-plan-tag">Radiotelefon</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">3 900 Kč</span></div>
+                <a class="compare-plan-btn" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="compare-section-row"><td colspan="6">Rozsah a limity</td></tr>
+            <tr>
+              <td class="compare-feature"><span>Rozsah plavby od pobřeží</span><span class="compare-feature-hint">Jak daleko od břehu smíte plout</span></td>
+              <td>Do 12 NM</td>
+              <td class="is-featured"><strong>Do 20 NM</strong></td>
+              <td>Do 200 NM</td>
+              <td>Bez omezení</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Maximální délka plavidla</span></td>
+              <td>Do 30 BRT</td>
+              <td class="is-featured"><strong>Do 24 m</strong></td>
+              <td>Do 24 m</td>
+              <td>Bez omezení</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Typ průkazu</span></td>
+              <td>Chorvatský (EU)</td>
+              <td class="is-featured">Mezinárodní MDČR</td>
+              <td>Mezinárodní MDČR</td>
+              <td>Mezinárodní MDČR</td>
+              <td>VHF radio</td>
+            </tr>
+            <tr class="compare-section-row"><td colspan="6">Kurz a zkouška</td></tr>
+            <tr>
+              <td class="compare-feature"><span>Délka teorie</span></td>
+              <td>1 den (8 h)</td>
+              <td class="is-featured">2 víkendy (32 h)</td>
+              <td>4 víkendy (64 h)</td>
+              <td>8 víkendů (120 h)</td>
+              <td>1 den (8 h)</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Praktický výcvik</span></td>
+              <td class="cmp-neutral">Nepovinný</td>
+              <td class="is-featured"><strong>Týden v Chorvatsku</strong></td>
+              <td>2 týdny offshore</td>
+              <td>4 týdny + 2 200 NM</td>
+              <td>Simulátor radiostanic</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Předchozí praxe</span></td>
+              <td class="cmp-yes">Bez požadavku</td>
+              <td class="is-featured cmp-yes">Bez požadavku</td>
+              <td>100+ NM v logbooku</td>
+              <td>1 000+ NM v logbooku</td>
+              <td class="cmp-yes">Bez požadavku</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Místo zkoušky</span></td>
+              <td>Split / Šibenik</td>
+              <td class="is-featured">Praha (MDČR)</td>
+              <td>Praha (MDČR)</td>
+              <td>Praha (MDČR)</td>
+              <td>Praha (ČTÚ)</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Úspěšnost napoprvé</span></td>
+              <td>96 %</td>
+              <td class="is-featured"><strong>92 %</strong></td>
+              <td>84 %</td>
+              <td>71 %</td>
+              <td>97 %</td>
+            </tr>
+            <tr class="compare-section-row"><td colspan="6">Platnost a uznání</td></tr>
+            <tr>
+              <td class="compare-feature"><span>Doba platnosti</span></td>
+              <td class="cmp-yes"><strong>Doživotní</strong></td>
+              <td class="is-featured">10 let</td>
+              <td>10 let</td>
+              <td>10 let</td>
+              <td class="cmp-yes"><strong>Celoživotní</strong></td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Uznání EU</span></td>
+              <td class="cmp-yes">✓ Ano</td>
+              <td class="is-featured cmp-yes">✓ Ano</td>
+              <td class="cmp-yes">✓ Ano</td>
+              <td class="cmp-yes">✓ Ano</td>
+              <td class="cmp-yes">✓ Ano</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Uznání mimo EU</span></td>
+              <td class="cmp-partial">Ojediněle</td>
+              <td class="is-featured cmp-yes">✓ Převažující</td>
+              <td class="cmp-yes">✓ Převažující</td>
+              <td class="cmp-yes">✓ Celosvětové</td>
+              <td class="cmp-yes">✓ Celosvětové</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Pro charter v Chorvatsku</span></td>
+              <td class="cmp-yes">✓</td>
+              <td class="is-featured cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+              <td class="cmp-partial">+ doplněk</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Pro charter v Řecku / Itálii</span></td>
+              <td class="cmp-partial">Omezeně</td>
+              <td class="is-featured cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+              <td class="cmp-partial">+ doplněk</td>
+            </tr>
+            <tr class="compare-section-row"><td colspan="6">Co je v ceně</td></tr>
+            <tr>
+              <td class="compare-feature"><span>Učební materiály</span></td>
+              <td class="cmp-yes">✓</td>
+              <td class="is-featured cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>První termín zkoušky</span></td>
+              <td class="cmp-yes">✓</td>
+              <td class="is-featured cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Online záznamy přednášek</span></td>
+              <td class="cmp-no">—</td>
+              <td class="is-featured cmp-yes">✓ 60 dní</td>
+              <td class="cmp-yes">✓ 60 dní</td>
+              <td class="cmp-yes">✓ 90 dní</td>
+              <td class="cmp-no">—</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Konzultační hodiny</span></td>
+              <td class="cmp-yes">✓</td>
+              <td class="is-featured cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+              <td class="cmp-yes">✓ Neomezeně</td>
+              <td class="cmp-yes">✓</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Lodní praxe v Chorvatsku</span></td>
+              <td class="cmp-no">—</td>
+              <td class="is-featured cmp-yes"><strong>✓ V ceně</strong></td>
+              <td class="cmp-partial">Za příplatek</td>
+              <td class="cmp-partial">Za příplatek</td>
+              <td class="cmp-no">—</td>
+            </tr>
+            <tr class="compare-section-row"><td colspan="6">Další</td></tr>
+            <tr>
+              <td class="compare-feature"><span>Minimální věk</span></td>
+              <td>16 let</td>
+              <td class="is-featured">18 let</td>
+              <td>18 let</td>
+              <td>20 let</td>
+              <td>16 let</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Lékařská prohlídka</span></td>
+              <td class="cmp-yes">Povinná</td>
+              <td class="is-featured cmp-yes">Povinná</td>
+              <td class="cmp-yes">Povinná (rozšířená)</td>
+              <td class="cmp-yes">Povinná (rozšířená)</td>
+              <td class="cmp-no">—</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Online varianta teorie</span></td>
+              <td class="cmp-yes">✓</td>
+              <td class="is-featured cmp-yes">✓</td>
+              <td class="cmp-yes">✓</td>
+              <td class="cmp-partial">Částečně</td>
+              <td class="cmp-no">Pouze prezenčně</td>
+            </tr>
+            <tr class="compare-footer-row">
+              <td class="compare-feature">Vybrat průkaz</td>
+              <td><a class="compare-plan-btn" href="detail-prukazu.html">Chorvatský B →</a></td>
+              <td class="is-featured"><a class="compare-plan-btn compare-plan-btn--primary" href="detail-prukazu.html">MDČR C →</a></td>
+              <td><a class="compare-plan-btn" href="detail-prukazu.html">MDČR B →</a></td>
+              <td><a class="compare-plan-btn" href="detail-prukazu.html">MDČR A →</a></td>
+              <td><a class="compare-plan-btn" href="detail-prukazu.html">SRC →</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="compare-hint" style="margin-top:28px;padding:18px 22px;background:var(--int-soft);border:1px solid #dcd0ff;border-radius:10px;display:flex;gap:16px;align-items:center;">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--int);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <div style="font-size:14px;line-height:1.6;">
+          <strong>Nevíte si rady?</strong> 95 % našich studentů si vybírá <strong>MDČR C + SRC</strong> — kombinace pro charter v Chorvatsku, Řecku i Itálii za cca 23 000 Kč. Pokud potřebujete jen rychle a levně do Chorvatska, stačí <strong>Chorvatský B</strong> za víkend. Ohledně vašeho plánu volejte Pavla na <a href="tel:+420602100200" style="color:var(--int);">+420 602 100 200</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="sec-label">Říční a doplňkové</div>
+    <h2 class="sec-title" style="margin-bottom:24px;">Další průkazy mimo srovnání</h2>
+    <div class="course-card course-card--horizontal" onclick="window.location.href='detail-prukazu.html'">
+      <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="course-info">
+        <div class="course-name"><a href="detail-prukazu.html">VMP — Vůdce malého plavidla</a></div>
+        <div class="course-desc">Český průkaz pro plavbu na řekách a jezerech v ČR i EU. Motor i plachta. Od 15 let.</div>
+        <div class="course-params"><span>Teorie online</span><span>Praxe: Vltava</span><span>Věk: 15+</span></div>
+      </div>
+      <div class="course-price">Od 4 500 Kč</div>
+    </div>
+    <div class="course-card course-card--horizontal" onclick="window.location.href='detail-prukazu.html'">
+      <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="course-info">
+        <div class="course-name"><a href="detail-prukazu.html">VRP — Vůdce rekreačního plavidla</a></div>
+        <div class="course-desc">Vyšší říční kategorie pro plavidla nad 20 m a motor nad 20 kW. Pro říční jachty i houseboaty.</div>
+        <div class="course-params"><span>Teorie: Praha / Brno</span><span>Praxe: Vltava / Lipno</span><span>Věk: 18+</span></div>
+      </div>
+      <div class="course-price">Od 6 500 Kč</div>
+    </div>
+    <div class="course-card course-card--horizontal" onclick="window.location.href='detail-prukazu.html'">
+      <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+      <div class="course-info">
+        <div class="course-name"><a href="detail-prukazu.html">LRC / GOC — Dálkový radiotelefon</a></div>
+        <div class="course-desc">Dlouhodosahový GMDSS radio pro offshore a oceánskou plavbu. Povinný nad rámec VHF při MDČR A.</div>
+        <div class="course-params"><span>2 dny teorie + zkouška</span><span>Praha (ČTÚ)</span><span>Pro MDČR A / B</span></div>
+      </div>
+      <div class="course-price">Od 8 500 Kč</div>
+    </div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="sec-label">FAQ</div>
+    <h2 class="sec-title" style="margin-bottom:24px;">Nejčastější dotazy ke srovnání</h2>
+    <div class="faq-grid-2col">
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Který průkaz mi stačí pro první charter v Chorvatsku? <span class="faq-q-icon">+</span></button><div class="faq-a">Nejrychleji: <strong>Chorvatský B</strong> za víkend + SRC. Celkem cca 9 800 Kč, za 3 týdny máte papíry v ruce. Pokud plánujete i Řecko nebo Itálii, jděte rovnou na <strong>MDČR C + SRC</strong> — jednou zaplatíte, všude platí.</div></div>
+        <div class="faq-item"><button class="faq-q">Lze MDČR B získat bez MDČR C? <span class="faq-q-icon">+</span></button><div class="faq-a">Technicky ano, ale nedoporučujeme. MDČR B vyžaduje 100+ NM praxe v logbooku, kterou bez MDČR C nenatočíte (legálně). V praxi tedy skoro všichni dělají C → praxe → B.</div></div>
+        <div class="faq-item"><button class="faq-q">Proč je SRC v každé tabulce jako „doplněk"? <span class="faq-q-icon">+</span></button><div class="faq-a">SRC není samostatný kapitánský průkaz — je to rádiový průkaz pro obsluhu lodní VHF. Potřebujete ho <strong>navíc</strong> k MDČR, protože bez SRC nesmíte legálně používat radiostanici. Všechny charterové lodě ji mají.</div></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Jak se mění cena při kombinaci kurzů? <span class="faq-q-icon">+</span></button><div class="faq-a">Při společném objednání MDČR C + SRC dostanete slevu 1 000 Kč (výsledná cena 15 800 Kč místo 16 800 Kč). Praktický kurz je už v ceně MDČR C, neplatíte za něj zvlášť.</div></div>
+        <div class="faq-item"><button class="faq-q">Je Chorvatský B plnohodnotný průkaz, nebo jen „zjednodušená verze"? <span class="faq-q-icon">+</span></button><div class="faq-a">Plnohodnotný — chorvatská pobřežní stráž ho uznává v plném rozsahu pro plavbu v chorvatských vodách do 12 NM. Pro ostatní země EU má omezenou platnost, mimo EU se zpravidla neuznává. Je skvělý pro lidi, kteří sail pouze v Chorvatsku.</div></div>
+        <div class="faq-item"><button class="faq-q">Mohu srovnání uložit a rozhodnout se později? <span class="faq-q-icon">+</span></button><div class="faq-a">Odkaz na tuto stránku si můžete uložit do záložek. Pokud potřebujete osobní konzultaci, volejte nebo nás kontaktujte — doporučíme konkrétní kombinaci podle vašich plánů.</div></div>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px 56px;">
+    <div class="gift-banner gift-banner--bottom">
+      <div class="gift-banner-content">
+        <h2 class="gift-banner-title">Nemůžete se rozhodnout?</h2>
+        <p class="gift-banner-text">Zavolejte Pavlovi — za 10 minut probere vaše plány, doporučí konkrétní kombinaci a rovnou zarezervuje termín. Ročně takhle poradí 400+ kapitánům.</p>
+        <a href="kontakt.html" class="gift-banner-btn" style="text-decoration:none;display:inline-block;">Kontaktovat Pavla →</a>
+      </div>
+    </div>
+  </div></div>
+
+  <footer class="footer">
+    <div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>
+    <div class="footer-cols-wrap"><div class="footer-cols">
+      <div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Affiliate Program</a></li><li><a href="#">Kariéra</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Destinace</div><ul><li><a href="#">Země</a></li><li><a href="#">Města</a></li><li><a href="#">Maríny</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="#">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Speciální nabídky</div><ul><li><a href="#">Last minute</a></li><li><a href="#">Nové lodě 2025–2026</a></li><li><a href="#">Přídavný motor zdarma</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Další</div><ul><li><a href="charterove-spolecnosti.html">Charterové společnosti</a></li><li><a href="prehled-znacek.html">Výrobci lodí</a></li><li><a href="#">Modely lodí</a></li><li><a href="#">FAQs k pronájmu</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Sledujte nás</div><div class="footer-social"><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div></div><div class="footer-help" style="margin-top:20px;"><strong>Jak vám můžeme pomoci?</strong>Potřebujete poradit s výběrem?<button class="footer-help-btn">Kontaktovat podporu</button></div><div class="yp-badge" style="margin-top:18px;"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div></div>
+    </div></div>
+    <div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div>
+  </footer>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

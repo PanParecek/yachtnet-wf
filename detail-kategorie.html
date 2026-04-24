@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Detail kategorie — Yachtnet</title>
+  <title>Pronájem katamaránu — Yachtnet</title>
+  <meta name="description" content="Katamarány k pronájmu v Chorvatsku, Řecku, Itálii i Karibiku. 168 lodí od prověřených charterovek. Výhody, nevýhody, průkazy a nejoblíbenější modely." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -12,59 +13,359 @@
 <body>
 
 <div id="page-category">
-  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html" style="color:var(--int);">Pronájem lodí</a></li><li><a  href="destinace.html">Destinace</a></li><li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div></div></nav>
-  <div class="qs-band"><div class="qs-inner"><div class="qs-title">Pronájem katamaránu</div><div class="qs-form"><div class="qs-field"><label>Destinace</label><select class="qs-select"><option>Všechny destinace</option><option>Chorvatsko</option><option>Řecko</option><option>Itálie</option></select></div><div class="qs-field"><label>Termín od</label><input type="date" class="qs-select" /></div><div class="qs-field"><label>Termín do</label><input type="date" class="qs-select" /></div><button class="qs-btn" onclick="window.location.href='pronajem-lodi.html'">Vyhledat →</button></div></div></div>
-  <div class="stats-band"><div class="stats-inner"><div class="stat-item"><div class="stat-val">4,84</div><div class="stat-lbl">Spokojenost</div></div><div class="stat-item"><div class="stat-val">4 446</div><div class="stat-lbl">Recenzí</div></div><div class="stat-item"><div class="stat-val">96,8 %</div><div class="stat-lbl">Doporučuje</div></div></div></div>
-  <div class="band">
-    <div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
-      <div class="sec-label">Pronájem</div>
-      <h1 style="font-size:28px;font-weight:800;margin-bottom:4px;">Pronájem katamaránu</h1>
-      <p style="font-size:14px;color:var(--muted);margin-bottom:20px;">Výběr katamaránů dostupných k pronájmu</p>
-      <div style="height:280px;background:var(--bg);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;margin-bottom:16px;">Výpis 5–7 lodí — komponenta boatCard()</div>
-      <button class="btn-view" onclick="window.location.href='pronajem-lodi.html'">Zobrazit všechny katamarámy →</button>
-    </div>
-  </div>
-  <div class="band-alt">
-    <div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
-      <div class="sec-label">Výhody a nevýhody</div>
-      <h2 class="sec-title">Proč si půjčit katamarán?</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;"><h3 style="font-size:15px;font-weight:700;color:#1a7a47;margin-bottom:10px;">✓ Výhody</h3><ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px;"><li>Výjimečná stabilita na vlnách</li><li>Prostorné paluby a salón</li><li>Nízký ponor — přístup do mělkých zálivů</li><li>Ideální pro rodiny s dětmi</li><li>Dvě oddělené kajutové části</li></ul></div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;"><h3 style="font-size:15px;font-weight:700;color:#c0392b;margin-bottom:10px;">✗ Nevýhody</h3><ul style="font-size:13px;color:var(--muted);line-height:2;padding-left:16px;"><li>Vyšší cena pronájmu</li><li>Horší manévrování v přístavech</li><li>Omezené kotviště v marínách</li><li>Větší spotřeba místa na kotvišti</li></ul></div>
-      </div>
-    </div>
-  </div>
-  <div class="band">
-    <div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
-      <div class="sec-label">Průkazy</div>
-      <h2 class="sec-title">Jaké průkazy na katamarán potřebujete?</h2>
-      <div class="license-cards-grid">
-        <a class="lic-card"  href="detail-prukazu.html"><div class="lic-badge">MDČR C</div><div class="lic-name">Průkaz velitele</div><div class="lic-sub">Pro plavbu na moři</div></a>
-        <a class="lic-card"  href="detail-prukazu.html"><div class="lic-badge">SRC</div><div class="lic-name">Radiotelefon</div><div class="lic-sub">Povinný pro pobřežní vody</div></a>
-        <a class="lic-card"  href="detail-prukazu.html"><div class="lic-badge">CHR B</div><div class="lic-name">Chorvatský průkaz B</div><div class="lic-sub">Pro plavbu v chorvatských vodách</div></a>
-      </div>
-    </div>
-  </div>
-  <div class="band-alt">
-    <div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
-      <div class="sec-label">Oblíbené modely</div>
-      <h2 class="sec-title">Nejoblíbenější katamarámy</h2>
-      <div class="model-grid">
-        <a class="model-thumb-card"  href="detail-modelu.html"><div class="model-thumb-img"></div><div class="model-thumb-name">Lagoon 40</div></a>
-        <a class="model-thumb-card"  href="detail-modelu.html"><div class="model-thumb-img"></div><div class="model-thumb-name">Fountaine Pajot Astrea 42</div></a>
-        <a class="model-thumb-card"  href="detail-modelu.html"><div class="model-thumb-img"></div><div class="model-thumb-name">Leopard 45</div></a>
-        <a class="model-thumb-card"  href="detail-modelu.html"><div class="model-thumb-img"></div><div class="model-thumb-name">Bali 4.1</div></a>
-        <a class="model-thumb-card"  href="detail-modelu.html"><div class="model-thumb-img"></div><div class="model-thumb-name">Lagoon 46</div></a>
-        <a class="model-thumb-card"  href="detail-modelu.html"><div class="model-thumb-img"></div><div class="model-thumb-name">Nautitech 46 Open</div></a>
-      </div>
-    </div>
-  </div>
-  <footer class="footer"><div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div><div class="yp-badge yp-badge--inline"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div><div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div></footer>
-</div>
+  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html" style="color:var(--int);">Pronájem lodí</a></li><li><a  href="destinace.html">Destinace</a></li><li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="eshop.html">E-shop</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div></div></nav>
 
-<!-- ══════════════════════════════════════════════════════
-     PAGE: BRAND (detail značky — např. Elan)
-════════════════════════════════════════════════════════ -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Domů</a><span class="breadcrumb-sep">›</span>
+      <a href="pronajem-lodi.html">Pronájem lodí</a><span class="breadcrumb-sep">›</span>
+      <a href="kategorie-lodi.html">Kategorie lodí</a><span class="breadcrumb-sep">›</span>
+      <span>Katamarán</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Kategorie lodí</div>
+      <h1 class="hero-title">Pronájem katamaránu</h1>
+      <p class="hero-sub">168 katamaránů v charterové nabídce — dvoutrupé plavidlo pro rodiny, větší skupiny a všechny, kdo chtějí na moři maximum prostoru a stability.</p>
+      <form class="search-form" id="searchForm" novalidate>
+        <div class="sf-field">
+          <span class="sf-label">Destinace</span>
+          <select name="location" data-multi data-optgroup-selectable data-placeholder="Všechny destinace">
+            <option value="" disabled selected>Všechny destinace</option>
+            <optgroup label="Chorvatsko"><option>Split</option><option>Trogir</option><option>Dubrovník</option><option>Zadar</option></optgroup>
+            <optgroup label="Řecko"><option>Athény</option><option>Korfu</option><option>Lefkáda</option><option>Kos</option></optgroup>
+            <optgroup label="Itálie"><option>Sardinie</option><option>Sicílie</option><option>Neapol</option></optgroup>
+            <optgroup label="Karibik"><option>Martinique</option><option>Guadeloupe</option><option>BVI</option></optgroup>
+          </select>
+        </div>
+        <div class="sf-field">
+          <span class="sf-label">Termín</span>
+          <div class="date-combined">
+            <input type="date" name="from" />
+            <span class="date-sep">→</span>
+            <input type="date" name="to" />
+          </div>
+        </div>
+        <div class="sf-field">
+          <span class="sf-label">Kajuty</span>
+          <select name="cabins" data-multi data-placeholder="Libovolný počet">
+            <option value="" disabled selected>Libovolný počet</option>
+            <option value="3">3 kajuty</option>
+            <option value="4">4 kajuty</option>
+            <option value="5">5 kajut</option>
+            <option value="6">6+ kajut</option>
+          </select>
+        </div>
+        <button type="button" class="btn-search" onclick="window.location.href='pronajem-lodi.html'">Hledat katamarány</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="social-proof">
+    <div class="social-proof-inner">
+      <div class="sp-item">
+        <span class="sp-google-icon" aria-label="Google">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+        </span>
+        <span class="sp-score">5,0</span>
+        <div>
+          <div class="sp-stars">★★★★★</div>
+          <div class="sp-label">Průměrné hodnocení ze 192 recenzí na Googlu</div>
+        </div>
+      </div>
+      <div class="sp-divider"></div>
+      <div class="sp-testimonial">
+        <span class="sp-quote-icon" aria-hidden="true">"</span>
+        <span class="sp-quote-text">Na katamaránu nikdy nic nevypadlo ze stolu — i když Tramontana foukala 30 uzlů.</span>
+        <span class="sp-quote-author">— Rodina Krejčí</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="dest-section-head">
+      <div>
+        <div class="sec-label">Vybíráme pro vás</div>
+        <h2 class="sec-title">Nejoblíbenější katamarány</h2>
+      </div>
+      <div class="mini-cards-arrows">
+        <button class="mini-cards-arrow" type="button" data-target="catTopBoats" data-dir="-1" aria-label="Předchozí"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="mini-cards-arrow" type="button" data-target="catTopBoats" data-dir="1" aria-label="Další"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+    <div class="mini-cards-slider" style="margin-bottom:18px;">
+      <div class="mini-cards mini-cards--scroll" id="catTopBoats">
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Lagoon 42 "Ocean Dream"</div><div class="mini-card-meta">Katamarán · Marina Kaštela · 2022</div><div class="mini-card-price">od 95 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Fountaine Pajot 47 "Gemini"</div><div class="mini-card-meta">Katamarán · ACI Marina Split · 2023</div><div class="mini-card-price">od 128 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Bali 4.8 "Ghost"</div><div class="mini-card-meta">Katamarán · ACI Marina Dubrovník · 2022</div><div class="mini-card-price">od 112 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Leopard 45 "Spirit"</div><div class="mini-card-meta">Katamarán · Marina Trogir · 2021</div><div class="mini-card-price">od 108 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Lagoon 50 "Calypso"</div><div class="mini-card-meta">Katamarán · ACI Marina Dubrovník · 2022</div><div class="mini-card-price">od 175 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Nautitech 46 Open</div><div class="mini-card-meta">Katamarán · Marina Biograd · 2023</div><div class="mini-card-price">od 98 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Excess 11 "Dual Dream"</div><div class="mini-card-meta">Katamarán · Marina Trogir · 2023</div><div class="mini-card-price">od 85 000 Kč / týden</div></div></div>
+      </div>
+    </div>
+    <button class="btn-view" onclick="window.location.href='pronajem-lodi.html'">Zobrazit všech 168 katamaránů →</button>
+  </div></div>
+
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="sec-label">Proč katamarán?</div>
+    <h2 class="sec-title" style="margin-bottom:24px;">Výhody a nevýhody dvoutrupého plavidla</h2>
+    <div class="incl-split">
+      <div class="incl-split-col incl-split-col--yes">
+        <div class="incl-split-title">✓ Výhody katamaránu</div>
+        <ul class="incl-split-list">
+          <li><strong>Stabilita</strong> — nenaklání se, žádná mořská nemoc</li>
+          <li><strong>Prostor</strong> — obří salón, pohodlné paluby, oddělené kajuty</li>
+          <li><strong>Malý ponor</strong> — dostanete se i do mělkých zátok</li>
+          <li><strong>Pohoda na moři</strong> — čaj na stole i při 20 uzlech větru</li>
+          <li><strong>Dvě oddělené části</strong> — soukromí pro dvě páry / rodiny</li>
+          <li><strong>Rychlost na vlnách</strong> — na bočním větru rychlejší než plachetnice</li>
+        </ul>
+      </div>
+      <div class="incl-split-col incl-split-col--no">
+        <div class="incl-split-title">✕ Nevýhody</div>
+        <ul class="incl-split-list">
+          <li><strong>Vyšší cena</strong> — 2–3× dražší než srovnatelná plachetnice</li>
+          <li><strong>Manévrování v marině</strong> — širší, potřebuje víc místa</li>
+          <li><strong>Omezené kotviště</strong> — marína musí mít katamaránský liegeplatz</li>
+          <li><strong>Ne plave proti větru</strong> — horší výkon do větru než monohull</li>
+          <li><strong>Ostrá křivka při zavření</strong> — menší zkušenost za volantem než u plachetnice</li>
+        </ul>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="sec-label">Modely</div>
+    <h2 class="sec-title" style="margin-bottom:24px;">Nejoblíbenější katamaránové modely</h2>
+    <div class="model-grid model-grid--rich">
+      <a class="model-thumb-card" href="detail-modelu.html">
+        <div class="model-thumb-img"></div>
+        <div class="model-thumb-body">
+          <div class="model-thumb-name">Lagoon 40</div>
+          <div class="model-thumb-meta">11,74 m · 4 kajuty · 8 lůžek</div>
+          <div class="model-thumb-foot"><span class="model-thumb-year">2019</span><span class="model-thumb-price">Od 82 000 Kč</span></div>
+        </div>
+      </a>
+      <a class="model-thumb-card" href="detail-modelu.html">
+        <div class="model-thumb-img"></div>
+        <div class="model-thumb-body">
+          <div class="model-thumb-name">Lagoon 42</div>
+          <div class="model-thumb-meta">12,80 m · 4 kajuty · 8 lůžek</div>
+          <div class="model-thumb-foot"><span class="model-thumb-year">2020</span><span class="model-thumb-price">Od 95 000 Kč</span></div>
+        </div>
+      </a>
+      <a class="model-thumb-card" href="detail-modelu.html">
+        <div class="model-thumb-img"></div>
+        <div class="model-thumb-body">
+          <div class="model-thumb-name">Lagoon 46</div>
+          <div class="model-thumb-meta">13,99 m · 4 kajuty · 10 lůžek</div>
+          <div class="model-thumb-foot"><span class="model-thumb-year">2021</span><span class="model-thumb-price">Od 118 000 Kč</span></div>
+        </div>
+      </a>
+      <a class="model-thumb-card" href="detail-modelu.html">
+        <div class="model-thumb-img"></div>
+        <div class="model-thumb-body">
+          <div class="model-thumb-name">Fountaine Pajot Astrea 42</div>
+          <div class="model-thumb-meta">12,58 m · 4 kajuty · 8 lůžek</div>
+          <div class="model-thumb-foot"><span class="model-thumb-year">2022</span><span class="model-thumb-price">Od 102 000 Kč</span></div>
+        </div>
+      </a>
+      <a class="model-thumb-card" href="detail-modelu.html">
+        <div class="model-thumb-img"></div>
+        <div class="model-thumb-body">
+          <div class="model-thumb-name">Bali 4.1</div>
+          <div class="model-thumb-meta">12,35 m · 4 kajuty · 8 lůžek</div>
+          <div class="model-thumb-foot"><span class="model-thumb-year">2021</span><span class="model-thumb-price">Od 88 000 Kč</span></div>
+        </div>
+      </a>
+      <a class="model-thumb-card" href="detail-modelu.html">
+        <div class="model-thumb-img"></div>
+        <div class="model-thumb-body">
+          <div class="model-thumb-name">Leopard 45</div>
+          <div class="model-thumb-meta">13,72 m · 4 kajuty · 8 lůžek</div>
+          <div class="model-thumb-foot"><span class="model-thumb-year">2020</span><span class="model-thumb-price">Od 108 000 Kč</span></div>
+        </div>
+      </a>
+      <a class="model-thumb-card" href="detail-modelu.html">
+        <div class="model-thumb-img"></div>
+        <div class="model-thumb-body">
+          <div class="model-thumb-name">Nautitech 46 Open</div>
+          <div class="model-thumb-meta">14,02 m · 4 kajuty · 8 lůžek</div>
+          <div class="model-thumb-foot"><span class="model-thumb-year">2023</span><span class="model-thumb-price">Od 98 000 Kč</span></div>
+        </div>
+      </a>
+      <a class="model-thumb-card" href="detail-modelu.html">
+        <div class="model-thumb-img"></div>
+        <div class="model-thumb-body">
+          <div class="model-thumb-name">Excess 11</div>
+          <div class="model-thumb-meta">11,33 m · 4 kajuty · 8 lůžek</div>
+          <div class="model-thumb-foot"><span class="model-thumb-year">2022</span><span class="model-thumb-price">Od 85 000 Kč</span></div>
+        </div>
+      </a>
+    </div>
+  </div></div>
+
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="dest-section-head">
+      <div>
+        <div class="sec-label">Kde plout</div>
+        <h2 class="sec-title">Top destinace pro katamarán</h2>
+      </div>
+      <a href="destinace.html" class="dest-section-link">Všechny destinace →</a>
+    </div>
+    <div class="mini-cards mini-cards--4col">
+      <a class="mini-card" href="destinace-stat.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">🇭🇷 Chorvatsko</div><div class="mini-card-meta">Split, Trogir, Dubrovník</div><div class="mini-card-price">78 katamaránů</div></div></a>
+      <a class="mini-card" href="destinace-stat.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">🇬🇷 Řecko</div><div class="mini-card-meta">Athény, Lefkáda, Korfu</div><div class="mini-card-price">42 katamaránů</div></div></a>
+      <a class="mini-card" href="destinace-stat.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">🇮🇹 Itálie</div><div class="mini-card-meta">Sardinie, Sicílie</div><div class="mini-card-price">24 katamaránů</div></div></a>
+      <a class="mini-card" href="destinace-stat.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">🇫🇷 Karibik</div><div class="mini-card-meta">Martinique, Guadeloupe</div><div class="mini-card-price">18 katamaránů</div></div></a>
+    </div>
+
+    <div style="margin-top:48px;">
+      <div class="sec-label">Průkazy a oprávnění</div>
+      <h2 class="sec-title">Jaký průkaz potřebujete na katamarán</h2>
+    </div>
+    <div class="licences-block">
+      <div class="licences-row">
+        <div>
+          <div class="licences-section-label licences-section-label--required">Povinné průkazy</div>
+          <div class="licences-section">
+            <a class="licence-item" href="detail-prukazu.html">
+              <div>
+                <div class="licence-item-name">MDČR průkaz (kategorie C / B / A)</div>
+                <div class="licence-item-desc">Český mezinárodní průkaz — pro katamarán obvykle stačí C (do 24 m, do 20 NM). Pro delší offshore plavby sáhněte po B nebo A.</div>
+              </div>
+              <svg class="licence-item-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="licence-item" href="detail-prukazu.html">
+              <div>
+                <div class="licence-item-name">SRC — Short Range Certificate</div>
+                <div class="licence-item-desc">Povinný VHF průkaz. Katamarány mívají plnohodnotnou VHF stanici + AIS + někdy radar, takže SRC je jasná povinnost.</div>
+              </div>
+              <svg class="licence-item-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="licences-section-label licences-section-label--recommended">Doporučené</div>
+          <div class="licences-section">
+            <a class="licence-item" href="detail-kurzu.html">
+              <div>
+                <div class="licence-item-name">Kurz manévrování s katamaránem</div>
+                <div class="licence-item-desc">Úzké maríny + široký katamarán = adrenalin. Víkendový kurz s instruktorem vás naučí couvat, pivotovat a bezpečně přistávat.</div>
+              </div>
+              <svg class="licence-item-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="licence-item" href="kapitanske-kurzy.html">
+              <div>
+                <div class="licence-item-name">Praktický kurz s instruktorem</div>
+                <div class="licence-item-desc">Pokud máte průkaz, ale chybí vám 100+ NM v logbooku, charterové společnosti vyžadují buď doklad praxe, nebo skippera na palubě.</div>
+              </div>
+              <svg class="licence-item-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="sec-label">Jiné typy lodí</div>
+    <h2 class="sec-title">Další kategorie k pronájmu</h2>
+    <div class="categories-grid">
+      <a class="cat-tile" href="detail-kategorie.html"><div class="cat-img"></div><div class="cat-label"><div class="cat-name">Plachetnice</div><div class="cat-count">421 lodí</div></div></a>
+      <a class="cat-tile" href="detail-kategorie.html"><div class="cat-img"></div><div class="cat-label"><div class="cat-name">Motorová loď</div><div class="cat-count">124 lodí</div></div></a>
+      <a class="cat-tile" href="detail-kategorie.html"><div class="cat-img"></div><div class="cat-label"><div class="cat-name">Gulet</div><div class="cat-count">36 lodí</div></div></a>
+      <a class="cat-tile" href="detail-kategorie.html"><div class="cat-img"></div><div class="cat-label"><div class="cat-name">Říční loď</div><div class="cat-count">20 lodí</div></div></a>
+    </div>
+  </div></div>
+
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="dest-section-head">
+      <div>
+        <div class="sec-label">Z magazínu</div>
+        <h2 class="sec-title">Katamarán očima kapitánů</h2>
+      </div>
+      <a href="magazin.html" class="dest-section-link">Všechny články →</a>
+    </div>
+    <div class="articles-grid">
+      <a class="article-card" href="detail-clanku.html"><div class="article-img"></div><div class="article-body"><span class="article-cat">Srovnání</span><h3 class="article-title">Katamarán vs. plachetnice: co se vyplatí?</h3><p class="article-desc">Cena, pohodlí, plavební vlastnosti — srovnání, které vám pomůže vybrat.</p><div class="article-meta">9 min čtení · 12. 4. 2025</div></div></a>
+      <a class="article-card" href="detail-clanku.html"><div class="article-img"></div><div class="article-body"><span class="article-cat">Manévrování</span><h3 class="article-title">Jak zaparkovat katamarán v úzké marině</h3><p class="article-desc">10 tipů od Martina Dvořáka, kterými se zbavíte stresu při vjezdu.</p><div class="article-meta">6 min čtení · 4. 4. 2025</div></div></a>
+      <a class="article-card" href="detail-clanku.html"><div class="article-img"></div><div class="article-body"><span class="article-cat">Rodinná plavba</span><h3 class="article-title">Katamarán s dětmi: proč to funguje</h3><p class="article-desc">Stabilita, prostor, bezpečí — ideální volba pro plavbu s rodinou.</p><div class="article-meta">7 min čtení · 28. 3. 2025</div></div></a>
+    </div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="logos-header">
+      <div>
+        <div class="sec-label">Naši partneři</div>
+        <h2 class="sec-title" style="font-size:20px;">Charterovky specializované na katamarány</h2>
+      </div>
+      <a href="charterove-spolecnosti.html" class="link-all">Zobrazit všechny společnosti →</a>
+    </div>
+    <div class="logos-row">
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Sunsail">Sunsail</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Moorings">Moorings</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Dream Yacht Charter">Dream Yacht</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Lagoon NEPA">Lagoon NEPA</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Bali Catamarans">Bali</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Catamaran Company">Catamaran Co.</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="GOA Catamaranes">GOA</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Medcat Group">Medcat</a>
+    </div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="sec-label">Časté dotazy</div>
+    <h2 class="sec-title">Co se nejčastěji ptáte o katamaránu</h2>
+    <div class="faq-grid-2col">
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Proč je katamarán 2× dražší než plachetnice stejné délky? <span class="faq-q-icon">+</span></button><div class="faq-a">Katamarán má dva trupy a dvě strojovny — dvojnásobek materiálu a práce. Navíc nabízí zhruba dvojnásobnou obytnou plochu a pojme stejný počet posádky v pohodlnějších podmínkách. Přepočet na osobu je často podobný jako u plachetnice.</div></div>
+        <div class="faq-item"><button class="faq-q">Je katamarán vhodný pro začínajícího kapitána? <span class="faq-q-icon">+</span></button><div class="faq-a">Ano — díky stabilitě je méně stresující než plachetnice. Náročnější je ale manévrování v marině (širší loď, dva motory). Doporučujeme víkendový <a href="detail-kurzu.html">kurz manévrování s katamaránem</a> před první charterovkou.</div></div>
+        <div class="faq-item"><button class="faq-q">Jak velkou posádku katamarán pojme? <span class="faq-q-icon">+</span></button><div class="faq-a">Katamarány 40–42 stop mají typicky 4 kajuty pro 8 hostů + 2 lůžka v salónu. 45–46 stop nabízí 4–5 kajut (8–10 hostů). Na charter se nedoporučuje překračovat počet lůžek.</div></div>
+        <div class="faq-item"><button class="faq-q">Hodí se katamarán do Chorvatska? <span class="faq-q-icon">+</span></button><div class="faq-a">Ano — Jadran je pro katamarán ideální díky krátkým přeplavbám a mělkým zátokám. Pozor ale na rezervaci liegeplatze v menších marínách — katamarány potřebují speciální kotviště a mnohé maríny je mají v omezeném počtu.</div></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Je katamarán rychlejší než plachetnice? <span class="faq-q-icon">+</span></button><div class="faq-a">Na bočním nebo zadním větru ano — 20–30 % rychlejší díky malému odporu. Do větru ale výrazně ztrácí — monohull ho předjede. Výsledek: na průměrném týdenním okruhu obdobná celková rychlost.</div></div>
+        <div class="faq-item"><button class="faq-q">Kolik stojí kotvení v marině? <span class="faq-q-icon">+</span></button><div class="faq-a">Kotevní poplatek za katamarán je 1,5–2× vyšší než za plachetnice stejné délky (kvůli zabrané ploše). V Chorvatsku počítejte 100–200 €/noc v sezóně, podle mariny a velikosti.</div></div>
+        <div class="faq-item"><button class="faq-q">Můžu kotvit v mělkých zátokách? <span class="faq-q-icon">+</span></button><div class="faq-a">Absolutně ano — katamarán má ponor obvykle jen 1,2–1,4 m (plachetnice 1,8–2,2 m). Dostanete se do zátok, kam monohull nikdy nezajede. Tohle je jedna z největších výhod.</div></div>
+        <div class="faq-item"><button class="faq-q">Co dělat, když na katamarán zafouká silný vítr? <span class="faq-q-icon">+</span></button><div class="faq-a">Katamarán neklesne (dva trupy ho drží vzpřímený), ale ve 30+ uzlech je nutné redukovat plachtovinu. V extrémních podmínkách (bóra) se vyplatí schovat do chráněné mariny — nevyplouvejte.</div></div>
+      </div>
+    </div>
+
+    <div class="seo-text">
+      <p><strong>Katamarán je nejrychleji rostoucí segment charterového trhu</strong> — jen v Chorvatsku přibývá každý rok 15–20 nových lodí této kategorie. Důvod je jednoduchý: dvoutrupé plavidlo nabízí kombinaci stability, prostoru a komfortu, která je na klasické plachetnici nedosažitelná. Zatímco plachetnice se při 15 uzlech bočního větru výrazně naklání, na katamaránu si na stole připravíte kávu, aniž by spadla. Tím se otevírá dveře do charteru i pro ty, kteří by jinak trpěli mořskou nemocí — a zejména pro rodiny s dětmi.</p>
+
+      <p>Moderní charterové katamarány nabízejí různá řešení: od kompaktních 38-stopých verzí po prostorné 50+ stopé „plovoucí apartmány". Nejrozšířenější je <a href="detail-modelu.html">Lagoon 42</a> a <a href="detail-modelu.html">Lagoon 46</a> — spolehlivé, vyzrálé modely s hodnotou za peníze. Pro sportovnější profily se nabízí <a href="detail-modelu.html">Nautitech 46 Open</a>, <a href="detail-modelu.html">Excess 11</a> nebo novější <a href="detail-modelu.html">Fountaine Pajot Astrea 42</a>. Luxusnější alternativu pak představují <a href="detail-modelu.html">Leopard</a> nebo <a href="detail-modelu.html">Bali</a>, u kterých dostanete vyšší standard vybavení, ale i vyšší cenovku.</p>
+
+      <p>Co se týče průkazů, na katamarán běžné délky (do 14 m) stačí český <a href="detail-prukazu.html">průkaz MDČR C</a> nebo <a href="detail-prukazu.html">Chorvatský průkaz B</a>. Nutný je i <a href="detail-prukazu.html">SRC</a> pro obsluhu VHF. Pokud s katamaránem začínáte, doporučujeme víkendový <a href="detail-kurzu.html">kurz manévrování</a> — dva motory a široký trup jsou v marině jiná soutěž než u monohullu. Charterové společnosti navíc u katamaránů často vyžadují vyšší logbook (200+ NM), protože škoda na dvojtrupu bývá dražší.</p>
+
+      <p>Nejvyhledávanějšími destinacemi pro katamaránový charter jsou <a href="destinace-stat.html">Chorvatsko</a> (hlavně Střední Dalmácie ze <a href="pristav.html">Splitu</a>, <a href="pristav.html">Trogiru</a> a <a href="pristav.html">Kaštely</a>), <a href="destinace-stat.html">Řecko</a> (Jónské ostrovy a Sarónský záliv) a pro dobrodružnější jachtaře <a href="destinace-stat.html">Karibik</a> (Martinique, Guadeloupe, BVI). V Chorvatsku počítejte při rezervaci s tím, že některé maríny mají jen 2–6 liegeplatzů pro katamarány — v červenci a srpnu je vyplatí objednávat dopředu. Vstup do <a href="magazin.html">národních parků Kornati a Mljet</a> je pro katamarány stejný jako pro plachetnice.</p>
+
+      <p>Pro první plavbu s katamaránem doporučujeme klasický týdenní okruh Split → Hvar → Brač → Vis → Šolta → Split. 120–150 NM, 6 nocí, nejméně 2 noci v zátoce na kotvě. Pokud cestujete s rodinou a dětmi, katamarán vám umožní komfortní nocleh v zátoce — stabilita je tak vysoká, že ráno nepoznáte, že jste spali na vodě. <a href="pronajem-lodi.html">Podívejte se na naše dostupné katamarány</a> — vyberte si a rezervujte za pár minut.</p>
+    </div>
+  </div></div>
+
+  <footer class="footer">
+    <div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>
+    <div class="footer-cols-wrap"><div class="footer-cols">
+      <div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Affiliate Program</a></li><li><a href="#">Kariéra</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Destinace</div><ul><li><a href="#">Země</a></li><li><a href="#">Města</a></li><li><a href="#">Maríny</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="detail-kategorie.html">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Speciální nabídky</div><ul><li><a href="#">Last minute</a></li><li><a href="#">Nové lodě 2025–2026</a></li><li><a href="#">Přídavný motor zdarma</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Další</div><ul><li><a href="charterove-spolecnosti.html">Charterové společnosti</a></li><li><a href="prehled-znacek.html">Výrobci lodí</a></li><li><a href="#">Modely lodí</a></li><li><a href="#">FAQs k pronájmu</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Sledujte nás</div><div class="footer-social"><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div></div><div class="footer-help" style="margin-top:20px;"><strong>Jak vám můžeme pomoci?</strong>Potřebujete poradit s výběrem?<button class="footer-help-btn">Kontaktovat podporu</button></div><div class="yp-badge" style="margin-top:18px;"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div></div>
+    </div></div>
+    <div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div>
+  </footer>
+</div>
 
 <script src="assets/script.js"></script>
 </body>

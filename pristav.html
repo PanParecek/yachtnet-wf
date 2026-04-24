@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Přístav — Yachtnet</title>
+  <title>ACI Marina Split — pronájem lodí · Yachtnet</title>
+  <meta name="description" content="Pronájem lodí z ACI Marina Split — největší marína Střední Dalmácie. 48 lodí ve flotile, 15 minut od letiště, startovní bod klasického chorvatského okruhu." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -12,48 +13,249 @@
 <body>
 
 <div id="page-marina">
-  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html" style="color:var(--int);">Pronájem lodí</a></li><li><a  href="destinace.html">Destinace</a></li><li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div></div></nav>
-  <div class="qs-band"><div class="qs-inner"><div class="qs-title">Pronájem ze Splitu</div><div class="qs-form"><div class="qs-field"><label>Termín od</label><input type="date" class="qs-select" /></div><div class="qs-field"><label>Termín do</label><input type="date" class="qs-select" /></div><div class="qs-field"><label>Typ lodi</label><select class="qs-select"><option>Všechny typy</option><option>Plachetnice</option><option>Katamarán</option><option>Motorová loď</option></select></div><button class="qs-btn" onclick="window.location.href='pronajem-lodi.html'">Vyhledat →</button></div></div></div>
-  <div class="stats-band"><div class="stats-inner"><div class="stat-item"><div class="stat-val">4,84</div><div class="stat-lbl">Spokojenost</div></div><div class="stat-item"><div class="stat-val">4 446</div><div class="stat-lbl">Recenzí</div></div><div class="stat-item"><div class="stat-val">96,8 %</div><div class="stat-lbl">Doporučuje</div></div></div></div>
-  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
-    <div class="sec-label">Destinace — přístav</div>
-    <h1 style="font-size:28px;font-weight:800;margin-bottom:4px;">Split ACI Marina</h1>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:20px;">Chorvatsko · Splitsko-dalmatský kraj</p>
-    <div id="marinaBoats" class="boats-list" style="margin-bottom:18px;"></div>
-    <button class="btn-view" onclick="window.location.href='pronajem-lodi.html'">Všechny lodě ze Splitu →</button>
-  </div></div>
-  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
-      <div>
-        <div class="sec-label">Galerie</div><h2 class="sec-title">Split v obrazech</h2>
-        <div class="gallery-grid" style="grid-template-columns:repeat(2,1fr);"><div class="gallery-cell"></div><div class="gallery-cell"></div><div class="gallery-cell"></div><div class="gallery-cell"></div></div>
-      </div>
-      <div>
-        <div class="sec-label">Informace</div><h2 class="sec-title">Mapa a adresa</h2>
-        <div class="map-ph"></div>
-        <div style="margin-top:12px;font-size:13px;color:var(--muted);">Uvala Baluni bb, 21000 Split, Chorvatsko</div>
-      </div>
-    </div>
-  </div></div>
-  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
-    <div class="sec-label">Počasí</div><h2 class="sec-title">Aktuální počasí v Splitu</h2>
-    <div style="height:200px;background:var(--bg);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;">Widget Windy.com — embed</div>
-    <div style="margin-top:10px;"><a  href="destinace-stat.html" style="font-size:13px;color:var(--int);font-weight:600;text-decoration:none;">Více o počasí v Chorvatsku →</a></div>
-  </div></div>
-  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
-    <div class="sec-label">Podmínky pronájmu</div><h2 class="sec-title">Specifika přístavu Split</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;font-size:13px;">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;"><div style="font-weight:700;margin-bottom:4px;">Parkování</div><div style="color:var(--muted);">Placené parkování v ACI areálu, 5 €/den</div></div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;"><div style="font-weight:700;margin-bottom:4px;">Místní poplatky</div><div style="color:var(--muted);">Turistická taxa 2,65 €/os./den</div></div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;"><div style="font-weight:700;margin-bottom:4px;">Předání lodi</div><div style="color:var(--muted);">So 17:00–18:00, převzetí So 9:00</div></div>
-    </div>
-  </div></div>
-  <footer class="footer"><div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div><div class="yp-badge yp-badge--inline"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div><div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div></footer>
-</div>
+  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html" style="color:var(--int);">Pronájem lodí</a></li><li><a  href="destinace.html">Destinace</a></li><li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="eshop.html">E-shop</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div></div></nav>
 
-<!-- ══════════════════════════════════════════════════════
-     PAGE: COUNTRY (destinace — stát, např. Chorvatsko)
-════════════════════════════════════════════════════════ -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Domů</a><span class="breadcrumb-sep">›</span>
+      <a href="destinace.html">Destinace</a><span class="breadcrumb-sep">›</span>
+      <a href="destinace-stat.html">Chorvatsko</a><span class="breadcrumb-sep">›</span>
+      <a href="oblast.html">Střední Dalmácie</a><span class="breadcrumb-sep">›</span>
+      <span>ACI Marina Split</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">🇭🇷 Chorvatsko · Přístav</div>
+      <h1 class="hero-title">ACI Marina Split</h1>
+      <p class="hero-sub">Největší marína Střední Dalmácie — 48 lodí v charterové nabídce, 15 minut od letiště, klasická startovní pozice pro plavbu kolem ostrova Hvar, Brač a Vis.</p>
+      <form class="search-form" id="searchForm" novalidate>
+        <div class="sf-field">
+          <span class="sf-label">Přístav</span>
+          <select name="location" data-multi data-placeholder="ACI Marina Split">
+            <option value="" disabled selected>ACI Marina Split</option>
+            <option>ACI Marina Split</option>
+          </select>
+        </div>
+        <div class="sf-field">
+          <span class="sf-label">Termín</span>
+          <div class="date-combined">
+            <input type="date" name="from" />
+            <span class="date-sep">→</span>
+            <input type="date" name="to" />
+          </div>
+        </div>
+        <div class="sf-field">
+          <span class="sf-label">Typ lodi</span>
+          <select name="category" data-multi data-placeholder="Všechny typy">
+            <option value="" disabled selected>Všechny typy</option>
+            <option value="sailing">Plachetnice</option>
+            <option value="catamaran">Katamarán</option>
+            <option value="motor">Motorová loď</option>
+          </select>
+        </div>
+        <button type="button" class="btn-search" onclick="window.location.href='pronajem-lodi.html'">Hledat lodě v ACI Split</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="social-proof">
+    <div class="social-proof-inner">
+      <div class="sp-item">
+        <span class="sp-google-icon" aria-label="Google">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+        </span>
+        <span class="sp-score">4,7</span>
+        <div>
+          <div class="sp-stars">★★★★★</div>
+          <div class="sp-label">Průměr ze <strong>318 recenzí</strong> maríny na Googlu</div>
+        </div>
+      </div>
+      <div class="sp-divider"></div>
+      <div class="sp-testimonial">
+        <span class="sp-quote-icon" aria-hidden="true">"</span>
+        <span class="sp-quote-text">Perfektně zorganizovaná marína — z letiště taxíkem 15 minut, check-in bez čekání, sousedská atmosféra.</span>
+        <span class="sp-quote-author">— Tomáš K.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="dest-section-head">
+      <div>
+        <div class="sec-label">Aktuální nabídka</div>
+        <h2 class="sec-title">Lodě k pronájmu z ACI Marina Split</h2>
+      </div>
+      <div class="mini-cards-arrows">
+        <button class="mini-cards-arrow" type="button" data-target="splitTopBoats" data-dir="-1" aria-label="Předchozí"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="mini-cards-arrow" type="button" data-target="splitTopBoats" data-dir="1" aria-label="Další"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+    <div class="mini-cards-slider" style="margin-bottom:18px;">
+      <div class="mini-cards mini-cards--scroll" id="splitTopBoats">
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Bavaria C42 "Lady One"</div><div class="mini-card-meta">Plachetnice · Sun Charter · 2021</div><div class="mini-card-price">od 36 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Fountaine Pajot 47 "Gemini"</div><div class="mini-card-meta">Katamarán · Dream Yacht · 2023</div><div class="mini-card-price">od 128 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Jeanneau 54 "Blue Wind"</div><div class="mini-card-meta">Plachetnice · Navigare · 2020</div><div class="mini-card-price">od 80 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Elan Impression 45 "Triglav"</div><div class="mini-card-meta">Plachetnice · Ultra Sailing · 2022</div><div class="mini-card-price">od 58 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Bavaria C45 "Sea Spirit"</div><div class="mini-card-meta">Plachetnice · Bavaria Charter · 2022</div><div class="mini-card-price">od 45 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Greenline 45 "Horizon"</div><div class="mini-card-meta">Motorová jachta · MareSail · 2021</div><div class="mini-card-price">od 115 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Hanse 548 "Nordic Star"</div><div class="mini-card-meta">Plachetnice · Adriatic Charter · 2021</div><div class="mini-card-price">od 88 000 Kč / týden</div></div></div>
+      </div>
+    </div>
+    <button class="btn-view" onclick="window.location.href='pronajem-lodi.html'">Zobrazit všech 48 lodí z ACI Split →</button>
+  </div></div>
+
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:32px;">
+      <div>
+        <div class="sec-label">Galerie</div>
+        <h2 class="sec-title" style="margin-bottom:20px;">ACI Marina Split v obrazech</h2>
+        <div class="gallery-grid">
+          <div class="gallery-cell tall" style="grid-row:span 2;"></div>
+          <div class="gallery-cell"></div>
+          <div class="gallery-cell"></div>
+          <div class="gallery-cell"></div>
+          <div class="gallery-cell"></div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-label">Lokalita</div>
+        <h2 class="sec-title" style="margin-bottom:20px;">Mapa a adresa</h2>
+        <div class="map-ph" style="height:340px;"></div>
+        <div style="margin-top:14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;font-size:14px;line-height:1.7;">
+          <div style="font-weight:700;margin-bottom:8px;">ACI Marina Split</div>
+          <div style="color:var(--muted);margin-bottom:10px;">Uvala Baluni bb<br>21000 Split, Chorvatsko</div>
+          <div style="margin-bottom:4px;"><strong>GPS:</strong> 43°30′21″ N, 16°26′09″ E</div>
+          <div style="margin-bottom:4px;"><strong>VHF kanál:</strong> 17</div>
+          <div><strong>Z letiště Split (SPU):</strong> 15 min autem / taxi 25 €</div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="sec-label">Specifika marína</div>
+    <h2 class="sec-title" style="margin-bottom:24px;">Informace pro kapitány</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;font-size:13px;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;">
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:6px;">Parkování</div>
+        <div style="font-weight:700;font-size:15px;margin-bottom:6px;">5 €/den</div>
+        <div style="color:var(--muted);line-height:1.55;">Hlídané parkování v ACI areálu. Kapacita 280 míst, rezervace předem nenutná.</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;">
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:6px;">Turistická taxa</div>
+        <div style="font-weight:700;font-size:15px;margin-bottom:6px;">2,65 €/os./den</div>
+        <div style="color:var(--muted);line-height:1.55;">Platí se při check-inu hotově nebo kartou. Vyberá charterovka spolu s vinjetou.</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;">
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:6px;">Předání lodi</div>
+        <div style="font-weight:700;font-size:15px;margin-bottom:6px;">So 17:00 → 18:00</div>
+        <div style="color:var(--muted);line-height:1.55;">Check-in so odpoledne, check-out so ráno 9:00. Loď vrátit s plnou nádrží.</div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;">
+        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:6px;">Kapacita</div>
+        <div style="font-weight:700;font-size:15px;margin-bottom:6px;">360 liegeplatzů</div>
+        <div style="color:var(--muted);line-height:1.55;">Maximální délka 35 m, max. ponor 4,2 m. 24/7 ostraha, Wi-Fi, sprchy.</div>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="dest-section-head">
+      <div>
+        <div class="sec-label">Počasí</div>
+        <h2 class="sec-title">Aktuální podmínky v Splitu</h2>
+      </div>
+      <a href="destinace-stat.html" class="dest-section-link">Více o počasí v Chorvatsku →</a>
+    </div>
+    <div style="height:260px;background:var(--bg);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;">Windy.com embed widget — teplota, vítr, vlny</div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="dest-section-head">
+      <div>
+        <div class="sec-label">Kam plout</div>
+        <h2 class="sec-title">Populární destinace ze Splitu</h2>
+      </div>
+    </div>
+    <div class="mini-cards mini-cards--4col">
+      <a class="mini-card" href="destinace-stat.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Hvar</div><div class="mini-card-meta">22 NM · 4–5 hod plavby</div><div class="mini-card-price">Nejoblíbenější ostrov</div></div></a>
+      <a class="mini-card" href="destinace-stat.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Brač</div><div class="mini-card-meta">8 NM · 1,5 hod plavby</div><div class="mini-card-price">Nejbližší ostrov</div></div></a>
+      <a class="mini-card" href="destinace-stat.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Vis</div><div class="mini-card-meta">35 NM · 6–7 hod plavby</div><div class="mini-card-price">Divoký a nedotčený</div></div></a>
+      <a class="mini-card" href="destinace-stat.html"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Šolta</div><div class="mini-card-meta">6 NM · 1 hod plavby</div><div class="mini-card-price">Klidnější než Brač</div></div></a>
+    </div>
+  </div></div>
+
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="logos-header">
+      <div>
+        <div class="sec-label">Charterovky</div>
+        <h2 class="sec-title" style="font-size:20px;">Společnosti působící v ACI Marina Split</h2>
+      </div>
+      <a href="charterove-spolecnosti.html" class="link-all">Všechny charterovky →</a>
+    </div>
+    <div class="logos-row">
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Sun Charter">Sun Charter</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Sunsail">Sunsail</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Navigare">Navigare</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Moorings">Moorings</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Dream Yacht Charter">Dream Yacht</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Ultra Sailing">Ultra Sailing</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="Bavaria Yachtbau">Bavaria</a>
+      <a class="logo-box" href="charterova-spolecnost.html" aria-label="MareSail">MareSail</a>
+    </div>
+  </div></div>
+
+  <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:48px 28px;">
+    <div class="sec-label">Časté dotazy</div>
+    <h2 class="sec-title">Co se nejčastěji ptáte o ACI Split</h2>
+    <div class="faq-grid-2col">
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Jak se z letiště Split dostanu do maríny? <span class="faq-q-icon">+</span></button><div class="faq-a">Taxi 25 €, Uber 18–22 €, hromadná doprava (bus + MHD, 5 €) cca 40 minut. Pokud máte 3–4 lidi, taxi je nejvýhodnější. Z Čech doporučujeme přímé lety ČSA, Ryanair nebo Smartwings — v sezóně denně.</div></div>
+        <div class="faq-item"><button class="faq-q">Kde zaparkovat, když přijedu autem? <span class="faq-q-icon">+</span></button><div class="faq-a">V ACI areálu — hlídané parkování 5 €/den, kapacita 280 aut, bez rezervace. Autem z Prahy přes Vídeň a Záhřeb 10–12 hod, přes Německo a Slovinsko 14+ hod. Mimo ACI lze i na veřejném parkovišti u přístavu za cca 3 €/den.</div></div>
+        <div class="faq-item"><button class="faq-q">Jak probíhá check-in a check-out? <span class="faq-q-icon">+</span></button><div class="faq-a">Check-in v sobotu od 17:00 v recepci vaší charterovky (většinou 30 min od areálu pěšky). Dokumenty, kauce, briefing k lodi, poté vyplutí. Check-out v sobotu do 9:00 — vracíte loď s plnou nádrží paliva a čistou. Přespání první noc v marině je v 95 % případů v ceně.</div></div>
+        <div class="faq-item"><button class="faq-q">Můžu si loď vyzvednout jindy než v sobotu? <span class="faq-q-icon">+</span></button><div class="faq-a">Standardní charter je sobota–sobota. Flexibilní začátek (středa, pátek) nabízí ~15 % lodí za příplatek 200–400 €. Pro last-minute rezervace (21 dní před startem) bývá i jiný den možný bez fee. Ne všechny charterovky nabízejí tuto možnost.</div></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Je v marině benzínová pumpa? <span class="faq-q-icon">+</span></button><div class="faq-a">Ano — přímo v marině u vstupu. Diesel ~1,60 €/l, benzín ~1,70 €/l. Otevřeno celodenně v sezóně, mimo sezónu 8:00–19:00. Platit lze kartou i hotově. Při návratu počítejte s 15–30 min frontou v sobotu ráno.</div></div>
+        <div class="faq-item"><button class="faq-q">Co se nachází v samotném přístavu? <span class="faq-q-icon">+</span></button><div class="faq-a">Restaurace (4×), supermarket Konzum, chandlery (2×), prádelna, sprchy, Wi-Fi, benzínka, opravárna, půjčovna kol. V pěší dostupnosti 10 min je i centrum Splitu s Diocletianovým palácem, další supermarkety a restaurace.</div></div>
+        <div class="faq-item"><button class="faq-q">Jaké jsou typické větrové podmínky? <span class="faq-q-icon">+</span></button><div class="faq-a">V sezóně (květen–září) převažuje odpolední maestral (SV, 10–20 uzlů) — ideální pro plachtění. V zimě a brzy na jaře fouká občas bóra (S-SV, 30–60+ uzlů) — pozor na silné poryvy v úžinách. Jugo (JV, teplý vlhký vítr, 15–30 uzlů) přichází ve front systémech.</div></div>
+        <div class="faq-item"><button class="faq-q">Kde koupit nákup na týden na vodu? <span class="faq-q-icon">+</span></button><div class="faq-a">Konzum přímo v marině, větší Tommy a Plodine ve Splitu (10 min taxíkem). Pro plný nákup na týden pro 6 osob počítejte 1 500–2 500 Kč/osoba. Supermarket servis nabízí i dodávku přímo na loď (doplatek 30 €) — doporučujeme pro klidné sobotní odpoledne.</div></div>
+      </div>
+    </div>
+
+    <div class="seo-text">
+      <p><strong>ACI Marina Split je vlajkovou lodí sítě ACI Marinas</strong> — chorvatské státní organizace, která spravuje 22 marín podél Jadranu. S kapacitou 360 liegeplatzů, vlastní benzínkou, chandlerem a servisním zázemím je to největší a nejrušnější startovní pozice pro charterové plavby v Střední Dalmácii. Ročně tudy projde odhadem 4 500 charterových lodí — přibližně 15 % veškerého chorvatského charterového provozu.</p>
+
+      <p>Geograficky leží marína v zátoce <a href="#">Uvala Baluni</a>, západně od historického centra Splitu, v pěší dostupnosti 10 minut od Diocletianova paláce a Marjan Parku. Z <a href="#">letiště Split (SPU)</a> dostanete autem za 15 minut, což z ACI Split dělá nejdostupnější charterovou základnu v Chorvatsku. Právě tato dostupnost — v kombinaci s bohatou nabídkou lodí — je hlavním důvodem, proč sem míří většina českých kapitánů.</p>
+
+      <p>Z marína se otevírají ideální podmínky pro <strong>klasický týdenní okruh středodalmatskými ostrovy</strong>. Nejoblíbenější trasa vede Split → <a href="destinace-stat.html">Brač</a> (8 NM) → <a href="destinace-stat.html">Hvar</a> (22 NM) → <a href="destinace-stat.html">Vis</a> (35 NM) → Šolta (6 NM) → Split. Celkem 120–180 námořních mil, 6 nocí, z toho 3–4 v marinách a 2–3 na kotvě v zátokách. Za týden stihnete navštívit 4–6 ostrovů bez zbytečného pospíchání, s dostatkem času na koupání, večerní taverny a objevování.</p>
+
+      <p>Ve flotile <a href="pronajem-lodi.html">48 lodí</a>, které máme z ACI Split k dispozici, dominují <strong>plachetnice 38–55 stop</strong> — ideální pro 6–10 osob. Nejpopulárnější jsou <a href="detail-modelu.html">Bavaria Cruiser</a>, <a href="detail-modelu.html">Jeanneau Sun Odyssey</a> a <a href="detail-modelu.html">Elan Impression</a>. Pro větší skupiny nebo rodiny s dětmi doporučujeme <a href="detail-kategorie.html">katamarán</a> — Lagoon 42 nebo Fountaine Pajot 47 — s nadstandardním prostorem a stabilitou. Nejluxusnější segment reprezentují <strong>motorové jachty Greenline</strong> a <strong>Prestige</strong> pro ty, kdo preferují rychlost a pohodlí nad plachetnicemi.</p>
+
+      <p>Pro pronájem v ACI Split platí standardní chorvatské podmínky. Kapitán musí mít platný průkaz uznávaný chorvatskou pobřežní stráží — typicky <a href="detail-prukazu.html">MDČR C</a> nebo <a href="detail-prukazu.html">Chorvatský průkaz B</a> — plus <a href="detail-prukazu.html">SRC</a> pro VHF. Charterovky navíc vyžadují logbook s minimálně 100 NM; pokud chybí, lze objednat <a href="kapitanske-kurzy.html">skippera</a> za 5 000 Kč/den nebo absolvovat náš <a href="detail-kurzu.html">víkendový praktický kurz</a> s instruktorem přímo v Splitu. Kauce (deposit) se pohybuje od 1 500 € (menší plachetnice) po 4 000 € (katamarán) — doporučujeme přiobjednat pojištění depositu za 100–200 €/týden.</p>
+    </div>
+  </div></div>
+
+  <footer class="footer">
+    <div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>
+    <div class="footer-cols-wrap"><div class="footer-cols">
+      <div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Affiliate Program</a></li><li><a href="#">Kariéra</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Destinace</div><ul><li><a href="#">Země</a></li><li><a href="#">Města</a></li><li><a href="#">Maríny</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="detail-kategorie.html">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Speciální nabídky</div><ul><li><a href="#">Last minute</a></li><li><a href="#">Nové lodě 2025–2026</a></li><li><a href="#">Přídavný motor zdarma</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Další</div><ul><li><a href="charterove-spolecnosti.html">Charterové společnosti</a></li><li><a href="prehled-znacek.html">Výrobci lodí</a></li><li><a href="#">Modely lodí</a></li><li><a href="#">FAQs k pronájmu</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Sledujte nás</div><div class="footer-social"><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div><div class="social-box"></div></div><div class="footer-help" style="margin-top:20px;"><strong>Jak vám můžeme pomoci?</strong>Potřebujete poradit s výběrem?<button class="footer-help-btn">Kontaktovat podporu</button></div><div class="yp-badge" style="margin-top:18px;"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div></div>
+    </div></div>
+    <div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div>
+  </footer>
+</div>
 
 <script src="assets/script.js"></script>
 </body>
