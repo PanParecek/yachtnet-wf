@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crew list — Yachtnet</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-crew">
+  <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html">Pronájem lodí</a></li><li><a  href="destinace.html">Destinace</a></li><li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="eshop.html">E-shop</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Můj účet</button></div></div></nav>
+  <div class="account-layout">
+    <aside class="account-sidebar">
+      <div class="account-nav-user">
+        <div class="account-nav-avatar"></div>
+        <div class="account-nav-name">Jan Novák</div>
+        <div class="account-nav-email">jan.novak@email.cz</div>
+      </div>
+      <a class="account-nav-item" href="ucet.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Osobní údaje</a>
+      <a class="account-nav-item" href="seznam-rezervaci.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Moje rezervace</a>
+      <a class="account-nav-item" href="prukazy.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Průkazy</a>
+      <a class="account-nav-item active" href="crew.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Crew list</a>
+      <a class="account-nav-item" href="#" style="margin-top:auto;color:var(--muted);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Odhlásit se</a>
+    </aside>
+    <main class="account-main">
+      <h1 style="font-size:22px;font-weight:800;margin-bottom:8px;">Crew list</h1>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:24px;max-width:680px;">Seznam osob, se kterými se obvykle plavíte. Charterovkám stačí pak při rezervaci jen vybrat ty, kdo s vámi tentokrát jedou — Yachtnet jejich údaje (doklady, narození, občanství) přiloží automaticky.</p>
+
+      <div class="license-list-toolbar">
+        <div class="license-list-toolbar-info"><strong>5 členů</strong> v seznamu · 4 doklady platné · 1 vyprší do 12 měsíců</div>
+        <a class="acc-btn" href="pridat-clena.html" style="display:inline-flex;align-items:center;text-decoration:none;">+ Přidat člena posádky</a>
+      </div>
+
+      <a class="crew-list-row" href="clen-posadky.html">
+        <div class="crew-avatar">EN</div>
+        <div>
+          <div class="crew-list-name">Eva Nováková</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Narozena 14. 5. 1986</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Občanství</div>
+          <div class="crew-list-meta-val">🇨🇿 Česká rep.</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Cestovní pas</div>
+          <div class="crew-list-meta-val">42857913</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Pas platí do</div>
+          <div class="crew-list-meta-val">8. 11. 2031</div>
+        </div>
+        <span class="license-list-cta">Detail <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="crew-list-row" href="clen-posadky.html">
+        <div class="crew-avatar">TN</div>
+        <div>
+          <div class="crew-list-name">Tomáš Novák</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Narozen 22. 8. 2008</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Občanství</div>
+          <div class="crew-list-meta-val">🇨🇿 Česká rep.</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Občanský průkaz</div>
+          <div class="crew-list-meta-val">208563451</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Doklad platí do</div>
+          <div class="crew-list-meta-val">15. 6. 2029</div>
+        </div>
+        <span class="license-list-cta">Detail <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="crew-list-row" href="clen-posadky.html">
+        <div class="crew-avatar">PD</div>
+        <div>
+          <div class="crew-list-name">Petr Dvořák</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Narozen 11. 3. 1980</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Občanství</div>
+          <div class="crew-list-meta-val">🇨🇿 Česká rep.</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Cestovní pas</div>
+          <div class="crew-list-meta-val">39472618</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Pas platí do</div>
+          <div class="crew-list-meta-val is-warning">3. 4. 2027</div>
+        </div>
+        <span class="license-list-cta">Detail <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="crew-list-row" href="clen-posadky.html">
+        <div class="crew-avatar">MS</div>
+        <div>
+          <div class="crew-list-name">Martina Svobodová</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Narozena 28. 7. 1987</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Občanství</div>
+          <div class="crew-list-meta-val">🇸🇰 Slovensko</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Cestovní pas</div>
+          <div class="crew-list-meta-val">SK7283901</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Pas platí do</div>
+          <div class="crew-list-meta-val">22. 9. 2030</div>
+        </div>
+        <span class="license-list-cta">Detail <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="crew-list-row" href="clen-posadky.html">
+        <div class="crew-avatar">JK</div>
+        <div>
+          <div class="crew-list-name">Jiří Krejčí</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">Narozen 4. 12. 1979</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Občanství</div>
+          <div class="crew-list-meta-val">🇨🇿 Česká rep.</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Cestovní pas</div>
+          <div class="crew-list-meta-val">51928374</div>
+        </div>
+        <div>
+          <div class="crew-list-meta-label">Pas platí do</div>
+          <div class="crew-list-meta-val">14. 2. 2032</div>
+        </div>
+        <span class="license-list-cta">Detail <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <div class="license-list-empty" style="margin-top:24px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:10px;color:var(--muted);"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;">Plánujete nového člena posádky?</div>
+        <div style="font-size:13px;margin-bottom:14px;">Přidejte ho předem — nemusí čekat na rezervaci. Stačí jméno, datum narození a číslo dokladu.</div>
+        <a class="acc-btn-ghost" href="pridat-clena.html" style="display:inline-flex;align-items:center;text-decoration:none;">+ Přidat dalšího člena</a>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

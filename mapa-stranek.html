@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mapa stránek — Yachtnet</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -18,145 +19,14 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       Zpět na úvodní stránku
     </button>
-    <span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);">Wireframe · 33 stránek</span>
+    <span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);">Wireframe · <span data-sitemap-count>0</span> stránek</span>
   </nav>
 
   <div class="sm-wrap">
-    <h1 class="sm-title">Wireframe sitemap <span class="sm-count">33</span></h1>
-    <p class="sm-sub">Stromová struktura všech prototypových stránek. Kliknutím na libovolný uzel stránku otevřete.</p>
+    <h1 class="sm-title">Wireframe sitemap <span class="sm-count" data-sitemap-count>0</span></h1>
+    <p class="sm-sub">Stromová struktura všech prototypových stránek. Kliknutím na libovolný uzel stránku otevřete. Seznam se generuje z registru <code>SITEMAP_TREE</code> v <code>assets/script.js</code>.</p>
 
-    <!-- ROOT -->
-    <ul class="sm-tree">
-      <li>
-        <a class="sm-node sm-root"  href="index.html">
-          🏠 Úvodní stránka <span class="sm-node-id">page-home</span>
-        </a>
-        <ul>
-
-          <!-- PRONÁJEM LODÍ -->
-          <li>
-            <a class="sm-node sm-group"  href="pronajem-lodi.html">
-              Výsledky hledání <span class="sm-node-id">page-results</span>
-            </a>
-            <ul>
-              <li>
-                <a class="sm-node"  href="detail-lodi.html">
-                  Detail lodi <span class="sm-node-id">page-detail</span>
-                </a>
-                <ul>
-                  <li><a class="sm-node"  href="rezervace-krok-1.html">Rezervace — krok 1 <span class="sm-node-id">page-booking-1</span></a>
-                    <ul>
-                      <li><a class="sm-node"  href="rezervace-krok-2.html">Rezervace — krok 2 <span class="sm-node-id">page-booking-2</span></a>
-                        <ul>
-                          <li><a class="sm-node"  href="rezervace-potvrzeni.html">Potvrzení rezervace <span class="sm-node-id">page-booking-confirm</span></a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-
-          <!-- DESTINACE -->
-          <li>
-            <a class="sm-node sm-group"  href="destinace.html">
-              Přehled destinací <span class="sm-node-id">page-destinations</span>
-            </a>
-            <ul>
-              <li><a class="sm-node"  href="oblast.html">Detail destinace <span class="sm-node-id">page-destination</span></a></li>
-              <li><a class="sm-node"  href="destinace-stat.html">Země <span class="sm-node-id">page-country</span></a></li>
-              <li><a class="sm-node"  href="pristav.html">Marina <span class="sm-node-id">page-marina</span></a></li>
-            </ul>
-          </li>
-
-          <!-- LODĚ — TAXONOMIE -->
-          <li>
-            <a class="sm-node sm-group"  href="kategorie-lodi.html">
-              Kategorie lodí <span class="sm-node-id">page-categories</span>
-            </a>
-            <ul>
-              <li><a class="sm-node"  href="detail-kategorie.html">Detail kategorie <span class="sm-node-id">page-category</span></a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="sm-node sm-group"  href="detail-znacky.html">
-              Výrobce (značka) <span class="sm-node-id">page-brand</span>
-            </a>
-            <ul>
-              <li><a class="sm-node"  href="detail-modelu.html">Model lodi <span class="sm-node-id">page-model</span></a></li>
-            </ul>
-          </li>
-
-          <!-- CHARTEROVÉ SPOLEČNOSTI -->
-          <li>
-            <a class="sm-node sm-group"  href="charterove-spolecnosti.html">
-              Charterové společnosti <span class="sm-node-id">page-companies</span>
-            </a>
-            <ul>
-              <li><a class="sm-node"  href="charterova-spolecnost.html">Detail společnosti <span class="sm-node-id">page-company</span></a></li>
-            </ul>
-          </li>
-
-          <!-- KAPITÁNSKÉ KURZY -->
-          <li>
-            <a class="sm-node sm-group"  href="kapitanske-kurzy.html">
-              Kapitánské kurzy <span class="sm-node-id">page-courses</span>
-            </a>
-            <ul>
-              <li><a class="sm-node"  href="vsechny-kurzy.html">Přehled všech kurzů <span class="sm-node-id">page-courses-all</span></a></li>
-              <li>
-                <a class="sm-node"  href="detail-kurzu.html">Detail kurzu <span class="sm-node-id">page-course</span></a>
-                <ul>
-                  <li><a class="sm-node"  href="terminy-kurzu.html">Termíny kurzu <span class="sm-node-id">page-course-dates</span></a></li>
-                </ul>
-              </li>
-              <li><a class="sm-node"  href="detail-prukazu.html">Detail průkazu <span class="sm-node-id">page-license</span></a></li>
-            </ul>
-          </li>
-
-          <!-- MAGAZÍN -->
-          <li>
-            <a class="sm-node sm-group"  href="magazin.html">
-              Magazín <span class="sm-node-id">page-magazine</span>
-            </a>
-            <ul>
-              <li><a class="sm-node"  href="detail-clanku.html">Článek <span class="sm-node-id">page-article</span></a></li>
-            </ul>
-          </li>
-
-          <!-- UŽIVATEL -->
-          <li>
-            <a class="sm-node sm-group"  href="prihlaseni.html">
-              Přihlášení <span class="sm-node-id">page-login</span>
-            </a>
-            <ul>
-              <li><a class="sm-node"  href="registrace.html">Registrace <span class="sm-node-id">page-register</span></a></li>
-              <li><a class="sm-node"  href="zapomenute-heslo.html">Zapomenuté heslo <span class="sm-node-id">page-forgot-password</span></a></li>
-              <li><a class="sm-node"  href="overeni.html">Ověření e-mailu <span class="sm-node-id">page-verify</span></a></li>
-            </ul>
-          </li>
-          <li>
-            <a class="sm-node sm-group"  href="ucet.html">
-              Můj účet <span class="sm-node-id">page-account</span>
-            </a>
-            <ul>
-              <li>
-                <a class="sm-node"  href="seznam-rezervaci.html">Moje rezervace <span class="sm-node-id">page-reservations</span></a>
-                <ul>
-                  <li><a class="sm-node"  href="detail-rezervace.html">Detail rezervace <span class="sm-node-id">page-reservation-detail</span></a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-
-          <!-- STATICKÉ STRÁNKY -->
-          <li><a class="sm-node"  href="o-nas.html">O nás <span class="sm-node-id">page-about</span></a></li>
-          <li><a class="sm-node"  href="kontakt.html">Kontakt <span class="sm-node-id">page-contact</span></a></li>
-
-        </ul>
-      </li>
-    </ul>
+    <div id="sitemap-tree"></div>
 
   </div>
 </div><!-- /page-sitemap -->
