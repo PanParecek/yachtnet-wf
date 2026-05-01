@@ -1,6 +1,200 @@
 // Shared script — Yachtnet wireframe
 // Rozdělený prototyp: každá stránka má vlastní HTML soubor + linkuje tento skript.
 
+  // ── COMPONENT REGISTRY ─────────────────────────────────
+  // Jediný zdroj pravdy pro opakující se komponenty napříč prototypem.
+  // Použití na stránce:  <div data-component="footer"></div>
+  //                      <div data-component="socialProof" data-quote="..." data-author="..."></div>
+  //                      <div data-component="teamModal"></div>
+  // Při změně podoby uprav jen funkci níže — automaticky propagace všude.
+  const Components = {
+
+    footer: function() {
+      return '<footer class="footer">' +
+        '<div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>' +
+        '<div class="footer-cols-wrap"><div class="footer-cols">' +
+          '<div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Kariéra</a></li><li><a href="mapa-stranek.html">Mapa stránek</a></li></ul></div>' +
+          '<div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="detail-kategorie.html">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>' +
+          '<div class="footer-col"><div class="footer-col-title">Kapitánské kurzy</div><ul><li><a href="kapitanske-kurzy.html">Přehled kurzů</a></li><li><a href="kurzy-na-mori.html">Kurzy na moře</a></li><li><a href="detail-prukazu.html">Průkaz MDČR C</a></li><li><a href="detail-prukazu.html">Chorvatský průkaz B</a></li><li><a href="detail-prukazu.html">SRC — Radiotelefon</a></li><li><a href="terminy-kurzu.html">Termíny kurzů</a></li><li><a href="srovnani-prukazu.html">Srovnání průkazů</a></li></ul></div>' +
+          '<div class="footer-col"><div class="footer-col-title">Přehledy</div><ul><li><a href="destinace.html">Země</a></li><li><a href="#">Města</a></li><li><a href="#">Maríny</a></li><li><a href="charterove-spolecnosti.html">Charterové společnosti</a></li><li><a href="prehled-znacek.html">Výrobci lodí</a></li><li><a href="#">Modely lodí</a></li><li><a href="#">FAQs k pronájmu</a></li></ul></div>' +
+          '<div class="footer-col"><div class="yp-badge"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div><div class="yp-badge-valid">valid 2026 only</div></div></div>' +
+          '<div class="footer-col"><div class="footer-col-title">Sledujte nás</div><div class="footer-social"><a class="social-box" href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a><a class="social-box" href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a class="social-box" href="#" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.6-.46-5.32c-.25-.94-1-1.68-1.94-1.93C18.88 4.29 12 4.29 12 4.29s-6.88 0-8.6.46c-.94.25-1.69 1-1.94 1.93C1 8.4 1 12 1 12s0 3.6.46 5.32c.25.94 1 1.68 1.94 1.93 1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46c.94-.25 1.69-1 1.94-1.93C23 15.6 23 12 23 12zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg></a><a class="social-box" href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></a></div><div class="footer-help" style="margin-top:20px;"><strong>Jak vám můžeme pomoci?</strong>Potřebujete poradit s výběrem?<button class="footer-help-btn">Kontaktovat podporu</button></div></div>' +
+        '</div></div>' +
+        '<div class="footer-bottom"><span>© 2025 Yachtnet s.r.o. Všechna práva vyhrazena.</span><img src="img/logo-yachtnet.svg" alt="Yachtnet" style="height:14px;opacity:.3;filter:brightness(0) invert(1);" /></div>' +
+      '</footer>';
+    },
+
+    teamModal: function() {
+      return '<div class="team-modal" id="teamModal" hidden aria-hidden="true" role="dialog" aria-label="Profil lektora">' +
+        '<div class="team-modal-backdrop" data-tm-close></div>' +
+        '<div class="team-modal-card">' +
+          '<button class="team-modal-close" type="button" data-tm-close aria-label="Zavřít"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>' +
+          '<div class="tm-gallery">' +
+            '<div class="tm-gal-frame" id="tmGalFrame"></div>' +
+            '<button class="tm-gal-arrow tm-gal-prev" type="button" data-tm-prev aria-label="Předchozí"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>' +
+            '<button class="tm-gal-arrow tm-gal-next" type="button" data-tm-next aria-label="Další"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>' +
+            '<div class="tm-gal-counter"><span id="tmGalIdx">1</span> / <span id="tmGalTotal">5</span></div>' +
+          '</div>' +
+          '<div class="tm-body">' +
+            '<div class="tm-name" id="tmName">Jméno</div>' +
+            '<div class="tm-role" id="tmRole">Pozice</div>' +
+            '<div class="tm-bio" id="tmBio"></div>' +
+            '<div class="tm-contact">' +
+              '<a class="tm-contact-item" id="tmEmail" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span id="tmEmailText"></span></a>' +
+              '<a class="tm-contact-item" id="tmPhone" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span id="tmPhoneText"></span></a>' +
+              '<div class="tm-contact-item tm-contact-static"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg><span id="tmMilesText"></span> NM</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    },
+
+    socialProof: function(opts) {
+      var quote = (opts && opts.quote) || 'Z Splitu na Hvar jako po másle — Yachtnet vyřídil vše do 24 hodin.';
+      var author = (opts && opts.author) || '— Tomáš K.';
+      var score = (opts && opts.score) || '5,0';
+      var label = (opts && opts.label) || 'Průměrné hodnocení ze 192 recenzí na Googlu';
+      return '<div class="social-proof"><div class="social-proof-inner">' +
+        '<div class="sp-item">' +
+          '<span class="sp-google-icon" aria-label="Google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span>' +
+          '<span class="sp-score">' + score + '</span>' +
+          '<div><div class="sp-stars">★★★★★</div><div class="sp-label">' + label + '</div></div>' +
+        '</div>' +
+        '<div class="sp-divider"></div>' +
+        '<div class="sp-testimonial">' +
+          '<span class="sp-quote-icon" aria-hidden="true">"</span>' +
+          '<span class="sp-quote-text">' + quote + '</span>' +
+          '<span class="sp-quote-author">' + author + '</span>' +
+        '</div>' +
+      '</div></div>';
+    },
+
+    init: function() {
+      var nodes = document.querySelectorAll('[data-component]');
+      nodes.forEach(function(el) {
+        var name = el.getAttribute('data-component');
+        var fn = Components[name];
+        if (typeof fn !== 'function') return;
+        var opts = {};
+        Array.prototype.forEach.call(el.attributes, function(attr) {
+          if (attr.name.indexOf('data-') === 0 && attr.name !== 'data-component') {
+            // data-quote-author -> quoteAuthor
+            var key = attr.name.slice(5).replace(/-([a-z])/g, function(_, c) { return c.toUpperCase(); });
+            opts[key] = attr.value;
+          }
+        });
+        el.outerHTML = fn(opts);
+      });
+    }
+  };
+
+  // Render synchronně — script tag je na konci <body>, takže DOM je k dispozici.
+  // Ostatní init funkce (mega-menu, teamModal listeners, atd.) běží potom a uvidí už vykreslené komponenty.
+  Components.init();
+
+  // ── SITEMAP REGISTRY ───────────────────────────────────
+  // Jediný zdroj pravdy pro všechny stránky wireframe.
+  // Když přidáš / odebereš stránku, uprav tento strom a mapa-stranek.html se sama aktualizuje.
+  const SITEMAP_TREE = [
+    { href: 'index.html', title: 'Úvodní stránka', id: 'page-home', icon: '🏠', root: true, children: [
+      { href: 'pronajem-lodi.html', title: 'Výsledky hledání', id: 'page-results', group: true, children: [
+        { href: 'detail-lodi.html', title: 'Detail lodi', id: 'page-detail', children: [
+          { href: 'rezervace-krok-1.html', title: 'Rezervace — krok 1', id: 'page-booking-1', children: [
+            { href: 'rezervace-krok-2.html', title: 'Rezervace — krok 2', id: 'page-booking-2', children: [
+              { href: 'rezervace-potvrzeni.html', title: 'Potvrzení rezervace', id: 'page-booking-confirm' }
+            ]}
+          ]}
+        ]}
+      ]},
+      { href: 'destinace.html', title: 'Přehled destinací', id: 'page-destinations', group: true, children: [
+        { href: 'destinace-stat.html', title: 'Země', id: 'page-country' },
+        { href: 'oblast.html', title: 'Oblast / region', id: 'page-destination' },
+        { href: 'pristav.html', title: 'Marina', id: 'page-marina' }
+      ]},
+      { href: 'kategorie-lodi.html', title: 'Kategorie lodí', id: 'page-categories', group: true, children: [
+        { href: 'detail-kategorie.html', title: 'Detail kategorie', id: 'page-category' }
+      ]},
+      { href: 'prehled-znacek.html', title: 'Přehled značek', id: 'page-brands', group: true, children: [
+        { href: 'detail-znacky.html', title: 'Detail značky', id: 'page-brand', children: [
+          { href: 'detail-modelu.html', title: 'Model lodi', id: 'page-model' }
+        ]}
+      ]},
+      { href: 'charterove-spolecnosti.html', title: 'Charterové společnosti', id: 'page-companies', group: true, children: [
+        { href: 'charterova-spolecnost.html', title: 'Detail společnosti', id: 'page-company' }
+      ]},
+      { href: 'kapitanske-kurzy.html', title: 'Kapitánské kurzy', id: 'page-courses', group: true, children: [
+        { href: 'kurzy-na-mori.html', title: 'Kurzy na moře (LP)', id: 'page-courses-sea' },
+        { href: 'vsechny-kurzy.html', title: 'Přehled všech kurzů', id: 'page-courses-all' },
+        { href: 'srovnani-prukazu.html', title: 'Srovnání průkazů', id: 'page-compare' },
+        { href: 'detail-kurzu.html', title: 'Detail kurzu', id: 'page-course', children: [
+          { href: 'terminy-kurzu.html', title: 'Termíny kurzu', id: 'page-course-dates' }
+        ]},
+        { href: 'detail-prukazu.html', title: 'Detail průkazu', id: 'page-license' }
+      ]},
+      { href: 'magazin.html', title: 'Magazín', id: 'page-magazine', group: true, children: [
+        { href: 'detail-clanku.html', title: 'Článek', id: 'page-article' }
+      ]},
+      { href: 'prihlaseni.html', title: 'Přihlášení', id: 'page-login', group: true, children: [
+        { href: 'registrace.html', title: 'Registrace', id: 'page-register' },
+        { href: 'zapomenute-heslo.html', title: 'Zapomenuté heslo', id: 'page-forgot-password' },
+        { href: 'overeni.html', title: 'Ověření e-mailu', id: 'page-verify' }
+      ]},
+      { href: 'ucet.html', title: 'Můj účet', id: 'page-account', group: true, children: [
+        { href: 'seznam-rezervaci.html', title: 'Moje rezervace', id: 'page-reservations', children: [
+          { href: 'detail-rezervace.html', title: 'Detail rezervace', id: 'page-reservation-detail' }
+        ]},
+        { href: 'prukazy.html', title: 'Moje průkazy', id: 'page-licenses', children: [
+          { href: 'muj-prukaz.html', title: 'Detail mého průkazu', id: 'page-license-mine' },
+          { href: 'pridat-prukaz.html', title: 'Přidat průkaz', id: 'page-license-add' }
+        ]},
+        { href: 'crew.html', title: 'Crew list', id: 'page-crew', children: [
+          { href: 'clen-posadky.html', title: 'Detail člena posádky', id: 'page-crew-member' },
+          { href: 'pridat-clena.html', title: 'Přidat člena posádky', id: 'page-crew-add' }
+        ]},
+        { href: 'oblibene.html', title: 'Oblíbené lodě', id: 'page-favorites' }
+      ]},
+      { href: 'o-nas.html', title: 'O nás', id: 'page-about' },
+      { href: 'kontakt.html', title: 'Kontakt', id: 'page-contact' }
+    ]}
+  ];
+
+  function countSitemapNodes(nodes) {
+    var count = 0;
+    nodes.forEach(function(n) {
+      count += 1;
+      if (n.children) count += countSitemapNodes(n.children);
+    });
+    return count;
+  }
+
+  function renderSitemapNode(node) {
+    var classes = ['sm-node'];
+    if (node.root) classes.push('sm-root');
+    if (node.group) classes.push('sm-group');
+    var icon = node.icon ? (node.icon + ' ') : '';
+    var id = node.id ? '<span class="sm-node-id">' + node.id + '</span>' : '';
+    var anchor = '<a class="' + classes.join(' ') + '" href="' + node.href + '">' + icon + node.title + ' ' + id + '</a>';
+    var inner = '';
+    if (node.children && node.children.length) {
+      inner = '<ul>' + node.children.map(function(c) { return '<li>' + renderSitemapNode(c) + '</li>'; }).join('') + '</ul>';
+    }
+    return anchor + inner;
+  }
+
+  function renderSitemap() {
+    var mount = document.getElementById('sitemap-tree');
+    if (!mount) return;
+    var total = countSitemapNodes(SITEMAP_TREE);
+    mount.innerHTML = '<ul class="sm-tree">' + SITEMAP_TREE.map(function(n) { return '<li>' + renderSitemapNode(n) + '</li>'; }).join('') + '</ul>';
+    document.querySelectorAll('[data-sitemap-count]').forEach(function(el) { el.textContent = total; });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderSitemap);
+  } else {
+    renderSitemap();
+  }
+
   // ── BOAT DATA ──────────────────────────────────────────
   const BOATS = [
     { name:"Bavaria C42", boatName:"Lady One", cat:"Plachetnice", marina:"ACI Marina Split", company:"Sunsail", year:2021, len:"12.8 m", cabins:3, berths:6, price:"36 000 Kč", rec:true,
@@ -47,8 +241,12 @@
     const favName = (b.name || '') + (b.boatName ? ' "' + b.boatName + '"' : '');
     return `
       <div class="boat-card" data-href="detail-lodi.html" role="link" tabindex="0">
-        <div class="card-img">
+        <div class="card-img" data-img-idx="0" data-img-total="5">
           <span class="card-cat-pill">${b.cat}</span>
+          <button type="button" class="card-img-arrow card-img-arrow--prev" aria-label="Předchozí obrázek"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button type="button" class="card-img-arrow card-img-arrow--next" aria-label="Další obrázek"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <span class="card-img-counter"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="card-img-counter-val">1 / 5</span></span>
+          <div class="card-img-dots"><span class="card-img-dot is-active"></span><span class="card-img-dot"></span><span class="card-img-dot"></span><span class="card-img-dot"></span><span class="card-img-dot"></span></div>
         </div>
         <div class="card-body">
           <div>
@@ -1092,6 +1290,26 @@
     if (!card) return;
     if (e.target.closest('a, button')) return;
     window.location.href = card.dataset.href;
+  });
+
+  // Galerie obrázků v kartě lodi — šipky přepínají aktivní tečku.
+  document.addEventListener('click', function(e) {
+    var arrow = e.target.closest('.card-img-arrow');
+    if (!arrow) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var imgBox = arrow.closest('.card-img');
+    if (!imgBox) return;
+    var dots = imgBox.querySelectorAll('.card-img-dot');
+    if (!dots.length) return;
+    var total = dots.length;
+    var current = parseInt(imgBox.dataset.imgIdx, 10) || 0;
+    var dir = arrow.classList.contains('card-img-arrow--next') ? 1 : -1;
+    var next = (current + dir + total) % total;
+    dots.forEach(function(d, i) { d.classList.toggle('is-active', i === next); });
+    imgBox.dataset.imgIdx = next;
+    var counter = imgBox.querySelector('.card-img-counter-val');
+    if (counter) counter.textContent = (next + 1) + ' / ' + total;
   });
   document.addEventListener('keydown', function(e) {
     if (e.key !== 'Enter' && e.key !== ' ') return;

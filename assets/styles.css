@@ -774,7 +774,45 @@
       background: var(--int); color: #fff;
       font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
       padding: 3px 8px; border-radius: 4px;
+      z-index: 2;
     }
+    .card-img-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,.9); border: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; padding: 0;
+      color: var(--text);
+      opacity: 0; transition: opacity .15s, background .15s, transform .15s;
+      box-shadow: 0 2px 6px rgba(0,0,0,.18);
+      z-index: 2;
+    }
+    .card-img:hover .card-img-arrow,
+    .boat-card:focus-within .card-img-arrow { opacity: 1; }
+    .card-img-arrow:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
+    .card-img-arrow--prev { left: 8px; }
+    .card-img-arrow--next { right: 8px; }
+    .card-img-counter {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(30,30,28,.72); color: #fff;
+      font-size: 11px; font-weight: 600;
+      padding: 3px 8px; border-radius: 12px;
+      display: inline-flex; align-items: center; gap: 5px;
+      pointer-events: none; z-index: 2;
+    }
+    .card-img-counter svg { display: block; }
+    .card-img-dots {
+      position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 4px;
+      pointer-events: none; z-index: 2;
+    }
+    .card-img-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,.55);
+      transition: background .2s, width .2s, border-radius .2s;
+      box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    }
+    .card-img-dot.is-active { background: #fff; width: 18px; border-radius: 4px; }
     .card-body {
       flex: 1; padding: 18px 20px; display: flex; flex-direction: column; justify-content: space-between;
       border-right: 1px solid var(--border);
@@ -1738,6 +1776,7 @@
     .bk-nav-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text); text-decoration: none; cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; }
     .bk-nav-back:hover { color: var(--int); }
     .bk-nav-back svg { flex-shrink: 0; }
+    .bk-nav-left { display: flex; align-items: center; gap: 22px; }
 
     .bk-stepper-wrap { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 40px; }
     .bk-stepper { max-width: var(--max); margin: 0 auto; display: flex; align-items: stretch; gap: 0; padding: 16px 0; }
@@ -2196,6 +2235,79 @@
     .acc-btn-ghost { height: 36px; padding: 0 20px; background: transparent; color: var(--int); border: 1.5px solid var(--int); border-radius: var(--radius); font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; }
     .license-upload-row { display: flex; gap: 10px; align-items: center; padding: 10px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); margin-bottom: 8px; font-size: 13px; }
     .license-upload-icon { width: 32px; height: 32px; background: var(--int-soft); border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--int); }
+
+    /* Můj účet — Průkazy */
+    .license-list-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; gap: 12px; flex-wrap: wrap; }
+    .license-list-toolbar-info { font-size: 13px; color: var(--muted); }
+    .license-list-row { display: grid; grid-template-columns: 36px minmax(0, 1.5fr) 150px 160px 130px; gap: 18px; align-items: center; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; transition: border-color .15s, box-shadow .15s; text-decoration: none; color: var(--text); }
+    .license-list-row:hover { border-color: var(--int); box-shadow: 0 4px 12px rgba(0,0,0,.04); }
+    .license-list-icon { width: 36px; height: 36px; background: var(--int-soft); color: var(--int); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .license-list-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .license-list-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .license-list-meta-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
+    .license-list-meta-val { font-size: 13px; color: var(--text); margin-top: 3px; font-weight: 500; }
+    .license-list-meta-val.is-warning { color: #b45309; }
+    .license-list-meta-val.is-expired { color: #b91c1c; }
+    .license-list-meta-val.is-warning::before, .license-list-meta-val.is-expired::before { content: "⚠ "; }
+    .license-list-cta { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 34px; padding: 0 14px; background: transparent; color: var(--int); border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: none; transition: background .15s, border-color .15s; justify-self: end; }
+    .license-list-cta:hover { background: var(--int-soft); border-color: var(--int); }
+    .license-list-empty { padding: 40px 20px; text-align: center; background: var(--surface); border: 1.5px dashed var(--border); border-radius: 10px; color: var(--muted); }
+
+    /* Form chips (multi-select tags) */
+    .acc-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--border); border-radius: 20px; background: var(--bg); font-size: 12px; font-weight: 500; cursor: pointer; user-select: none; transition: background .15s, border-color .15s, color .15s; }
+    .acc-chip:hover { border-color: var(--int); }
+    .acc-chip:has(input:checked) { background: var(--int-soft); border-color: var(--int); color: var(--int); font-weight: 600; }
+    .acc-chip input { width: 14px; height: 14px; accent-color: var(--int); cursor: pointer; }
+
+    /* Upload tiles */
+    .upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .upload-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 28px 18px; border: 1.5px dashed var(--border); border-radius: 10px; background: var(--bg); cursor: pointer; text-align: center; transition: background .15s, border-color .15s; }
+    .upload-tile:hover { border-color: var(--int); background: var(--int-soft); }
+    .upload-tile-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--int-soft); color: var(--int); display: flex; align-items: center; justify-content: center; margin-bottom: 4px; }
+    .upload-tile-title { font-size: 13px; font-weight: 700; color: var(--text); }
+    .upload-tile-sub { font-size: 12px; color: var(--muted); }
+    .upload-tile--narrow { flex-direction: row; padding: 14px 18px; justify-content: flex-start; gap: 14px; text-align: left; }
+    .upload-tile--narrow .upload-tile-icon { width: 36px; height: 36px; margin: 0; flex-shrink: 0; }
+    @media (max-width: 600px) { .upload-grid { grid-template-columns: 1fr; } }
+
+    /* Můj účet — Crew list */
+    .crew-list-row { display: grid; grid-template-columns: 44px minmax(0, 1.8fr) 130px 150px 150px 110px; gap: 18px; align-items: center; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; transition: border-color .15s, box-shadow .15s; text-decoration: none; color: var(--text); }
+    .crew-list-row:hover { border-color: var(--int); box-shadow: 0 4px 12px rgba(0,0,0,.04); }
+    .crew-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--int-soft); color: var(--int); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0; letter-spacing: -.01em; }
+    .crew-avatar--lg { width: 72px; height: 72px; font-size: 22px; }
+    .crew-list-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .crew-list-rel { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 12px; background: var(--int-soft); color: var(--int); margin-top: 4px; }
+    .crew-list-meta-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
+    .crew-list-meta-val { font-size: 13px; color: var(--text); margin-top: 3px; font-weight: 500; }
+    .crew-list-meta-val.is-warning { color: #b45309; }
+    .crew-list-meta-val.is-warning::before { content: "⚠ "; }
+    @media (max-width: 900px) {
+      .crew-list-row { grid-template-columns: 44px 1fr; gap: 10px 12px; }
+      .crew-list-row > *:nth-child(n+3) { grid-column: 1 / -1; padding-left: 56px; }
+      .license-list-cta { justify-self: start; }
+    }
+
+    /* Detail jednoho nahraného průkazu */
+    .license-mine-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; }
+    .license-mine-images { display: flex; flex-direction: column; gap: 14px; }
+    .license-mine-thumb { aspect-ratio: 3/2; background: var(--cross-bg), var(--img-bg); border-radius: 10px; border: 1px solid var(--border); position: relative; overflow: hidden; cursor: pointer; transition: border-color .15s; }
+    .license-mine-thumb:hover { border-color: var(--int); }
+    .license-mine-thumb-label { position: absolute; bottom: 10px; left: 12px; background: rgba(30,30,28,.85); color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 4px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .license-mine-thumb-zoom { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; background: rgba(30,30,28,.7); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+    .license-mine-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+    .license-mine-info dl { display: grid; grid-template-columns: 150px 1fr; row-gap: 12px; column-gap: 14px; margin: 0; font-size: 13px; }
+    .license-mine-info dt { color: var(--muted); font-weight: 500; padding-top: 1px; }
+    .license-mine-info dd { font-weight: 600; color: var(--text); margin: 0; }
+    .license-mine-status { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .license-mine-status.is-valid { background: #e6f9f0; color: #1a7a47; }
+    .license-mine-status.is-warning { background: #fef3c7; color: #b45309; }
+    .license-mine-status.is-expired { background: #fee2e2; color: #b91c1c; }
+    @media (max-width: 800px) {
+      .license-mine-grid { grid-template-columns: 1fr; }
+      .license-list-row { grid-template-columns: 36px 1fr; gap: 10px 12px; }
+      .license-list-row > *:nth-child(n+3) { grid-column: 1 / -1; padding-left: 48px; }
+      .license-list-cta { justify-self: start; }
+    }
     .crew-row { display: grid; grid-template-columns: 2fr 2fr 1fr auto; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
 
     /* Reservations */
