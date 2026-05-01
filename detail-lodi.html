@@ -185,41 +185,81 @@
         <!-- DOSTUPNÉ TERMÍNY -->
         <div class="detail-section" id="sec-terminy">
           <div class="detail-section-title">Dostupné termíny</div>
-          <div class="cal-legend">
-            <div class="cal-legend-item"><div class="cal-dot free"></div>So – volný termín</div>
-            <div class="cal-legend-item"><div class="cal-dot taken"></div>So – obsazeno</div>
-            <div class="cal-legend-item"><div class="cal-dot opt"></div>So – předrezervace</div>
-          </div>
-          <div class="cal-months">
-            <div>
-              <div class="cal-month-title">Červen 2025</div>
-              <div class="cal-grid">
-                <div class="cd hdr">Po</div><div class="cd hdr">Út</div><div class="cd hdr">St</div><div class="cd hdr">Čt</div><div class="cd hdr">Pá</div><div class="cd hdr">So</div><div class="cd hdr">Ne</div>
-                <div class="cd"></div><div class="cd"></div><div class="cd"></div><div class="cd"></div><div class="cd"></div><div class="cd sat taken">1</div><div class="cd">2</div>
-                <div class="cd">3</div><div class="cd">4</div><div class="cd">5</div><div class="cd">6</div><div class="cd">7</div><div class="cd sat">8<span class="sat-price">42 500 Kč</span></div><div class="cd">9</div>
-                <div class="cd">10</div><div class="cd">11</div><div class="cd">12</div><div class="cd">13</div><div class="cd">14</div><div class="cd sat opt">15<span class="sat-price">39 900 Kč</span></div><div class="cd">16</div>
-                <div class="cd">17</div><div class="cd">18</div><div class="cd">19</div><div class="cd">20</div><div class="cd">21</div><div class="cd sat">22<span class="sat-price">41 200 Kč</span></div><div class="cd">23</div>
-                <div class="cd">24</div><div class="cd">25</div><div class="cd">26</div><div class="cd">27</div><div class="cd">28</div><div class="cd sat">29<span class="sat-price">38 900 Kč</span></div><div class="cd">30</div>
+          <div class="term-slider">
+            <button class="term-nav term-nav--prev" type="button" aria-label="Předchozí termíny">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="term-list">
+              <label class="term-box">
+                <input type="radio" name="term" value="2025-06-08" />
+                <div class="term-box-inner">
+                  <div class="term-status term-status--free"><span class="term-status-dot"></span>Volný</div>
+                  <div class="term-range">8. – 15. 6. 2025</div>
+                  <div class="term-price">42 500 Kč</div>
+                </div>
+              </label>
+              <label class="term-box term-box--opt">
+                <input type="radio" name="term" value="2025-06-15" />
+                <div class="term-box-inner">
+                  <div class="term-status term-status--opt"><span class="term-status-dot"></span>Předrezervace</div>
+                  <div class="term-range">15. – 22. 6. 2025</div>
+                  <div class="term-price">39 900 Kč</div>
+                </div>
+              </label>
+              <label class="term-box">
+                <input type="radio" name="term" value="2025-06-22" checked />
+                <div class="term-box-inner">
+                  <div class="term-status term-status--free"><span class="term-status-dot"></span>Volný</div>
+                  <div class="term-range">22. – 29. 6. 2025</div>
+                  <div class="term-price">41 200 Kč</div>
+                </div>
+              </label>
+              <label class="term-box">
+                <input type="radio" name="term" value="2025-06-29" />
+                <div class="term-box-inner">
+                  <div class="term-status term-status--free"><span class="term-status-dot"></span>Volný</div>
+                  <div class="term-range">29. 6. – 6. 7. 2025</div>
+                  <div class="term-price">38 900 Kč</div>
+                </div>
+              </label>
+              <div class="term-box term-box--taken" aria-disabled="true">
+                <div class="term-box-inner">
+                  <div class="term-status term-status--taken"><span class="term-status-dot"></span>Rezervováno</div>
+                  <div class="term-range">6. – 13. 7. 2025</div>
+                  <div class="term-price">42 500 Kč</div>
+                </div>
+              </div>
+              <div class="term-box term-box--taken" aria-disabled="true">
+                <div class="term-box-inner">
+                  <div class="term-status term-status--taken"><span class="term-status-dot"></span>Rezervováno</div>
+                  <div class="term-range">13. – 20. 7. 2025</div>
+                  <div class="term-price">44 900 Kč</div>
+                </div>
+              </div>
+              <div class="term-box term-box--taken" aria-disabled="true">
+                <div class="term-box-inner">
+                  <div class="term-status term-status--taken"><span class="term-status-dot"></span>Rezervováno</div>
+                  <div class="term-range">20. – 27. 7. 2025</div>
+                  <div class="term-price">46 200 Kč</div>
+                </div>
+              </div>
+              <div class="term-box term-box--taken" aria-disabled="true">
+                <div class="term-box-inner">
+                  <div class="term-status term-status--taken"><span class="term-status-dot"></span>Rezervováno</div>
+                  <div class="term-range">27. 7. – 3. 8. 2025</div>
+                  <div class="term-price">47 500 Kč</div>
+                </div>
               </div>
             </div>
-            <div>
-              <div class="cal-month-title">Červenec 2025</div>
-              <div class="cal-grid">
-                <div class="cd hdr">Po</div><div class="cd hdr">Út</div><div class="cd hdr">St</div><div class="cd hdr">Čt</div><div class="cd hdr">Pá</div><div class="cd hdr">So</div><div class="cd hdr">Ne</div>
-                <div class="cd">1</div><div class="cd">2</div><div class="cd">3</div><div class="cd">4</div><div class="cd">5</div><div class="cd sat taken">6</div><div class="cd">7</div>
-                <div class="cd">8</div><div class="cd">9</div><div class="cd">10</div><div class="cd">11</div><div class="cd">12</div><div class="cd sat taken">13</div><div class="cd">14</div>
-                <div class="cd">15</div><div class="cd">16</div><div class="cd">17</div><div class="cd">18</div><div class="cd">19</div><div class="cd sat taken">20</div><div class="cd">21</div>
-                <div class="cd">22</div><div class="cd">23</div><div class="cd">24</div><div class="cd">25</div><div class="cd">26</div><div class="cd sat taken">27</div><div class="cd">28</div>
-                <div class="cd">29</div><div class="cd">30</div><div class="cd">31</div>
-              </div>
-            </div>
+            <button class="term-nav term-nav--next" type="button" aria-label="Další termíny">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
         </div>
 
         <!-- BALÍČKY REZERVACE -->
         <div class="detail-section" id="sec-balicky">
           <div class="detail-section-title">Vyberte balíček rezervace</div>
-          <p class="pkg-intro">Balíčky se liší výší zálohy a rozsahem ochrany. Čím vyšší ochrana, tím vyšší cena — vyberte si podle své preference.</p>
           <div class="pkg-list">
 
             <label class="pkg-card">
