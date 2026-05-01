@@ -21,13 +21,13 @@
       </a>
       <ul class="nav-links">
         <li><a  href="pronajem-lodi.html">Pronájem lodí</a></li>
-        <li><a  href="destinace.html">Destinace</a></li>
         <li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li>
-        <li><a  href="o-nas.html">O nás</a></li>
+        <li><a  href="eshop.html">E-shop</a></li>
         <li><a  href="magazin.html">Magazín</a></li>
-        <li><a  href="eshop.html">E-shop</a></li><li><a  href="kontakt.html">Kontakt</a></li>
+        <li><a  href="o-nas.html">O nás</a></li>
+        <li><a  href="kontakt.html">Kontakt</a></li>
       </ul>
-      <div class="nav-actions"><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><button class="nav-icon-btn" type="button" title="Porovnání" aria-label="Porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8h14"/><path d="M3 14l2-6 2 6a2 2 0 1 1-4 0z"/><path d="M17 14l2-6 2 6a2 2 0 1 1-4 0z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button>
+      <div class="nav-actions"><a class="nav-phone" href="tel:+420233354050" aria-label="+420 233 354 050"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="nav-phone-num">+420 233 354 050</span></a><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button>
       </div>
     </div>
   </nav>
@@ -37,19 +37,15 @@
     <div class="results-hero-inner">
       <h1 class="results-heading" id="resultsHeading">Pronájem lodí</h1>
       <form class="search-form" novalidate>
-        <div class="sf-field">
+        <div class="sf-field sf-field--destination">
           <span class="sf-label">Destinace</span>
-          <select name="location" data-multi data-optgroup-selectable data-placeholder="Vyberte destinaci…">
-            <option value="" disabled>Vyberte destinaci…</option>
-            <optgroup label="Chorvatsko"><option selected>Split</option><option>Dubrovník</option><option>Šibenik</option><option>Zadar</option><option>Trogir</option></optgroup>
-            <optgroup label="Řecko"><option>Athény (Alimos)</option><option>Korfu</option><option>Rhodos</option></optgroup>
-            <optgroup label="Itálie"><option>Sicílie</option><option>Sardinie</option></optgroup>
-            <optgroup label="Španělsko"><option>Palma de Mallorca</option><option>Barcelona</option></optgroup>
-            <optgroup label="Francie"><option>Francouzská riviéra</option><option>Korsika</option></optgroup>
-            <optgroup label="Holandsko"><option>Amsterdam (IJmeer)</option><option>Fríské ostrovy</option></optgroup>
-          </select>
+          <div class="sf-combobox" data-destination-search aria-expanded="false">
+            <input class="sf-combobox-input" type="text" name="location" value="Split" placeholder="Vyberte zemi, oblast nebo přístav…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" />
+            <svg class="sf-combobox-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            <div class="sf-combobox-dropdown" hidden></div>
+          </div>
         </div>
-        <div class="sf-field">
+        <div class="sf-field sf-field--dates">
           <span class="sf-label">Termín</span>
           <div class="date-combined">
             <input type="date" name="from" value="2025-06-14" />
@@ -57,7 +53,7 @@
             <input type="date" name="to" value="2025-06-21" />
           </div>
         </div>
-        <div class="sf-field">
+        <div class="sf-field sf-field--category">
           <span class="sf-label">Typ lodi</span>
           <select name="category" data-multi data-placeholder="Všechny typy">
             <option value="" disabled selected>Všechny typy</option>
@@ -67,6 +63,15 @@
             <option value="gulet">Gulet</option>
             <option value="river">Říční loď</option>
           </select>
+        </div>
+        <div class="sf-field sf-field--people">
+          <span class="sf-label">Počet osob</span>
+          <div class="sf-people" data-people-stepper data-min="1" data-max="12" data-value="4">
+            <button type="button" class="sf-people-btn" data-step="-1" aria-label="Méně osob">−</button>
+            <span class="sf-people-val">4 osoby</span>
+            <button type="button" class="sf-people-btn" data-step="1" aria-label="Více osob">+</button>
+            <input type="hidden" name="people" value="4" />
+          </div>
         </div>
         <button type="button" class="btn-search">Hledat lodě</button>
       </form>
@@ -119,55 +124,126 @@
           </div>
         </div>
         <div class="filter-group">
-          <div class="filter-group-title">Cena za celé období (Kč)</div>
-          <div class="range-dual" data-unit="Kč">
-            <div class="range-track"></div>
-            <div class="range-fill"></div>
-            <input type="range" class="range-min" min="0" max="300000" value="20000" step="1000" />
-            <input type="range" class="range-max" min="0" max="300000" value="200000" step="1000" />
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Počet osob</div>
+            <div class="counter-group">
+              <div class="counter-row"><span class="counter-label">Min. osob</span><div class="counter"><button type="button" data-action="dec" aria-label="Snížit">−</button><input type="number" class="counter-val" inputmode="numeric" min="0" value="0" /><button type="button" data-action="inc" aria-label="Zvýšit">+</button></div></div>
+            </div>
+            <div class="filter-hint">= počet lůžek na lodi</div>
           </div>
-          <div class="range-row">
-            <span class="range-val-min">20 000 Kč</span>
-            <span class="range-val-max">200 000 Kč</span>
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Počet kajut</div>
+            <div class="counter-group">
+              <div class="counter-row"><span class="counter-label">Min. kajut</span><div class="counter"><button type="button" data-action="dec" aria-label="Snížit">−</button><input type="number" class="counter-val" inputmode="numeric" min="0" value="0" /><button type="button" data-action="inc" aria-label="Zvýšit">+</button></div></div>
+            </div>
           </div>
-        </div>
-        <div class="filter-group">
-          <div class="filter-group-title">Rok výroby</div>
-          <div class="range-dual" data-unit="">
-            <div class="range-track"></div>
-            <div class="range-fill"></div>
-            <input type="range" class="range-min" min="2010" max="2024" value="2010" />
-            <input type="range" class="range-max" min="2010" max="2024" value="2024" />
-          </div>
-          <div class="range-row">
-            <span class="range-val-min">2010</span>
-            <span class="range-val-max">2024</span>
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Počet toalet</div>
+            <div class="counter-group">
+              <div class="counter-row"><span class="counter-label">Min. toalet</span><div class="counter"><button type="button" data-action="dec" aria-label="Snížit">−</button><input type="number" class="counter-val" inputmode="numeric" min="0" value="0" /><button type="button" data-action="inc" aria-label="Zvýšit">+</button></div></div>
+            </div>
           </div>
         </div>
         <div class="filter-group">
-          <div class="filter-group-title">Délka lodi (m)</div>
-          <div class="range-dual" data-unit="m" data-decimals="1">
-            <div class="range-track"></div>
-            <div class="range-fill"></div>
-            <input type="range" class="range-min" min="6" max="25" value="6" step="0.5" />
-            <input type="range" class="range-max" min="6" max="25" value="20" step="0.5" />
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Rok výroby</div>
+            <div class="range-dual" data-unit="">
+              <div class="range-track"></div>
+              <div class="range-fill"></div>
+              <input type="range" class="range-min" min="2010" max="2024" value="2010" />
+              <input type="range" class="range-max" min="2010" max="2024" value="2024" />
+            </div>
+            <div class="range-row">
+              <input type="text" class="range-val-min range-input" inputmode="numeric" value="2010" aria-label="Rok od" />
+              <span class="range-sep" aria-hidden="true">–</span>
+              <input type="text" class="range-val-max range-input" inputmode="numeric" value="2024" aria-label="Rok do" />
+            </div>
           </div>
-          <div class="range-row">
-            <span class="range-val-min">6 m</span>
-            <span class="range-val-max">20 m</span>
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Délka lodi</div>
+            <div class="range-dual" data-unit="m" data-decimals="1">
+              <div class="range-track"></div>
+              <div class="range-fill"></div>
+              <input type="range" class="range-min" min="6" max="25" value="6" step="0.5" />
+              <input type="range" class="range-max" min="6" max="25" value="20" step="0.5" />
+            </div>
+            <div class="range-row">
+              <span class="range-val-with-sub"><input type="text" class="range-val-min range-input" inputmode="decimal" value="6 m" aria-label="Délka od" /> <span class="range-val-ft">(19,7 ft)</span></span>
+              <span class="range-sep" aria-hidden="true">–</span>
+              <span class="range-val-with-sub"><input type="text" class="range-val-max range-input" inputmode="decimal" value="20 m" aria-label="Délka do" /> <span class="range-val-ft">(65,6 ft)</span></span>
+            </div>
+          </div>
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Cena za celé období (Kč)</div>
+            <div class="range-dual" data-unit="Kč">
+              <div class="range-track"></div>
+              <div class="range-fill"></div>
+              <input type="range" class="range-min" min="0" max="300000" value="20000" step="1000" />
+              <input type="range" class="range-max" min="0" max="300000" value="200000" step="1000" />
+            </div>
+            <div class="range-row">
+              <input type="text" class="range-val-min range-input" inputmode="numeric" value="20 000 Kč" aria-label="Cena od" />
+              <span class="range-sep" aria-hidden="true">–</span>
+              <input type="text" class="range-val-max range-input" inputmode="numeric" value="200 000 Kč" aria-label="Cena do" />
+            </div>
           </div>
         </div>
         <div class="filter-group">
-          <div class="filter-group-title">Osoby / kajuty</div>
-          <div class="counter-group">
-            <div class="counter-row"><span class="counter-label">Počet osob</span><div class="counter"><button type="button" data-action="dec" aria-label="Snížit">−</button><input type="number" class="counter-val" inputmode="numeric" min="0" value="0" /><button type="button" data-action="inc" aria-label="Zvýšit">+</button></div></div>
-            <div class="counter-row"><span class="counter-label">Kajuty</span><div class="counter"><button type="button" data-action="dec" aria-label="Snížit">−</button><input type="number" class="counter-val" inputmode="numeric" min="0" value="0" /><button type="button" data-action="inc" aria-label="Zvýšit">+</button></div></div>
-            <div class="counter-row"><span class="counter-label">Lůžka</span><div class="counter"><button type="button" data-action="dec" aria-label="Snížit">−</button><input type="number" class="counter-val" inputmode="numeric" min="0" value="0" /><button type="button" data-action="inc" aria-label="Zvýšit">+</button></div></div>
-            <div class="counter-row"><span class="counter-label">Toalety</span><div class="counter"><button type="button" data-action="dec" aria-label="Snížit">−</button><input type="number" class="counter-val" inputmode="numeric" min="0" value="0" /><button type="button" data-action="inc" aria-label="Zvýšit">+</button></div></div>
+          <div class="filter-group-title">Plachty</div>
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Hlavní plachta</div>
+            <div class="filter-checks">
+              <label class="filter-check"><input type="checkbox" /> <span>Rolovací</span></label>
+              <label class="filter-check"><input type="checkbox" /> <span>Klasická</span></label>
+            </div>
+          </div>
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Genoa plachta</div>
+            <div class="filter-checks">
+              <label class="filter-check"><input type="checkbox" /> <span>Samopřehazovací</span></label>
+              <label class="filter-check"><input type="checkbox" /> <span>Překrývací</span></label>
+            </div>
           </div>
         </div>
-        <div class="filter-group">
+        <div class="filter-group" data-rating-filter>
+          <div class="filter-group-title">Hodnocení</div>
+          <div class="rating-filter">
+            <button type="button" class="rating-pill is-active" data-min="0">
+              <span class="rating-pill-stars" aria-hidden="true">☆☆☆☆☆</span>
+              <span class="rating-pill-label">Cokoli</span>
+              <span class="rating-pill-count">(134)</span>
+            </button>
+            <button type="button" class="rating-pill" data-min="3">
+              <span class="rating-pill-stars" aria-hidden="true">★★★<span class="rating-pill-stars-empty">☆☆</span></span>
+              <span class="rating-pill-label">3,0+</span>
+              <span class="rating-pill-count">(118)</span>
+            </button>
+            <button type="button" class="rating-pill" data-min="4">
+              <span class="rating-pill-stars" aria-hidden="true">★★★★<span class="rating-pill-stars-empty">☆</span></span>
+              <span class="rating-pill-label">4,0+</span>
+              <span class="rating-pill-count">(86)</span>
+            </button>
+            <button type="button" class="rating-pill" data-min="4.5">
+              <span class="rating-pill-stars" aria-hidden="true">★★★★½</span>
+              <span class="rating-pill-label">4,5+</span>
+              <span class="rating-pill-count">(48)</span>
+            </button>
+            <button type="button" class="rating-pill" data-min="5">
+              <span class="rating-pill-stars" aria-hidden="true">★★★★★</span>
+              <span class="rating-pill-label">jen 5,0</span>
+              <span class="rating-pill-count">(12)</span>
+            </button>
+          </div>
+        </div>
+        <div class="filter-group" data-filter-search-group>
           <div class="filter-group-title">Výbava</div>
+          <div class="filter-search-wrap">
+            <svg class="filter-search-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="filter-search-input" placeholder="Hledat ve výbavě…" autocomplete="off" aria-label="Hledat ve výbavě" />
+            <button type="button" class="filter-search-clear" aria-label="Vymazat" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
           <div class="filter-checks">
             <label class="filter-check"><input type="checkbox" /> <span>Klimatizace</span></label>
             <label class="filter-check"><input type="checkbox" /> <span>Závěsný motor + dinghy</span></label>
@@ -187,21 +263,13 @@
             <label class="filter-check"><input type="checkbox" /> <span>Šnorchlovací sada</span></label>
             <label class="filter-check"><input type="checkbox" /> <span>Kokpitový stůl</span></label>
           </div>
+          <div class="filter-search-empty" hidden>Ve výbavě nic nenalezeno.</div>
           <button type="button" class="filter-more">+ Ukázat více výbavy</button>
         </div>
         <div class="filter-group">
-          <div class="filter-group-title">Typ hlavní plachty</div>
+          <div class="filter-group-title">Speciální</div>
           <div class="filter-checks">
-            <label class="filter-check"><input type="checkbox" /> <span>Klasická</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Rolovací</span></label>
-          </div>
-        </div>
-        <div class="filter-group">
-          <div class="filter-group-title">Služby a podmínky</div>
-          <div class="filter-checks">
-            <label class="filter-check"><input type="checkbox" /> <span>Pet friendly</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Bezplatné zrušení</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Okamžité potvrzení</span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Závodní lodě na regatu</span></label>
           </div>
         </div>
         <div class="filter-group">
@@ -335,6 +403,14 @@
             </div>
           </div>
         </div>
+        <div class="filter-group">
+          <div class="filter-group-title">Služby a podmínky</div>
+          <div class="filter-checks">
+            <label class="filter-check"><input type="checkbox" /> <span>Pet friendly</span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Bezplatné zrušení</span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Okamžité potvrzení</span></label>
+          </div>
+        </div>
         <div class="filter-group filter-group-toggles">
           <div class="filter-toggle-row">
             <span class="filter-toggle-label">Pouze slevněné</span>
@@ -345,7 +421,7 @@
             <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
           </div>
           <div class="filter-toggle-row">
-            <span class="filter-toggle-label">Zrušení zdarma</span>
+            <span class="filter-toggle-label">Zobrazit zarezervované</span>
             <label class="toggle"><input type="checkbox" /><span class="toggle-slider"></span></label>
           </div>
         </div>

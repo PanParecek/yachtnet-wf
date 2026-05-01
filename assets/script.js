@@ -61,6 +61,11 @@
           '<div><div class="sp-stars">★★★★★</div><div class="sp-label">' + label + '</div></div>' +
         '</div>' +
         '<div class="sp-divider"></div>' +
+        '<div class="sp-trust" title="Yacht-Pool International · Financial Security System">' +
+          '<span class="sp-trust-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>' +
+          '<span class="sp-trust-text"><span class="sp-trust-title">Checked &amp; Trusted</span><span class="sp-trust-sub">Yacht-Pool · valid 2026</span></span>' +
+        '</div>' +
+        '<div class="sp-divider"></div>' +
         '<div class="sp-testimonial">' +
           '<span class="sp-quote-icon" aria-hidden="true">"</span>' +
           '<span class="sp-quote-text">' + quote + '</span>' +
@@ -195,41 +200,300 @@
     renderSitemap();
   }
 
+  // ── DESTINATIONS REGISTRY ───────────────────────────────
+  // Plný seznam zemí, oblastí a marín pro search combobox.
+  const DESTINATIONS = [
+    // Chorvatsko
+    { type: 'country', flag: '🇭🇷', name: 'Chorvatsko', country: 'Chorvatsko' },
+    { type: 'region', flag: '🇭🇷', name: 'Dalmácie — Střed', country: 'Chorvatsko' },
+    { type: 'region', flag: '🇭🇷', name: 'Dalmácie — Sever', country: 'Chorvatsko' },
+    { type: 'region', flag: '🇭🇷', name: 'Dalmácie — Jih', country: 'Chorvatsko' },
+    { type: 'region', flag: '🇭🇷', name: 'Kvarner', country: 'Chorvatsko' },
+    { type: 'region', flag: '🇭🇷', name: 'Istrie', country: 'Chorvatsko' },
+    { type: 'region', flag: '🇭🇷', name: 'Ostrovy (Chorvatsko)', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Split', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Trogir', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Šibenik', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Kaštela', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Marina Lav', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Zadar', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Biograd', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Murter', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Sukošan', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Dubrovník', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Korčula', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Mljet', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Ploče', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Rijeka', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Mali Lošinj', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Krk', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Rab', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Pula', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Rovinj', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Poreč', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Umag', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Hvar', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Brač', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Vis', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Šolta', country: 'Chorvatsko' },
+    { type: 'marina', flag: '🇭🇷', name: 'Lastovo', country: 'Chorvatsko' },
+    // Itálie
+    { type: 'country', flag: '🇮🇹', name: 'Itálie', country: 'Itálie' },
+    { type: 'region', flag: '🇮🇹', name: 'Sicílie', country: 'Itálie' },
+    { type: 'region', flag: '🇮🇹', name: 'Sardinie', country: 'Itálie' },
+    { type: 'region', flag: '🇮🇹', name: 'Toskánsko', country: 'Itálie' },
+    { type: 'region', flag: '🇮🇹', name: 'Kampánie', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Palermo', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Catania', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Trapani', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Cagliari', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Olbia', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Porto Cervo', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Alghero', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Livorno', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Elba', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Neapol', country: 'Itálie' },
+    { type: 'marina', flag: '🇮🇹', name: 'Amalfi', country: 'Itálie' },
+    // Řecko
+    { type: 'country', flag: '🇬🇷', name: 'Řecko', country: 'Řecko' },
+    { type: 'region', flag: '🇬🇷', name: 'Athény & Sarónský záliv', country: 'Řecko' },
+    { type: 'region', flag: '🇬🇷', name: 'Iónské ostrovy', country: 'Řecko' },
+    { type: 'region', flag: '🇬🇷', name: 'Dodekanéské ostrovy', country: 'Řecko' },
+    { type: 'region', flag: '🇬🇷', name: 'Kykladské ostrovy', country: 'Řecko' },
+    { type: 'marina', flag: '🇬🇷', name: 'Athény (Alimos)', country: 'Řecko' },
+    { type: 'marina', flag: '🇬🇷', name: 'Lavrio', country: 'Řecko' },
+    { type: 'marina', flag: '🇬🇷', name: 'Korfu', country: 'Řecko' },
+    { type: 'marina', flag: '🇬🇷', name: 'Lefkáda', country: 'Řecko' },
+    { type: 'marina', flag: '🇬🇷', name: 'Kos', country: 'Řecko' },
+    { type: 'marina', flag: '🇬🇷', name: 'Rhodos', country: 'Řecko' },
+    { type: 'marina', flag: '🇬🇷', name: 'Mykonos', country: 'Řecko' },
+    { type: 'marina', flag: '🇬🇷', name: 'Santorini', country: 'Řecko' },
+    // Španělsko
+    { type: 'country', flag: '🇪🇸', name: 'Španělsko', country: 'Španělsko' },
+    { type: 'region', flag: '🇪🇸', name: 'Baleárské ostrovy', country: 'Španělsko' },
+    { type: 'region', flag: '🇪🇸', name: 'Costa Brava', country: 'Španělsko' },
+    { type: 'marina', flag: '🇪🇸', name: 'Palma de Mallorca', country: 'Španělsko' },
+    { type: 'marina', flag: '🇪🇸', name: 'Ibiza', country: 'Španělsko' },
+    { type: 'marina', flag: '🇪🇸', name: 'Menorca', country: 'Španělsko' },
+    { type: 'marina', flag: '🇪🇸', name: 'Barcelona', country: 'Španělsko' },
+    // Francie
+    { type: 'country', flag: '🇫🇷', name: 'Francie', country: 'Francie' },
+    { type: 'region', flag: '🇫🇷', name: 'Francouzská riviéra', country: 'Francie' },
+    { type: 'region', flag: '🇫🇷', name: 'Korsika', country: 'Francie' },
+    { type: 'marina', flag: '🇫🇷', name: 'Cannes', country: 'Francie' },
+    { type: 'marina', flag: '🇫🇷', name: 'Nice', country: 'Francie' },
+    { type: 'marina', flag: '🇫🇷', name: 'Saint-Tropez', country: 'Francie' },
+    { type: 'marina', flag: '🇫🇷', name: 'Ajaccio', country: 'Francie' },
+    // Turecko
+    { type: 'country', flag: '🇹🇷', name: 'Turecko', country: 'Turecko' },
+    { type: 'marina', flag: '🇹🇷', name: 'Bodrum', country: 'Turecko' },
+    { type: 'marina', flag: '🇹🇷', name: 'Marmaris', country: 'Turecko' },
+    { type: 'marina', flag: '🇹🇷', name: 'Göcek', country: 'Turecko' },
+    { type: 'marina', flag: '🇹🇷', name: 'Fethiye', country: 'Turecko' },
+    // Holandsko
+    { type: 'country', flag: '🇳🇱', name: 'Holandsko', country: 'Holandsko' },
+    { type: 'marina', flag: '🇳🇱', name: 'Amsterdam (IJmeer)', country: 'Holandsko' },
+    { type: 'marina', flag: '🇳🇱', name: 'Fríské ostrovy', country: 'Holandsko' }
+  ];
+
+  const DEST_TYPE_LABEL = { country: 'Země', region: 'Oblast', marina: 'Přístav' };
+
+  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, function(c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); }
+
+  function highlightMatch(name, q) {
+    if (!q) return escapeHtml(name);
+    var idx = name.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1) return escapeHtml(name);
+    return escapeHtml(name.slice(0, idx)) + '<mark>' + escapeHtml(name.slice(idx, idx + q.length)) + '</mark>' + escapeHtml(name.slice(idx + q.length));
+  }
+
+  function initDestinationSearch() {
+    document.querySelectorAll('[data-destination-search]').forEach(function(box) {
+      var input = box.querySelector('.sf-combobox-input');
+      var dropdown = box.querySelector('.sf-combobox-dropdown');
+      if (!input || !dropdown) return;
+      var activeIdx = -1;
+      var results = [];
+
+      function render(filter) {
+        var q = (filter || '').trim();
+        var ql = q.toLowerCase();
+        results = ql
+          ? DESTINATIONS.filter(function(d) { return d.name.toLowerCase().indexOf(ql) !== -1 || d.country.toLowerCase().indexOf(ql) !== -1; })
+          : DESTINATIONS.slice();
+        activeIdx = -1;
+        if (!results.length) {
+          dropdown.innerHTML = '<div class="sf-combobox-empty">Pro „' + escapeHtml(q) + '" nic nenalezeno.</div>';
+          return;
+        }
+        // Skupiny: country, region, marina (zachovává pořadí registru)
+        var html = '';
+        var lastType = '';
+        results.forEach(function(d, i) {
+          if (d.type !== lastType) {
+            html += '<div class="sf-combobox-section-title">' + (DEST_TYPE_LABEL[d.type] || d.type) + (d.type === 'marina' ? 'y' : (d.type === 'region' ? 'i' : '')) + '</div>';
+            lastType = d.type;
+          }
+          html += '<button type="button" class="sf-combobox-item" data-idx="' + i + '" data-value="' + escapeHtml(d.name) + '">' +
+            '<span class="sf-combobox-flag">' + d.flag + '</span>' +
+            '<span class="sf-combobox-name">' + highlightMatch(d.name, q) + '</span>' +
+            '<span class="sf-combobox-tag">' + (DEST_TYPE_LABEL[d.type] || d.type) + '</span>' +
+          '</button>';
+        });
+        dropdown.innerHTML = html;
+      }
+
+      function open() {
+        render(input.value);
+        dropdown.removeAttribute('hidden');
+        box.setAttribute('aria-expanded', 'true');
+        input.setAttribute('aria-expanded', 'true');
+      }
+
+      function close() {
+        dropdown.setAttribute('hidden', '');
+        box.setAttribute('aria-expanded', 'false');
+        input.setAttribute('aria-expanded', 'false');
+      }
+
+      function selectActive() {
+        var items = dropdown.querySelectorAll('.sf-combobox-item');
+        items.forEach(function(it, i) { it.classList.toggle('is-active', i === activeIdx); });
+        var active = items[activeIdx];
+        if (active) active.scrollIntoView({ block: 'nearest' });
+      }
+
+      input.addEventListener('focus', open);
+      input.addEventListener('input', function() { open(); });
+      input.addEventListener('blur', function() { setTimeout(close, 150); });
+      input.addEventListener('keydown', function(e) {
+        var items = dropdown.querySelectorAll('.sf-combobox-item');
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (dropdown.hasAttribute('hidden')) open();
+          activeIdx = Math.min(activeIdx + 1, items.length - 1);
+          selectActive();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          activeIdx = Math.max(activeIdx - 1, 0);
+          selectActive();
+        } else if (e.key === 'Enter') {
+          if (activeIdx >= 0 && items[activeIdx]) {
+            e.preventDefault();
+            input.value = items[activeIdx].dataset.value;
+            close();
+          }
+        } else if (e.key === 'Escape') {
+          close();
+          input.blur();
+        }
+      });
+
+      dropdown.addEventListener('mousedown', function(e) {
+        var item = e.target.closest('.sf-combobox-item');
+        if (!item) return;
+        e.preventDefault();
+        input.value = item.dataset.value;
+        close();
+      });
+    });
+  }
+
+  function initPeopleStepper() {
+    document.querySelectorAll('[data-people-stepper]').forEach(function(box) {
+      var dec = box.querySelector('[data-step="-1"]');
+      var inc = box.querySelector('[data-step="1"]');
+      var val = box.querySelector('.sf-people-val');
+      var hidden = box.querySelector('input[type="hidden"]');
+      var min = parseInt(box.dataset.min, 10) || 1;
+      var max = parseInt(box.dataset.max, 10) || 12;
+      var current = parseInt(box.dataset.value || hidden && hidden.value, 10) || 2;
+
+      function fmt(n) { return n + ' ' + (n === 1 ? 'osoba' : (n >= 2 && n <= 4 ? 'osoby' : 'osob')) + (n >= max ? '+' : ''); }
+
+      function update() {
+        if (val) val.textContent = fmt(current);
+        if (hidden) hidden.value = current;
+        if (dec) dec.disabled = current <= min;
+        if (inc) inc.disabled = current >= max;
+      }
+
+      if (dec) dec.addEventListener('click', function() { if (current > min) { current--; update(); } });
+      if (inc) inc.addEventListener('click', function() { if (current < max) { current++; update(); } });
+      update();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { initDestinationSearch(); initPeopleStepper(); });
+  } else {
+    initDestinationSearch();
+    initPeopleStepper();
+  }
+
   // ── BOAT DATA ──────────────────────────────────────────
   const BOATS = [
     { name:"Bavaria C42", boatName:"Lady One", cat:"Plachetnice", marina:"ACI Marina Split", company:"Sunsail", year:2021, len:"12.8 m", cabins:3, berths:6, price:"36 000 Kč", rec:true,
+      perks:["early-checkin","free-motor"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Závěsný motor + dinghy","Záchranné vesty","Záchranný balíček","Kokpitový stůl"] },
     { name:"Jeanneau Sun Odyssey 54", boatName:"Blue Wind", cat:"Plachetnice", marina:"Marina Lav", company:"Navigare Yachting", year:2020, len:"16.5 m", cabins:5, berths:10, price:"80 000 Kč", discount:15,
+      perks:["deposit-30"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Závěsný motor + dinghy","Klimatizace","Výrobník vody","Solární panely"] },
     { name:"Lagoon 42", boatName:"Ocean Dream", cat:"Katamaran", marina:"Marina Kaštela", company:"Moorings", year:2022, len:"12.9 m", cabins:4, berths:8, price:"95 000 Kč", rec:true,
+      perks:["early-checkin"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","AIS","Závěsný motor + dinghy","BBQ","Šnorchlovací sada","Kokpitový stůl"] },
     { name:"Fountaine Pajot 47", boatName:"Gemini", cat:"Katamaran", marina:"ACI Marina Split", company:"Dream Yacht Charter", year:2023, len:"14.3 m", cabins:5, berths:10, price:"128 000 Kč",
+      perks:["free-motor","deposit-30"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Klimatizace","Generátor","Solární panely","Výrobník vody"] },
-    { name:"Greenline 45", boatName:"Horizon", cat:"Motorová jachta", marina:"Marina Spinut", company:"MareSail d.o.o.", year:2021, len:"13.7 m", cabins:3, berths:6, price:"115 000 Kč",
+    { name:"Greenline 45", boatName:"Horizon", cat:"Motorová jachta", marina:"Marina Spinut", company:"MareSail d.o.o.", year:2021, len:"13.7 m", cabins:3, berths:6, price:"115 000 Kč", reserved:true,
       amenities:["Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Příďový propulzor","Klimatizace","Generátor"] },
     { name:"Elan 45", boatName:"Adriatic Wind", cat:"Plachetnice", marina:"Marina Trogir", company:"Ultra Sailing", year:2019, len:"13.9 m", cabins:4, berths:8, price:"52 000 Kč", discount:15,
+      perks:["last-minute","free-motor"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Závěsný motor + dinghy","Šnorchlovací sada","Kokpitový stůl"] },
     { name:"Bavaria C45", boatName:"Sea Spirit", cat:"Plachetnice", marina:"ACI Marina Split", company:"Bavaria Yachtbau Charter", year:2022, len:"13.5 m", cabins:4, berths:8, price:"45 000 Kč",
+      perks:["early-checkin","deposit-30"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","AIS","Závěsný motor + dinghy","Kokpitový stůl"] },
     { name:"Hanse 548", boatName:"Nordic Star", cat:"Plachetnice", marina:"Marina Šibenik", company:"Adriatic Charter", year:2021, len:"16.7 m", cabins:5, berths:10, price:"88 000 Kč", rec:true,
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Klimatizace","Závěsný motor + dinghy"] },
     { name:"Lagoon 50", boatName:"Calypso", cat:"Katamaran", marina:"ACI Marina Dubrovník", company:"Moorings", year:2022, len:"15.0 m", cabins:6, berths:12, price:"175 000 Kč",
+      perks:["free-motor"], reserved:true,
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Klimatizace","Generátor","Solární panely"] },
     { name:"Jeanneau 44", boatName:"Mistral", cat:"Plachetnice", marina:"Marina Biograd", company:"Nausys Charter", year:2020, len:"13.4 m", cabins:4, berths:8, price:"48 000 Kč", discount:10,
+      perks:["last-minute","early-checkin","deposit-30"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Závěsný motor + dinghy","BBQ"] },
     { name:"Bénéteau Oceanis 51", boatName:"Azzurra", cat:"Plachetnice", marina:"Marina Zadar", company:"Dalmacija Charter", year:2021, len:"15.4 m", cabins:5, berths:10, price:"72 000 Kč",
+      perks:["early-checkin"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Závěsný motor + dinghy","Šnorchlovací sada"] },
     { name:"Excess 11", boatName:"Dual Dream", cat:"Katamaran", marina:"Marina Trogir", company:"Sunsail", year:2023, len:"11.0 m", cabins:4, berths:8, price:"85 000 Kč", rec:true,
+      perks:["deposit-30"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","AIS","BBQ","Šnorchlovací sada","Závěsný motor + dinghy"] },
     { name:"Prestige 520", boatName:"Riviera", cat:"Motorová jachta", marina:"Marina Kaštela", company:"MY Charter", year:2022, len:"15.7 m", cabins:4, berths:8, price:"145 000 Kč",
       amenities:["Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Příďový propulzor","Klimatizace","Generátor"] },
     { name:"Sun Odyssey 410", boatName:"Tramontane", cat:"Plachetnice", marina:"Marina Lav", company:"Navigare Yachting", year:2020, len:"12.4 m", cabins:3, berths:6, price:"38 000 Kč",
+      perks:["free-motor"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Závěsný motor + dinghy","Kokpitový stůl"] },
     { name:"Bali 4.8", boatName:"Ghost", cat:"Katamaran", marina:"ACI Marina Dubrovník", company:"Cosmos Yachting", year:2022, len:"14.6 m", cabins:4, berths:10, price:"112 000 Kč",
+      perks:["early-checkin","free-motor","deposit-30"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Klimatizace","Generátor","Solární panely","BBQ"] },
     { name:"Bavaria C50", boatName:"Adriatica", cat:"Plachetnice", marina:"Marina Šibenik", company:"OceanSail Croatia", year:2023, len:"15.2 m", cabins:5, berths:10, price:"95 000 Kč", discount:8,
+      perks:["last-minute"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Závěsný motor + dinghy","Klimatizace"] },
   ];
+
+  // Marketing perks — visuální přepínače pro lodě (nezávazné taháky).
+  const PERKS = {
+    'early-checkin': { label: 'Early check-in', cls: 'card-perk--early', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' },
+    'free-motor':    { label: 'Motor zdarma',  cls: 'card-perk--motor', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>' },
+    'deposit-30':    { label: 'První platba 30 %', cls: 'card-perk--deposit', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>' },
+    'last-minute':   { label: 'Last minute',  cls: 'card-perk--lastminute', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>' }
+  };
+  function renderPerks(list) {
+    if (!Array.isArray(list) || !list.length) return '';
+    return list.map(function(key) {
+      var p = PERKS[key]; if (!p) return '';
+      return '<span class="card-perk ' + p.cls + '">' + p.icon + p.label + '</span>';
+    }).join('');
+  }
 
   function boatCard(b) {
     const tags = b.amenities.slice(0,5).map(a => `<span class="amenity-tag">${a}</span>`).join("");
@@ -239,6 +503,15 @@
     const priceClass = b.discount ? "price-val price-val--sale" : "price-val";
     const favId = ((b.name || '') + '-' + (b.boatName || '')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     const favName = (b.name || '') + (b.boatName ? ' "' + b.boatName + '"' : '');
+    const perksHtml = renderPerks(b.perks);
+    const wc = b.wc != null ? b.wc : Math.max(1, Math.round((b.cabins || 2) / 2));
+    const persons = b.persons || b.berths;
+    const ratingVal = (b.rating != null ? b.rating : 4.7).toFixed(1).replace('.', ',');
+    const ratingCount = b.ratingCount != null ? b.ratingCount : 124;
+    const ratingHtml = '<div class="card-rating" title="Hodnocení modelu ' + b.name + '"><span class="card-rating-stars">★★★★★</span><span class="card-rating-val">' + ratingVal + '</span><span class="card-rating-count">(' + ratingCount + ' hodnocení)</span></div>';
+    const statusHtml = b.reserved
+      ? '<span class="card-status card-status--reserved"><span class="card-status-dot"></span>Rezervovaná</span>'
+      : '<span class="card-status card-status--free"><span class="card-status-dot"></span>Volná</span>';
     return `
       <div class="boat-card" data-href="detail-lodi.html" role="link" tabindex="0">
         <div class="card-img" data-img-idx="0" data-img-total="5">
@@ -250,26 +523,27 @@
         </div>
         <div class="card-body">
           <div>
-            <div class="card-badges">${rec}</div>
+            <div class="card-badges">${rec}${discountBadge}${perksHtml}</div>
             <div class="card-name">${b.name}</div>
             <div class="card-boat-name">"${b.boatName || "Lady One"}"</div>
+            ${ratingHtml}
             <div class="card-marina">🇭🇷 <a href="oblast.html" style="color:var(--int);text-decoration:none;">${b.marina}</a></div>
             <div class="card-company"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>Charterovka <a href="charterova-spolecnost.html">${b.company || "Yachtnet partner"}</a></div>
             <div class="card-specs">
-              <div class="spec"><span class="spec-l">Délka</span><span class="spec-v">${b.len}</span></div>
+              <div class="spec"><span class="spec-l">Rok</span><span class="spec-v">${b.year}</span></div>
               <div class="spec"><span class="spec-l">Kajuty</span><span class="spec-v">${b.cabins}</span></div>
               <div class="spec"><span class="spec-l">Lůžka</span><span class="spec-v">${b.berths}</span></div>
-              <div class="spec"><span class="spec-l">Rok</span><span class="spec-v">${b.year}</span></div>
-              <div class="spec"><span class="spec-l">Osoby</span><span class="spec-v">${b.berths}</span></div>
+              <div class="spec"><span class="spec-l">Osoby</span><span class="spec-v">${persons}</span></div>
+              <div class="spec"><span class="spec-l">Délka</span><span class="spec-v">${b.len}</span></div>
+              <div class="spec"><span class="spec-l">WC</span><span class="spec-v">${wc}</span></div>
             </div>
           </div>
           <div class="card-amenities">${tags}</div>
         </div>
         <div class="card-side">
           <div class="card-side-top">
-            ${discountBadge}
-            <button class="card-icon-btn" title="Přidat do porovnání"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></button>
-            <button class="card-icon-btn" type="button" title="Přidat do oblíbených" data-fav-id="${favId}" data-fav-name='${favName.replace(/'/g, "&apos;")}'><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            ${statusHtml}
+<button class="card-icon-btn" type="button" title="Přidat do oblíbených" data-fav-id="${favId}" data-fav-name='${favName.replace(/'/g, "&apos;")}'><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
           <div class="card-side-bottom">
             <div class="card-price">
@@ -450,6 +724,28 @@
         return unit ? v + '\u00a0' + unit : String(v);
       }
 
+      function fmtFt(v) {
+        return (parseFloat(v) * 3.28084).toFixed(1).replace('.', ',') + '\u00a0ft';
+      }
+
+      function setLabel(node, value) {
+        if (!node) return;
+        var formatted = fmt(value);
+        if (node.tagName === 'INPUT') {
+          if (document.activeElement !== node) node.value = formatted;
+          // Aktualizuj sourozenecký ft sub
+          var parent = node.parentElement;
+          if (parent && parent.classList.contains('range-val-with-sub')) {
+            var ft = parent.querySelector('.range-val-ft');
+            if (ft) ft.textContent = '(' + fmtFt(value) + ')';
+          }
+        } else if (unit === 'm') {
+          node.innerHTML = formatted + ' <span class="range-val-ft">(' + fmtFt(value) + ')</span>';
+        } else {
+          node.textContent = formatted;
+        }
+      }
+
       function update() {
         var lo = parseFloat(minEl.value);
         var hi = parseFloat(maxEl.value);
@@ -457,8 +753,8 @@
         var pHi = (hi - rMin) / (rMax - rMin) * 100;
         fill.style.left  = pLo + '%';
         fill.style.width = (pHi - pLo) + '%';
-        if (minLabel) minLabel.textContent = fmt(lo);
-        if (maxLabel) maxLabel.textContent = fmt(hi);
+        setLabel(minLabel, lo);
+        setLabel(maxLabel, hi);
       }
 
       minEl.addEventListener('input', function() {
@@ -470,11 +766,87 @@
         update();
       });
 
+      // Manuální zápis do textových inputů — sync zpět do range slideru
+      function parseInput(text) {
+        if (text == null) return NaN;
+        var cleaned = String(text).replace(/[^\d,.\-]/g, '').replace(',', '.');
+        return parseFloat(cleaned);
+      }
+      function commitInput(node, sliderEl, isMin) {
+        if (!node || node.tagName !== 'INPUT') return;
+        var v = parseInput(node.value);
+        if (isNaN(v)) { update(); return; }
+        v = Math.max(rMin, Math.min(rMax, v));
+        if (isMin && v > parseFloat(maxEl.value)) v = parseFloat(maxEl.value);
+        if (!isMin && v < parseFloat(minEl.value)) v = parseFloat(minEl.value);
+        sliderEl.value = v;
+        update();
+      }
+      [[minLabel, minEl, true], [maxLabel, maxEl, false]].forEach(function(pair) {
+        var node = pair[0]; var sliderEl = pair[1]; var isMin = pair[2];
+        if (!node || node.tagName !== 'INPUT') return;
+        node.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') { e.preventDefault(); node.blur(); }
+        });
+        node.addEventListener('blur', function() { commitInput(node, sliderEl, isMin); });
+      });
+
       update();
     });
   }
 
   initDualRanges();
+
+  // ── FILTER — Hodnocení (single-select pillule) ──────────
+  document.querySelectorAll('[data-rating-filter] .rating-pill').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var group = btn.closest('[data-rating-filter]');
+      group.querySelectorAll('.rating-pill').forEach(function(b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+    });
+  });
+
+  // ── FILTER SEARCH (search nad seznamem checkboxů) ────────
+  document.querySelectorAll('[data-filter-search-group]').forEach(function(group) {
+    var input = group.querySelector('.filter-search-input');
+    var clear = group.querySelector('.filter-search-clear');
+    var moreBtn = group.querySelector('.filter-more');
+    var moreList = group.querySelector('.filter-checks-more');
+    var emptyEl = group.querySelector('.filter-search-empty');
+    if (!input) return;
+    var checks = group.querySelectorAll('.filter-check');
+    var moreInitialHidden = moreList ? moreList.hasAttribute('hidden') : false;
+
+    function apply() {
+      var q = input.value.trim().toLowerCase();
+      var visible = 0;
+      checks.forEach(function(c) {
+        var label = c.querySelector('span');
+        var text = label ? label.textContent.toLowerCase() : '';
+        var match = !q || text.indexOf(q) !== -1;
+        c.hidden = !match;
+        if (match) visible++;
+      });
+      if (q && moreList) {
+        moreList.hidden = false;
+        if (moreBtn) moreBtn.hidden = true;
+      } else if (moreList) {
+        moreList.hidden = moreInitialHidden;
+        if (moreBtn) moreBtn.hidden = false;
+      }
+      if (emptyEl) emptyEl.hidden = visible !== 0;
+      if (clear) clear.hidden = !q;
+    }
+
+    input.addEventListener('input', apply);
+    if (clear) {
+      clear.addEventListener('click', function() {
+        input.value = '';
+        input.focus();
+        apply();
+      });
+    }
+  });
 
   // ── SEARCHABLE MULTISELECT FILTER SELECTS ─────────────────
   function closeAllFilterSelects() {
@@ -957,7 +1329,7 @@
     document.querySelectorAll('.models-arrow').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var dir = parseInt(btn.dataset.dir, 10) || 1;
-        var card = grid.querySelector('.model-card');
+        var card = grid.firstElementChild;
         if (!card) return;
         var style = window.getComputedStyle(grid);
         var gap = parseInt(style.columnGap || style.gap || '0', 10) || 16;
@@ -1841,4 +2213,19 @@
       if (topId) setActive(topId);
     }, { rootMargin: '-120px 0px -55% 0px', threshold: 0 });
     sections.forEach(function(s) { observer.observe(s); });
+  })();
+
+  // ── TERM SLIDER ARROWS ─────────────────────────────────
+  (function initTermSlider() {
+    document.querySelectorAll('.term-slider').forEach(function(slider) {
+      var list = slider.querySelector('.term-list');
+      if (!list) return;
+      var step = 220;
+      slider.querySelector('.term-nav--prev')?.addEventListener('click', function() {
+        list.scrollBy({ left: -step, behavior: 'smooth' });
+      });
+      slider.querySelector('.term-nav--next')?.addEventListener('click', function() {
+        list.scrollBy({ left: step, behavior: 'smooth' });
+      });
+    });
   })();

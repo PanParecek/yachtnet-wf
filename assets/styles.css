@@ -197,6 +197,23 @@
     .nav-mini-select:hover { color: var(--int); }
     .nav-mini-select:focus-visible { outline: 2px solid var(--int); outline-offset: 2px; border-radius: 3px; }
 
+    /* Telefonní kontakt v hlavičce */
+    .nav-phone {
+      display: inline-flex; align-items: center; gap: 6px;
+      height: 34px; padding: 0 10px;
+      font-size: 13px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: color .15s, background .15s;
+      white-space: nowrap;
+    }
+    .nav-phone:hover { color: var(--int); background: var(--int-soft); }
+    .nav-phone svg { color: var(--int); flex-shrink: 0; }
+    @media (max-width: 1100px) {
+      .nav-phone { padding: 0 8px; }
+      .nav-phone-num { display: none; }
+    }
+
     /* Ikonové ovladače (Oblíbené, Porovnání) */
     .nav-icon-btn {
       position: relative;
@@ -280,21 +297,25 @@
     .search-form {
       background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
       backdrop-filter: blur(8px); border-radius: 10px; padding: 20px 24px;
-      display: inline-flex; gap: 12px; align-items: flex-end; flex-wrap: wrap;
+      display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap;
     }
-    .sf-field { display: flex; flex-direction: column; gap: 5px; }
+    .sf-field { display: flex; flex-direction: column; gap: 5px; flex: 1 1 auto; min-width: 0; }
+    .sf-field--destination { flex: 2.6 1 300px; min-width: 260px; }
+    .sf-field--dates { flex: 1 1 190px; min-width: 180px; }
+    .sf-field--category { flex: 1.1 1 160px; min-width: 150px; }
+    .sf-field--people { flex: 0.9 1 140px; min-width: 130px; }
     .sf-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.6); }
     .sf-field select, .sf-field .date-combined {
       height: 40px; border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius);
       background: rgba(255,255,255,.1); color: #fff; font-size: 13px; font-family: inherit;
     }
-    .sf-field select { padding: 0 12px; appearance: none; cursor: pointer; min-width: 160px; }
+    .sf-field select { padding: 0 12px; appearance: none; cursor: pointer; width: 100%; }
     .sf-field select option { color: var(--text); background: #fff; }
     .sf-field select:focus { outline: 2px solid rgba(255,255,255,.5); outline-offset: 2px; }
-    .date-combined { display: flex; align-items: center; gap: 4px; padding: 0 10px; min-width: 240px; }
+    .date-combined { display: flex; align-items: center; gap: 4px; padding: 0 10px; }
     .date-combined input[type="date"] {
       border: none; background: transparent; color: #fff;
-      font-size: 13px; font-family: inherit; height: 100%; flex: 1; color-scheme: dark;
+      font-size: 13px; font-family: inherit; height: 100%; flex: 1; color-scheme: dark; min-width: 0;
     }
     .date-combined input[type="date"]:focus { outline: none; }
     .date-combined:focus-within { outline: 2px solid rgba(255,255,255,.5); outline-offset: 2px; border-color: transparent; }
@@ -305,6 +326,126 @@
       font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer;
     }
     .btn-search:hover { background: var(--int-dark); }
+
+    /* Destinace combobox (autocomplete) */
+    .sf-combobox { position: relative; }
+    .sf-combobox-input {
+      width: 100%; height: 40px; padding: 0 38px 0 12px;
+      border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius);
+      background: rgba(255,255,255,.1); color: #fff; font-size: 13px; font-family: inherit;
+      box-sizing: border-box;
+    }
+    .sf-combobox-input::placeholder { color: rgba(255,255,255,.55); }
+    .sf-combobox-input:focus { outline: 2px solid rgba(255,255,255,.5); outline-offset: 2px; }
+    .sf-combobox-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,.6); pointer-events: none; transition: transform .15s; }
+    .sf-combobox[aria-expanded="true"] .sf-combobox-icon { transform: translateY(-50%) rotate(180deg); }
+    .sf-combobox-dropdown {
+      position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      max-height: 360px; overflow-y: auto;
+      z-index: 100;
+      box-shadow: 0 12px 32px rgba(0,0,0,.18);
+      padding: 4px 0;
+    }
+    .sf-combobox-section-title {
+      padding: 10px 14px 6px;
+      font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .sf-combobox-item {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 9px 14px;
+      background: transparent; border: none; cursor: pointer;
+      font-family: inherit; font-size: 13px; color: var(--text);
+      text-align: left;
+    }
+    .sf-combobox-item:hover, .sf-combobox-item.is-active { background: var(--int-soft); outline: none; }
+    .sf-combobox-flag { font-size: 16px; flex-shrink: 0; }
+    .sf-combobox-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .sf-combobox-tag {
+      margin-left: auto; font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--muted);
+      padding: 2px 7px; border-radius: 10px; background: var(--bg);
+      flex-shrink: 0;
+    }
+    .sf-combobox-empty { padding: 18px; color: var(--muted); font-size: 13px; text-align: center; }
+    .sf-combobox mark { background: var(--int-soft); color: var(--int); padding: 0 2px; border-radius: 2px; }
+
+    /* Počet osob — stepper */
+    .sf-people {
+      height: 40px; display: flex; align-items: center;
+      border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius);
+      background: rgba(255,255,255,.1); color: #fff;
+      overflow: hidden;
+    }
+    .sf-people-btn {
+      width: 36px; height: 100%;
+      background: transparent; border: none;
+      color: #fff; font-size: 18px; font-weight: 700; cursor: pointer;
+      font-family: inherit;
+      transition: background .15s;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sf-people-btn:hover:not(:disabled) { background: rgba(255,255,255,.15); }
+    .sf-people-btn:disabled { opacity: .35; cursor: not-allowed; }
+    .sf-people-val { flex: 1; text-align: center; font-size: 13px; font-weight: 600; user-select: none; }
+
+    /* ── PROMO BANNER (full-width marketing) ─────────── */
+    .promo-band { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .promo-banner {
+      max-width: var(--max); margin: 0 auto;
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 0;
+      align-items: stretch;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .promo-banner-visual {
+      min-height: 240px;
+      background: var(--cross-bg), var(--img-bg);
+      position: relative;
+    }
+    .promo-banner-overlay {
+      position: absolute; left: 24px; bottom: 20px; right: 24px;
+      color: #fff;
+      text-shadow: 0 1px 8px rgba(0,0,0,.35);
+    }
+    .promo-banner-overlay-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .9; margin-bottom: 5px; }
+    .promo-banner-overlay-title { font-size: 26px; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+    .promo-banner-content {
+      padding: 24px 28px; display: flex; flex-direction: column; gap: 10px;
+      background: var(--surface);
+    }
+    .promo-banner-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--int);
+    }
+    .promo-banner-title { font-size: 20px; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; margin: 0; }
+    .promo-banner-text { font-size: 13px; color: var(--text); line-height: 1.55; margin: 0; }
+    .promo-banner-savings {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      padding: 10px 14px; border-radius: 6px;
+      background: var(--int-soft); border-left: 3px solid var(--int);
+    }
+    .promo-banner-saving { flex: 1 1 110px; min-width: 0; }
+    .promo-banner-saving-val { font-size: 16px; font-weight: 800; color: var(--int); letter-spacing: -.01em; }
+    .promo-banner-saving-lbl { font-size: 11px; color: var(--muted); line-height: 1.2; }
+    .promo-banner-cta-row {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+    .promo-banner-cta-row .btn-primary-lg { padding: 9px 20px; font-size: 13px; }
+    .promo-banner-partner { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: .04em; }
+    .promo-banner-partner strong { color: var(--text); font-weight: 800; }
+    @media (max-width: 760px) {
+      .promo-banner { grid-template-columns: 1fr; }
+      .promo-banner-visual { min-height: 180px; }
+      .promo-banner-overlay-title { font-size: 20px; }
+      .promo-banner-content { padding: 18px 20px; }
+    }
 
     /* ── SOCIAL PROOF STRIP ──────────────────────── */
     .social-proof {
@@ -325,6 +466,15 @@
     .sp-item--on-dark .sp-label { color: rgba(255,255,255,.7); }
     .sp-item--on-dark .sp-label strong { color: #fff; display: inline; font-size: inherit; font-weight: 700; }
     .sp-divider { width: 1px; height: 32px; background: var(--border); }
+    .sp-trust { display: inline-flex; align-items: center; gap: 9px; }
+    .sp-trust-icon {
+      width: 30px; height: 30px; flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; background: var(--int-soft); color: var(--int);
+    }
+    .sp-trust-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .sp-trust-title { font-size: 12px; font-weight: 800; color: var(--text); letter-spacing: .01em; }
+    .sp-trust-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
     .sp-badge {
       display: flex; align-items: center; gap: 8px;
       background: var(--int-soft); border: 1px solid #d6c5ff;
@@ -474,6 +624,16 @@
     }
     .courses-arrow:hover { background: var(--int-soft); border-color: var(--int); color: var(--int); }
     .courses-arrow:active { transform: scale(.96); }
+    .course-cat {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10px; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 10px; border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .course-cat--sea { background: #dbeafe; color: #1e3a8a; }
+    .course-cat--river { background: #d1fae5; color: #065f46; }
+    .course-cat--required { background: #fef3c7; color: #92400e; }
     .course-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--int); }
     .course-title a { color: var(--int); text-decoration: none; }
     .course-title a:hover { text-decoration: underline; }
@@ -555,6 +715,27 @@
     }
     .img-banner-title { font-size: 26px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 8px; }
     .img-banner-sub { font-size: 14px; color: rgba(255,255,255,.7); margin-bottom: 20px; }
+    .img-banner-features {
+      display: flex; gap: 28px; flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .img-banner-feature {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: #fff; font-size: 13px; font-weight: 600;
+    }
+    .img-banner-feature-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+      border-radius: 50%; color: #fff;
+    }
+    .img-banner-feature-text { display: flex; flex-direction: column; line-height: 1.25; }
+    .img-banner-feature-title { font-weight: 700; font-size: 13px; }
+    .img-banner-feature-sub { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 1px; }
+    @media (max-width: 720px) {
+      .img-banner-features { gap: 14px; }
+      .img-banner-feature-sub { display: none; }
+    }
     .btn-banner {
       display: inline-block; padding: 10px 28px;
       background: var(--int); color: #fff; border: none; border-radius: var(--radius);
@@ -639,6 +820,9 @@
       transition: border-color .18s, transform .18s ease, box-shadow .18s;
     }
     .model-card:hover { border-color: var(--int); transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,.1); }
+    .models-grid .model-thumb-card { flex: 0 0 calc((100% - 16px * 3) / 4); scroll-snap-align: start; }
+    @media (max-width: 900px) { .models-grid .model-thumb-card { flex: 0 0 calc((100% - 16px) / 2); } }
+    @media (max-width: 600px) { .models-grid .model-thumb-card { flex: 0 0 80%; } }
 
     .models-arrows { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
     .models-arrow {
@@ -716,6 +900,46 @@
     .chip-remove:hover { opacity: 1; }
     .filter-group { border-top: 1px solid var(--border); padding: 14px 0; }
     .filter-group-title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .filter-subgroup { margin-bottom: 16px; }
+    .filter-subgroup:last-child { margin-bottom: 0; }
+    .filter-subtitle { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .filter-hint { font-size: 11px; color: var(--muted); margin-top: 6px; font-style: italic; }
+    .filter-search-wrap { position: relative; margin-bottom: 10px; }
+    .filter-search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+    .filter-search-input {
+      width: 100%; height: 32px; padding: 0 30px 0 30px;
+      border: 1px solid var(--border); border-radius: 6px;
+      background: var(--bg); color: var(--text); font-size: 12px; font-family: inherit;
+      box-sizing: border-box;
+    }
+    .filter-search-input:focus { outline: none; border-color: var(--int); }
+    .filter-search-clear {
+      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--border); color: var(--text); border: none; cursor: pointer; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .filter-search-clear:hover { background: var(--int); color: #fff; }
+    .filter-search-empty { font-size: 12px; color: var(--muted); padding: 8px 4px; font-style: italic; }
+    .filter-check[hidden] { display: none; }
+    .filter-search-input mark, .filter-check mark { background: var(--int-soft); color: var(--int); padding: 0 1px; border-radius: 2px; }
+
+    /* Filtr — Hodnocení */
+    .rating-filter { display: flex; flex-direction: column; gap: 6px; }
+    .rating-pill {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 10px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+      font-family: inherit; font-size: 12px; color: var(--text); text-align: left;
+      cursor: pointer; transition: border-color .15s, background .15s;
+    }
+    .rating-pill:hover { border-color: var(--int); background: var(--int-soft); }
+    .rating-pill.is-active { border-color: var(--int); background: var(--int-soft); color: var(--int); font-weight: 700; }
+    .rating-pill-stars { color: #f5a623; letter-spacing: 1px; font-size: 13px; flex-shrink: 0; }
+    .rating-pill-stars-empty { color: rgba(0,0,0,.18); }
+    .rating-pill-label { flex: 1; min-width: 0; font-weight: 600; }
+    .rating-pill-count { color: var(--muted); font-weight: 500; font-size: 11px; }
+    .rating-pill.is-active .rating-pill-count { color: var(--int); }
     .filter-checks { display: flex; flex-direction: column; gap: 8px; }
     .filter-checks[hidden] { display: none; }
     .filter-check { display: flex; align-items: center; gap: 8px; cursor: pointer; }
@@ -760,14 +984,41 @@
     .boat-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
-      display: flex; flex-direction: row; min-height: 180px;
-      cursor: pointer;
+      display: flex; flex-direction: row; height: 270px;
+      cursor: pointer; padding: 10px 0 10px 10px;
     }
+    .boat-card .card-body, .boat-card .card-side { overflow: hidden; }
+    /* Hodnocení modelu */
+    .card-rating { display: inline-flex; align-items: center; gap: 6px; margin: 4px 0 6px; font-size: 12px; }
+    .card-rating-stars { color: #f5a623; letter-spacing: 1px; font-size: 13px; }
+    .card-rating-val { font-weight: 700; color: var(--text); }
+    .card-rating-count { color: var(--muted); }
+    /* Marketingové štítky */
+    .card-perks { display: flex; flex-wrap: wrap; gap: 5px; margin: 6px 0 10px; }
+    .card-badges .card-perk { /* perks v badges řádku — sjednotit výšku s .badge */
+      padding: 2px 7px; font-size: 10px;
+    }
+    .card-perk {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 10px; font-weight: 700; letter-spacing: .03em;
+      padding: 3px 8px; border-radius: 4px;
+      white-space: nowrap; line-height: 1;
+    }
+    .card-perk svg { flex-shrink: 0; }
+    .card-perk--early { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+    .card-perk--motor { background: #dbeafe; color: #1e3a8a; border: 1px solid #93c5fd; }
+    .card-perk--deposit { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .card-perk--lastminute { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
     .boat-card:hover { border-color: var(--int); background: var(--int-soft); }
     .card-img {
-      width: 260px; flex-shrink: 0;
+      flex-shrink: 0;
+      aspect-ratio: 4 / 3;
+      height: calc(100% - 20px);
+      width: auto;
+      margin: 10px 0 10px 10px;
+      border-radius: 8px;
       background: var(--cross-bg), var(--img-bg);
-      position: relative; align-self: stretch;
+      position: relative;
     }
     .card-cat-pill {
       position: absolute; top: 10px; left: 10px;
@@ -845,11 +1096,24 @@
     }
     .card-side-top { display: flex; justify-content: flex-end; align-items: center; gap: 6px; margin-bottom: auto; }
     .card-side-top .badge-dis { margin-right: auto; }
+    .card-side-top .card-status { margin-right: auto; }
+    /* Status lodě: Volná / Rezervovaná */
+    .card-status {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 8px; border-radius: 999px;
+      font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      border: 1px solid;
+    }
+    .card-status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .card-status--free { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+    .card-status--free .card-status-dot { background: #10b981; }
+    .card-status--reserved { background: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
+    .card-status--reserved .card-status-dot { background: #dc2626; }
     .card-side-bottom { display: flex; flex-direction: column; gap: 10px; }
     .card-price { display: flex; flex-direction: column; }
     .price-from { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
     .price-val { font-size: 22px; font-weight: 700; line-height: 1.2; }
-    .price-val--sale { color: #dc2626; }
+    .price-val--sale { color: var(--int); }
     .price-unit { font-size: 11px; color: var(--muted); }
     .price-fees { font-size: 11px; color: var(--muted); margin-top: 2px; }
     .btn-view {
@@ -1034,6 +1298,60 @@
     .cd.sat.opt { background: #fef9c3; color: #854d0e; cursor: pointer; }
     .sat-price { font-size: 7.5px; font-weight: 600; line-height: 1.2; margin-top: 1px; white-space: nowrap; }
 
+    /* Termíny — horizontální slider */
+    .term-slider { position: relative; }
+    .term-list {
+      display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 2px 0; scrollbar-width: thin;
+    }
+    .term-list::-webkit-scrollbar { height: 6px; }
+    .term-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    .term-box {
+      display: block; cursor: pointer; position: relative; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 8px; background: var(--surface);
+      scroll-snap-align: start; transition: border-color .15s, box-shadow .15s;
+    }
+    .term-box > input[type="radio"] {
+      position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0;
+    }
+    .term-box:hover { border-color: var(--int); }
+    .term-box:has(input:checked) {
+      border-color: var(--int);
+      box-shadow: 0 0 0 2px rgba(105, 3, 255, .15);
+    }
+    .term-box-inner { padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; white-space: nowrap; }
+    .term-range { font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -.01em; }
+    .term-price { font-size: 15px; font-weight: 700; color: var(--int); }
+    .term-status {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      align-self: flex-start;
+    }
+    .term-status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .term-status--free { color: #047857; }
+    .term-status--free .term-status-dot { background: #10b981; }
+    .term-status--opt { color: #854d0e; }
+    .term-status--opt .term-status-dot { background: #eab308; }
+    .term-status--taken { color: #b91c1c; }
+    .term-status--taken .term-status-dot { background: #dc2626; }
+    .term-box--opt { border-style: dashed; }
+    .term-box--opt .term-price { color: #854d0e; }
+    .term-box--taken { cursor: not-allowed; background: var(--bg); }
+    .term-box--taken:hover { border-color: var(--border); }
+    .term-box--taken .term-range { color: var(--muted); }
+    .term-box--taken .term-price { color: var(--muted); }
+
+    .term-nav {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    }
+    .term-nav:hover { border-color: var(--int); color: var(--int); }
+    .term-nav--prev { left: -10px; }
+    .term-nav--next { right: -10px; }
+
     .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .why-item { text-align: center; padding: 16px 12px; background: var(--bg); border-radius: var(--radius); border: 1px solid var(--border); }
     .why-icon { margin-bottom: 8px; display: flex; justify-content: center; color: var(--muted); }
@@ -1111,6 +1429,18 @@
     .charter-logo { width: 80px; height: 50px; background: var(--cross-bg), var(--img-bg); border-radius: 4px; flex-shrink: 0; }
     .charter-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
     .charter-desc { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    /* Hodnocení charterové společnosti */
+    .charter-rating { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 6px; font-size: 13px; }
+    .charter-rating-stars { color: #f5a623; letter-spacing: 1px; font-size: 13px; }
+    .charter-rating-val { font-weight: 700; color: var(--text); }
+    .charter-rating-count { color: var(--muted); }
+    .charter-rating-inline {
+      display: inline-flex; align-items: center; gap: 4px;
+      margin-left: 4px; font-size: 12px;
+      vertical-align: 1px;
+    }
+    .charter-rating-inline .charter-rating-stars { font-size: 11px; letter-spacing: .5px; }
+    .charter-rating-inline .charter-rating-val { font-weight: 700; }
     .charter-link { font-size: 12px; color: var(--int); text-decoration: none; }
 
     .map-ph {
@@ -1269,10 +1599,12 @@
     .sem-dot.orange { background: #f59e0b; }
     .sem-dot.red { background: #ef4444; }
     .btn-reserve {
-      width: 100%; padding: 13px; background: var(--int); color: #fff; border: none;
+      display: block; width: 100%; padding: 13px; background: var(--int); color: #fff; border: none;
       border-radius: var(--radius); font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer;
+      text-align: center; text-decoration: none; box-sizing: border-box;
     }
-    .btn-reserve:hover { background: var(--int-dark); }
+    .btn-reserve:hover { background: var(--int-dark); color: #fff; }
+    .btn-reserve--inline { display: inline-block; width: auto; padding: 13px 28px; }
     .cta-disclaimer { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; }
 
     .contact-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
@@ -1295,6 +1627,152 @@
     .sp-sidebar-stars { color: #f5a623; font-size: 14px; letter-spacing: 2px; }
     .sp-sidebar-label { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
     .sp-sidebar-label strong { color: var(--text); font-weight: 700; }
+
+    /* Checked & Trusted badge v sidebaru */
+    .trust-badge {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 14px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .trust-badge-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--int-soft); color: var(--int); flex-shrink: 0;
+    }
+    .trust-badge-body { flex: 1; min-width: 0; }
+    .trust-badge-title { font-size: 13px; font-weight: 800; color: var(--text); letter-spacing: -.01em; }
+    .trust-badge-text { font-size: 11px; color: var(--muted); line-height: 1.4; margin-top: 1px; }
+
+    /* Odkaz „Co je v ceně?" v cta-panelu */
+    .cta-incl-link { color: var(--int); text-decoration: underline; text-underline-offset: 2px; }
+    .cta-incl-link:hover { color: var(--int-dark); }
+
+    /* Od v ceně */
+    .cta-price-from {
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      letter-spacing: 0; vertical-align: 2px;
+    }
+
+    /* Hodnocení v hlavičce detailu */
+    .detail-rating { display: inline-flex; align-items: center; gap: 6px; }
+    .detail-rating-stars { color: #f5a623; letter-spacing: 1px; font-size: 14px; }
+    .detail-rating-val { font-weight: 700; color: var(--text); }
+    .detail-rating-count { color: var(--muted); }
+
+    /* Galerie — první položka jako video */
+    .gal-item--video { position: relative; }
+    .gal-video-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: rgba(0,0,0,.7); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: 4px 8px; border-radius: 4px; z-index: 2;
+    }
+    .gal-play-btn {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(255,255,255,.95); color: var(--text);
+      border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+      padding-left: 4px; box-shadow: 0 4px 14px rgba(0,0,0,.3);
+      transition: transform .15s, background .15s;
+    }
+    .gal-play-btn:hover { transform: translate(-50%, -50%) scale(1.08); background: #fff; }
+
+    /* ── BALÍČKY REZERVACE ────────────────────── */
+    .pkg-intro { font-size: 14px; color: var(--text); line-height: 1.6; margin: 0 0 18px; max-width: 720px; }
+    .pkg-list { display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 116px; }
+    .pkg-card {
+      display: block; cursor: pointer; position: relative;
+      border: 1px solid var(--border); border-radius: 10px; background: var(--surface);
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .pkg-card > input[type="radio"] {
+      position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0;
+    }
+    .pkg-card:hover { border-color: var(--int); }
+    .pkg-card:has(input:checked) {
+      border-color: var(--int);
+      box-shadow: 0 0 0 3px rgba(105, 3, 255, .12);
+    }
+    .pkg-card--popular { border-color: var(--int); }
+    .pkg-card-inner { padding: 18px 20px; }
+    .pkg-card-head { display: flex; align-items: flex-start; gap: 14px; }
+    .pkg-radio {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 2px solid var(--border); flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: border-color .15s;
+      margin-top: 2px;
+    }
+    .pkg-card:has(input:checked) .pkg-radio { border-color: var(--int); }
+    .pkg-radio-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--int); transform: scale(0); transition: transform .15s; }
+    .pkg-card:has(input:checked) .pkg-radio-dot { transform: scale(1); }
+    .pkg-head-text { flex: 1; min-width: 0; }
+    .pkg-tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px;
+    }
+    .pkg-tag--cheap { background: #f3f4f6; color: #374151; }
+    .pkg-tag--popular { background: var(--int-soft); color: var(--int); }
+    .pkg-tag--premium { background: #fef3c7; color: #92400e; }
+    .pkg-name { font-size: 17px; font-weight: 800; letter-spacing: -.01em; color: var(--text); margin-bottom: 4px; }
+    .pkg-sub { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .pkg-price { text-align: right; flex-shrink: 0; padding-left: 16px; }
+    .pkg-price-val { font-size: 22px; font-weight: 800; letter-spacing: -.02em; color: var(--text); }
+    .pkg-price-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .pkg-feat-list {
+      list-style: none; padding: 14px 0 0; margin: 14px 0 0;
+      border-top: 1px dashed var(--border);
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .pkg-feat { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; line-height: 1.5; color: var(--text); }
+    .pkg-feat strong { font-weight: 700; }
+    .pkg-feat-ico {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-top: 1px;
+    }
+    .pkg-feat--ok .pkg-feat-ico { background: #ecfdf5; color: #047857; }
+    .pkg-feat--no .pkg-feat-ico { background: #fee2e2; color: #b91c1c; }
+    .pkg-feat--no { color: var(--muted); }
+    .pkg-actions { display: flex; justify-content: flex-end; margin-top: 18px; }
+
+    /* Varianty pojištění pod balíčky */
+    .pkg-ins-block { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .pkg-ins-head { margin-bottom: 18px; }
+    .pkg-ins-title { font-size: 18px; font-weight: 800; letter-spacing: -.01em; color: var(--text); margin-bottom: 4px; }
+    .pkg-ins-sub { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .pkg-ins-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .pkg-ins-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px 18px; display: flex; flex-direction: column;
+    }
+    .pkg-ins-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: var(--int-soft); color: var(--int);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .pkg-ins-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; letter-spacing: -.01em; }
+    .pkg-ins-desc { font-size: 13px; color: var(--text); line-height: 1.55; flex: 1; }
+    .pkg-ins-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); }
+    .pkg-ins-tag {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 4px;
+    }
+    .pkg-ins-tag--yes { background: #ecfdf5; color: #047857; }
+    .pkg-ins-tag--yes::before { content: "✓"; font-size: 11px; }
+    .pkg-ins-tag--no { background: #f3f4f6; color: #9ca3af; }
+    .pkg-ins-tag--no::before { content: "−"; font-size: 12px; line-height: 1; }
+    @media (max-width: 768px) { .pkg-ins-grid { grid-template-columns: 1fr; } }
+
+    @media (max-width: 768px) {
+      .pkg-card-head { flex-wrap: wrap; }
+      .pkg-price { text-align: left; padding-left: 0; padding-top: 8px; width: 100%; }
+      .pkg-feat-list { grid-template-columns: 1fr; }
+      .pkg-actions { justify-content: stretch; }
+      .btn-reserve--inline { display: block; width: 100%; }
+    }
 
     /* ── RESULTS ENHANCEMENTS ────────────────── */
     /* ── RESULTS HERO — prominentní hledací formulář ── */
@@ -1396,7 +1874,23 @@
     .search-select-input { width: 100%; height: 34px; padding: 0 26px 0 10px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; font-family: inherit; background: var(--bg); appearance: none; }
     .search-select-wrap { position: relative; }
     .search-select-wrap::after { content: '▾'; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; font-size: 11px; }
-    .range-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 3px; }
+    .range-row { display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); margin-top: 3px; }
+    .range-val-ft { font-size: 9px; color: var(--muted); margin-left: 2px; opacity: .85; }
+    .range-val-with-sub { display: inline-flex; align-items: baseline; flex: 1; min-width: 0; }
+    .range-val-with-sub:last-child { justify-content: flex-end; }
+    .range-input {
+      font-family: inherit; font-size: 11px; color: var(--text);
+      background: transparent; border: none;
+      padding: 2px 4px; margin: 0;
+      width: 7ch; min-width: 0;
+      border-bottom: 1px dashed transparent;
+      transition: border-color .15s, background .15s;
+      box-sizing: content-box;
+    }
+    .range-input:hover { border-bottom-color: var(--border); }
+    .range-input:focus { outline: none; border-bottom-color: var(--int); background: var(--int-soft); }
+    .range-row .range-val-max, .range-val-with-sub:last-child .range-val-max { text-align: right; }
+    .range-sep { color: var(--muted); font-size: 11px; flex-shrink: 0; }
     .filter-more {
       font-size: 12px; color: var(--int); cursor: pointer; margin-top: 8px;
       display: inline-block; background: none; border: none; padding: 0;
@@ -1447,7 +1941,7 @@
     .card-badges { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 5px; }
     .badge { font-size: 10px; font-weight: 700; letter-spacing: .03em; padding: 2px 7px; border-radius: 4px; }
     .badge-rec { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
-    .badge-dis { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .badge-dis { background: #dc2626; color: #fff; border: 1px solid #b91c1c; font-weight: 800; }
     .card-boat-name { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
     .price-old { font-size: 11px; text-decoration: line-through; color: var(--muted); }
     .card-icon-btn { width: 30px; height: 30px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); cursor: pointer; font-size: 14px; }
@@ -1851,6 +2345,29 @@
     .price-line.discount { color: #16a34a; font-weight: 600; }
     .cancel-info { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius); padding: 12px 14px; margin-top: 16px; font-size: 12px; color: #166534; line-height: 1.6; }
     .cancel-info strong { display: block; margin-bottom: 3px; font-size: 13px; }
+    .price-line.muted { color: var(--muted); border-bottom: none; padding-top: 4px; padding-bottom: 4px; font-size: 12px; }
+    .price-line.muted span:last-child { font-weight: 700; color: var(--text); }
+
+    /* Karta zvoleného balíčku v rezervaci */
+    .pkg-summary-tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+      background: var(--int-soft); color: var(--int); margin-bottom: 8px;
+    }
+    .pkg-summary-name { font-size: 18px; font-weight: 800; letter-spacing: -.01em; color: var(--text); margin-bottom: 2px; }
+    .pkg-summary-sub { font-size: 12px; color: var(--muted); margin-bottom: 12px; line-height: 1.5; }
+    .pkg-summary-feat { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+    .pkg-summary-feat li { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; line-height: 1.5; color: var(--text); }
+    .pkg-summary-feat svg { color: #047857; flex-shrink: 0; margin-top: 2px; }
+
+    /* Box s informací o záloze nyní */
+    .pay-now-box {
+      background: var(--int-soft); border: 1px solid rgba(105, 3, 255, .2);
+      border-radius: var(--radius); padding: 12px 14px; margin-top: 14px;
+    }
+    .pay-now-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--int); }
+    .pay-now-val { font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: -.02em; margin-top: 2px; }
+    .pay-now-rest { font-size: 11px; color: var(--text); margin-top: 6px; line-height: 1.5; }
 
     /* CTA booking button */
     .btn-booking { width: 100%; padding: 14px; background: var(--int); color: #fff; border: none; border-radius: var(--radius); font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; letter-spacing: .02em; }

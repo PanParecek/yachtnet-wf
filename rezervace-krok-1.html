@@ -22,7 +22,7 @@
         Zpět na detail lodi
       </button>
     </div>
-    <div class="nav-actions"><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div>
+    <div class="nav-actions"><a class="nav-phone" href="tel:+420233354050" aria-label="+420 233 354 050"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="nav-phone-num">+420 233 354 050</span></a><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='prihlaseni.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</button></div>
   </div></nav>
 
   <!-- STEPPER -->
@@ -224,18 +224,42 @@
         </div>
       </div>
 
+      <!-- Zvolený balíček -->
+      <div class="bk-card pkg-summary-card">
+        <div class="bk-card-head">
+          <div class="bk-card-title">Zvolený balíček</div>
+          <a class="bk-card-edit" href="detail-lodi.html#sec-balicky">Změnit</a>
+        </div>
+        <div class="bk-card-body">
+          <div class="pkg-summary-tag">Nejoblíbenější</div>
+          <div class="pkg-summary-name">Flex</div>
+          <div class="pkg-summary-sub">30% záloha + storno + pojištění kauce</div>
+          <ul class="pkg-summary-feat">
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Záloha 30 % nyní, doplatek 30 dnů před</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Storno do 60 dnů zdarma</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pojištění kauce 4 000 € v ceně</li>
+          </ul>
+        </div>
+      </div>
+
       <!-- Souhrn cen -->
       <div class="bk-card">
         <div class="bk-card-head"><div class="bk-card-title">Souhrn cen</div></div>
         <div class="bk-card-body">
           <div class="price-line"><span>Pronájem lodi (7 nocí)</span><span>36 000 Kč</span></div>
-          <div class="price-line"><span>Záloha na škody (vratná)</span><span>20 000 Kč</span></div>
+          <div class="price-line"><span>Balíček <strong>Flex</strong> (storno + kauce)</span><span>2 400 Kč</span></div>
           <div class="price-line"><span>Závěrečný úklid</span><span>2 500 Kč</span></div>
           <div class="price-line discount"><span>Sleva 10 % (early bird)</span><span>−3 600 Kč</span></div>
-          <div class="price-line total"><span>Celkem k úhradě</span><span>54 900 Kč</span></div>
+          <div class="price-line total"><span>Celkem za pronájem</span><span>37 300 Kč</span></div>
+          <div class="price-line muted"><span>+ Vratná kauce</span><span>4 000 €</span></div>
+          <div class="pay-now-box">
+            <div class="pay-now-label">Záloha k úhradě nyní (30 %)</div>
+            <div class="pay-now-val">11 520 Kč</div>
+            <div class="pay-now-rest">Doplatek <strong>25 780 Kč</strong> 30 dnů před začátkem (12. 6. 2025)</div>
+          </div>
           <div class="cancel-info">
-            <strong>Podmínky zrušení</strong>
-            Bezplatně do <strong>12. 6. 2025</strong> (30 dní před nástupem).<br>
+            <strong>Podmínky zrušení (Flex)</strong>
+            Bezplatně do <strong>12. 5. 2025</strong> (60 dní před nástupem).<br>
             Po tomto datu: storno poplatek 50 % ceny pronájmu.
           </div>
         </div>
