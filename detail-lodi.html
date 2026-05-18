@@ -259,7 +259,11 @@
 
         <!-- BALÍČKY REZERVACE -->
         <div class="detail-section" id="sec-balicky">
-          <div class="detail-section-title">Vyberte balíček rezervace</div>
+          <div class="pkg-steps">
+          <div class="pkg-step">
+            <div class="pkg-step-num">1</div>
+            <div class="pkg-step-content">
+          <div class="detail-section-title">Vyberte variantu rezervace</div>
           <div class="pkg-list">
 
             <label class="pkg-card">
@@ -336,49 +340,96 @@
             </label>
 
           </div>
+            </div><!-- /pkg-step-content -->
+          </div><!-- /pkg-step 1 -->
+
+          <!-- VARIANTY POJIŠTĚNÍ (řádky s checkboxy — AKTIVNÍ) -->
+          <div class="pkg-step">
+            <div class="pkg-step-num">2</div>
+            <div class="pkg-step-content">
+          <div class="pkg-ins-block">
+            <div class="pkg-ins-head">
+              <div class="pkg-ins-title">Zvolte variantu pojištění</div>
+              <div class="pkg-ins-sub">Volitelně přidejte libovolnou kombinaci krytí. Můžete vybrat jedno, všechny, nebo žádné.</div>
+            </div>
+            <div class="pkg-ins-list">
+              <label class="pkg-ins-row">
+                <input type="checkbox" class="pkg-ins-check" />
+                <span class="pkg-ins-row-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </span>
+                <span class="pkg-ins-row-text">
+                  <span class="pkg-ins-row-name">Pojištění kauce</span>
+                  <span class="pkg-ins-row-desc">Vrácení vratné kauce <strong>4 000 €</strong> i při způsobené škodě. Bez papírování po skončení plavby.</span>
+                </span>
+                <span class="pkg-ins-row-price">+ 2 500 Kč</span>
+              </label>
+
+              <label class="pkg-ins-row">
+                <input type="checkbox" class="pkg-ins-check" />
+                <span class="pkg-ins-row-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </span>
+                <span class="pkg-ins-row-text">
+                  <span class="pkg-ins-row-name">Pojištění odpovědnosti</span>
+                  <span class="pkg-ins-row-desc">Krytí škod způsobených třetí osobě nebo cizímu majetku až do <strong>1 000 000 €</strong>.</span>
+                </span>
+                <span class="pkg-ins-row-price">+ 1 800 Kč</span>
+              </label>
+
+              <label class="pkg-ins-row">
+                <input type="checkbox" class="pkg-ins-check" />
+                <span class="pkg-ins-row-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                </span>
+                <span class="pkg-ins-row-text">
+                  <span class="pkg-ins-row-name">Pojištění storna</span>
+                  <span class="pkg-ins-row-desc">Vrácení <strong>až 100 %</strong> ceny rezervace při zrušení z důvodu nemoci, úrazu nebo nečekané události.</span>
+                </span>
+                <span class="pkg-ins-row-price">+ 3 200 Kč</span>
+              </label>
+            </div>
+          </div>
+            </div><!-- /pkg-step-content -->
+          </div><!-- /pkg-step 2 -->
+          </div><!-- /pkg-steps -->
+
           <div class="pkg-actions">
-            <a href="rezervace-krok-1.html" class="btn-reserve btn-reserve--inline">Pokračovat s vybraným balíčkem →</a>
+            <a href="rezervace-krok-1.html" class="btn-reserve btn-reserve--inline" data-reserve-cta>Pokračovat k rezervaci →</a>
           </div>
 
-          <!-- VARIANTY POJIŠTĚNÍ -->
+          <!--
+          ── ULOŽENÁ VARIANTA — 3 karty pojištění vedle sebe (k případnému návratu) ──
           <div class="pkg-ins-block">
             <div class="pkg-ins-head">
               <div class="pkg-ins-title">Co konkrétně pojištění zahrnuje</div>
-              <div class="pkg-ins-sub">Detail tří krytí, která jsou součástí balíčků <strong>Flex</strong> a <strong>Premium</strong>.</div>
+              <div class="pkg-ins-sub">Detail tří krytí, která jsou součástí balíčků Flex a Premium.</div>
             </div>
             <div class="pkg-ins-grid">
               <div class="pkg-ins-card">
-                <div class="pkg-ins-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                </div>
+                <div class="pkg-ins-icon">[svg-kauce]</div>
                 <div class="pkg-ins-name">Pojištění kauce</div>
-                <div class="pkg-ins-desc">Vrácení vratné kauce <strong>4 000 €</strong> i při způsobené škodě. Bez papírování po skončení.</div>
+                <div class="pkg-ins-desc">Vrácení vratné kauce 4 000 € i při způsobené škodě.</div>
                 <div class="pkg-ins-tags">
                   <span class="pkg-ins-tag pkg-ins-tag--no">Basic</span>
                   <span class="pkg-ins-tag pkg-ins-tag--yes">Flex</span>
                   <span class="pkg-ins-tag pkg-ins-tag--yes">Premium</span>
                 </div>
               </div>
-
               <div class="pkg-ins-card">
-                <div class="pkg-ins-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
+                <div class="pkg-ins-icon">[svg-odpovědnost]</div>
                 <div class="pkg-ins-name">Pojištění odpovědnosti</div>
-                <div class="pkg-ins-desc">Krytí škod způsobených třetí osobě nebo cizímu majetku až do <strong>1 000 000 €</strong>.</div>
+                <div class="pkg-ins-desc">Krytí škod způsobených třetí osobě až do 1 000 000 €.</div>
                 <div class="pkg-ins-tags">
                   <span class="pkg-ins-tag pkg-ins-tag--no">Basic</span>
                   <span class="pkg-ins-tag pkg-ins-tag--no">Flex</span>
                   <span class="pkg-ins-tag pkg-ins-tag--yes">Premium</span>
                 </div>
               </div>
-
               <div class="pkg-ins-card">
-                <div class="pkg-ins-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
-                </div>
+                <div class="pkg-ins-icon">[svg-storno]</div>
                 <div class="pkg-ins-name">Pojištění storna</div>
-                <div class="pkg-ins-desc">Vrácení <strong>až 100 %</strong> ceny rezervace při zrušení z důvodu nemoci, úrazu nebo nečekané události.</div>
+                <div class="pkg-ins-desc">Vrácení až 100 % ceny rezervace při zrušení.</div>
                 <div class="pkg-ins-tags">
                   <span class="pkg-ins-tag pkg-ins-tag--no">Basic</span>
                   <span class="pkg-ins-tag pkg-ins-tag--yes">Flex</span>
@@ -387,6 +438,7 @@
               </div>
             </div>
           </div>
+          -->
         </div>
 
         <!-- CO ZAHRNUJE -->
@@ -554,30 +606,30 @@
       <!-- STICKY SIDEBAR -->
       <div class="detail-sidebar">
         <div class="cta-panel">
-          <div class="cta-price-label">Cena za termín</div>
-          <div class="cta-price"><span class="cta-price-from">Od</span> 36 000 Kč</div>
+          <div class="cta-price-label">Cena za 7 nocí <span class="cta-price-variant" data-cta-variant>· Flex</span></div>
+          <div class="cta-price" data-cta-price>38 400 Kč</div>
           <div class="cta-price-fees">+ 12 611 Kč poplatky</div>
           <div class="cta-price-fees">+ 4 000 € vratná kauce</div>
-          <div class="cta-price-note">7 nocí · až 8 osob · <a href="#sec-cena" class="cta-incl-link">Co je v ceně?</a></div>
+          <div class="cta-price-note"><a href="#sec-cena" class="cta-incl-link">Co je v ceně?</a></div>
           <div class="cta-dates">
             <label class="cta-date-box">
-              <span class="cta-date-label">Příjezd</span>
+              <span class="cta-date-label">Nalodění</span>
               <span class="cta-date-val">Vybrat datum</span>
               <input type="date" class="cta-date-input" value="2026-06-13" />
             </label>
             <label class="cta-date-box">
-              <span class="cta-date-label">Odjezd</span>
+              <span class="cta-date-label">Vylodění</span>
               <span class="cta-date-val cta-date-val-empty">Vybrat datum</span>
               <input type="date" class="cta-date-input" />
             </label>
           </div>
-          <div class="semaphore"><div class="sem-dot green"></div><span style="font-size:13px;font-weight:600;color:#166534;">Loď je volná</span></div>
-          <a href="#sec-balicky" class="btn-reserve">Vybrat variantu →</a>
+          <div class="cta-status-row"><span class="card-status card-status--free"><span class="card-status-dot"></span>Volná</span></div>
+          <a href="rezervace-krok-1.html" class="btn-reserve" data-reserve-cta>Pokračovat k rezervaci →</a>
           <div class="cta-disclaimer">Rezervace nezavazuje k okamžité platbě</div>
         </div>
 
         <div class="contact-box">
-          <div class="contact-box-title">Nevíte, jestli je tahle loď to pravé? Monika vám česky poradí s výběrem.</div>
+          <div class="contact-box-title">Máte otázky k této lodi? Ozvěte se Monice.</div>
           <div class="contact-compact">
             <div class="contact-avatar-lg"></div>
             <div class="contact-details">

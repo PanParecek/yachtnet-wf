@@ -27,31 +27,183 @@
       <a class="account-nav-item" href="crew.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Crew list</a>
     </aside>
     <main class="account-main">
-      <h1 style="font-size:22px;font-weight:800;margin-bottom:8px;">Správa rezervací</h1>
-      <p style="font-size:14px;color:var(--muted);margin-bottom:24px;">Přehled všech vašich pronájmů — seřazeno od nejnovějších</p>
-      <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
-        <div class="res-thumb"></div>
-        <div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Elan 45 Impression — Split</div><span class="res-badge badge-active">Probíhá</span></div>
-          <div class="res-meta"><span>12. 7. – 19. 7. 2025</span><span>Přístav Split ACI</span><span>Sun Charter d.o.o.</span></div>
-        </div>
-        <div style="text-align:right;font-size:13px;color:var(--muted);">36 000 Kč</div>
+      <h1 style="font-size:22px;font-weight:800;margin-bottom:8px;">Moje rezervace</h1>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:20px;">Přehled všech vašich pronájmů — seřazeno od nejnovějších</p>
+
+      <div class="res-tabs" role="tablist">
+        <button class="res-tab is-active" type="button" data-tab="predrezervace" role="tab">Předrezervace <span class="res-tab-count">3</span></button>
+        <button class="res-tab" type="button" data-tab="probihajici" role="tab">Probíhající <span class="res-tab-count">4</span></button>
+        <button class="res-tab" type="button" data-tab="probehle" role="tab">Proběhlé <span class="res-tab-count">5</span></button>
       </div>
-      <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
-        <div class="res-thumb"></div>
-        <div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Bavaria 44 — Šibenik</div><span class="res-badge badge-pending">Rezervováno</span></div>
-          <div class="res-meta"><span>2. 8. – 9. 8. 2025</span><span>Přístav Šibenik</span><span>Nava d.o.o.</span></div>
+
+      <!-- Probíhající -->
+      <div class="res-tab-panel" data-panel="probihajici" hidden>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Elan 45 Impression — "Adriatic Wind"</div><span class="res-badge badge-active">Probíhá</span></div>
+            <div class="res-meta"><span>12. 7. – 19. 7. 2026</span><span>ACI Marina Split</span><span>Sun Charter d.o.o.</span></div>
+            <div class="res-payment-meta">
+              <span class="res-payment-meta-item is-paid"><span class="res-payment-meta-label">Záloha:</span><span class="res-payment-meta-val">10 800 Kč</span><span class="res-payment-meta-due">· Uhrazeno 5. 3. 2026</span><svg class="res-payment-check" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="res-payment-meta-item is-paid"><span class="res-payment-meta-label">Doplatek:</span><span class="res-payment-meta-val">25 200 Kč</span><span class="res-payment-meta-due">· Uhrazeno 14. 5. 2026</span><svg class="res-payment-check" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">36 000 Kč</div>
         </div>
-        <div style="text-align:right;font-size:13px;color:var(--muted);">42 500 Kč</div>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Bavaria 44 — "Mistral"</div><span class="res-badge badge-pending">Rezervováno</span></div>
+            <div class="res-meta"><span>2. 8. – 9. 8. 2026</span><span>Marina Šibenik</span><span>Nava d.o.o.</span></div>
+            <div class="res-payment-meta">
+              <span class="res-payment-meta-item is-paid"><span class="res-payment-meta-label">Záloha:</span><span class="res-payment-meta-val">12 750 Kč</span><span class="res-payment-meta-due">· Uhrazeno 10. 4. 2026</span><svg class="res-payment-check" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="res-payment-meta-item is-overdue"><svg class="res-payment-alert" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span class="res-payment-meta-label">Doplatek:</span><span class="res-payment-meta-val">29 750 Kč</span><span class="res-payment-meta-due">· uhradit do <strong>3. 5. 2026</strong> — <strong>Po splatnosti!</strong></span></span>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">42 500 Kč</div>
+        </div>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Lagoon 42 — "Ocean Dream"</div><span class="res-badge badge-pending">Rezervováno</span></div>
+            <div class="res-meta"><span>15. 8. – 22. 8. 2026</span><span>Marina Trogir</span><span>Moorings</span></div>
+            <div class="res-payment-meta">
+              <span class="res-payment-meta-item is-paid"><span class="res-payment-meta-label">Záloha:</span><span class="res-payment-meta-val">28 500 Kč</span><span class="res-payment-meta-due">· Uhrazeno 18. 4. 2026</span><svg class="res-payment-check" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="res-payment-meta-item"><span class="res-payment-meta-label">Doplatek:</span><span class="res-payment-meta-val">66 500 Kč</span><span class="res-payment-meta-due">· uhradit do 16. 7. 2026</span></span>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">95 000 Kč</div>
+        </div>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Bénéteau Oceanis 46 — "Azzurra"</div><span class="res-badge badge-pending">Rezervováno</span></div>
+            <div class="res-meta"><span>5. 9. – 12. 9. 2026</span><span>ACI Marina Dubrovník</span><span>Adriatic Charter</span></div>
+            <div class="res-payment-meta">
+              <span class="res-payment-meta-item is-paid"><span class="res-payment-meta-label">Záloha:</span><span class="res-payment-meta-val">17 400 Kč</span><span class="res-payment-meta-due">· Uhrazeno 2. 5. 2026</span><svg class="res-payment-check" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span class="res-payment-meta-item"><span class="res-payment-meta-label">Doplatek:</span><span class="res-payment-meta-val">40 600 Kč</span><span class="res-payment-meta-due">· uhradit do 6. 8. 2026</span></span>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">58 000 Kč</div>
+        </div>
       </div>
-      <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
-        <div class="res-thumb"></div>
-        <div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Jeanneau Sun Odyssey 440 — Korfu</div><span class="res-badge badge-done">Ukončeno</span></div>
-          <div class="res-meta"><span>5. 6. – 12. 6. 2024</span><span>Přístav Gouvia Marina</span><span>Sailing Holidays</span></div>
+
+      <!-- Předrezervace -->
+      <div class="res-tab-panel" data-panel="predrezervace">
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Sun Odyssey 410 — "Sirena"</div><span class="res-badge badge-prereserved">Předrezervace</span></div>
+            <div class="res-meta"><span>10. 10. – 17. 10. 2026</span><span>Marina Zadar</span><span>Nausys Charter</span></div>
+            <div class="res-payment-meta">
+              <span class="res-payment-meta-item"><span class="res-payment-meta-label">Záloha:</span><span class="res-payment-meta-val">14 400 Kč</span><span class="res-payment-meta-due">· uhradit do 22. 5. 2026</span></span>
+              <span class="res-payment-meta-item"><span class="res-payment-meta-label">Doplatek:</span><span class="res-payment-meta-val">33 600 Kč</span><span class="res-payment-meta-due">· uhradit do 10. 9. 2026</span></span>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">48 000 Kč</div>
         </div>
-        <div style="text-align:right;font-size:13px;color:var(--muted);">28 000 Kč</div>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Fountaine Pajot 47 — "Gemini"</div><span class="res-badge badge-prereserved">Předrezervace</span></div>
+            <div class="res-meta"><span>20. 6. – 27. 6. 2027</span><span>ACI Marina Split</span><span>Dream Yacht Charter</span></div>
+            <div class="res-payment-meta">
+              <span class="res-payment-meta-item"><span class="res-payment-meta-label">Záloha:</span><span class="res-payment-meta-val">38 400 Kč</span><span class="res-payment-meta-due">· uhradit do 24. 5. 2026</span></span>
+              <span class="res-payment-meta-item"><span class="res-payment-meta-label">Doplatek:</span><span class="res-payment-meta-val">89 600 Kč</span><span class="res-payment-meta-due">· uhradit do 21. 5. 2027</span></span>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">128 000 Kč</div>
+        </div>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Hanse 458 — "Polaris"</div><span class="res-badge badge-prereserved">Předrezervace</span></div>
+            <div class="res-meta"><span>5. 7. – 12. 7. 2027</span><span>Marina Kornati</span><span>Ultra Sailing</span></div>
+            <div class="res-payment-meta">
+              <span class="res-payment-meta-item"><span class="res-payment-meta-label">Záloha:</span><span class="res-payment-meta-val">18 600 Kč</span><span class="res-payment-meta-due">· uhradit do 19. 5. 2026</span></span>
+              <span class="res-payment-meta-item"><span class="res-payment-meta-label">Doplatek:</span><span class="res-payment-meta-val">43 400 Kč</span><span class="res-payment-meta-due">· uhradit do 5. 6. 2027</span></span>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">62 000 Kč</div>
+        </div>
+      </div>
+
+      <!-- Proběhlé -->
+      <div class="res-tab-panel" data-panel="probehle" hidden>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Bavaria C42 — "Lady One"</div><span class="res-badge badge-done">Ukončeno</span></div>
+            <div class="res-meta"><span>10. 8. – 17. 8. 2025</span><span>ACI Marina Split</span><span>Sunsail</span></div>
+            <div class="res-rate-row res-rate-row--done">
+              <div class="res-rate-display">
+                <span class="res-rate-item"><span class="res-rate-label">Loď:</span><span class="res-rate-stars">★★★★★</span></span>
+                <span class="res-rate-item"><span class="res-rate-label">Charterovka:</span><span class="res-rate-stars">★★★★<span class="res-rate-stars-empty">☆</span></span></span>
+                <span class="res-rate-item"><span class="res-rate-label">Yachtnet:</span><span class="res-rate-stars">★★★★★</span></span>
+              </div>
+              <a href="#" class="res-rate-edit" onclick="event.stopPropagation();">Upravit hodnocení</a>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">36 000 Kč</div>
+        </div>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Jeanneau Sun Odyssey 440 — "Stella Maris"</div><span class="res-badge badge-done">Ukončeno</span></div>
+            <div class="res-meta"><span>5. 6. – 12. 6. 2024</span><span>Gouvia Marina</span><span>Sailing Holidays</span></div>
+            <div class="res-rate-row">
+              <a href="#" class="res-rate-link" onclick="event.stopPropagation();">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Ohodnoťte svoji plavbu →
+              </a>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">28 000 Kč</div>
+        </div>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Lagoon 380 — "Sundance"</div><span class="res-badge badge-done">Ukončeno</span></div>
+            <div class="res-meta"><span>1. 7. – 8. 7. 2023</span><span>Marina Trogir</span><span>Moorings</span></div>
+            <div class="res-rate-row">
+              <a href="#" class="res-rate-link" onclick="event.stopPropagation();">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Ohodnoťte svoji plavbu →
+              </a>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">82 000 Kč</div>
+        </div>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Dufour 41 — "Levante"</div><span class="res-badge badge-done">Ukončeno</span></div>
+            <div class="res-meta"><span>12. 9. – 19. 9. 2022</span><span>Marina Šibenik</span><span>Adriatic Charter</span></div>
+            <div class="res-rate-row">
+              <a href="#" class="res-rate-link" onclick="event.stopPropagation();">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Ohodnoťte svoji plavbu →
+              </a>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">31 000 Kč</div>
+        </div>
+        <div class="res-card" onclick="window.location.href='detail-rezervace.html'" style="cursor:pointer;">
+          <div class="res-thumb"></div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div class="res-title">Bavaria 39 — "Aquila"</div><span class="res-badge badge-done">Ukončeno</span></div>
+            <div class="res-meta"><span>20. 8. – 27. 8. 2021</span><span>ACI Marina Pula</span><span>Sun Charter d.o.o.</span></div>
+            <div class="res-rate-row res-rate-row--done">
+              <div class="res-rate-display">
+                <span class="res-rate-item"><span class="res-rate-label">Loď:</span><span class="res-rate-stars">★★★★<span class="res-rate-stars-empty">☆</span></span></span>
+                <span class="res-rate-item"><span class="res-rate-label">Charterovka:</span><span class="res-rate-stars">★★★★★</span></span>
+                <span class="res-rate-item"><span class="res-rate-label">Yachtnet:</span><span class="res-rate-stars">★★★★★</span></span>
+              </div>
+              <a href="#" class="res-rate-edit" onclick="event.stopPropagation();">Upravit hodnocení</a>
+            </div>
+          </div>
+          <div style="text-align:right;font-size:13px;color:var(--muted);">24 500 Kč</div>
+        </div>
       </div>
     </main>
   </div>

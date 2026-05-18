@@ -40,17 +40,19 @@
         <div class="sf-field sf-field--destination">
           <span class="sf-label">Destinace</span>
           <div class="sf-combobox" data-destination-search aria-expanded="false">
+            <svg class="sf-combobox-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <input class="sf-combobox-input" type="text" name="location" value="Split" placeholder="Vyberte zemi, oblast nebo přístav…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" />
-            <svg class="sf-combobox-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             <div class="sf-combobox-dropdown" hidden></div>
           </div>
         </div>
         <div class="sf-field sf-field--dates">
           <span class="sf-label">Termín</span>
-          <div class="date-combined">
-            <input type="date" name="from" value="2025-06-14" />
-            <span class="date-sep">→</span>
-            <input type="date" name="to" value="2025-06-21" />
+          <div class="sf-daterange" data-daterange aria-expanded="false">
+            <svg class="sf-daterange-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <button type="button" class="sf-daterange-trigger"><span class="sf-daterange-label sf-daterange-label--placeholder">Kdykoliv</span></button>
+            <input type="hidden" name="from" />
+            <input type="hidden" name="to" />
+            <div class="sf-daterange-popover" hidden></div>
           </div>
         </div>
         <div class="sf-field sf-field--category">
@@ -60,17 +62,31 @@
             <option value="sailing">Plachetnice</option>
             <option value="catamaran">Katamarán</option>
             <option value="motor">Motorová loď</option>
-            <option value="gulet">Gulet</option>
             <option value="river">Říční loď</option>
+            <option value="gulet">Gulet</option>
           </select>
         </div>
         <div class="sf-field sf-field--people">
           <span class="sf-label">Počet osob</span>
-          <div class="sf-people" data-people-stepper data-min="1" data-max="12" data-value="4">
-            <button type="button" class="sf-people-btn" data-step="-1" aria-label="Méně osob">−</button>
-            <span class="sf-people-val">4 osoby</span>
-            <button type="button" class="sf-people-btn" data-step="1" aria-label="Více osob">+</button>
+          <div class="sf-people" data-people-select data-min="1" data-max="12" data-value="4" aria-expanded="false">
+            <button type="button" class="sf-people-trigger">
+              <span class="sf-people-val">4 osoby</span>
+              <svg class="sf-people-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
             <input type="hidden" name="people" value="4" />
+            <div class="sf-people-popover" hidden>
+              <div class="sf-people-row">
+                <div>
+                  <div class="sf-people-row-label">Počet osob</div>
+                  <div class="sf-people-row-sub">Včetně dětí</div>
+                </div>
+                <div class="sf-people-counter">
+                  <button type="button" class="sf-people-btn" data-step="-1" aria-label="Méně osob">−</button>
+                  <span class="sf-people-counter-val">4</span>
+                  <button type="button" class="sf-people-btn" data-step="1" aria-label="Více osob">+</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <button type="button" class="btn-search">Hledat lodě</button>
@@ -119,28 +135,51 @@
             <label class="filter-check"><input type="checkbox" checked /> <span>Plachetnice <span class="count">(58)</span></span></label>
             <label class="filter-check"><input type="checkbox" checked /> <span>Katamarán <span class="count">(31)</span></span></label>
             <label class="filter-check"><input type="checkbox" /> <span>Motorová loď <span class="count">(24)</span></span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Gulet <span class="count">(9)</span></span></label>
             <label class="filter-check"><input type="checkbox" /> <span>Říční loď <span class="count">(12)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Gulet <span class="count">(9)</span></span></label>
           </div>
         </div>
         <div class="filter-group">
           <div class="filter-subgroup">
-            <div class="filter-subtitle">Počet osob</div>
-            <div class="counter-group">
-              <div class="counter-row"><span class="counter-label">Min. osob</span><div class="counter"><button type="button" data-action="dec" aria-label="Snížit">−</button><input type="number" class="counter-val" inputmode="numeric" min="0" value="0" /><button type="button" data-action="inc" aria-label="Zvýšit">+</button></div></div>
+            <div class="filter-subtitle">Počet osob <span class="filter-subtitle-hint">(= počet lůžek na lodi)</span></div>
+            <div class="range-dual" data-unit="">
+              <div class="range-track"></div>
+              <div class="range-fill"></div>
+              <input type="range" class="range-min" min="2" max="12" value="2" step="1" />
+              <input type="range" class="range-max" min="2" max="12" value="12" step="1" />
             </div>
-            <div class="filter-hint">= počet lůžek na lodi</div>
+            <div class="range-row">
+              <input type="text" class="range-val-min range-input" inputmode="numeric" value="2" aria-label="Min. osob" />
+              <span class="range-sep" aria-hidden="true">–</span>
+              <input type="text" class="range-val-max range-input" inputmode="numeric" value="12+" aria-label="Max. osob" />
+            </div>
           </div>
           <div class="filter-subgroup">
             <div class="filter-subtitle">Počet kajut</div>
-            <div class="counter-group">
-              <div class="counter-row"><span class="counter-label">Min. kajut</span><div class="counter"><button type="button" data-action="dec" aria-label="Snížit">−</button><input type="number" class="counter-val" inputmode="numeric" min="0" value="0" /><button type="button" data-action="inc" aria-label="Zvýšit">+</button></div></div>
+            <div class="range-dual" data-unit="">
+              <div class="range-track"></div>
+              <div class="range-fill"></div>
+              <input type="range" class="range-min" min="1" max="6" value="1" step="1" />
+              <input type="range" class="range-max" min="1" max="6" value="6" step="1" />
+            </div>
+            <div class="range-row">
+              <input type="text" class="range-val-min range-input" inputmode="numeric" value="1" aria-label="Min. kajut" />
+              <span class="range-sep" aria-hidden="true">–</span>
+              <input type="text" class="range-val-max range-input" inputmode="numeric" value="6+" aria-label="Max. kajut" />
             </div>
           </div>
           <div class="filter-subgroup">
             <div class="filter-subtitle">Počet toalet</div>
-            <div class="counter-group">
-              <div class="counter-row"><span class="counter-label">Min. toalet</span><div class="counter"><button type="button" data-action="dec" aria-label="Snížit">−</button><input type="number" class="counter-val" inputmode="numeric" min="0" value="0" /><button type="button" data-action="inc" aria-label="Zvýšit">+</button></div></div>
+            <div class="range-dual" data-unit="">
+              <div class="range-track"></div>
+              <div class="range-fill"></div>
+              <input type="range" class="range-min" min="1" max="5" value="1" step="1" />
+              <input type="range" class="range-max" min="1" max="5" value="5" step="1" />
+            </div>
+            <div class="range-row">
+              <input type="text" class="range-val-min range-input" inputmode="numeric" value="1" aria-label="Min. toalet" />
+              <span class="range-sep" aria-hidden="true">–</span>
+              <input type="text" class="range-val-max range-input" inputmode="numeric" value="5+" aria-label="Max. toalet" />
             </div>
           </div>
         </div>
@@ -188,53 +227,6 @@
             </div>
           </div>
         </div>
-        <div class="filter-group">
-          <div class="filter-group-title">Plachty</div>
-          <div class="filter-subgroup">
-            <div class="filter-subtitle">Hlavní plachta</div>
-            <div class="filter-checks">
-              <label class="filter-check"><input type="checkbox" /> <span>Rolovací</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Klasická</span></label>
-            </div>
-          </div>
-          <div class="filter-subgroup">
-            <div class="filter-subtitle">Genoa plachta</div>
-            <div class="filter-checks">
-              <label class="filter-check"><input type="checkbox" /> <span>Samopřehazovací</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Překrývací</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="filter-group" data-rating-filter>
-          <div class="filter-group-title">Hodnocení</div>
-          <div class="rating-filter">
-            <button type="button" class="rating-pill is-active" data-min="0">
-              <span class="rating-pill-stars" aria-hidden="true">☆☆☆☆☆</span>
-              <span class="rating-pill-label">Cokoli</span>
-              <span class="rating-pill-count">(134)</span>
-            </button>
-            <button type="button" class="rating-pill" data-min="3">
-              <span class="rating-pill-stars" aria-hidden="true">★★★<span class="rating-pill-stars-empty">☆☆</span></span>
-              <span class="rating-pill-label">3,0+</span>
-              <span class="rating-pill-count">(118)</span>
-            </button>
-            <button type="button" class="rating-pill" data-min="4">
-              <span class="rating-pill-stars" aria-hidden="true">★★★★<span class="rating-pill-stars-empty">☆</span></span>
-              <span class="rating-pill-label">4,0+</span>
-              <span class="rating-pill-count">(86)</span>
-            </button>
-            <button type="button" class="rating-pill" data-min="4.5">
-              <span class="rating-pill-stars" aria-hidden="true">★★★★½</span>
-              <span class="rating-pill-label">4,5+</span>
-              <span class="rating-pill-count">(48)</span>
-            </button>
-            <button type="button" class="rating-pill" data-min="5">
-              <span class="rating-pill-stars" aria-hidden="true">★★★★★</span>
-              <span class="rating-pill-label">jen 5,0</span>
-              <span class="rating-pill-count">(12)</span>
-            </button>
-          </div>
-        </div>
         <div class="filter-group" data-filter-search-group>
           <div class="filter-group-title">Výbava</div>
           <div class="filter-search-wrap">
@@ -245,31 +237,54 @@
             </button>
           </div>
           <div class="filter-checks">
-            <label class="filter-check"><input type="checkbox" /> <span>Klimatizace</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Závěsný motor + dinghy</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Výrobník vody</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Generátor</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Solární panely</span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Klimatizace <span class="count">(62)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Závěsný motor + dinghy <span class="count">(98)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Výrobník vody <span class="count">(21)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Generátor <span class="count">(35)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Solární panely <span class="count">(44)</span></span></label>
           </div>
           <div class="filter-checks filter-checks-more" hidden>
-            <label class="filter-check"><input type="checkbox" /> <span>Příďový propulzor</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Autopilot</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>GPS / Chartplotter</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Radar</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>AIS</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>VHF radiostanice</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Bimini</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>BBQ</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Šnorchlovací sada</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Kokpitový stůl</span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Příďový propulzor <span class="count">(58)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Autopilot <span class="count">(112)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>GPS / Chartplotter <span class="count">(126)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Radar <span class="count">(48)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>AIS <span class="count">(74)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>VHF radiostanice <span class="count">(118)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Bimini <span class="count">(102)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>BBQ <span class="count">(82)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Šnorchlovací sada <span class="count">(54)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Kokpitový stůl <span class="count">(95)</span></span></label>
           </div>
           <div class="filter-search-empty" hidden>Ve výbavě nic nenalezeno.</div>
           <button type="button" class="filter-more">+ Ukázat více výbavy</button>
         </div>
         <div class="filter-group">
-          <div class="filter-group-title">Speciální</div>
-          <div class="filter-checks">
-            <label class="filter-check"><input type="checkbox" /> <span>Závodní lodě na regatu</span></label>
+          <div class="filter-group-title">Plachty</div>
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Hlavní plachta <span class="filter-info" tabindex="0" aria-label="Vysvětlení typů hlavní plachty">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="filter-info-tip" role="tooltip">
+                <strong>Rolovací (in-mast / in-boom):</strong> plachta se navíjí dovnitř stěžně nebo ráhna — jednoduchá obsluha pro 1 osobu, rychlé refování. Méně výkonná, ale praktická.<br><br>
+                <strong>Klasická (full-batten):</strong> klasická trojúhelníková plachta s lištami, spouští se do lazyjacks či lazybagu. Lepší tvar a výkon, ale vyžaduje více osob a zkušeností.
+              </span>
+            </span></div>
+            <div class="filter-checks">
+              <label class="filter-check"><input type="checkbox" checked /> <span>Rolovací <span class="count">(74)</span></span></label>
+              <label class="filter-check"><input type="checkbox" checked /> <span>Klasická <span class="count">(60)</span></span></label>
+            </div>
+          </div>
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Genoa plachta <span class="filter-info" tabindex="0" aria-label="Vysvětlení typů genoa plachty">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span class="filter-info-tip" role="tooltip">
+                <strong>Samopřehazovací (self-tacking):</strong> přední plachta s vlastní kolejnicí, která se sama přehazuje při obratu. Ideální pro malou posádku a začátečníky — žádné tahání lan.<br><br>
+                <strong>Klasická (overlapping):</strong> velká genoa překrývající stěžeň, ovládaná pomocí škot na obou bocích. Větší výkon, ale při obratu se musí ručně přehazovat.
+              </span>
+            </span></div>
+            <div class="filter-checks">
+              <label class="filter-check"><input type="checkbox" checked /> <span>Samopřehazovací <span class="count">(48)</span></span></label>
+              <label class="filter-check"><input type="checkbox" checked /> <span>Klasická <span class="count">(86)</span></span></label>
+            </div>
           </div>
         </div>
         <div class="filter-group">
@@ -285,22 +300,22 @@
                 <input class="fs-search" type="text" placeholder="Hledat společnost…" autocomplete="off" />
               </div>
               <ul class="fs-list">
-                <li class="fs-option selected" data-value="">Libovolná společnost</li>
-                <li class="fs-option" data-value="navigare">Navigare Yachting</li>
-                <li class="fs-option" data-value="sunsail">Sunsail</li>
-                <li class="fs-option" data-value="moorings">Moorings</li>
-                <li class="fs-option" data-value="nausys">Nausys Charter</li>
-                <li class="fs-option" data-value="maresail">MareSail d.o.o.</li>
-                <li class="fs-option" data-value="adriatic">Adriatic Charter</li>
-                <li class="fs-option" data-value="ultra">Ultra Sailing</li>
-                <li class="fs-option" data-value="katarina">Katarina Line</li>
-                <li class="fs-option" data-value="eurasail">EuraSail</li>
-                <li class="fs-option" data-value="cosmos">Cosmos Yachting</li>
-                <li class="fs-option" data-value="dyc">Dream Yacht Charter</li>
-                <li class="fs-option" data-value="bavaria-charter">Bavaria Yachtbau Charter</li>
-                <li class="fs-option" data-value="oceanis">OceanSail Croatia</li>
-                <li class="fs-option" data-value="dalmacija">Dalmacija Charter</li>
-                <li class="fs-option" data-value="my-charter">MY Charter</li>
+                <li class="fs-option selected" data-value="">Libovolná společnost <span class="fs-count">(134)</span></li>
+                <li class="fs-option" data-value="navigare">Navigare Yachting <span class="fs-count">(28)</span></li>
+                <li class="fs-option" data-value="sunsail">Sunsail <span class="fs-count">(22)</span></li>
+                <li class="fs-option" data-value="moorings">Moorings <span class="fs-count">(18)</span></li>
+                <li class="fs-option" data-value="nausys">Nausys Charter <span class="fs-count">(15)</span></li>
+                <li class="fs-option" data-value="maresail">MareSail d.o.o. <span class="fs-count">(12)</span></li>
+                <li class="fs-option" data-value="adriatic">Adriatic Charter <span class="fs-count">(9)</span></li>
+                <li class="fs-option" data-value="ultra">Ultra Sailing <span class="fs-count">(7)</span></li>
+                <li class="fs-option" data-value="katarina">Katarina Line <span class="fs-count">(6)</span></li>
+                <li class="fs-option" data-value="eurasail">EuraSail <span class="fs-count">(5)</span></li>
+                <li class="fs-option" data-value="cosmos">Cosmos Yachting <span class="fs-count">(4)</span></li>
+                <li class="fs-option" data-value="dyc">Dream Yacht Charter <span class="fs-count">(4)</span></li>
+                <li class="fs-option" data-value="bavaria-charter">Bavaria Yachtbau Charter <span class="fs-count">(2)</span></li>
+                <li class="fs-option" data-value="oceanis">OceanSail Croatia <span class="fs-count">(2)</span></li>
+                <li class="fs-option" data-value="dalmacija">Dalmacija Charter <span class="fs-count">(1)</span></li>
+                <li class="fs-option" data-value="my-charter">MY Charter <span class="fs-count">(1)</span></li>
               </ul>
               <div class="fs-empty">Žádná společnost nenalezena</div>
             </div>
@@ -308,48 +323,53 @@
         </div>
         <div class="filter-group">
           <div class="filter-group-title">Značka / model</div>
-          <div class="fs-wrap" style="margin-bottom:8px;">
-            <button class="fs-trigger" type="button">
-              <span class="fs-value">Libovolná značka</span>
-              <svg class="fs-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="fs-dropdown">
-              <div class="fs-search-wrap">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input class="fs-search" type="text" placeholder="Hledat značku…" autocomplete="off" />
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Značka</div>
+            <div class="fs-wrap">
+              <button class="fs-trigger" type="button">
+                <span class="fs-value">Libovolná značka</span>
+                <svg class="fs-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="fs-dropdown">
+                <div class="fs-search-wrap">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <input class="fs-search" type="text" placeholder="Hledat značku…" autocomplete="off" />
+                </div>
+                <ul class="fs-list">
+                  <li class="fs-option selected" data-value="">Libovolná značka <span class="fs-count">(134)</span></li>
+                  <li class="fs-option fs-group">Plachetnice</li>
+                  <li class="fs-option" data-value="bavaria">Bavaria <span class="fs-count">(18)</span></li>
+                  <li class="fs-option" data-value="jeanneau">Jeanneau <span class="fs-count">(15)</span></li>
+                  <li class="fs-option" data-value="beneteau">Bénéteau <span class="fs-count">(12)</span></li>
+                  <li class="fs-option" data-value="elan">Elan <span class="fs-count">(11)</span></li>
+                  <li class="fs-option" data-value="hanse">Hanse <span class="fs-count">(9)</span></li>
+                  <li class="fs-option" data-value="dufour">Dufour <span class="fs-count">(8)</span></li>
+                  <li class="fs-option" data-value="dehler">Dehler <span class="fs-count">(3)</span></li>
+                  <li class="fs-option" data-value="x-yachts">X-Yachts <span class="fs-count">(2)</span></li>
+                  <li class="fs-option" data-value="hallberg-rassy">Hallberg-Rassy <span class="fs-count">(2)</span></li>
+                  <li class="fs-option" data-value="najad">Najad <span class="fs-count">(1)</span></li>
+                  <li class="fs-option" data-value="rustler">Rustler <span class="fs-count">(1)</span></li>
+                  <li class="fs-option fs-group">Katamarány</li>
+                  <li class="fs-option" data-value="lagoon">Lagoon <span class="fs-count">(12)</span></li>
+                  <li class="fs-option" data-value="fountaine-pajot">Fountaine Pajot <span class="fs-count">(8)</span></li>
+                  <li class="fs-option" data-value="bali">Bali Catamarans <span class="fs-count">(5)</span></li>
+                  <li class="fs-option" data-value="excess">Excess <span class="fs-count">(4)</span></li>
+                  <li class="fs-option" data-value="leopard">Leopard <span class="fs-count">(3)</span></li>
+                  <li class="fs-option" data-value="outremer">Outremer <span class="fs-count">(1)</span></li>
+                  <li class="fs-option fs-group">Motorové jachty</li>
+                  <li class="fs-option" data-value="prestige">Prestige <span class="fs-count">(6)</span></li>
+                  <li class="fs-option" data-value="greenline">Greenline <span class="fs-count">(5)</span></li>
+                  <li class="fs-option" data-value="fairline">Fairline <span class="fs-count">(4)</span></li>
+                  <li class="fs-option" data-value="sunseeker">Sunseeker <span class="fs-count">(3)</span></li>
+                  <li class="fs-option" data-value="princess">Princess <span class="fs-count">(2)</span></li>
+                </ul>
+                <div class="fs-empty">Žádná značka nenalezena</div>
               </div>
-              <ul class="fs-list">
-                <li class="fs-option selected" data-value="">Libovolná značka</li>
-                <li class="fs-option fs-group">Plachetnice</li>
-                <li class="fs-option" data-value="bavaria">Bavaria</li>
-                <li class="fs-option" data-value="jeanneau">Jeanneau</li>
-                <li class="fs-option" data-value="beneteau">Bénéteau</li>
-                <li class="fs-option" data-value="elan">Elan</li>
-                <li class="fs-option" data-value="hanse">Hanse</li>
-                <li class="fs-option" data-value="dufour">Dufour</li>
-                <li class="fs-option" data-value="dehler">Dehler</li>
-                <li class="fs-option" data-value="x-yachts">X-Yachts</li>
-                <li class="fs-option" data-value="hallberg-rassy">Hallberg-Rassy</li>
-                <li class="fs-option" data-value="najad">Najad</li>
-                <li class="fs-option" data-value="rustler">Rustler</li>
-                <li class="fs-option fs-group">Katamarány</li>
-                <li class="fs-option" data-value="lagoon">Lagoon</li>
-                <li class="fs-option" data-value="fountaine-pajot">Fountaine Pajot</li>
-                <li class="fs-option" data-value="bali">Bali Catamarans</li>
-                <li class="fs-option" data-value="excess">Excess</li>
-                <li class="fs-option" data-value="leopard">Leopard</li>
-                <li class="fs-option" data-value="outremer">Outremer</li>
-                <li class="fs-option fs-group">Motorové jachty</li>
-                <li class="fs-option" data-value="prestige">Prestige</li>
-                <li class="fs-option" data-value="greenline">Greenline</li>
-                <li class="fs-option" data-value="fairline">Fairline</li>
-                <li class="fs-option" data-value="sunseeker">Sunseeker</li>
-                <li class="fs-option" data-value="princess">Princess</li>
-              </ul>
-              <div class="fs-empty">Žádná značka nenalezena</div>
             </div>
           </div>
-          <div class="fs-wrap">
+          <div class="filter-subgroup">
+            <div class="filter-subtitle">Model</div>
+            <div class="fs-wrap">
             <button class="fs-trigger" type="button">
               <span class="fs-value">Libovolný model</span>
               <svg class="fs-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -360,55 +380,76 @@
                 <input class="fs-search" type="text" placeholder="Hledat model…" autocomplete="off" />
               </div>
               <ul class="fs-list">
-                <li class="fs-option selected" data-value="">Libovolný model</li>
+                <li class="fs-option selected" data-value="">Libovolný model <span class="fs-count">(134)</span></li>
                 <li class="fs-option fs-group">Bavaria</li>
-                <li class="fs-option" data-value="bavaria-c34">Bavaria C34</li>
-                <li class="fs-option" data-value="bavaria-c38">Bavaria C38</li>
-                <li class="fs-option" data-value="bavaria-c42">Bavaria C42</li>
-                <li class="fs-option" data-value="bavaria-c45">Bavaria C45</li>
-                <li class="fs-option" data-value="bavaria-c50">Bavaria C50</li>
+                <li class="fs-option" data-value="bavaria-c34">Bavaria C34 <span class="fs-count">(3)</span></li>
+                <li class="fs-option" data-value="bavaria-c38">Bavaria C38 <span class="fs-count">(4)</span></li>
+                <li class="fs-option" data-value="bavaria-c42">Bavaria C42 <span class="fs-count">(5)</span></li>
+                <li class="fs-option" data-value="bavaria-c45">Bavaria C45 <span class="fs-count">(4)</span></li>
+                <li class="fs-option" data-value="bavaria-c50">Bavaria C50 <span class="fs-count">(2)</span></li>
                 <li class="fs-option fs-group">Jeanneau</li>
-                <li class="fs-option" data-value="so-380">Sun Odyssey 380</li>
-                <li class="fs-option" data-value="so-410">Sun Odyssey 410</li>
-                <li class="fs-option" data-value="so-440">Sun Odyssey 440</li>
-                <li class="fs-option" data-value="so-490">Sun Odyssey 490</li>
-                <li class="fs-option" data-value="so-54">Sun Odyssey 54</li>
+                <li class="fs-option" data-value="so-380">Sun Odyssey 380 <span class="fs-count">(3)</span></li>
+                <li class="fs-option" data-value="so-410">Sun Odyssey 410 <span class="fs-count">(4)</span></li>
+                <li class="fs-option" data-value="so-440">Sun Odyssey 440 <span class="fs-count">(4)</span></li>
+                <li class="fs-option" data-value="so-490">Sun Odyssey 490 <span class="fs-count">(3)</span></li>
+                <li class="fs-option" data-value="so-54">Sun Odyssey 54 <span class="fs-count">(1)</span></li>
                 <li class="fs-option fs-group">Bénéteau</li>
-                <li class="fs-option" data-value="oceanis-38">Oceanis 38.1</li>
-                <li class="fs-option" data-value="oceanis-41">Oceanis 41.1</li>
-                <li class="fs-option" data-value="oceanis-46">Oceanis 46.1</li>
-                <li class="fs-option" data-value="oceanis-51">Oceanis 51.1</li>
+                <li class="fs-option" data-value="oceanis-38">Oceanis 38.1 <span class="fs-count">(3)</span></li>
+                <li class="fs-option" data-value="oceanis-41">Oceanis 41.1 <span class="fs-count">(4)</span></li>
+                <li class="fs-option" data-value="oceanis-46">Oceanis 46.1 <span class="fs-count">(3)</span></li>
+                <li class="fs-option" data-value="oceanis-51">Oceanis 51.1 <span class="fs-count">(2)</span></li>
                 <li class="fs-option fs-group">Lagoon</li>
-                <li class="fs-option" data-value="lagoon-380">Lagoon 380</li>
-                <li class="fs-option" data-value="lagoon-42">Lagoon 42</li>
-                <li class="fs-option" data-value="lagoon-46">Lagoon 46</li>
-                <li class="fs-option" data-value="lagoon-50">Lagoon 50</li>
+                <li class="fs-option" data-value="lagoon-380">Lagoon 380 <span class="fs-count">(2)</span></li>
+                <li class="fs-option" data-value="lagoon-42">Lagoon 42 <span class="fs-count">(4)</span></li>
+                <li class="fs-option" data-value="lagoon-46">Lagoon 46 <span class="fs-count">(3)</span></li>
+                <li class="fs-option" data-value="lagoon-50">Lagoon 50 <span class="fs-count">(3)</span></li>
                 <li class="fs-option fs-group">Hanse</li>
-                <li class="fs-option" data-value="hanse-388">Hanse 388</li>
-                <li class="fs-option" data-value="hanse-418">Hanse 418</li>
-                <li class="fs-option" data-value="hanse-458">Hanse 458</li>
-                <li class="fs-option" data-value="hanse-508">Hanse 508</li>
-                <li class="fs-option" data-value="hanse-548">Hanse 548</li>
+                <li class="fs-option" data-value="hanse-388">Hanse 388 <span class="fs-count">(2)</span></li>
+                <li class="fs-option" data-value="hanse-418">Hanse 418 <span class="fs-count">(2)</span></li>
+                <li class="fs-option" data-value="hanse-458">Hanse 458 <span class="fs-count">(2)</span></li>
+                <li class="fs-option" data-value="hanse-508">Hanse 508 <span class="fs-count">(2)</span></li>
+                <li class="fs-option" data-value="hanse-548">Hanse 548 <span class="fs-count">(1)</span></li>
                 <li class="fs-option fs-group">Ostatní</li>
-                <li class="fs-option" data-value="fp-47">Fountaine Pajot 47</li>
-                <li class="fs-option" data-value="elan-e4">Elan E4</li>
-                <li class="fs-option" data-value="elan-e5">Elan E5</li>
-                <li class="fs-option" data-value="excess-11">Excess 11</li>
-                <li class="fs-option" data-value="excess-14">Excess 14</li>
-                <li class="fs-option" data-value="dufour-37">Dufour 37</li>
-                <li class="fs-option" data-value="dufour-41">Dufour 41</li>
-                <li class="fs-option" data-value="dufour-48">Dufour 48</li>
+                <li class="fs-option" data-value="fp-47">Fountaine Pajot 47 <span class="fs-count">(3)</span></li>
+                <li class="fs-option" data-value="elan-e4">Elan E4 <span class="fs-count">(4)</span></li>
+                <li class="fs-option" data-value="elan-e5">Elan E5 <span class="fs-count">(3)</span></li>
+                <li class="fs-option" data-value="excess-11">Excess 11 <span class="fs-count">(2)</span></li>
+                <li class="fs-option" data-value="excess-14">Excess 14 <span class="fs-count">(2)</span></li>
+                <li class="fs-option" data-value="dufour-37">Dufour 37 <span class="fs-count">(3)</span></li>
+                <li class="fs-option" data-value="dufour-41">Dufour 41 <span class="fs-count">(3)</span></li>
+                <li class="fs-option" data-value="dufour-48">Dufour 48 <span class="fs-count">(2)</span></li>
               </ul>
               <div class="fs-empty">Žádný model nenalezen</div>
             </div>
+          </div>
+          </div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group-title">Hodnocení</div>
+          <div class="range-dual" data-unit="" data-decimals="1">
+            <div class="range-track"></div>
+            <div class="range-fill"></div>
+            <input type="range" class="range-min" min="1" max="5" value="1" step="0.1" />
+            <input type="range" class="range-max" min="1" max="5" value="5" step="0.1" />
+          </div>
+          <div class="range-row">
+            <input type="text" class="range-val-min range-input" inputmode="decimal" value="1,0 ★" aria-label="Hodnocení od" />
+            <span class="range-sep" aria-hidden="true">–</span>
+            <input type="text" class="range-val-max range-input" inputmode="decimal" value="5,0 ★" aria-label="Hodnocení do" />
+          </div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group-title">Speciální</div>
+          <div class="filter-checks">
+            <label class="filter-check"><input type="checkbox" /> <span>Závodní lodě na regatu <span class="count">(11)</span></span></label>
           </div>
         </div>
         <div class="filter-group">
           <div class="filter-group-title">Služby a podmínky</div>
           <div class="filter-checks">
-            <label class="filter-check"><input type="checkbox" /> <span>Pet friendly</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Bezplatné zrušení</span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Okamžité potvrzení</span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Pet friendly <span class="count">(28)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Bezplatné zrušení <span class="count">(86)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Okamžité potvrzení <span class="count">(102)</span></span></label>
           </div>
         </div>
         <div class="filter-group filter-group-toggles">

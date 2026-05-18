@@ -304,7 +304,7 @@
     .sf-field--dates { flex: 1 1 190px; min-width: 180px; }
     .sf-field--category { flex: 1.1 1 160px; min-width: 150px; }
     .sf-field--people { flex: 0.9 1 140px; min-width: 130px; }
-    .sf-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+    .sf-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.6); text-align: left; }
     .sf-field select, .sf-field .date-combined {
       height: 40px; border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius);
       background: rgba(255,255,255,.1); color: #fff; font-size: 13px; font-family: inherit;
@@ -330,15 +330,14 @@
     /* Destinace combobox (autocomplete) */
     .sf-combobox { position: relative; }
     .sf-combobox-input {
-      width: 100%; height: 40px; padding: 0 38px 0 12px;
+      width: 100%; height: 40px; padding: 0 12px 0 36px;
       border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius);
       background: rgba(255,255,255,.1); color: #fff; font-size: 13px; font-family: inherit;
       box-sizing: border-box;
     }
     .sf-combobox-input::placeholder { color: rgba(255,255,255,.55); }
     .sf-combobox-input:focus { outline: 2px solid rgba(255,255,255,.5); outline-offset: 2px; }
-    .sf-combobox-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,.6); pointer-events: none; transition: transform .15s; }
-    .sf-combobox[aria-expanded="true"] .sf-combobox-icon { transform: translateY(-50%) rotate(180deg); }
+    .sf-combobox-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,.7); pointer-events: none; }
     .sf-combobox-dropdown {
       position: absolute; top: calc(100% + 6px); left: 0; right: 0;
       background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
@@ -372,25 +371,110 @@
     .sf-combobox-empty { padding: 18px; color: var(--muted); font-size: 13px; text-align: center; }
     .sf-combobox mark { background: var(--int-soft); color: var(--int); padding: 0 2px; border-radius: 2px; }
 
-    /* Počet osob — stepper */
+    /* Počet osob — select s counter popoverem */
     .sf-people {
-      height: 40px; display: flex; align-items: center;
+      position: relative; height: 40px;
       border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius);
       background: rgba(255,255,255,.1); color: #fff;
-      overflow: hidden;
     }
-    .sf-people-btn {
-      width: 36px; height: 100%;
-      background: transparent; border: none;
-      color: #fff; font-size: 18px; font-weight: 700; cursor: pointer;
-      font-family: inherit;
-      transition: background .15s;
-      display: flex; align-items: center; justify-content: center;
+    .sf-people-trigger {
+      width: 100%; height: 100%;
+      background: transparent; border: none; color: inherit; font: inherit;
+      cursor: pointer; padding: 0 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .sf-people-trigger:focus { outline: 2px solid rgba(255,255,255,.5); outline-offset: 2px; }
+    .sf-people-val { font-size: 13px; font-weight: 600; user-select: none; }
+    .sf-people-chevron { color: rgba(255,255,255,.6); transition: transform .15s; flex-shrink: 0; }
+    .sf-people[aria-expanded="true"] .sf-people-chevron { transform: rotate(180deg); }
+    .sf-people-popover {
+      position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 100;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 14px 16px; color: var(--text);
+      box-shadow: 0 12px 32px rgba(0,0,0,.18);
+      min-width: 220px;
+    }
+    .sf-people-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .sf-people-row-label { font-size: 13px; font-weight: 600; color: var(--text); }
+    .sf-people-row-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .sf-people-counter { display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0; }
+    .sf-people-counter .sf-people-btn {
+      width: 30px; height: 30px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: border-color .15s, color .15s, background .15s;
       flex-shrink: 0;
     }
-    .sf-people-btn:hover:not(:disabled) { background: rgba(255,255,255,.15); }
-    .sf-people-btn:disabled { opacity: .35; cursor: not-allowed; }
-    .sf-people-val { flex: 1; text-align: center; font-size: 13px; font-weight: 600; user-select: none; }
+    .sf-people-counter .sf-people-btn:hover:not(:disabled) { border-color: var(--int); color: var(--int); }
+    .sf-people-counter .sf-people-btn:disabled { opacity: .35; cursor: not-allowed; }
+    .sf-people-counter-val { min-width: 28px; text-align: center; font-size: 14px; font-weight: 700; user-select: none; }
+
+    /* Termín — daterange picker */
+    .sf-daterange {
+      position: relative; height: 40px;
+      border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius);
+      background: rgba(255,255,255,.1); color: #fff;
+      display: flex; align-items: center;
+    }
+    .sf-daterange-icon {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      color: rgba(255,255,255,.7); pointer-events: none;
+    }
+    .sf-daterange-trigger {
+      width: 100%; height: 100%;
+      background: transparent; border: none; color: inherit; font: inherit;
+      cursor: pointer; padding: 0 12px 0 36px;
+      text-align: left; display: flex; align-items: center;
+    }
+    .sf-daterange-trigger:focus { outline: 2px solid rgba(255,255,255,.5); outline-offset: 2px; }
+    .sf-daterange-label { font-size: 13px; font-weight: 600; }
+    .sf-daterange-label--placeholder { color: rgba(255,255,255,.55); font-weight: 400; }
+    .sf-daterange-popover {
+      position: absolute; top: calc(100% + 6px); left: 0; z-index: 100;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 14px; color: var(--text);
+      box-shadow: 0 12px 32px rgba(0,0,0,.18);
+      width: 620px;
+    }
+    .sf-cal-head { position: relative; height: 30px; margin-bottom: 4px; }
+    .sf-cal-months { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .sf-cal-month-title { font-size: 14px; font-weight: 700; color: var(--text); text-align: center; margin-bottom: 8px; }
+    .sf-cal-nav.sf-cal-nav--next { position: absolute; right: 0; top: 0; }
+    .sf-cal-nav:not(.sf-cal-nav--next) { position: absolute; left: 0; top: 0; }
+    .sf-cal-nav {
+      width: 30px; height: 30px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+      transition: border-color .15s, color .15s;
+    }
+    .sf-cal-nav:hover { border-color: var(--int); color: var(--int); }
+    .sf-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .sf-cal-dow { text-align: center; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--muted); padding: 6px 0; }
+    .sf-cal-day {
+      height: 36px; display: inline-flex; align-items: center; justify-content: center;
+      font-size: 13px; cursor: pointer; border: none; background: transparent; color: var(--text);
+      border-radius: var(--radius); font-family: inherit; padding: 0;
+    }
+    .sf-cal-day:hover:not(:disabled):not(.is-empty) { background: var(--int-soft); color: var(--int); }
+    .sf-cal-day.is-empty { cursor: default; visibility: hidden; }
+    .sf-cal-day:disabled { color: var(--muted); cursor: not-allowed; opacity: .35; }
+    .sf-cal-day.is-in-range { background: var(--int-soft); color: var(--int); border-radius: 0; }
+    .sf-cal-day.is-start, .sf-cal-day.is-end { background: var(--int); color: #fff; font-weight: 700; }
+    .sf-cal-day.is-start { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+    .sf-cal-day.is-end { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+    .sf-cal-day.is-start.is-end { border-radius: var(--radius); }
+    .sf-cal-day.is-today { font-weight: 800; }
+    .sf-cal-foot {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px;
+    }
+    .sf-cal-clear {
+      background: none; border: none; color: var(--int); cursor: pointer;
+      font-family: inherit; font-size: 12px; font-weight: 600; padding: 0;
+    }
+    .sf-cal-clear:hover { color: var(--int-dark); }
+    .sf-cal-hint { color: var(--muted); }
 
     /* ── PROMO BANNER (full-width marketing) ─────────── */
     .promo-band { background: var(--surface); border-bottom: 1px solid var(--border); }
@@ -903,6 +987,35 @@
     .filter-subgroup { margin-bottom: 16px; }
     .filter-subgroup:last-child { margin-bottom: 0; }
     .filter-subtitle { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .filter-subtitle-hint { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); font-size: 11px; }
+
+    /* Info ikonka s tooltipem (filter labely) */
+    .filter-info {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 16px; height: 16px; vertical-align: -2px; margin-left: 4px;
+      color: var(--muted); cursor: help; position: relative;
+      transition: color .15s;
+    }
+    .filter-info:hover, .filter-info:focus { color: var(--int); outline: none; }
+    .filter-info-tip {
+      position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+      width: 260px; padding: 10px 12px;
+      background: #1e1e1c; color: #fff;
+      border-radius: 6px; font-size: 11px; font-weight: 400; line-height: 1.5;
+      letter-spacing: 0; text-transform: none;
+      opacity: 0; visibility: hidden;
+      transition: opacity .15s, visibility .15s;
+      z-index: 50;
+      box-shadow: 0 8px 24px rgba(0,0,0,.18);
+      pointer-events: none;
+    }
+    .filter-info-tip::after {
+      content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      border: 6px solid transparent; border-top-color: #1e1e1c;
+    }
+    .filter-info-tip strong { color: #fff; font-weight: 700; }
+    .filter-info:hover .filter-info-tip,
+    .filter-info:focus .filter-info-tip { opacity: 1; visibility: visible; }
     .filter-hint { font-size: 11px; color: var(--muted); margin-top: 6px; font-style: italic; }
     .filter-search-wrap { position: relative; margin-bottom: 10px; }
     .filter-search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
@@ -1005,10 +1118,10 @@
       white-space: nowrap; line-height: 1;
     }
     .card-perk svg { flex-shrink: 0; }
-    .card-perk--early { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
-    .card-perk--motor { background: #dbeafe; color: #1e3a8a; border: 1px solid #93c5fd; }
-    .card-perk--deposit { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
-    .card-perk--lastminute { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .card-perk--early,
+    .card-perk--motor,
+    .card-perk--deposit,
+    .card-perk--lastminute { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; font-weight: 600; }
     .boat-card:hover { border-color: var(--int); background: var(--int-soft); }
     .card-img {
       flex-shrink: 0;
@@ -1084,19 +1197,25 @@
     .spec { display: flex; flex-direction: column; gap: 1px; }
     .spec-l { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
     .spec-v { font-size: 13px; font-weight: 600; }
-    .card-amenities { display: flex; flex-wrap: wrap; gap: 5px; }
+    .spec-sub { font-size: 10px; font-weight: 500; color: var(--muted); margin-left: 2px; }
+    .card-amenities { display: flex; flex-wrap: nowrap; gap: 5px; overflow: hidden; }
     .amenity-tag {
       font-size: 11px; padding: 3px 9px;
       background: var(--int-soft); color: #5a00d4;
       border-radius: 20px; border: 1px solid #d6c5ff; font-weight: 500; white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .amenity-tag--more {
+      background: transparent; color: var(--muted); border-color: var(--border);
     }
     .card-side {
       width: 180px; flex-shrink: 0; padding: 18px 20px;
       display: flex; flex-direction: column; justify-content: space-between; align-items: stretch;
     }
-    .card-side-top { display: flex; justify-content: flex-end; align-items: center; gap: 6px; margin-bottom: auto; }
-    .card-side-top .badge-dis { margin-right: auto; }
-    .card-side-top .card-status { margin-right: auto; }
+    .card-side-top { display: flex; justify-content: flex-start; align-items: center; margin-bottom: auto; }
+    .card-side-actions { display: flex; align-items: center; gap: 8px; }
+    .card-side-actions .card-icon-btn { flex-shrink: 0; }
+    .card-side-actions .btn-view { flex: 1; }
     /* Status lodě: Volná / Rezervovaná */
     .card-status {
       display: inline-flex; align-items: center; gap: 5px;
@@ -1107,15 +1226,20 @@
     .card-status-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
     .card-status--free { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
     .card-status--free .card-status-dot { background: #10b981; }
+    .card-status--prereserved { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+    .card-status--prereserved .card-status-dot { background: #f97316; }
     .card-status--reserved { background: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
     .card-status--reserved .card-status-dot { background: #dc2626; }
     .card-side-bottom { display: flex; flex-direction: column; gap: 10px; }
-    .card-price { display: flex; flex-direction: column; }
-    .price-from { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-    .price-val { font-size: 22px; font-weight: 700; line-height: 1.2; }
+    .card-price { display: flex; flex-direction: column; gap: 2px; }
+    .price-old-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 2px; }
+    .price-main { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+    .price-from { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .price-val { font-size: 22px; font-weight: 700; line-height: 1.1; }
     .price-val--sale { color: var(--int); }
     .price-unit { font-size: 11px; color: var(--muted); }
     .price-fees { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .price-sub { font-size: 11px; color: var(--muted); }
     .btn-view {
       width: 100%; padding: 9px 0;
       background: var(--int); color: #fff; border: none; border-radius: var(--radius);
@@ -1594,6 +1718,7 @@
     }
     .cta-date-input::-webkit-calendar-picker-indicator { opacity: 0; cursor: pointer; }
     .semaphore { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+    .cta-status-row { margin-bottom: 14px; }
     .sem-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
     .sem-dot.green { background: #22c55e; }
     .sem-dot.orange { background: #f59e0b; }
@@ -1652,6 +1777,10 @@
       font-size: 13px; font-weight: 600; color: var(--muted);
       letter-spacing: 0; vertical-align: 2px;
     }
+    .cta-price-variant {
+      font-weight: 700; color: var(--int); text-transform: none; letter-spacing: 0;
+      margin-left: 4px;
+    }
 
     /* Hodnocení v hlavičce detailu */
     .detail-rating { display: inline-flex; align-items: center; gap: 6px; }
@@ -1679,6 +1808,34 @@
 
     /* ── BALÍČKY REZERVACE ────────────────────── */
     .pkg-intro { font-size: 14px; color: var(--text); line-height: 1.6; margin: 0 0 18px; max-width: 720px; }
+
+    /* Číslovaný postup (krok 1 → krok 2) */
+    .pkg-steps { position: relative; }
+    .pkg-steps::before {
+      content: '';
+      position: absolute; left: 17px; top: 17px; bottom: 17px;
+      width: 2px; background: var(--border);
+      z-index: 0;
+    }
+    .pkg-step { display: grid; grid-template-columns: 36px 1fr; gap: 18px; align-items: start; }
+    .pkg-step + .pkg-step { margin-top: 36px; }
+    .pkg-step-num {
+      position: relative; z-index: 1;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--int); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 15px; letter-spacing: -.02em;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 4px var(--surface);
+    }
+    .pkg-step-content { min-width: 0; }
+    .pkg-step-content .detail-section-title,
+    .pkg-step-content .pkg-ins-title { margin-top: 6px; }
+    @media (max-width: 768px) {
+      .pkg-step { grid-template-columns: 30px 1fr; gap: 12px; }
+      .pkg-step-num { width: 30px; height: 30px; font-size: 13px; }
+      .pkg-steps::before { left: 14px; }
+    }
     .pkg-list { display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 116px; }
     .pkg-card {
       display: block; cursor: pointer; position: relative;
@@ -1766,6 +1923,43 @@
     .pkg-ins-tag--no::before { content: "−"; font-size: 12px; line-height: 1; }
     @media (max-width: 768px) { .pkg-ins-grid { grid-template-columns: 1fr; } }
 
+    /* Varianty pojištění — řádky s checkboxy (AKTIVNÍ varianta) */
+    .pkg-ins-list { display: flex; flex-direction: column; gap: 10px; }
+    .bk-card-intro { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0 0 14px; }
+    .pkg-ins-row {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 18px; cursor: pointer;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .pkg-ins-row:hover { border-color: var(--int); }
+    .pkg-ins-row:has(.pkg-ins-check:checked) {
+      border-color: var(--int); background: var(--int-soft);
+      box-shadow: 0 0 0 2px rgba(105, 3, 255, .1);
+    }
+    .pkg-ins-check {
+      width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--int);
+      cursor: pointer; margin: 0;
+    }
+    .pkg-ins-row-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: var(--int-soft); color: var(--int);
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pkg-ins-row:has(.pkg-ins-check:checked) .pkg-ins-row-icon { background: #fff; }
+    .pkg-ins-row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+    .pkg-ins-row-name { font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -.01em; }
+    .pkg-ins-row-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .pkg-ins-row-price {
+      font-size: 14px; font-weight: 800; color: var(--text);
+      white-space: nowrap; flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .pkg-ins-row { flex-wrap: wrap; }
+      .pkg-ins-row-price { margin-left: auto; }
+    }
+
     @media (max-width: 768px) {
       .pkg-card-head { flex-wrap: wrap; }
       .pkg-price { text-align: left; padding-left: 0; padding-top: 8px; width: 100%; }
@@ -1788,7 +1982,8 @@
       font-size: 28px; font-weight: 800; letter-spacing: -.02em;
       color: #fff; margin: 0; text-align: center;
     }
-    .results-hero .search-form { margin: 0; }
+    .results-hero .search-form { margin: 0; align-self: stretch; width: 100%; }
+    .results-hero .search-form .btn-search { flex-shrink: 0; }
 
     /* ── RESULTS SUBBAR — okolní termíny + mapa ── */
     .results-subbar {
@@ -1890,7 +2085,23 @@
     .range-input:hover { border-bottom-color: var(--border); }
     .range-input:focus { outline: none; border-bottom-color: var(--int); background: var(--int-soft); }
     .range-row .range-val-max, .range-val-with-sub:last-child .range-val-max { text-align: right; }
-    .range-sep { color: var(--muted); font-size: 11px; flex-shrink: 0; }
+    .range-sep { display: none; }
+
+    /* Ticks pod sliderem s počtem výsledků na hodnotu */
+    .range-ticks {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 2px; margin-top: 8px; padding: 0 2px;
+    }
+    .range-tick {
+      display: inline-flex; flex-direction: column; align-items: center; gap: 1px;
+      flex: 1 1 0; min-width: 0;
+    }
+    .range-tick b { font-size: 10px; font-weight: 700; color: var(--text); line-height: 1; }
+    .range-tick i { font-size: 9px; color: var(--muted); font-style: normal; line-height: 1; }
+
+    /* Count v dropdown options */
+    .fs-count { color: var(--muted); font-size: 11px; margin-left: 6px; font-weight: 400; }
+    .fs-option.selected .fs-count { color: rgba(255,255,255,.8); }
     .filter-more {
       font-size: 12px; color: var(--int); cursor: pointer; margin-top: 8px;
       display: inline-block; background: none; border: none; padding: 0;
@@ -1940,11 +2151,27 @@
 
     .card-badges { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 5px; }
     .badge { font-size: 10px; font-weight: 700; letter-spacing: .03em; padding: 2px 7px; border-radius: 4px; }
-    .badge-rec { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
+    .badge-rec { background: #facc15; color: #422006; border: 1px solid #ca8a04; font-weight: 800; }
     .badge-dis { background: #dc2626; color: #fff; border: 1px solid #b91c1c; font-weight: 800; }
     .card-boat-name { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
     .price-old { font-size: 11px; text-decoration: line-through; color: var(--muted); }
-    .card-icon-btn { width: 30px; height: 30px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); cursor: pointer; font-size: 14px; }
+    .card-icon-btn { width: 30px; height: 30px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); cursor: pointer; font-size: 14px; position: relative; display: inline-flex; align-items: center; justify-content: center; }
+    .card-icon-tooltip {
+      position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+      background: #1e1e1c; color: #fff;
+      padding: 5px 9px; border-radius: 4px;
+      font-size: 11px; font-weight: 600; white-space: nowrap;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .15s, visibility .15s;
+      z-index: 30;
+      box-shadow: 0 4px 12px rgba(0,0,0,.18);
+    }
+    .card-icon-tooltip::before {
+      content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent; border-top-color: #1e1e1c;
+    }
+    .card-icon-btn:hover .card-icon-tooltip,
+    .card-icon-btn:focus-visible .card-icon-tooltip { opacity: 1; visibility: visible; }
     .card-icon-btn:hover { border-color: var(--int); }
 
     /* ── MAGAZINE PAGE ───────────────────────── */
@@ -2273,9 +2500,12 @@
     .bk-nav-left { display: flex; align-items: center; gap: 22px; }
 
     .bk-stepper-wrap { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 40px; }
-    .bk-stepper { max-width: var(--max); margin: 0 auto; display: flex; align-items: stretch; gap: 0; padding: 16px 0; }
-    .bk-step { display: flex; align-items: center; gap: 10px; flex: 1; position: relative; }
-    .bk-step + .bk-step::before { content: ''; display: block; width: 40px; height: 1px; background: var(--border); flex-shrink: 0; margin-right: 10px; }
+    .bk-stepper { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 0; padding: 16px 0; }
+    .bk-step { display: flex; align-items: center; gap: 10px; position: relative; flex-shrink: 0; text-decoration: none; cursor: pointer; transition: opacity .15s; }
+    .bk-step:hover { opacity: .85; }
+    .bk-step:hover .bk-step-num { border-color: var(--int); color: var(--int); }
+    .bk-step.active:hover .bk-step-num, .bk-step.done:hover .bk-step-num { color: #fff; }
+    .bk-step + .bk-step::before { content: ''; display: block; width: 40px; height: 1px; background: var(--border); flex-shrink: 0; margin: 0 14px; }
     .bk-step-num { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--muted); flex-shrink: 0; background: var(--surface); }
     .bk-step.active .bk-step-num { background: var(--int); border-color: var(--int); color: #fff; }
     .bk-step.done .bk-step-num { background: #16a34a; border-color: #16a34a; color: #fff; }
@@ -2285,13 +2515,31 @@
 
     .bk-body { max-width: var(--max); margin: 0 auto; padding: 32px 40px 60px; display: grid; grid-template-columns: 1fr 380px; gap: 28px; align-items: start; }
     .bk-main { display: flex; flex-direction: column; gap: 20px; }
-    .bk-sidebar { position: sticky; top: 120px; display: flex; flex-direction: column; gap: 16px; }
-    .bk-sidebar-cta { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: 0 -4px 20px rgba(0,0,0,.10); }
+    .bk-sidebar { display: flex; flex-direction: column; gap: 16px; }
+    .bk-sidebar-cta {
+      position: sticky; bottom: 0; z-index: 10;
+      background: var(--surface);
+      border: 1px solid var(--border); border-top: 1px solid var(--border);
+      border-radius: var(--radius) var(--radius) 0 0;
+      padding: 18px 18px 20px;
+      box-shadow: 0 -10px 24px rgba(0,0,0,.10), 0 -1px 0 var(--border);
+      margin: 0 -1px -1px;
+    }
 
     .bk-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
     .bk-card-head { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
     .bk-card-title { font-size: 15px; font-weight: 700; }
     .bk-card-edit { font-size: 12px; font-weight: 600; color: var(--int); text-decoration: none; cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); padding: 8px 14px;
+      font-family: inherit; font-size: 13px; font-weight: 600;
+      border-radius: var(--radius); cursor: pointer; text-decoration: none;
+      transition: border-color .15s, color .15s, background .15s;
+    }
+    .btn-secondary:hover { border-color: var(--int); color: var(--int); }
+    .btn-secondary--sm { padding: 6px 11px; font-size: 12px; }
     .bk-card-body { padding: 22px; }
 
     /* Boat recap */
@@ -2303,20 +2551,26 @@
     .bk-boat-spec { font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 4px; }
 
     /* Extras */
-    .extra-list { display: flex; flex-direction: column; }
-    .extra-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
-    .extra-item:last-child { border-bottom: none; }
+    .extra-list { display: flex; flex-direction: column; gap: 10px; }
+    .extra-item {
+      display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      transition: border-color .15s;
+    }
+    .extra-item:hover { border-color: var(--int); }
+    .extra-item:has(input:checked) { border-color: var(--int); background: var(--int-soft); }
     .extra-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--int); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
     .extra-item-info { flex: 1; }
     .extra-item-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
     .extra-item-desc { font-size: 12px; color: var(--muted); }
-    .extra-item-price { font-size: 14px; font-weight: 700; color: var(--int); white-space: nowrap; }
+    .extra-item-price { font-size: 14px; font-weight: 700; color: var(--text); white-space: nowrap; }
     .extras-more { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--int); cursor: pointer; margin-top: 14px; background: none; border: none; font-family: inherit; padding: 0; }
 
     /* Personal form */
     .bk-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .bk-field { display: flex; flex-direction: column; gap: 6px; }
-    .bk-field.full { grid-column: 1 / -1; }
+    .bk-field.full, .bk-field--full { grid-column: 1 / -1; }
+    .bk-textarea { height: auto; min-height: 64px; padding: 10px 14px; line-height: 1.5; resize: vertical; }
     .bk-label { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text); }
     .bk-label sup { color: var(--int); }
     .bk-input { height: 44px; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 14px; font-size: 14px; font-family: inherit; color: var(--text); background: var(--surface); width: 100%; }
@@ -2341,12 +2595,28 @@
     /* Price breakdown */
     .price-line { display: flex; justify-content: space-between; padding: 9px 0; font-size: 14px; border-bottom: 1px solid var(--border); }
     .price-line:last-of-type { border-bottom: none; }
+    .price-line:has(+ .price-line.total) { border-bottom: none; }
     .price-line.total { font-size: 17px; font-weight: 800; border-top: 2px solid var(--text); border-bottom: none; margin-top: 8px; padding-top: 14px; }
     .price-line.discount { color: #16a34a; font-weight: 600; }
     .cancel-info { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius); padding: 12px 14px; margin-top: 16px; font-size: 12px; color: #166534; line-height: 1.6; }
     .cancel-info strong { display: block; margin-bottom: 3px; font-size: 13px; }
     .price-line.muted { color: var(--muted); border-bottom: none; padding-top: 4px; padding-bottom: 4px; font-size: 12px; }
     .price-line.muted span:last-child { font-weight: 700; color: var(--text); }
+    .price-line--prominent { font-size: 22px !important; letter-spacing: -.02em; }
+    .price-line--prominent span:last-child { font-size: 24px; word-spacing: 0.2em; }
+
+    /* Přehled plateb */
+    .pay-schedule { display: flex; flex-direction: column; }
+    .pay-schedule-row {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding: 12px 0; border-bottom: 1px dashed var(--border);
+    }
+    .pay-schedule-row:last-child { border-bottom: none; }
+    .pay-schedule-row-label { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+    .pay-schedule-row-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .pay-schedule-row-sub { font-size: 11px; color: var(--muted); }
+    .pay-schedule-row-val { font-size: 16px; font-weight: 800; color: var(--text); text-align: right; white-space: nowrap; line-height: 1.2; }
+    .pay-schedule-row-val-sub { font-size: 13px; font-weight: 700; color: var(--text); }
 
     /* Karta zvoleného balíčku v rezervaci */
     .pkg-summary-tag {
@@ -2391,7 +2661,8 @@
     /* Payment methods */
     .payment-option { border: 2px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: border-color .15s; }
     .payment-option:hover { border-color: var(--int); }
-    .payment-option.selected { border-color: var(--int); background: var(--int-soft); }
+    .payment-option.selected,
+    .payment-option:has(input:checked) { border-color: var(--int); background: var(--int-soft); }
     .payment-option input[type="radio"] { width: 18px; height: 18px; accent-color: var(--int); flex-shrink: 0; cursor: pointer; }
     .payment-option-label { flex: 1; }
     .payment-option-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
@@ -2750,6 +3021,20 @@
     .acc-input:focus { outline: none; border-color: var(--int); }
     .acc-btn { height: 36px; padding: 0 20px; background: var(--int); color: #fff; border: none; border-radius: var(--radius); font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; }
     .acc-btn-ghost { height: 36px; padding: 0 20px; background: transparent; color: var(--int); border: 1.5px solid var(--int); border-radius: var(--radius); font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; }
+
+    /* Fakturační adresa — toggle FO / Firma */
+    .billing-type-toggle {
+      display: inline-flex; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 999px; padding: 3px; margin-bottom: 16px; gap: 2px;
+    }
+    .billing-type-opt {
+      position: relative; cursor: pointer;
+      padding: 7px 16px; border-radius: 999px;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      transition: background .15s, color .15s;
+    }
+    .billing-type-opt input { position: absolute; opacity: 0; pointer-events: none; }
+    .billing-type-opt:has(input:checked) { background: var(--int); color: #fff; }
     .license-upload-row { display: flex; gap: 10px; align-items: center; padding: 10px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); margin-bottom: 8px; font-size: 13px; }
     .license-upload-icon { width: 32px; height: 32px; background: var(--int-soft); border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--int); }
 
@@ -2837,6 +3122,84 @@
     .badge-active { background: #e6f9f0; color: #1a7a47; }
     .badge-pending { background: var(--int-soft); color: var(--int); }
     .badge-done { background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
+    .badge-prereserved { background: #fff7ed; color: #c2410c; }
+
+    /* Payment meta v kartách předrezervací */
+    .res-payment-meta {
+      display: flex; flex-wrap: wrap; gap: 4px 20px;
+      margin-top: 8px; padding-top: 8px;
+      border-top: 1px dashed var(--border);
+      font-size: 12px;
+    }
+    .res-payment-meta-item { display: inline-flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+    .res-payment-meta-label { color: var(--muted); }
+    .res-payment-meta-val { font-weight: 700; color: var(--text); }
+    .res-payment-meta-due { color: var(--muted); font-weight: 400; }
+    .res-payment-meta-item.is-paid .res-payment-meta-due { color: #047857; font-weight: 600; }
+    .res-payment-check { color: #10b981; flex-shrink: 0; }
+    .res-payment-meta-item.is-overdue .res-payment-meta-val,
+    .res-payment-meta-item.is-overdue .res-payment-meta-due { color: #dc2626; font-weight: 700; }
+    .res-payment-meta-item.is-overdue .res-payment-meta-label { color: #dc2626; }
+    .res-payment-alert { color: #dc2626; flex-shrink: 0; }
+
+    /* Hodnocení plavby v Proběhlých rezervacích */
+    .res-rate-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-top: 8px; padding-top: 8px;
+      border-top: 1px dashed var(--border);
+      flex-wrap: wrap;
+    }
+    .res-rate-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--int); font-weight: 700; font-size: 13px; text-decoration: none;
+    }
+    .res-rate-link:hover { color: var(--int-dark); }
+    .res-rate-link svg { color: #f5a623; }
+    .res-rate-display { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 12px; }
+    .res-rate-item { display: inline-flex; align-items: baseline; gap: 5px; }
+    .res-rate-label { color: var(--muted); }
+    .res-rate-stars { color: #f5a623; letter-spacing: 1px; font-size: 13px; }
+    .res-rate-stars-empty { color: #d4d4d4; }
+    .res-rate-edit { font-size: 11px; color: var(--int); text-decoration: none; font-weight: 600; }
+    .res-rate-edit:hover { color: var(--int-dark); }
+
+    /* Přehled plateb v detailu rezervace */
+    .res-pay-grid { display: flex; flex-direction: column; gap: 10px; }
+    .res-pay-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 14px 18px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 10px;
+    }
+    .res-pay-row.is-paid { background: #f0fdf4; border-color: #bbf7d0; }
+    .res-pay-row-head { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+    .res-pay-row-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .res-pay-row-status { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #047857; font-weight: 600; }
+    .res-pay-row-status--due { color: var(--muted); font-weight: 500; }
+    .res-pay-row-status svg { color: #10b981; flex-shrink: 0; }
+    .res-pay-row-val { font-size: 16px; font-weight: 800; color: var(--text); white-space: nowrap; word-spacing: .15em; }
+
+    /* Záložky rezervací */
+    .res-tabs {
+      display: flex; gap: 4px; margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .res-tab {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; background: transparent; border: none;
+      font-family: inherit; font-size: 14px; font-weight: 600; color: var(--muted);
+      cursor: pointer; border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color .15s, border-color .15s;
+    }
+    .res-tab:hover { color: var(--text); }
+    .res-tab.is-active { color: var(--int); border-bottom-color: var(--int); }
+    .res-tab-count {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 22px; height: 22px; padding: 0 7px; border-radius: 999px;
+      background: var(--bg); color: var(--muted);
+      font-size: 11px; font-weight: 700; line-height: 1;
+    }
+    .res-tab.is-active .res-tab-count { background: var(--int-soft); color: var(--int); }
     .crew-table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .crew-table th { text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; border-bottom: 2px solid var(--border); background: var(--bg); }
     .crew-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); }

@@ -399,47 +399,198 @@
     });
   }
 
-  function initPeopleStepper() {
-    document.querySelectorAll('[data-people-stepper]').forEach(function(box) {
-      var dec = box.querySelector('[data-step="-1"]');
-      var inc = box.querySelector('[data-step="1"]');
+  function initPeopleSelect() {
+    document.querySelectorAll('[data-people-select]').forEach(function(box) {
+      var trigger = box.querySelector('.sf-people-trigger');
+      var popover = box.querySelector('.sf-people-popover');
       var val = box.querySelector('.sf-people-val');
+      var counterVal = box.querySelector('.sf-people-counter-val');
+      var dec = popover && popover.querySelector('[data-step="-1"]');
+      var inc = popover && popover.querySelector('[data-step="1"]');
       var hidden = box.querySelector('input[type="hidden"]');
       var min = parseInt(box.dataset.min, 10) || 1;
       var max = parseInt(box.dataset.max, 10) || 12;
-      var current = parseInt(box.dataset.value || hidden && hidden.value, 10) || 2;
+      var current = parseInt(box.dataset.value || (hidden && hidden.value), 10) || 2;
 
       function fmt(n) { return n + ' ' + (n === 1 ? 'osoba' : (n >= 2 && n <= 4 ? 'osoby' : 'osob')) + (n >= max ? '+' : ''); }
 
       function update() {
         if (val) val.textContent = fmt(current);
+        if (counterVal) counterVal.textContent = current;
         if (hidden) hidden.value = current;
         if (dec) dec.disabled = current <= min;
         if (inc) inc.disabled = current >= max;
       }
 
-      if (dec) dec.addEventListener('click', function() { if (current > min) { current--; update(); } });
-      if (inc) inc.addEventListener('click', function() { if (current < max) { current++; update(); } });
+      function open() { if (popover) popover.hidden = false; box.setAttribute('aria-expanded', 'true'); }
+      function close() { if (popover) popover.hidden = true; box.setAttribute('aria-expanded', 'false'); }
+
+      if (trigger) trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (popover && popover.hidden) open(); else close();
+      });
+      if (dec) dec.addEventListener('click', function(e) { e.stopPropagation(); if (current > min) { current--; update(); } });
+      if (inc) inc.addEventListener('click', function(e) { e.stopPropagation(); if (current < max) { current++; update(); } });
+      if (popover) popover.addEventListener('click', function(e) { e.stopPropagation(); });
+      document.addEventListener('click', function(e) {
+        if (!box.contains(e.target) && popover && !popover.hidden) close();
+      });
       update();
     });
   }
 
+  function initDateRangePicker() {
+    var MONTHS = ['Leden','Únor','Březen','Duben','Květen','Červen','Červenec','Srpen','Září','Říjen','Listopad','Prosinec'];
+    var DOW = ['Po','Út','St','Čt','Pá','So','Ne'];
+
+    document.querySelectorAll('[data-daterange]').forEach(function(box) {
+      var trigger = box.querySelector('.sf-daterange-trigger');
+      var label = box.querySelector('.sf-daterange-label');
+      var popover = box.querySelector('.sf-daterange-popover');
+      var fromHidden = box.querySelector('input[name="from"]');
+      var toHidden = box.querySelector('input[name="to"]');
+      if (!trigger || !popover || !label) return;
+
+      var today = new Date(); today.setHours(0,0,0,0);
+      var viewYear = today.getFullYear();
+      var viewMonth = today.getMonth();
+      var fromDate = parseInitial(fromHidden && fromHidden.value);
+      var toDate = parseInitial(toHidden && toHidden.value);
+
+      function parseInitial(s) {
+        if (!s) return null;
+        var parts = s.split('-'); if (parts.length !== 3) return null;
+        var d = new Date(parseInt(parts[0],10), parseInt(parts[1],10)-1, parseInt(parts[2],10));
+        d.setHours(0,0,0,0); return d;
+      }
+      function isoDate(d) {
+        var m = d.getMonth() + 1, day = d.getDate();
+        return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (day < 10 ? '0' : '') + day;
+      }
+      function fmtDate(d) { return d.getDate() + '. ' + (d.getMonth()+1) + '. ' + d.getFullYear(); }
+      function fmtShort(d) { return d.getDate() + '. ' + (d.getMonth()+1) + '.'; }
+
+      function updateLabel() {
+        if (fromDate && toDate) {
+          label.textContent = fmtShort(fromDate) + ' – ' + fmtDate(toDate);
+          label.classList.remove('sf-daterange-label--placeholder');
+        } else if (fromDate) {
+          label.textContent = fmtDate(fromDate) + ' – …';
+          label.classList.remove('sf-daterange-label--placeholder');
+        } else {
+          label.textContent = 'Kdykoliv';
+          label.classList.add('sf-daterange-label--placeholder');
+        }
+        if (fromHidden) fromHidden.value = fromDate ? isoDate(fromDate) : '';
+        if (toHidden) toHidden.value = toDate ? isoDate(toDate) : '';
+      }
+
+      function renderMonth(year, month) {
+        var html = '';
+        html += '<div class="sf-cal-month">';
+        html += '<div class="sf-cal-month-title">' + MONTHS[month] + ' ' + year + '</div>';
+        html += '<div class="sf-cal-grid">';
+        DOW.forEach(function(d) { html += '<div class="sf-cal-dow">' + d + '</div>'; });
+        var first = new Date(year, month, 1);
+        var lastDay = new Date(year, month + 1, 0).getDate();
+        var startDow = (first.getDay() + 6) % 7;
+        for (var i = 0; i < startDow; i++) {
+          html += '<button class="sf-cal-day is-empty" type="button" disabled></button>';
+        }
+        for (var d = 1; d <= lastDay; d++) {
+          var dt = new Date(year, month, d);
+          var isPast = dt < today;
+          var cls = ['sf-cal-day'];
+          if (dt.getTime() === today.getTime()) cls.push('is-today');
+          if (fromDate && dt.getTime() === fromDate.getTime()) cls.push('is-start');
+          if (toDate && dt.getTime() === toDate.getTime()) cls.push('is-end');
+          if (fromDate && toDate && dt > fromDate && dt < toDate) cls.push('is-in-range');
+          html += '<button type="button" class="' + cls.join(' ') + '" data-year="' + year + '" data-month="' + month + '" data-day="' + d + '"' + (isPast ? ' disabled' : '') + '>' + d + '</button>';
+        }
+        html += '</div>';
+        html += '</div>';
+        return html;
+      }
+
+      function render() {
+        var nextYear = viewYear, nextMonth = viewMonth + 1;
+        if (nextMonth > 11) { nextMonth = 0; nextYear++; }
+        var html = '';
+        html += '<div class="sf-cal-head">';
+        html += '<button type="button" class="sf-cal-nav" data-dir="-1" aria-label="Předchozí měsíce"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>';
+        html += '<button type="button" class="sf-cal-nav sf-cal-nav--next" data-dir="1" aria-label="Další měsíce"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>';
+        html += '</div>';
+        html += '<div class="sf-cal-months">';
+        html += renderMonth(viewYear, viewMonth);
+        html += renderMonth(nextYear, nextMonth);
+        html += '</div>';
+        var hint = (fromDate && !toDate) ? 'Vyberte konec rozpětí' : 'Klikněte na začátek a konec';
+        html += '<div class="sf-cal-foot">';
+        html += '<span class="sf-cal-hint">' + hint + '</span>';
+        html += '<button type="button" class="sf-cal-clear">Vymazat</button>';
+        html += '</div>';
+        popover.innerHTML = html;
+      }
+
+      function open() { popover.hidden = false; box.setAttribute('aria-expanded', 'true'); if (fromDate) { viewYear = fromDate.getFullYear(); viewMonth = fromDate.getMonth(); } render(); }
+      function close() { popover.hidden = true; box.setAttribute('aria-expanded', 'false'); }
+
+      trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (popover.hidden) open(); else close();
+      });
+
+      popover.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var navBtn = e.target.closest('.sf-cal-nav');
+        if (navBtn) {
+          var dir = parseInt(navBtn.dataset.dir, 10) * 2;
+          viewMonth += dir;
+          while (viewMonth > 11) { viewMonth -= 12; viewYear++; }
+          while (viewMonth < 0) { viewMonth += 12; viewYear--; }
+          render(); return;
+        }
+        var clearBtn = e.target.closest('.sf-cal-clear');
+        if (clearBtn) { fromDate = null; toDate = null; updateLabel(); render(); return; }
+        var dayBtn = e.target.closest('.sf-cal-day');
+        if (dayBtn && !dayBtn.disabled && !dayBtn.classList.contains('is-empty')) {
+          var day = parseInt(dayBtn.dataset.day, 10);
+          var yr = parseInt(dayBtn.dataset.year, 10);
+          var mo = parseInt(dayBtn.dataset.month, 10);
+          var dt = new Date(yr, mo, day);
+          if (!fromDate || (fromDate && toDate)) { fromDate = dt; toDate = null; }
+          else if (dt <= fromDate) { fromDate = dt; toDate = null; }
+          else { toDate = dt; }
+          updateLabel(); render();
+          if (fromDate && toDate) { setTimeout(close, 180); }
+        }
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!box.contains(e.target) && !popover.hidden) close();
+      });
+
+      updateLabel();
+    });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() { initDestinationSearch(); initPeopleStepper(); });
+    document.addEventListener('DOMContentLoaded', function() { initDestinationSearch(); initPeopleSelect(); initDateRangePicker(); });
   } else {
     initDestinationSearch();
-    initPeopleStepper();
+    initPeopleSelect();
+    initDateRangePicker();
   }
 
   // ── BOAT DATA ──────────────────────────────────────────
   const BOATS = [
     { name:"Bavaria C42", boatName:"Lady One", cat:"Plachetnice", marina:"ACI Marina Split", company:"Sunsail", year:2021, len:"12.8 m", cabins:3, berths:6, price:"36 000 Kč", rec:true,
       perks:["early-checkin","free-motor"],
-      amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Závěsný motor + dinghy","Záchranné vesty","Záchranný balíček","Kokpitový stůl"] },
-    { name:"Jeanneau Sun Odyssey 54", boatName:"Blue Wind", cat:"Plachetnice", marina:"Marina Lav", company:"Navigare Yachting", year:2020, len:"16.5 m", cabins:5, berths:10, price:"80 000 Kč", discount:15,
+      amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Záchranný balíček","Kokpitový stůl"] },
+    { name:"Jeanneau Sun Odyssey 54", boatName:"Blue Wind", cat:"Plachetnice", marina:"Marina Lav", company:"Navigare Yachting", year:2020, len:"16.5 m", cabins:5, berths:10, price:"80 000 Kč", discount:15, status:"prereserved",
       perks:["deposit-30"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Závěsný motor + dinghy","Klimatizace","Výrobník vody","Solární panely"] },
-    { name:"Lagoon 42", boatName:"Ocean Dream", cat:"Katamaran", marina:"Marina Kaštela", company:"Moorings", year:2022, len:"12.9 m", cabins:4, berths:8, price:"95 000 Kč", rec:true,
+    { name:"Lagoon 42", boatName:"Ocean Dream", cat:"Katamaran", marina:"Marina Kaštela", company:"Moorings", year:2022, len:"12.9 m", cabins:4, berths:8, price:"95 000 Kč", rec:true, status:"reserved",
       perks:["early-checkin"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","AIS","Závěsný motor + dinghy","BBQ","Šnorchlovací sada","Kokpitový stůl"] },
     { name:"Fountaine Pajot 47", boatName:"Gemini", cat:"Katamaran", marina:"ACI Marina Split", company:"Dream Yacht Charter", year:2023, len:"14.3 m", cabins:5, berths:10, price:"128 000 Kč",
@@ -450,7 +601,7 @@
     { name:"Elan 45", boatName:"Adriatic Wind", cat:"Plachetnice", marina:"Marina Trogir", company:"Ultra Sailing", year:2019, len:"13.9 m", cabins:4, berths:8, price:"52 000 Kč", discount:15,
       perks:["last-minute","free-motor"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Závěsný motor + dinghy","Šnorchlovací sada","Kokpitový stůl"] },
-    { name:"Bavaria C45", boatName:"Sea Spirit", cat:"Plachetnice", marina:"ACI Marina Split", company:"Bavaria Yachtbau Charter", year:2022, len:"13.5 m", cabins:4, berths:8, price:"45 000 Kč",
+    { name:"Bavaria C45", boatName:"Sea Spirit", cat:"Plachetnice", marina:"ACI Marina Split", company:"Bavaria Yachtbau Charter", year:2022, len:"13.5 m", cabins:4, berths:8, price:"45 000 Kč", status:"prereserved",
       perks:["early-checkin","deposit-30"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","AIS","Závěsný motor + dinghy","Kokpitový stůl"] },
     { name:"Hanse 548", boatName:"Nordic Star", cat:"Plachetnice", marina:"Marina Šibenik", company:"Adriatic Charter", year:2021, len:"16.7 m", cabins:5, berths:10, price:"88 000 Kč", rec:true,
@@ -461,7 +612,7 @@
     { name:"Jeanneau 44", boatName:"Mistral", cat:"Plachetnice", marina:"Marina Biograd", company:"Nausys Charter", year:2020, len:"13.4 m", cabins:4, berths:8, price:"48 000 Kč", discount:10,
       perks:["last-minute","early-checkin","deposit-30"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Závěsný motor + dinghy","BBQ"] },
-    { name:"Bénéteau Oceanis 51", boatName:"Azzurra", cat:"Plachetnice", marina:"Marina Zadar", company:"Dalmacija Charter", year:2021, len:"15.4 m", cabins:5, berths:10, price:"72 000 Kč",
+    { name:"Bénéteau Oceanis 51", boatName:"Azzurra", cat:"Plachetnice", marina:"Marina Zadar", company:"Dalmacija Charter", year:2021, len:"15.4 m", cabins:5, berths:10, price:"72 000 Kč", status:"prereserved",
       perks:["early-checkin"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Radar","AIS","Závěsný motor + dinghy","Šnorchlovací sada"] },
     { name:"Excess 11", boatName:"Dual Dream", cat:"Katamaran", marina:"Marina Trogir", company:"Sunsail", year:2023, len:"11.0 m", cabins:4, berths:8, price:"85 000 Kč", rec:true,
@@ -496,34 +647,43 @@
   }
 
   function boatCard(b) {
-    const tags = b.amenities.slice(0,5).map(a => `<span class="amenity-tag">${a}</span>`).join("");
+    const MAX_TAGS = 4;
+    const visibleTags = b.amenities.slice(0, MAX_TAGS).map(a => `<span class="amenity-tag">${a}</span>`).join("");
+    const extraCount = Math.max(0, b.amenities.length - MAX_TAGS);
+    const tags = visibleTags + (extraCount ? `<span class="amenity-tag amenity-tag--more">+${extraCount}</span>` : "");
     const discountBadge = b.discount ? `<span class="badge badge-dis">−${b.discount} %</span>` : "";
     const rec = b.rec ? `<span class="badge badge-rec">★ Doporučujeme</span>` : "";
-    const oldPrice = b.discount ? `<div class="price-old">${Math.round(parseInt(b.price.replace(/\D/g,"")) / (1 - b.discount/100)).toLocaleString("cs")} Kč</div>` : "";
+    const oldPriceVal = b.discount ? `${Math.round(parseInt(b.price.replace(/\D/g,"")) / (1 - b.discount/100)).toLocaleString("cs")} Kč` : "";
+    const oldPrice = b.discount ? `<div class="price-old-row"><span class="price-old">${oldPriceVal}</span>${discountBadge}</div>` : "";
     const priceClass = b.discount ? "price-val price-val--sale" : "price-val";
     const favId = ((b.name || '') + '-' + (b.boatName || '')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     const favName = (b.name || '') + (b.boatName ? ' "' + b.boatName + '"' : '');
     const perksHtml = renderPerks(b.perks);
     const wc = b.wc != null ? b.wc : Math.max(1, Math.round((b.cabins || 2) / 2));
     const persons = b.persons || b.berths;
+    const lenMatch = (b.len || '').match(/(\d+[.,]?\d*)/);
+    const lenFt = lenMatch ? (parseFloat(lenMatch[1].replace(',', '.')) * 3.28084).toFixed(1).replace('.', ',') + ' ft' : '';
     const ratingVal = (b.rating != null ? b.rating : 4.7).toFixed(1).replace('.', ',');
     const ratingCount = b.ratingCount != null ? b.ratingCount : 124;
     const ratingHtml = '<div class="card-rating" title="Hodnocení modelu ' + b.name + '"><span class="card-rating-stars">★★★★★</span><span class="card-rating-val">' + ratingVal + '</span><span class="card-rating-count">(' + ratingCount + ' hodnocení)</span></div>';
-    const statusHtml = b.reserved
-      ? '<span class="card-status card-status--reserved"><span class="card-status-dot"></span>Rezervovaná</span>'
-      : '<span class="card-status card-status--free"><span class="card-status-dot"></span>Volná</span>';
+    const statusMap = {
+      reserved:    { cls: 'card-status--reserved',    label: 'Rezervovaná' },
+      prereserved: { cls: 'card-status--prereserved', label: 'Předrezervovaná' },
+      free:        { cls: 'card-status--free',        label: 'Volná' }
+    };
+    const statusKey = b.status || (b.reserved ? 'reserved' : 'free');
+    const status = statusMap[statusKey] || statusMap.free;
+    const statusHtml = '<span class="card-status ' + status.cls + '"><span class="card-status-dot"></span>' + status.label + '</span>';
     return `
       <div class="boat-card" data-href="detail-lodi.html" role="link" tabindex="0">
         <div class="card-img" data-img-idx="0" data-img-total="5">
-          <span class="card-cat-pill">${b.cat}</span>
           <button type="button" class="card-img-arrow card-img-arrow--prev" aria-label="Předchozí obrázek"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
           <button type="button" class="card-img-arrow card-img-arrow--next" aria-label="Další obrázek"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-          <span class="card-img-counter"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="card-img-counter-val">1 / 5</span></span>
           <div class="card-img-dots"><span class="card-img-dot is-active"></span><span class="card-img-dot"></span><span class="card-img-dot"></span><span class="card-img-dot"></span><span class="card-img-dot"></span></div>
         </div>
         <div class="card-body">
           <div>
-            <div class="card-badges">${rec}${discountBadge}${perksHtml}</div>
+            <div class="card-badges">${rec}${perksHtml}</div>
             <div class="card-name">${b.name}</div>
             <div class="card-boat-name">"${b.boatName || "Lady One"}"</div>
             ${ratingHtml}
@@ -534,8 +694,8 @@
               <div class="spec"><span class="spec-l">Kajuty</span><span class="spec-v">${b.cabins}</span></div>
               <div class="spec"><span class="spec-l">Lůžka</span><span class="spec-v">${b.berths}</span></div>
               <div class="spec"><span class="spec-l">Osoby</span><span class="spec-v">${persons}</span></div>
-              <div class="spec"><span class="spec-l">Délka</span><span class="spec-v">${b.len}</span></div>
               <div class="spec"><span class="spec-l">WC</span><span class="spec-v">${wc}</span></div>
+              <div class="spec"><span class="spec-l">Délka</span><span class="spec-v">${b.len}${lenFt ? ' <span class="spec-sub">(' + lenFt + ')</span>' : ''}</span></div>
             </div>
           </div>
           <div class="card-amenities">${tags}</div>
@@ -543,17 +703,21 @@
         <div class="card-side">
           <div class="card-side-top">
             ${statusHtml}
-<button class="card-icon-btn" type="button" title="Přidat do oblíbených" data-fav-id="${favId}" data-fav-name='${favName.replace(/'/g, "&apos;")}'><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
           <div class="card-side-bottom">
             <div class="card-price">
-              <span class="price-from">Od</span>
               ${oldPrice}
-              <span class="${priceClass}">${b.price}</span>
-              <span class="price-unit">/ týden</span>
-              <span class="price-fees">+ 12 611 Kč poplatky</span>
+              <div class="price-main">
+                <span class="price-from">Od</span>
+                <span class="${priceClass}">${b.price}</span>
+                <span class="price-unit">za 7 nocí</span>
+              </div>
+              <div class="price-sub">+ 12 611 Kč poplatky</div>
             </div>
-            <button class="btn-view" onclick="window.location.href='detail-lodi.html'">Zobrazit detail →</button>
+            <div class="card-side-actions">
+              <button class="card-icon-btn" type="button" aria-label="Přidat do oblíbených" data-fav-id="${favId}" data-fav-name='${favName.replace(/'/g, "&apos;")}'><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="card-icon-tooltip" role="tooltip">Přidat do oblíbených</span></button>
+              <button class="btn-view" onclick="window.location.href='detail-lodi.html'">Detail →</button>
+            </div>
           </div>
         </div>
       </div>`;
@@ -710,9 +874,9 @@
       var minEl    = el.querySelector('.range-min');
       var maxEl    = el.querySelector('.range-max');
       var fill     = el.querySelector('.range-fill');
-      var group    = el.closest('.filter-group');
-      var minLabel = group.querySelector('.range-val-min');
-      var maxLabel = group.querySelector('.range-val-max');
+      var scope    = el.closest('.filter-subgroup') || el.closest('.filter-group') || el.parentElement;
+      var minLabel = scope.querySelector('.range-val-min');
+      var maxLabel = scope.querySelector('.range-val-max');
       var unit     = el.dataset.unit !== undefined ? el.dataset.unit : '';
       var decs     = el.dataset.decimals ? parseInt(el.dataset.decimals) : 0;
       var rMin     = parseFloat(minEl.min);
@@ -2213,6 +2377,140 @@
       if (topId) setActive(topId);
     }, { rootMargin: '-120px 0px -55% 0px', threshold: 0 });
     sections.forEach(function(s) { observer.observe(s); });
+  })();
+
+  // ── ZÁLOŽKY REZERVACÍ ──────────────────────────────────
+  (function initReservationTabs() {
+    var tabs = document.querySelectorAll('.res-tab');
+    if (!tabs.length) return;
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var key = tab.dataset.tab;
+        tabs.forEach(function(t) { t.classList.toggle('is-active', t === tab); });
+        document.querySelectorAll('.res-tab-panel').forEach(function(p) {
+          p.hidden = p.dataset.panel !== key;
+        });
+      });
+    });
+  })();
+
+  // ── ÚČET — fakturační adresa FO/Firma ──────────────────
+  (function initBillingType() {
+    var billing = document.querySelector('[data-billing]');
+    if (!billing) return;
+    var companyRow = billing.querySelector('.billing-company-row');
+    var radios = billing.querySelectorAll('input[name="billing-type"]');
+    function sync() {
+      var v = billing.querySelector('input[name="billing-type"]:checked');
+      if (!v || !companyRow) return;
+      companyRow.hidden = v.value !== 'company';
+    }
+    radios.forEach(function(r) { r.addEventListener('change', sync); });
+    sync();
+  })();
+
+  // ── BOOKING SUMMARY — dynamický souhrn cen ──────────────
+  (function initBookingSummary() {
+    var summary = document.querySelector('[data-summary]');
+    if (!summary) return;
+    var anchor = summary.querySelector('[data-summary-anchor]');
+    var totalEl = summary.querySelector('[data-summary-total]');
+    if (!anchor || !totalEl) return;
+
+    function parsePrice(text) {
+      var sign = /[−-]/.test(text) ? -1 : 1;
+      var n = (text.replace(/\s/g, ' ').match(/[\d\s]+/) || ['0'])[0].replace(/\s/g, '');
+      return sign * (parseInt(n, 10) || 0);
+    }
+    function formatPrice(n) {
+      var abs = Math.abs(n).toLocaleString('cs').replace(/\u00a0/g, ' ');
+      return (n < 0 ? '−' : '') + abs + ' Kč';
+    }
+
+    var staticSum = 0;
+    summary.querySelectorAll('.price-line:not(.total)').forEach(function(line) {
+      var last = line.querySelector('span:last-child');
+      if (last) staticSum += parsePrice(last.textContent);
+    });
+
+    var items = [];
+
+    var PAY_AT_MARINA = 12611;
+    var DEPOSIT_RATIO = 0.30;
+    var payNowEl  = document.querySelector('[data-pay-now]');
+    var payRestEl = document.querySelector('[data-pay-rest]');
+
+    function rebuild() {
+      anchor.querySelectorAll('.price-line--dynamic').forEach(function(el) { el.remove(); });
+      var sum = staticSum;
+      items.forEach(function(it) {
+        if (!it.checked) return;
+        sum += it.price;
+        var line = document.createElement('div');
+        line.className = 'price-line price-line--dynamic';
+        line.innerHTML = '<span>' + it.label + '</span><span>' + formatPrice(it.price) + '</span>';
+        anchor.appendChild(line);
+      });
+      totalEl.textContent = formatPrice(sum);
+
+      var online = sum - PAY_AT_MARINA;
+      if (online < 0) online = 0;
+      var nyni = Math.round(online * DEPOSIT_RATIO);
+      var doplatek = online - nyni;
+      if (payNowEl) payNowEl.textContent = formatPrice(nyni);
+      if (payRestEl) payRestEl.textContent = formatPrice(doplatek);
+    }
+
+    function track(input, label, priceText) {
+      var item = { label: label, price: parsePrice(priceText), checked: input.checked };
+      items.push(item);
+      input.addEventListener('change', function() {
+        item.checked = input.checked;
+        rebuild();
+      });
+    }
+
+    document.querySelectorAll('.extra-item').forEach(function(it) {
+      var input = it.querySelector('input[type="checkbox"]');
+      var nameEl = it.querySelector('.extra-item-name');
+      var priceEl = it.querySelector('.extra-item-price');
+      if (input && nameEl && priceEl) track(input, nameEl.textContent.trim(), priceEl.textContent);
+    });
+    document.querySelectorAll('.pkg-ins-row').forEach(function(row) {
+      var input = row.querySelector('.pkg-ins-check');
+      var nameEl = row.querySelector('.pkg-ins-row-name');
+      var priceEl = row.querySelector('.pkg-ins-row-price');
+      if (input && nameEl && priceEl) track(input, nameEl.textContent.trim(), priceEl.textContent);
+    });
+
+    rebuild();
+  })();
+
+  // ── RESERVATION PACKAGE PICKER (detail-lodi) ──────────
+  (function initPackagePicker() {
+    var radios = document.querySelectorAll('input[name="reservation-package"]');
+    if (!radios.length) return;
+    var priceEl   = document.querySelector('[data-cta-price]');
+    var variantEl = document.querySelector('[data-cta-variant]');
+    var ctaBtns   = document.querySelectorAll('[data-reserve-cta]');
+
+    var LABELS = { basic: 'Basic', flex: 'Flex', premium: 'Premium' };
+
+    function sync(radio) {
+      var card = radio.closest('.pkg-card');
+      var price = card && card.querySelector('.pkg-price-val');
+      if (priceEl && price) priceEl.textContent = price.textContent.trim();
+      if (variantEl) variantEl.textContent = '· ' + (LABELS[radio.value] || radio.value);
+      ctaBtns.forEach(function(btn) {
+        btn.textContent = 'Pokračovat k rezervaci →';
+        btn.setAttribute('href', 'rezervace-krok-1.html');
+      });
+    }
+
+    radios.forEach(function(r) {
+      r.addEventListener('change', function() { if (r.checked) sync(r); });
+      if (r.checked) sync(r);
+    });
   })();
 
   // ── TERM SLIDER ARROWS ─────────────────────────────────

@@ -27,14 +27,18 @@
 
   <!-- STEPPER -->
   <div class="bk-stepper-wrap"><div class="bk-stepper">
-    <div class="bk-step active">
+    <a class="bk-step active" href="rezervace-krok-1.html">
       <div class="bk-step-num">1</div>
       <div class="bk-step-label">Osobní údaje</div>
-    </div>
-    <div class="bk-step">
+    </a>
+    <a class="bk-step" href="rezervace-krok-2.html">
       <div class="bk-step-num">2</div>
       <div class="bk-step-label">Kontrola a platba</div>
-    </div>
+    </a>
+    <a class="bk-step" href="rezervace-potvrzeni.html">
+      <div class="bk-step-num">3</div>
+      <div class="bk-step-label">Hotovo</div>
+    </a>
   </div></div>
 
   <!-- OBSAH -->
@@ -66,88 +70,15 @@
         </div>
       </div>
 
-      <!-- 2. Doplňkové služby -->
+      <!-- 2. Osobní údaje -->
       <div class="bk-card">
-        <div class="bk-card-head"><div class="bk-card-title">Doplňkové služby</div></div>
-        <div class="bk-card-body">
-          <div class="extra-list">
-            <div class="extra-item">
-              <input type="checkbox" id="ex1" checked />
-              <div class="extra-item-info">
-                <div class="extra-item-name">Závěrečný úklid</div>
-                <div class="extra-item-desc">Profesionální úklid lodi po návratu — povinné</div>
-              </div>
-              <div class="extra-item-price">2 500 Kč</div>
-            </div>
-            <div class="extra-item">
-              <input type="checkbox" id="ex2" />
-              <div class="extra-item-info">
-                <div class="extra-item-name">Skipper / kapitán</div>
-                <div class="extra-item-desc">Zkušený kapitán na celou dobu plavby</div>
-              </div>
-              <div class="extra-item-price">14 000 Kč / týden</div>
-            </div>
-            <div class="extra-item">
-              <input type="checkbox" id="ex3" />
-              <div class="extra-item-info">
-                <div class="extra-item-name">Hostessa / stewarda</div>
-                <div class="extra-item-desc">Servis na palubě, příprava jídla a nápojů</div>
-              </div>
-              <div class="extra-item-price">10 000 Kč / týden</div>
-            </div>
-            <div class="extra-item">
-              <input type="checkbox" id="ex4" />
-              <div class="extra-item-info">
-                <div class="extra-item-name">WiFi připojení</div>
-                <div class="extra-item-desc">Přenosný router s neomezeným datovým tarifem</div>
-              </div>
-              <div class="extra-item-price">1 200 Kč</div>
-            </div>
-            <div class="extra-item">
-              <input type="checkbox" id="ex5" />
-              <div class="extra-item-info">
-                <div class="extra-item-name">SUP prkno</div>
-                <div class="extra-item-desc">Stand-up paddleboard včetně pádla a leash</div>
-              </div>
-              <div class="extra-item-price">800 Kč</div>
-            </div>
-          </div>
-          <!-- Accordion: další služby -->
-          <div class="faq" style="margin-top:8px;">
-            <div class="faq-item">
-              <button class="faq-q" style="font-size:13px;font-weight:600;color:var(--int);">+ Zobrazit další doplňkové služby (4)</button>
-              <div class="faq-a" style="padding-top:0;">
-                <div class="extra-list" style="margin-top:8px;">
-                  <div class="extra-item">
-                    <input type="checkbox" id="ex6" />
-                    <div class="extra-item-info"><div class="extra-item-name">Potraviny na první den</div><div class="extra-item-desc">Základní zásoby na přivítání posádky</div></div>
-                    <div class="extra-item-price">1 800 Kč</div>
-                  </div>
-                  <div class="extra-item">
-                    <input type="checkbox" id="ex7" />
-                    <div class="extra-item-info"><div class="extra-item-name">Transfer z/na letiště Split</div><div class="extra-item-desc">Minibus až 8 osob, objednávka 48 h předem</div></div>
-                    <div class="extra-item-price">2 200 Kč</div>
-                  </div>
-                  <div class="extra-item">
-                    <input type="checkbox" id="ex8" />
-                    <div class="extra-item-info"><div class="extra-item-name">Potápěčské vybavení</div><div class="extra-item-desc">2× maska, ploutve, šnorchl na celý pronájem</div></div>
-                    <div class="extra-item-price">600 Kč</div>
-                  </div>
-                  <div class="extra-item">
-                    <input type="checkbox" id="ex9" />
-                    <div class="extra-item-info"><div class="extra-item-name">Předplacené poplatky za mariny (7 nocí)</div><div class="extra-item-desc">Průměrné náklady za místo v maríně — doplatek nebo přeplatek vyrovnán po skončení</div></div>
-                    <div class="extra-item-price">8 500 Kč</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="bk-card-head">
+          <div class="bk-card-title">Kontaktní údaje</div>
+          <a class="btn-secondary btn-secondary--sm" href="prihlaseni.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Přihlásit se
+          </a>
         </div>
-      </div>
-
-      <!-- 3. Osobní údaje -->
-      <div class="bk-card">
-        <div class="bk-card-head"><div class="bk-card-title">Kontaktní údaje</div></div>
         <div class="bk-card-body">
           <div class="bk-form-grid">
             <div class="bk-field">
@@ -177,8 +108,134 @@
                 <input class="bk-input" id="f-phone" type="tel" placeholder="775 123 456" style="flex:1;" />
               </div>
             </div>
+            <div class="bk-field bk-field--full">
+              <label class="bk-label" for="f-note">Poznámka</label>
+              <textarea class="bk-input bk-textarea" id="f-note" rows="2" placeholder="Speciální požadavky, dotazy, dietní omezení posádky…"></textarea>
+            </div>
           </div>
           <p style="font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6;">Potvrzení rezervace a veškerá komunikace bude zaslána na zadaný e-mail. Telefonní číslo slouží pro urgentní kontakt.</p>
+        </div>
+      </div>
+
+      <!-- 3. Pojištění -->
+      <div class="bk-card">
+        <div class="bk-card-head"><div class="bk-card-title">Zvolte variantu pojištění</div></div>
+        <div class="bk-card-body">
+          <p class="bk-card-intro">Volitelně přidejte libovolnou kombinaci krytí. Můžete vybrat jedno, všechny, nebo žádné.</p>
+          <div class="pkg-ins-list">
+            <label class="pkg-ins-row">
+              <input type="checkbox" class="pkg-ins-check" />
+              <span class="pkg-ins-row-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              <span class="pkg-ins-row-text">
+                <span class="pkg-ins-row-name">Pojištění kauce</span>
+                <span class="pkg-ins-row-desc">Vrácení vratné kauce <strong>4 000 €</strong> i při způsobené škodě. Bez papírování po skončení plavby.</span>
+              </span>
+              <span class="pkg-ins-row-price">+ 2 500 Kč</span>
+            </label>
+            <label class="pkg-ins-row">
+              <input type="checkbox" class="pkg-ins-check" />
+              <span class="pkg-ins-row-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </span>
+              <span class="pkg-ins-row-text">
+                <span class="pkg-ins-row-name">Pojištění odpovědnosti</span>
+                <span class="pkg-ins-row-desc">Krytí škod způsobených třetí osobě nebo cizímu majetku až do <strong>1 000 000 €</strong>.</span>
+              </span>
+              <span class="pkg-ins-row-price">+ 1 800 Kč</span>
+            </label>
+            <label class="pkg-ins-row">
+              <input type="checkbox" class="pkg-ins-check" />
+              <span class="pkg-ins-row-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+              </span>
+              <span class="pkg-ins-row-text">
+                <span class="pkg-ins-row-name">Pojištění storna</span>
+                <span class="pkg-ins-row-desc">Vrácení <strong>až 100 %</strong> ceny rezervace při zrušení z důvodu nemoci, úrazu nebo nečekané události.</span>
+              </span>
+              <span class="pkg-ins-row-price">+ 3 200 Kč</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Doplňkové služby -->
+      <div class="bk-card">
+        <div class="bk-card-head"><div class="bk-card-title">Doplňkové služby</div></div>
+        <div class="bk-card-body">
+          <div class="extra-list">
+            <label class="extra-item">
+              <input type="checkbox" id="ex1" checked />
+              <div class="extra-item-info">
+                <div class="extra-item-name">Závěrečný úklid</div>
+                <div class="extra-item-desc">Profesionální úklid lodi po návratu — povinné</div>
+              </div>
+              <div class="extra-item-price">2 500 Kč</div>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" id="ex2" />
+              <div class="extra-item-info">
+                <div class="extra-item-name">Skipper / kapitán</div>
+                <div class="extra-item-desc">Zkušený kapitán na celou dobu plavby</div>
+              </div>
+              <div class="extra-item-price">14 000 Kč / týden</div>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" id="ex3" />
+              <div class="extra-item-info">
+                <div class="extra-item-name">Hostessa / stewarda</div>
+                <div class="extra-item-desc">Servis na palubě, příprava jídla a nápojů</div>
+              </div>
+              <div class="extra-item-price">10 000 Kč / týden</div>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" id="ex4" checked />
+              <div class="extra-item-info">
+                <div class="extra-item-name">WiFi připojení</div>
+                <div class="extra-item-desc">Přenosný router s neomezeným datovým tarifem</div>
+              </div>
+              <div class="extra-item-price">1 200 Kč</div>
+            </label>
+            <label class="extra-item">
+              <input type="checkbox" id="ex5" checked />
+              <div class="extra-item-info">
+                <div class="extra-item-name">SUP prkno</div>
+                <div class="extra-item-desc">Stand-up paddleboard včetně pádla a leash</div>
+              </div>
+              <div class="extra-item-price">800 Kč</div>
+            </label>
+          </div>
+          <!-- Accordion: další služby -->
+          <div class="faq" style="margin-top:8px;">
+            <div class="faq-item">
+              <button class="faq-q" style="font-size:13px;font-weight:600;color:var(--int);">+ Zobrazit další doplňkové služby (4)</button>
+              <div class="faq-a" style="padding-top:0;">
+                <div class="extra-list" style="margin-top:8px;">
+                  <label class="extra-item">
+                    <input type="checkbox" id="ex6" />
+                    <div class="extra-item-info"><div class="extra-item-name">Potraviny na první den</div><div class="extra-item-desc">Základní zásoby na přivítání posádky</div></div>
+                    <div class="extra-item-price">1 800 Kč</div>
+                  </label>
+                  <label class="extra-item">
+                    <input type="checkbox" id="ex7" />
+                    <div class="extra-item-info"><div class="extra-item-name">Transfer z/na letiště Split</div><div class="extra-item-desc">Minibus až 8 osob, objednávka 48 h předem</div></div>
+                    <div class="extra-item-price">2 200 Kč</div>
+                  </label>
+                  <label class="extra-item">
+                    <input type="checkbox" id="ex8" />
+                    <div class="extra-item-info"><div class="extra-item-name">Potápěčské vybavení</div><div class="extra-item-desc">2× maska, ploutve, šnorchl na celý pronájem</div></div>
+                    <div class="extra-item-price">600 Kč</div>
+                  </label>
+                  <label class="extra-item">
+                    <input type="checkbox" id="ex9" />
+                    <div class="extra-item-info"><div class="extra-item-name">Předplacené poplatky za mariny (7 nocí)</div><div class="extra-item-desc">Průměrné náklady za místo v maríně — doplatek nebo přeplatek vyrovnán po skončení</div></div>
+                    <div class="extra-item-price">8 500 Kč</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -216,18 +273,19 @@
       <div class="bk-card">
         <div class="bk-card-head"><div class="bk-card-title">Detaily rezervace</div></div>
         <div class="bk-card-body" style="padding-top:8px;padding-bottom:8px;">
-          <div class="detail-row"><span class="detail-row-label">Příjezd</span><span class="detail-row-val">Sob 12. 7. 2025 · od 17:00</span></div>
-          <div class="detail-row"><span class="detail-row-label">Odjezd</span><span class="detail-row-val">Sob 19. 7. 2025 · do 9:00</span></div>
+          <div class="detail-row"><span class="detail-row-label">Nalodění</span><span class="detail-row-val">Sob 12. 7. 2025 · od 17:00</span></div>
+          <div class="detail-row"><span class="detail-row-label">Vylodění</span><span class="detail-row-val">Sob 19. 7. 2025 · do 9:00</span></div>
+          <div class="detail-row"><span class="detail-row-label">Povinný návrat do mariny</span><span class="detail-row-val">Pá 18. 7. do 20:00</span></div>
           <div class="detail-row"><span class="detail-row-label">Délka pronájmu</span><span class="detail-row-val">7 nocí</span></div>
           <div class="detail-row"><span class="detail-row-label">Přístav</span><span class="detail-row-val">ACI Marina Split, Chorvatsko</span></div>
           <div class="detail-row"><span class="detail-row-label">Charterová spol.</span><span class="detail-row-val">MareSail d.o.o.</span></div>
         </div>
       </div>
 
-      <!-- Zvolený balíček -->
+      <!-- Zvolená varianta -->
       <div class="bk-card pkg-summary-card">
         <div class="bk-card-head">
-          <div class="bk-card-title">Zvolený balíček</div>
+          <div class="bk-card-title">Zvolená varianta</div>
           <a class="bk-card-edit" href="detail-lodi.html#sec-balicky">Změnit</a>
         </div>
         <div class="bk-card-body">
@@ -236,31 +294,50 @@
           <div class="pkg-summary-sub">30% záloha + storno + pojištění kauce</div>
           <ul class="pkg-summary-feat">
             <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Záloha 30 % nyní, doplatek 30 dnů před</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Storno do 60 dnů zdarma</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Storno do 60 dnů zdarma (do 12. 5. 2025)</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pojištění kauce 4 000 € v ceně</li>
           </ul>
         </div>
       </div>
 
       <!-- Souhrn cen -->
-      <div class="bk-card">
+      <div class="bk-card" data-summary>
         <div class="bk-card-head"><div class="bk-card-title">Souhrn cen</div></div>
-        <div class="bk-card-body">
+        <div class="bk-card-body" data-summary-body>
           <div class="price-line"><span>Pronájem lodi (7 nocí)</span><span>36 000 Kč</span></div>
-          <div class="price-line"><span>Balíček <strong>Flex</strong> (storno + kauce)</span><span>2 400 Kč</span></div>
-          <div class="price-line"><span>Závěrečný úklid</span><span>2 500 Kč</span></div>
+          <div data-summary-anchor></div>
+          <div class="price-line"><span>Povinný poplatek</span><span>12 611 Kč</span></div>
           <div class="price-line discount"><span>Sleva 10 % (early bird)</span><span>−3 600 Kč</span></div>
-          <div class="price-line total"><span>Celkem za pronájem</span><span>37 300 Kč</span></div>
-          <div class="price-line muted"><span>+ Vratná kauce</span><span>4 000 €</span></div>
-          <div class="pay-now-box">
-            <div class="pay-now-label">Záloha k úhradě nyní (30 %)</div>
-            <div class="pay-now-val">11 520 Kč</div>
-            <div class="pay-now-rest">Doplatek <strong>25 780 Kč</strong> 30 dnů před začátkem (12. 6. 2025)</div>
-          </div>
-          <div class="cancel-info">
-            <strong>Podmínky zrušení (Flex)</strong>
-            Bezplatně do <strong>12. 5. 2025</strong> (60 dní před nástupem).<br>
-            Po tomto datu: storno poplatek 50 % ceny pronájmu.
+          <div class="price-line total price-line--prominent"><span>Celkem</span><span data-summary-total>49 511 Kč</span></div>
+        </div>
+      </div>
+
+      <!-- Přehled plateb -->
+      <div class="bk-card">
+        <div class="bk-card-head"><div class="bk-card-title">Přehled plateb</div></div>
+        <div class="bk-card-body">
+          <div class="pay-schedule">
+            <div class="pay-schedule-row">
+              <div class="pay-schedule-row-label">
+                <span class="pay-schedule-row-name">Zaplatíte nyní</span>
+                <span class="pay-schedule-row-sub">Záloha 30 % · online</span>
+              </div>
+              <div class="pay-schedule-row-val" data-pay-now>11 070 Kč</div>
+            </div>
+            <div class="pay-schedule-row">
+              <div class="pay-schedule-row-label">
+                <span class="pay-schedule-row-name">Doplatek 30 dnů před začátkem</span>
+                <span class="pay-schedule-row-sub">12. 6. 2025 · online</span>
+              </div>
+              <div class="pay-schedule-row-val" data-pay-rest>25 830 Kč</div>
+            </div>
+            <div class="pay-schedule-row">
+              <div class="pay-schedule-row-label">
+                <span class="pay-schedule-row-name">Zaplatíte na základně</span>
+                <span class="pay-schedule-row-sub">Povinný poplatek + vratná kauce</span>
+              </div>
+              <div class="pay-schedule-row-val">12 611 Kč<br><span class="pay-schedule-row-val-sub">+ 4 000 €</span></div>
+            </div>
           </div>
         </div>
       </div>

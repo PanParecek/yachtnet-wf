@@ -33,10 +33,12 @@
         </div>
         <div class="sf-field">
           <span class="sf-label">Termín</span>
-          <div class="date-combined">
-            <input type="date" name="from" />
-            <span class="date-sep">→</span>
-            <input type="date" name="to" />
+          <div class="sf-daterange" data-daterange aria-expanded="false">
+            <svg class="sf-daterange-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <button type="button" class="sf-daterange-trigger"><span class="sf-daterange-label sf-daterange-label--placeholder">Kdykoliv</span></button>
+            <input type="hidden" name="from" />
+            <input type="hidden" name="to" />
+            <div class="sf-daterange-popover" hidden></div>
           </div>
         </div>
         <div class="sf-field">
@@ -46,8 +48,8 @@
             <option value="sailing">Plachetnice</option>
             <option value="catamaran">Katamarán</option>
             <option value="motor">Motorová loď</option>
-            <option value="gulet">Gulet</option>
             <option value="river">Říční loď</option>
+            <option value="gulet">Gulet</option>
           </select>
         </div>
         <button type="button" class="btn-search" onclick="window.location.href='pronajem-lodi.html'">Hledat lodě</button>

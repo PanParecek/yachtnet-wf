@@ -27,14 +27,18 @@
 
   <!-- STEPPER -->
   <div class="bk-stepper-wrap"><div class="bk-stepper">
-    <div class="bk-step done">
+    <a class="bk-step done" href="rezervace-krok-1.html">
       <div class="bk-step-num"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
       <div class="bk-step-label">Osobní údaje</div>
-    </div>
-    <div class="bk-step active">
+    </a>
+    <a class="bk-step active" href="rezervace-krok-2.html">
       <div class="bk-step-num">2</div>
       <div class="bk-step-label">Kontrola a platba</div>
-    </div>
+    </a>
+    <a class="bk-step" href="rezervace-potvrzeni.html">
+      <div class="bk-step-num">3</div>
+      <div class="bk-step-label">Hotovo</div>
+    </a>
   </div></div>
 
   <!-- OBSAH -->
@@ -75,7 +79,7 @@
         <div class="bk-card-body">
 
           <!-- Kreditní / debetní karta -->
-          <div class="payment-option selected">
+          <label class="payment-option">
             <input type="radio" name="payment" checked />
             <div class="payment-option-label">
               <div class="payment-option-title">Platební karta</div>
@@ -91,9 +95,9 @@
               </span>
               <span class="payment-logo" style="font-size:9px;letter-spacing:.01em;">PayU</span>
             </div>
-          </div>
+          </label>
           <!-- Google Pay / Apple Pay -->
-          <div class="payment-option">
+          <label class="payment-option">
             <input type="radio" name="payment" />
             <div class="payment-option-label">
               <div class="payment-option-title">Google Pay / Apple Pay</div>
@@ -103,10 +107,10 @@
               <span class="payment-logo" style="font-weight:700;">G Pay</span>
               <span class="payment-logo" style="font-weight:700;">Pay</span>
             </div>
-          </div>
+          </label>
 
           <!-- Bankovní převod -->
-          <div class="payment-option">
+          <label class="payment-option">
             <input type="radio" name="payment" />
             <div class="payment-option-label">
               <div class="payment-option-title">Bankovní převod</div>
@@ -118,7 +122,7 @@
                 2–3 pracovní dny
               </span>
             </div>
-          </div>
+          </label>
 
         </div>
       </div>
@@ -140,10 +144,10 @@
         </div>
       </div>
 
-      <!-- Zvolený balíček -->
+      <!-- Zvolená varianta -->
       <div class="bk-card pkg-summary-card">
         <div class="bk-card-head">
-          <div class="bk-card-title">Zvolený balíček</div>
+          <div class="bk-card-title">Zvolená varianta</div>
           <a class="bk-card-edit" href="detail-lodi.html#sec-balicky">Změnit</a>
         </div>
         <div class="bk-card-body">
@@ -152,7 +156,7 @@
           <div class="pkg-summary-sub">30% záloha + storno + pojištění kauce</div>
           <ul class="pkg-summary-feat">
             <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Záloha 30 % nyní, doplatek 30 dnů před</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Storno do 60 dnů zdarma</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Storno do 60 dnů zdarma (do 12. 5. 2025)</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pojištění kauce 4 000 € v ceně</li>
           </ul>
         </div>
@@ -162,20 +166,41 @@
         <div class="bk-card-head"><div class="bk-card-title">Souhrn cen</div></div>
         <div class="bk-card-body">
           <div class="price-line"><span>Pronájem lodi (7 nocí)</span><span>36 000 Kč</span></div>
-          <div class="price-line"><span>Balíček <strong>Flex</strong> (storno + kauce)</span><span>2 400 Kč</span></div>
           <div class="price-line"><span>Závěrečný úklid</span><span>2 500 Kč</span></div>
+          <div class="price-line"><span>WiFi připojení</span><span>1 200 Kč</span></div>
+          <div class="price-line"><span>SUP prkno</span><span>800 Kč</span></div>
+          <div class="price-line"><span>Povinný poplatek</span><span>12 611 Kč</span></div>
           <div class="price-line discount"><span>Sleva 10 % (early bird)</span><span>−3 600 Kč</span></div>
-          <div class="price-line total"><span>Celkem za pronájem</span><span>37 300 Kč</span></div>
-          <div class="price-line muted"><span>+ Vratná kauce</span><span>4 000 €</span></div>
-          <div class="pay-now-box">
-            <div class="pay-now-label">Záloha k úhradě nyní (30 %)</div>
-            <div class="pay-now-val">11 520 Kč</div>
-            <div class="pay-now-rest">Doplatek <strong>25 780 Kč</strong> 30 dnů před začátkem (12. 6. 2025)</div>
-          </div>
-          <div class="cancel-info">
-            <strong>Podmínky zrušení (Flex)</strong>
-            Bezplatně do <strong>12. 5. 2025</strong>.<br>
-            Po tomto datu: storno poplatek 50 %.
+          <div class="price-line total price-line--prominent"><span>Celkem</span><span>49 511 Kč</span></div>
+        </div>
+      </div>
+
+      <!-- Přehled plateb -->
+      <div class="bk-card">
+        <div class="bk-card-head"><div class="bk-card-title">Přehled plateb</div></div>
+        <div class="bk-card-body">
+          <div class="pay-schedule">
+            <div class="pay-schedule-row">
+              <div class="pay-schedule-row-label">
+                <span class="pay-schedule-row-name">Zaplatíte nyní</span>
+                <span class="pay-schedule-row-sub">Záloha 30 % · online</span>
+              </div>
+              <div class="pay-schedule-row-val">11 070 Kč</div>
+            </div>
+            <div class="pay-schedule-row">
+              <div class="pay-schedule-row-label">
+                <span class="pay-schedule-row-name">Doplatek 30 dnů před začátkem</span>
+                <span class="pay-schedule-row-sub">12. 6. 2025 · online</span>
+              </div>
+              <div class="pay-schedule-row-val">25 830 Kč</div>
+            </div>
+            <div class="pay-schedule-row">
+              <div class="pay-schedule-row-label">
+                <span class="pay-schedule-row-name">Zaplatíte na základně</span>
+                <span class="pay-schedule-row-sub">Povinný poplatek + vratná kauce</span>
+              </div>
+              <div class="pay-schedule-row-val">12 611 Kč<br><span class="pay-schedule-row-val-sub">+ 4 000 €</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -186,8 +211,8 @@
           <input type="checkbox" id="vop" />
           <label for="vop" style="font-size:12px;">Souhlasím s <a href="#" style="color:var(--int);font-weight:600;">VOP</a> a <a href="#" style="color:var(--int);font-weight:600;">Zásadami ochrany osobních údajů</a></label>
         </div>
-        <button class="btn-booking reserve" onclick="window.location.href='rezervace-potvrzeni.html'">Zaplatit zálohu 30 % — 11 520 Kč</button>
-        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.5;">Doplatek 25 780 Kč automaticky 30 dnů před nástupem.</p>
+        <button class="btn-booking reserve" onclick="window.location.href='rezervace-potvrzeni.html'">Zaplatit zálohu 30 % — 11 070 Kč</button>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.5;">Doplatek 25 830 Kč automaticky 30 dnů před nástupem.</p>
       </div>
 
     </div><!-- /bk-sidebar -->

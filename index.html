@@ -84,17 +84,19 @@
         <div class="sf-field sf-field--destination">
           <span class="sf-label">Destinace</span>
           <div class="sf-combobox" data-destination-search aria-expanded="false">
+            <svg class="sf-combobox-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <input class="sf-combobox-input" type="text" name="location" placeholder="Vyberte zemi, oblast nebo přístav…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" />
-            <svg class="sf-combobox-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             <div class="sf-combobox-dropdown" hidden></div>
           </div>
         </div>
         <div class="sf-field sf-field--dates">
           <span class="sf-label">Termín</span>
-          <div class="date-combined">
-            <input type="date" name="from" />
-            <span class="date-sep">→</span>
-            <input type="date" name="to" />
+          <div class="sf-daterange" data-daterange aria-expanded="false">
+            <svg class="sf-daterange-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <button type="button" class="sf-daterange-trigger"><span class="sf-daterange-label sf-daterange-label--placeholder">Kdykoliv</span></button>
+            <input type="hidden" name="from" />
+            <input type="hidden" name="to" />
+            <div class="sf-daterange-popover" hidden></div>
           </div>
         </div>
         <div class="sf-field sf-field--category">
@@ -104,17 +106,31 @@
             <option value="sailing">Plachetnice</option>
             <option value="catamaran">Katamarán</option>
             <option value="motor">Motorová loď</option>
-            <option value="gulet">Gulet</option>
             <option value="river">Říční loď</option>
+            <option value="gulet">Gulet</option>
           </select>
         </div>
         <div class="sf-field sf-field--people">
           <span class="sf-label">Počet osob</span>
-          <div class="sf-people" data-people-stepper data-min="1" data-max="12" data-value="2">
-            <button type="button" class="sf-people-btn" data-step="-1" aria-label="Méně osob">−</button>
-            <span class="sf-people-val">2 osoby</span>
-            <button type="button" class="sf-people-btn" data-step="1" aria-label="Více osob">+</button>
+          <div class="sf-people" data-people-select data-min="1" data-max="12" data-value="2" aria-expanded="false">
+            <button type="button" class="sf-people-trigger">
+              <span class="sf-people-val">2 osoby</span>
+              <svg class="sf-people-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
             <input type="hidden" name="people" value="2" />
+            <div class="sf-people-popover" hidden>
+              <div class="sf-people-row">
+                <div>
+                  <div class="sf-people-row-label">Počet osob</div>
+                  <div class="sf-people-row-sub">Včetně dětí</div>
+                </div>
+                <div class="sf-people-counter">
+                  <button type="button" class="sf-people-btn" data-step="-1" aria-label="Méně osob">−</button>
+                  <span class="sf-people-counter-val">2</span>
+                  <button type="button" class="sf-people-btn" data-step="1" aria-label="Více osob">+</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <button type="button" class="btn-search" onclick="window.location.href='pronajem-lodi.html'">Hledat lodě</button>
