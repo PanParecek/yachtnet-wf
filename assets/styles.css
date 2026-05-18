@@ -1094,6 +1094,7 @@
     }
 
     .boats-list { display: flex; flex-direction: column; gap: 14px; }
+    .boats-list[hidden], .pagination[hidden], .boats-map[hidden] { display: none; }
     .boat-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
@@ -2986,8 +2987,16 @@
     .auth-field label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 5px; }
     .auth-input { width: 100%; height: 40px; padding: 0 12px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; font-family: inherit; background: var(--bg); color: var(--text); box-sizing: border-box; transition: border-color .15s; }
     .auth-input:focus { outline: none; border-color: var(--int); }
-    .auth-btn { width: 100%; height: 42px; background: var(--int); color: #fff; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; margin-top: 4px; transition: background .15s; }
-    .auth-btn:hover { background: var(--int-dark); }
+    .auth-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 42px; padding: 0 16px;
+      background: var(--int); color: #fff; border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer;
+      margin-top: 4px; transition: background .15s;
+      text-decoration: none; box-sizing: border-box;
+    }
+    .auth-btn:hover { background: var(--int-dark); color: #fff; }
+    .auth-btn:visited { color: #fff; }
     .auth-divider { display: flex; align-items: center; gap: 10px; margin: 18px 0; font-size: 12px; color: var(--muted); }
     .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
     .auth-social { display: flex; flex-direction: column; gap: 8px; }
@@ -3016,6 +3025,8 @@
     .account-section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 20px; }
     .account-section-title { font-size: 15px; font-weight: 700; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
     .acc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .acc-row[hidden] { display: none; }
+    .acc-row + .acc-row { margin-top: 14px; }
     .acc-field label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; }
     .acc-input { width: 100%; height: 38px; padding: 0 10px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; font-family: inherit; background: var(--bg); color: var(--text); box-sizing: border-box; }
     .acc-input:focus { outline: none; border-color: var(--int); }
@@ -3171,12 +3182,266 @@
       border: 1px solid var(--border); border-radius: 10px;
     }
     .res-pay-row.is-paid { background: #f0fdf4; border-color: #bbf7d0; }
+    .res-pay-row.is-due { background: var(--int-soft); border-color: #d6c5ff; }
     .res-pay-row-head { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
     .res-pay-row-name { font-size: 14px; font-weight: 700; color: var(--text); }
     .res-pay-row-status { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #047857; font-weight: 600; }
-    .res-pay-row-status--due { color: var(--muted); font-weight: 500; }
+    .res-pay-row-status--due { color: var(--int); font-weight: 600; }
     .res-pay-row-status svg { color: #10b981; flex-shrink: 0; }
     .res-pay-row-val { font-size: 16px; font-weight: 800; color: var(--text); white-space: nowrap; word-spacing: .15em; }
+    .res-pay-row-btn {
+      display: inline-flex; align-items: center; height: 36px; padding: 0 16px;
+      background: var(--int); color: #fff; border: none; border-radius: var(--radius);
+      font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer;
+      text-decoration: none; white-space: nowrap; flex-shrink: 0;
+    }
+    .res-pay-row-btn:hover { background: var(--int-dark); color: #fff; }
+
+    /* ── MAPA — wireframe pohled (pronajem-lodi.html) ────── */
+    .boats-map { margin-top: 0; }
+    .map-canvas {
+      position: relative; width: 100%;
+      aspect-ratio: 16 / 10; min-height: 480px; max-height: 760px;
+      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 60%, #d6e3eb 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 75% 35%, #cad9e1 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 50% 80%, #c0d2db 0%, transparent 60%),
+        linear-gradient(180deg, #a8c5d6 0%, #94b8cc 60%, #80aac0 100%);
+    }
+    .map-canvas::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(0deg, rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .map-canvas::after {
+      content: 'Jaderské pobřeží'; position: absolute; left: 24px; bottom: 24px;
+      font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(0, 38, 60, .35); pointer-events: none;
+    }
+    .map-attribution {
+      position: absolute; right: 12px; bottom: 8px; z-index: 2;
+      background: rgba(255,255,255,.7); padding: 2px 8px; border-radius: 4px;
+      font-size: 10px; color: var(--muted);
+    }
+    .map-zoom-btn {
+      position: absolute; right: 14px; width: 32px; height: 32px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+      font-size: 18px; font-weight: 700; cursor: pointer; z-index: 3;
+      box-shadow: 0 2px 6px rgba(0,0,0,.12);
+      transition: border-color .15s, color .15s;
+    }
+    .map-zoom-btn:hover { border-color: var(--int); color: var(--int); }
+    .map-zoom-in { top: 14px; }
+    .map-zoom-out { top: 52px; }
+    .map-pins { position: absolute; inset: 0; }
+    .map-pin {
+      position: absolute; transform: translate(-50%, -50%);
+      background: var(--int); color: #fff;
+      padding: 5px 12px; border-radius: 999px;
+      font-size: 12px; font-weight: 800; letter-spacing: -.01em;
+      cursor: pointer; white-space: nowrap;
+      box-shadow: 0 3px 10px rgba(0,0,0,.25);
+      border: 2px solid #fff;
+      font-family: inherit;
+      transition: transform .12s, background .15s, z-index 0s;
+      z-index: 1;
+    }
+    .map-pin:hover, .map-pin.is-active {
+      background: var(--int-dark);
+      transform: translate(-50%, -50%) scale(1.08);
+      z-index: 50;
+    }
+    .map-pin--cluster {
+      background: #fff; color: var(--int);
+      width: 44px; height: 44px; padding: 0;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      font-size: 14px; font-weight: 800;
+      border: 3px solid var(--int);
+      box-shadow: 0 0 0 6px rgba(105, 3, 255, .18), 0 3px 10px rgba(0,0,0,.2);
+      transform: translate(-50%, -50%);
+    }
+    .map-pin--cluster:hover {
+      background: var(--int); color: #fff;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+    .map-pin--cluster::after { display: none; }
+
+    /* Map popup */
+    .map-popup {
+      position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%);
+      width: 240px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      box-shadow: 0 12px 32px rgba(0,0,0,.25);
+      overflow: hidden;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .15s, visibility .15s;
+      z-index: 100; text-align: left;
+      color: var(--text); font-weight: 400; letter-spacing: 0;
+      cursor: default;
+    }
+    .map-pin:hover .map-popup, .map-pin.is-active .map-popup { opacity: 1; visibility: visible; pointer-events: auto; }
+    .map-popup::after {
+      content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      border: 7px solid transparent; border-top-color: var(--surface);
+    }
+    .map-popup--below {
+      bottom: auto; top: calc(100% + 10px);
+    }
+    .map-popup--below::after {
+      top: auto; bottom: 100%;
+      border-top-color: transparent; border-bottom-color: var(--surface);
+    }
+    .map-popup-img {
+      width: 100%; aspect-ratio: 3 / 2;
+      background: var(--cross-bg), var(--img-bg);
+    }
+    .map-popup-body { padding: 10px 12px; }
+    .map-popup-cat {
+      display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--int); margin-bottom: 4px;
+    }
+    .map-popup-name { font-size: 13px; font-weight: 700; line-height: 1.3; }
+    .map-popup-sub { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+    .map-popup-specs {
+      display: flex; gap: 10px; margin: 6px 0 8px;
+      font-size: 10px; color: var(--muted); font-weight: 600;
+    }
+    .map-popup-price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+    .map-popup-price { font-size: 14px; font-weight: 800; color: var(--text); }
+    .map-popup-link {
+      font-size: 11px; font-weight: 700; color: var(--int); text-decoration: none;
+    }
+    .map-popup-link:hover { color: var(--int-dark); }
+
+    /* Flash messages (alerty nad obsahem) */
+    .flash {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 18px; border-radius: 10px;
+      margin-bottom: 24px;
+      font-size: 14px; line-height: 1.55;
+    }
+    .flash-icon { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .flash-body { flex: 1; min-width: 0; }
+    .flash-link { font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+    .flash-link:hover { text-decoration: none; }
+    .flash--warning { background: #fff7ed; border: 1px solid #fdba74; color: #9a3412; }
+    .flash--warning .flash-icon { color: #ea580c; }
+    .flash--warning .flash-link { color: #9a3412; }
+    .flash--warning .flash-link:hover { color: #7c2d12; }
+    .flash--info    { background: var(--int-soft); border: 1px solid #d6c5ff; color: #4c1d95; }
+    .flash--info .flash-icon { color: var(--int); }
+    .flash--success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+    .flash--success .flash-icon { color: #16a34a; }
+    .flash--error   { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
+    .flash--error .flash-icon { color: #dc2626; }
+
+    /* Parametry výpůjčky v detailu rezervace */
+    .param-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 18px; }
+    .param-item { display: flex; flex-direction: column; gap: 3px; min-width: 0; font-size: 13px; align-items: flex-start; }
+    .param-item .res-badge { align-self: flex-start; }
+    .param-item--full { grid-column: 1 / -1; }
+    .param-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+    .param-val { font-weight: 600; color: var(--text); }
+    .param-info { font-size: 11px; font-weight: 600; color: var(--int); text-decoration: none; margin-left: 4px; }
+    .param-info:hover { color: var(--int-dark); text-decoration: underline; }
+    .param-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+    .param-chip {
+      display: inline-flex; align-items: center;
+      padding: 3px 10px; border-radius: 999px;
+      background: var(--int-soft); color: #5a00d4;
+      border: 1px solid #d6c5ff;
+      font-size: 12px; font-weight: 600;
+    }
+    @media (max-width: 720px) { .param-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* Modal: Přidat osobu do crew listu */
+    .crew-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .crew-modal[hidden] { display: none; }
+    .crew-modal-backdrop { position: absolute; inset: 0; background: rgba(15, 15, 18, .55); backdrop-filter: blur(2px); }
+    .crew-modal-dialog {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 540px; max-height: 90vh;
+      background: var(--surface); border-radius: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.30);
+      display: flex; flex-direction: column;
+    }
+    .crew-modal-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--border); }
+    .crew-modal-title { font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+    .crew-modal-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--bg); border: 1px solid var(--border); color: var(--text);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: border-color .15s, color .15s;
+    }
+    .crew-modal-close:hover { border-color: var(--int); color: var(--int); }
+    .crew-modal-body { padding: 16px 22px; overflow-y: auto; }
+    .crew-modal-intro { font-size: 13px; color: var(--muted); margin: 0 0 12px; line-height: 1.5; }
+    .crew-modal-search {
+      position: relative; margin-bottom: 12px;
+    }
+    .crew-modal-search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+    .crew-modal-search input {
+      width: 100%; height: 40px; padding: 0 12px 0 36px; box-sizing: border-box;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      font-family: inherit; font-size: 13px; color: var(--text); background: var(--surface);
+    }
+    .crew-modal-search input:focus { outline: 2px solid var(--int); outline-offset: -1px; border-color: transparent; }
+    .crew-modal-list { display: flex; flex-direction: column; gap: 6px; }
+    .crew-modal-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+      cursor: pointer; background: var(--surface);
+      transition: border-color .15s, background .15s;
+    }
+    .crew-modal-item:hover { border-color: var(--int); }
+    .crew-modal-item:has(input:checked) { border-color: var(--int); background: var(--int-soft); }
+    .crew-modal-item input { width: 16px; height: 16px; accent-color: var(--int); flex-shrink: 0; cursor: pointer; }
+    .crew-modal-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--int-soft); color: var(--int);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 12px; letter-spacing: .02em;
+      flex-shrink: 0;
+    }
+    .crew-modal-info { flex: 1; min-width: 0; }
+    .crew-modal-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .crew-modal-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .crew-modal-foot {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 16px 22px; border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .crew-modal-new {
+      display: inline-flex !important; align-items: center; gap: 6px;
+      text-decoration: none;
+    }
+
+    /* Interaktivní hvězdy v modalu hodnocení */
+    .rate-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 10px 0; border-bottom: 1px dashed var(--border);
+    }
+    .rate-row:last-of-type { border-bottom: none; }
+    .rate-row-label { flex: 1; min-width: 0; font-size: 14px; font-weight: 700; color: var(--text); }
+    .rate-stars { display: inline-flex; gap: 2px; }
+    .rate-star {
+      background: none; border: none; padding: 0 2px;
+      font-size: 24px; color: #d4d4d4; cursor: pointer;
+      transition: color .12s, transform .12s;
+      font-family: inherit; line-height: 1;
+    }
+    .rate-star:hover { transform: scale(1.15); }
+    .rate-row.is-hovering .rate-star.is-preview { color: #f5a623; }
+    .rate-row .rate-star.is-active { color: #f5a623; }
+    .rate-row-val { font-size: 13px; font-weight: 700; color: var(--muted); min-width: 28px; text-align: right; }
+    @media (max-width: 540px) {
+      .crew-modal-foot { flex-direction: column; align-items: stretch; }
+      .crew-modal-foot .acc-btn { width: 100%; }
+    }
 
     /* Záložky rezervací */
     .res-tabs {

@@ -16,22 +16,75 @@
   <nav class="nav"><div class="nav-inner"><a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a><ul class="nav-links"><li><a  href="pronajem-lodi.html">Pronájem lodí</a></li><li><a  href="kapitanske-kurzy.html">Kapitánské kurzy</a></li><li><a  href="eshop.html">E-shop</a></li><li><a  href="magazin.html">Magazín</a></li><li><a  href="o-nas.html">O nás</a></li><li><a  href="kontakt.html">Kontakt</a></li></ul><div class="nav-actions"><a class="nav-phone" href="tel:+420233354050" aria-label="+420 233 354 050"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="nav-phone-num">+420 233 354 050</span></a><button class="nav-icon-btn" type="button" title="Oblíbené" aria-label="Oblíbené" onclick="window.location.href='oblibene.html'"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='ucet.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Můj účet</button></div></div></nav>
   <div style="max-width:var(--max);margin:0 auto;padding:32px 28px;display:grid;grid-template-columns:1fr 340px;gap:28px;">
     <div>
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
         <a  href="seznam-rezervaci.html" style="font-size:13px;color:var(--muted);text-decoration:none;">← Moje rezervace</a>
-        <span class="res-badge badge-active">Probíhá</span>
+      </div>
+      <div class="flash flash--warning" role="alert">
+        <span class="flash-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </span>
+        <div class="flash-body">
+          <strong>Pozor</strong>, u průkazu <a href="muj-prukaz.html" class="flash-link">Průkaz MDČR C — Pobřežní plavba</a> končí platnost a může kolidovat s datem rezervace. <a href="muj-prukaz.html" class="flash-link">Obnovte si platnost průkazu.</a>
+        </div>
       </div>
       <h1 style="font-size:24px;font-weight:800;margin-bottom:20px;">Elan 45 Impression — "Adriatic Wind"</h1>
       <div class="account-section">
         <div class="account-section-title">Parametry výpůjčky</div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;font-size:13px;">
-          <div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px;">Datum od</div><div style="font-weight:600;">12. 7. 2025, 17:00</div></div>
-          <div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px;">Datum do</div><div style="font-weight:600;">19. 7. 2025, 09:00</div></div>
-          <div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px;">Celková délka</div><div style="font-weight:600;">7 nocí</div></div>
-          <div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px;">Přístav</div><div style="font-weight:600;">Split ACI Marina</div></div>
-          <div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px;">Charterová spol.</div><div style="font-weight:600;">Sun Charter d.o.o.</div></div>
-          <div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px;">Model lodi</div><div style="font-weight:600;">Elan 45 Impression</div></div>
+        <div class="param-grid">
+          <div class="param-item">
+            <div class="param-label">Stav rezervace</div>
+            <span class="res-badge badge-pending">Rezervováno</span>
+          </div>
+          <div class="param-item">
+            <div class="param-label">Nalodění</div>
+            <div class="param-val">Sob 12. 7. 2025, 17:00</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">Vylodění</div>
+            <div class="param-val">Sob 19. 7. 2025, 09:00</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">Povinný návrat do mariny</div>
+            <div class="param-val">Pá 18. 7. 2025 do 20:00</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">Celková délka</div>
+            <div class="param-val">7 nocí</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">Model lodi</div>
+            <div class="param-val">Elan 45 Impression</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">Přístav</div>
+            <div class="param-val">ACI Marina Split</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">Charterová spol.</div>
+            <div class="param-val">Sun Charter d.o.o.</div>
+          </div>
+          <div class="param-item">
+            <div class="param-label">Varianta rezervace</div>
+            <div class="param-val">Flex <a href="#sec-balicky" class="param-info">co Flex obsahuje?</a></div>
+          </div>
+          <div class="param-item param-item--full">
+            <div class="param-label">Pojištění</div>
+            <div class="param-chips">
+              <span class="param-chip">Pojištění kauce</span>
+              <span class="param-chip">Pojištění storna</span>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="account-section">
+        <div class="account-section-title">Hodnocení plavby <button class="acc-btn-ghost" type="button" data-open-rating-modal style="height:30px;font-size:12px;padding:0 12px;display:inline-flex;align-items:center;">Upravit</button></div>
+        <div class="res-rate-display" style="font-size:14px;">
+          <span class="res-rate-item"><span class="res-rate-label">Loď:</span><span class="res-rate-stars" style="font-size:15px;">★★★★★</span></span>
+          <span class="res-rate-item"><span class="res-rate-label">Charterovka:</span><span class="res-rate-stars" style="font-size:15px;">★★★★<span class="res-rate-stars-empty">☆</span></span></span>
+          <span class="res-rate-item"><span class="res-rate-label">Yachtnet:</span><span class="res-rate-stars" style="font-size:15px;">★★★★★</span></span>
+        </div>
+      </div>
+
       <div class="account-section">
         <div class="account-section-title">Přehled plateb</div>
         <div class="res-pay-grid">
@@ -45,14 +98,12 @@
             </div>
             <div class="res-pay-row-val">10 800 Kč</div>
           </div>
-          <div class="res-pay-row is-paid">
+          <div class="res-pay-row is-due">
             <div class="res-pay-row-head">
               <span class="res-pay-row-name">Doplatek 70 %</span>
-              <span class="res-pay-row-status">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Uhrazeno 14. 5. 2026
-              </span>
+              <span class="res-pay-row-status res-pay-row-status--due">Uhradit do <strong>12. 6. 2026</strong> · online</span>
             </div>
+            <a href="rezervace-krok-2.html" class="res-pay-row-btn" onclick="event.stopPropagation();">Uhradit →</a>
             <div class="res-pay-row-val">25 200 Kč</div>
           </div>
           <div class="res-pay-row">
@@ -80,7 +131,7 @@
         </div>
       </div>
       <div class="account-section">
-        <div class="account-section-title">Crew list <button class="acc-btn-ghost">+ Přidat osobu</button></div>
+        <div class="account-section-title">Crew list <button class="acc-btn-ghost" type="button" data-open-crew-modal>+ Přidat osobu</button></div>
         <table class="crew-table">
           <thead><tr><th>Jméno a příjmení</th><th>Číslo pasu</th><th>Státní příslušnost</th><th></th></tr></thead>
           <tbody>
@@ -90,11 +141,142 @@
           </tbody>
         </table>
       </div>
+
+      <!-- Modal: Přidat osobu do Crew listu -->
+      <div class="crew-modal" id="crewModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="crewModalTitle">
+        <div class="crew-modal-backdrop" data-close-crew-modal></div>
+        <div class="crew-modal-dialog" role="document">
+          <div class="crew-modal-head">
+            <div class="crew-modal-title" id="crewModalTitle">Přidat osobu do crew listu</div>
+            <button class="crew-modal-close" type="button" data-close-crew-modal aria-label="Zavřít">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div class="crew-modal-body">
+            <p class="crew-modal-intro">Vyberte osobu z vašeho přehledu, nebo přidejte novou.</p>
+            <div class="crew-modal-search">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" placeholder="Hledat v seznamu osob…" autocomplete="off" />
+            </div>
+            <div class="crew-modal-list">
+              <label class="crew-modal-item">
+                <input type="checkbox" />
+                <div class="crew-modal-avatar">EN</div>
+                <div class="crew-modal-info">
+                  <div class="crew-modal-name">Eva Nováková</div>
+                  <div class="crew-modal-meta">🇨🇿 Česká rep. · pas 42857913 · platí do 8. 11. 2031</div>
+                </div>
+              </label>
+              <label class="crew-modal-item">
+                <input type="checkbox" />
+                <div class="crew-modal-avatar">TN</div>
+                <div class="crew-modal-info">
+                  <div class="crew-modal-name">Tomáš Novák</div>
+                  <div class="crew-modal-meta">🇨🇿 Česká rep. · OP 123456789</div>
+                </div>
+              </label>
+              <label class="crew-modal-item">
+                <input type="checkbox" />
+                <div class="crew-modal-avatar">PD</div>
+                <div class="crew-modal-info">
+                  <div class="crew-modal-name">Petr Dvořák</div>
+                  <div class="crew-modal-meta">🇨🇿 Česká rep. · pas 98762341 · platí do 14. 6. 2029</div>
+                </div>
+              </label>
+              <label class="crew-modal-item">
+                <input type="checkbox" />
+                <div class="crew-modal-avatar">MS</div>
+                <div class="crew-modal-info">
+                  <div class="crew-modal-name">Martina Svobodová</div>
+                  <div class="crew-modal-meta">🇨🇿 Česká rep. · pas 35820146 · platí do 21. 3. 2030</div>
+                </div>
+              </label>
+              <label class="crew-modal-item">
+                <input type="checkbox" />
+                <div class="crew-modal-avatar">JK</div>
+                <div class="crew-modal-info">
+                  <div class="crew-modal-name">Jiří Krejčí</div>
+                  <div class="crew-modal-meta">🇨🇿 Česká rep. · pas 67230418 · platí do 5. 2. 2033</div>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="crew-modal-foot">
+            <a href="pridat-clena.html" class="acc-btn-ghost crew-modal-new">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Přidat novou osobu
+            </a>
+            <button class="acc-btn" type="button" data-close-crew-modal>Přidat vybrané</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Vyplnit hodnocení -->
+      <div class="crew-modal" id="ratingModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ratingModalTitle">
+        <div class="crew-modal-backdrop" data-close-rating-modal></div>
+        <div class="crew-modal-dialog" role="document" style="max-width:520px;">
+          <div class="crew-modal-head">
+            <div class="crew-modal-title" id="ratingModalTitle">Ohodnoťte plavbu</div>
+            <button class="crew-modal-close" type="button" data-close-rating-modal aria-label="Zavřít">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div class="crew-modal-body">
+            <p class="crew-modal-intro">Vaše zkušenost pomáhá ostatním vybrat lepší loď i charterovku. Hodnocení můžete kdykoliv upravit.</p>
+            <div class="rate-row" data-rate-row="boat" data-value="5">
+              <div class="rate-row-label">Loď</div>
+              <div class="rate-stars" role="radiogroup" aria-label="Hodnocení lodi">
+                <button type="button" class="rate-star" data-val="1" aria-label="1 hvězdička">★</button>
+                <button type="button" class="rate-star" data-val="2" aria-label="2 hvězdičky">★</button>
+                <button type="button" class="rate-star" data-val="3" aria-label="3 hvězdičky">★</button>
+                <button type="button" class="rate-star" data-val="4" aria-label="4 hvězdičky">★</button>
+                <button type="button" class="rate-star" data-val="5" aria-label="5 hvězdiček">★</button>
+              </div>
+              <div class="rate-row-val">5/5</div>
+            </div>
+            <div class="rate-row" data-rate-row="charter" data-value="4">
+              <div class="rate-row-label">Charterová společnost</div>
+              <div class="rate-stars" role="radiogroup" aria-label="Hodnocení charterové společnosti">
+                <button type="button" class="rate-star" data-val="1" aria-label="1 hvězdička">★</button>
+                <button type="button" class="rate-star" data-val="2" aria-label="2 hvězdičky">★</button>
+                <button type="button" class="rate-star" data-val="3" aria-label="3 hvězdičky">★</button>
+                <button type="button" class="rate-star" data-val="4" aria-label="4 hvězdičky">★</button>
+                <button type="button" class="rate-star" data-val="5" aria-label="5 hvězdiček">★</button>
+              </div>
+              <div class="rate-row-val">4/5</div>
+            </div>
+            <div class="rate-row" data-rate-row="yachtnet" data-value="5">
+              <div class="rate-row-label">Yachtnet</div>
+              <div class="rate-stars" role="radiogroup" aria-label="Hodnocení Yachtnet">
+                <button type="button" class="rate-star" data-val="1" aria-label="1 hvězdička">★</button>
+                <button type="button" class="rate-star" data-val="2" aria-label="2 hvězdičky">★</button>
+                <button type="button" class="rate-star" data-val="3" aria-label="3 hvězdičky">★</button>
+                <button type="button" class="rate-star" data-val="4" aria-label="4 hvězdičky">★</button>
+                <button type="button" class="rate-star" data-val="5" aria-label="5 hvězdiček">★</button>
+              </div>
+              <div class="rate-row-val">5/5</div>
+            </div>
+            <div class="bk-field" style="margin-top:14px;">
+              <label class="bk-label" for="rate-text">Slovní recenze <span style="color:var(--muted);font-weight:400;">(volitelné)</span></label>
+              <textarea class="bk-input bk-textarea" id="rate-text" rows="4" placeholder="Co se vám líbilo? Co by chtělo zlepšit? Vaše zkušenost pomůže ostatním kapitánům."></textarea>
+            </div>
+          </div>
+          <div class="crew-modal-foot" style="justify-content:flex-end;">
+            <button class="acc-btn-ghost" type="button" data-close-rating-modal>Zrušit</button>
+            <button class="acc-btn" type="button" data-close-rating-modal>Odeslat hodnocení</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div>
       <div class="account-section" style="position:sticky;top:20px;">
         <div class="account-section-title">Akce</div>
-        <button class="auth-btn" style="margin-bottom:10px;">Opakovat rezervaci</button>
+        <button class="auth-btn" style="margin-bottom:10px;">On-line check-in →</button>
+        <button class="auth-btn" type="button" style="margin-bottom:10px;" data-open-rating-modal>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:6px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Vyplnit hodnocení
+        </button>
+        <button class="acc-btn-ghost" style="width:100%;margin-bottom:10px;">Opakovat rezervaci</button>
         <button class="acc-btn-ghost" style="width:100%;margin-bottom:10px;">Sdílet detaily rezervace</button>
         <button class="acc-btn-ghost" style="width:100%;color:#c0392b;border-color:#c0392b;">Zrušit rezervaci</button>
         <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
@@ -102,10 +284,11 @@
           <div style="font-size:26px;font-weight:800;letter-spacing:-.02em;word-spacing:.15em;">36 000 Kč</div>
           <div style="font-size:12px;color:var(--muted);margin-top:2px;">+ 12 611 Kč povinný poplatek</div>
           <div style="font-size:12px;color:var(--muted);">+ 4 000 € vratná kauce</div>
-          <div style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:12px;font-weight:700;color:#047857;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Záloha i doplatek uhrazeny
+          <div style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:12px;font-weight:700;color:var(--int);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Doplatek 25 200 Kč splatný 12. 6. 2026
           </div>
+          <a href="rezervace-krok-2.html" class="auth-btn" style="margin-top:12px;">Uhradit doplatek →</a>
         </div>
       </div>
     </div>

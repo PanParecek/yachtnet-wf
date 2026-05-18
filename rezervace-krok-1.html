@@ -70,54 +70,7 @@
         </div>
       </div>
 
-      <!-- 2. Osobní údaje -->
-      <div class="bk-card">
-        <div class="bk-card-head">
-          <div class="bk-card-title">Kontaktní údaje</div>
-          <a class="btn-secondary btn-secondary--sm" href="prihlaseni.html">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            Přihlásit se
-          </a>
-        </div>
-        <div class="bk-card-body">
-          <div class="bk-form-grid">
-            <div class="bk-field">
-              <label class="bk-label" for="f-name">Jméno <sup>*</sup></label>
-              <input class="bk-input" id="f-name" type="text" placeholder="Např. Jan" />
-            </div>
-            <div class="bk-field">
-              <label class="bk-label" for="f-surname">Příjmení <sup>*</sup></label>
-              <input class="bk-input" id="f-surname" type="text" placeholder="Např. Novák" />
-            </div>
-            <div class="bk-field">
-              <label class="bk-label" for="f-email">E-mail <sup>*</sup></label>
-              <input class="bk-input" id="f-email" type="email" placeholder="jan.novak@email.cz" />
-            </div>
-            <div class="bk-field">
-              <label class="bk-label" for="f-phone">Telefon <sup>*</sup></label>
-              <div class="phone-row">
-                <select class="phone-prefix">
-                  <option>🇨🇿 +420</option>
-                  <option>🇸🇰 +421</option>
-                  <option>🇩🇪 +49</option>
-                  <option>🇦🇹 +43</option>
-                  <option>🇵🇱 +48</option>
-                  <option>🇬🇧 +44</option>
-                  <option>🇺🇸 +1</option>
-                </select>
-                <input class="bk-input" id="f-phone" type="tel" placeholder="775 123 456" style="flex:1;" />
-              </div>
-            </div>
-            <div class="bk-field bk-field--full">
-              <label class="bk-label" for="f-note">Poznámka</label>
-              <textarea class="bk-input bk-textarea" id="f-note" rows="2" placeholder="Speciální požadavky, dotazy, dietní omezení posádky…"></textarea>
-            </div>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6;">Potvrzení rezervace a veškerá komunikace bude zaslána na zadaný e-mail. Telefonní číslo slouží pro urgentní kontakt.</p>
-        </div>
-      </div>
-
-      <!-- 3. Pojištění -->
+      <!-- 2. Pojištění -->
       <div class="bk-card">
         <div class="bk-card-head"><div class="bk-card-title">Zvolte variantu pojištění</div></div>
         <div class="bk-card-body">
@@ -236,6 +189,53 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- 4. Osobní údaje -->
+      <div class="bk-card">
+        <div class="bk-card-head">
+          <div class="bk-card-title">Kontaktní údaje</div>
+          <a class="btn-secondary btn-secondary--sm" href="prihlaseni.html">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Přihlásit se
+          </a>
+        </div>
+        <div class="bk-card-body">
+          <div class="bk-form-grid">
+            <div class="bk-field">
+              <label class="bk-label" for="f-name">Jméno <sup>*</sup></label>
+              <input class="bk-input" id="f-name" type="text" placeholder="Např. Jan" />
+            </div>
+            <div class="bk-field">
+              <label class="bk-label" for="f-surname">Příjmení <sup>*</sup></label>
+              <input class="bk-input" id="f-surname" type="text" placeholder="Např. Novák" />
+            </div>
+            <div class="bk-field">
+              <label class="bk-label" for="f-email">E-mail <sup>*</sup></label>
+              <input class="bk-input" id="f-email" type="email" placeholder="jan.novak@email.cz" />
+            </div>
+            <div class="bk-field">
+              <label class="bk-label" for="f-phone">Telefon <sup>*</sup></label>
+              <div class="phone-row">
+                <select class="phone-prefix">
+                  <option>🇨🇿 +420</option>
+                  <option>🇸🇰 +421</option>
+                  <option>🇩🇪 +49</option>
+                  <option>🇦🇹 +43</option>
+                  <option>🇵🇱 +48</option>
+                  <option>🇬🇧 +44</option>
+                  <option>🇺🇸 +1</option>
+                </select>
+                <input class="bk-input" id="f-phone" type="tel" placeholder="775 123 456" style="flex:1;" />
+              </div>
+            </div>
+            <div class="bk-field bk-field--full">
+              <label class="bk-label" for="f-note">Poznámka</label>
+              <textarea class="bk-input bk-textarea" id="f-note" rows="2" placeholder="Speciální požadavky, dotazy, dietní omezení posádky…"></textarea>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6;">Potvrzení rezervace a veškerá komunikace bude zaslána na zadaný e-mail. Telefonní číslo slouží pro urgentní kontakt.</p>
         </div>
       </div>
 

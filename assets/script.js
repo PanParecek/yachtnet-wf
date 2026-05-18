@@ -2379,6 +2379,192 @@
     sections.forEach(function(s) { observer.observe(s); });
   })();
 
+  // ── MAPA / SEZNAM TOGGLE + RENDER PINŮ (pronajem-lodi) ─
+  (function initMapView() {
+    var canvas = document.getElementById('mapCanvas');
+    var pinsHost = document.getElementById('mapPins');
+    var switches = document.querySelectorAll('.view-switch-btn');
+    if (!switches.length) return;
+
+    function setView(view) {
+      switches.forEach(function(b) {
+        var on = b.dataset.view === view;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-view-target]').forEach(function(el) {
+        el.hidden = el.dataset.viewTarget !== view;
+      });
+      if (view === 'map' && pinsHost && !pinsHost.dataset.rendered) renderPins();
+    }
+    switches.forEach(function(b) { b.addEventListener('click', function() { setView(b.dataset.view); }); });
+
+    var boatData = window.BOATS || (typeof BOATS !== 'undefined' ? BOATS : null);
+    if (!pinsHost || !boatData) return;
+
+    // Deterministické rozprostření pinů po "Jaderském pobřeží"
+    function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0; return Math.abs(h); }
+    var BOAT_POS = boatData.map(function(b, i) {
+      var key = (b.name || '') + (b.boatName || '') + i;
+      var h = hash(key);
+      // 2 shluky kolem Splitu/Trogiru + ostatní rozprostřené
+      var marina = (b.marina || '').toLowerCase();
+      var baseX, baseY, spread = 9;
+      if (marina.indexOf('split') !== -1)       { baseX = 32; baseY = 60; spread = 5; }
+      else if (marina.indexOf('trogir') !== -1) { baseX = 38; baseY = 56; spread = 5; }
+      else if (marina.indexOf('šibenik') !== -1 || marina.indexOf('sibenik') !== -1) { baseX = 50; baseY = 48; }
+      else if (marina.indexOf('biograd') !== -1 || marina.indexOf('zadar') !== -1)   { baseX = 60; baseY = 38; }
+      else if (marina.indexOf('dubrovník') !== -1 || marina.indexOf('dubrovnik') !== -1) { baseX = 18; baseY = 78; }
+      else if (marina.indexOf('pula') !== -1)   { baseX = 80; baseY = 22; }
+      else { baseX = 30 + (h % 40); baseY = 30 + ((h >> 4) % 50); }
+      var dx = ((h % 1000) / 1000 - 0.5) * spread;
+      var dy = (((h >> 8) % 1000) / 1000 - 0.5) * spread;
+      return { x: baseX + dx, y: baseY + dy, b: b };
+    });
+
+    function priceShort(p) { var n = parseInt(String(p).replace(/\D/g,''), 10) || 0; if (n >= 1000) return Math.round(n / 1000) + 'k Kč'; return n + ' Kč'; }
+    function catName(c) { return c || 'Plachetnice'; }
+
+    var currentZoom = 1; // 1 = clustered, 2 = zoomed
+
+    function clusterize(items) {
+      // Greedy clustering podle pixelové vzdálenosti (v % canvasu)
+      var threshold = currentZoom === 1 ? 7 : 0;
+      var clusters = [];
+      items.forEach(function(it) {
+        var found = null;
+        for (var i = 0; i < clusters.length; i++) {
+          var c = clusters[i];
+          var dx = c.x - it.x, dy = c.y - it.y;
+          if (Math.sqrt(dx*dx + dy*dy) < threshold) { found = c; break; }
+        }
+        if (found) {
+          found.items.push(it);
+          found.x = (found.x * (found.items.length - 1) + it.x) / found.items.length;
+          found.y = (found.y * (found.items.length - 1) + it.y) / found.items.length;
+        } else {
+          clusters.push({ x: it.x, y: it.y, items: [it] });
+        }
+      });
+      return clusters;
+    }
+
+    function renderPins() {
+      pinsHost.innerHTML = '';
+      var clusters = clusterize(BOAT_POS);
+      clusters.forEach(function(c) {
+        if (c.items.length > 1) {
+          var cl = document.createElement('button');
+          cl.type = 'button';
+          cl.className = 'map-pin map-pin--cluster';
+          cl.style.left = c.x + '%';
+          cl.style.top = c.y + '%';
+          cl.textContent = c.items.length;
+          cl.addEventListener('click', function() {
+            currentZoom = 2;
+            renderPins();
+          });
+          pinsHost.appendChild(cl);
+        } else {
+          var it = c.items[0];
+          var pin = document.createElement('button');
+          pin.type = 'button';
+          pin.className = 'map-pin';
+          pin.style.left = it.x + '%';
+          pin.style.top = it.y + '%';
+          pin.title = (it.b.name || '') + (it.b.boatName ? ' "' + it.b.boatName + '"' : '');
+          pin.appendChild(document.createTextNode(priceShort(it.b.price)));
+          var pop = document.createElement('div');
+          pop.className = 'map-popup' + (it.y < 38 ? ' map-popup--below' : '');
+          pop.innerHTML =
+            '<div class="map-popup-img"></div>' +
+            '<div class="map-popup-body">' +
+              '<div class="map-popup-cat">' + catName(it.b.cat) + '</div>' +
+              '<div class="map-popup-name">' + (it.b.name || '') + (it.b.boatName ? ' &middot; "' + it.b.boatName + '"' : '') + '</div>' +
+              '<div class="map-popup-sub">🇭🇷 ' + (it.b.marina || '') + ' · ' + (it.b.company || 'Yachtnet partner') + '</div>' +
+              '<div class="map-popup-specs"><span>' + (it.b.year || '') + '</span><span>' + (it.b.cabins || '') + ' kajut</span><span>' + (it.b.len || '') + '</span></div>' +
+              '<div class="map-popup-price">' + (it.b.price || '') + ' / týden</div>' +
+            '</div>';
+          pin.appendChild(pop);
+          pin.addEventListener('click', function() { window.location.href = 'detail-lodi.html'; });
+          pinsHost.appendChild(pin);
+        }
+      });
+      pinsHost.dataset.rendered = '1';
+    }
+
+    var zoomIn  = canvas && canvas.querySelector('.map-zoom-in');
+    var zoomOut = canvas && canvas.querySelector('.map-zoom-out');
+    if (zoomIn)  zoomIn.addEventListener('click',  function() { currentZoom = 2; renderPins(); });
+    if (zoomOut) zoomOut.addEventListener('click', function() { currentZoom = 1; renderPins(); });
+  })();
+
+  // ── CREW / INVITE MODALY ──────────────────────────────
+  function bindModal(modalId, openSel, closeSel) {
+    var modal = document.getElementById(modalId);
+    if (!modal) return;
+    var openers = document.querySelectorAll(openSel);
+    var closers = modal.querySelectorAll(closeSel);
+    function open() { modal.hidden = false; modal.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+    function close() { modal.hidden = true; modal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+    openers.forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); open(); }); });
+    closers.forEach(function(b) { b.addEventListener('click', function(e) { e.preventDefault(); close(); }); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && !modal.hidden) close(); });
+    return modal;
+  }
+
+  (function initCrewModal() {
+    var modal = bindModal('crewModal', '[data-open-crew-modal]', '[data-close-crew-modal]');
+    if (!modal) return;
+    var searchInput = modal.querySelector('.crew-modal-search input');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        var q = searchInput.value.trim().toLowerCase();
+        modal.querySelectorAll('.crew-modal-item').forEach(function(item) {
+          var name = (item.querySelector('.crew-modal-name') || {}).textContent || '';
+          item.hidden = q && name.toLowerCase().indexOf(q) === -1;
+        });
+      });
+    }
+  })();
+
+  (function initInviteModal() {
+    bindModal('inviteModal', '[data-open-invite-modal]', '[data-close-invite-modal]');
+  })();
+
+  (function initRatingModal() {
+    var modal = bindModal('ratingModal', '[data-open-rating-modal]', '[data-close-rating-modal]');
+    if (!modal) return;
+    function applyRow(row) {
+      var val = parseInt(row.dataset.value, 10) || 0;
+      row.querySelectorAll('.rate-star').forEach(function(s) {
+        s.classList.toggle('is-active', parseInt(s.dataset.val, 10) <= val);
+      });
+      var out = row.querySelector('.rate-row-val');
+      if (out) out.textContent = val + '/5';
+    }
+    modal.querySelectorAll('.rate-row').forEach(function(row) {
+      applyRow(row);
+      row.querySelectorAll('.rate-star').forEach(function(star) {
+        star.addEventListener('click', function() {
+          row.dataset.value = star.dataset.val;
+          applyRow(row);
+        });
+        star.addEventListener('mouseenter', function() {
+          var v = parseInt(star.dataset.val, 10);
+          row.classList.add('is-hovering');
+          row.querySelectorAll('.rate-star').forEach(function(s) {
+            s.classList.toggle('is-preview', parseInt(s.dataset.val, 10) <= v);
+          });
+        });
+      });
+      row.addEventListener('mouseleave', function() {
+        row.classList.remove('is-hovering');
+        row.querySelectorAll('.rate-star').forEach(function(s) { s.classList.remove('is-preview'); });
+      });
+    });
+  })();
+
   // ── ZÁLOŽKY REZERVACÍ ──────────────────────────────────
   (function initReservationTabs() {
     var tabs = document.querySelectorAll('.res-tab');
@@ -2490,27 +2676,44 @@
   (function initPackagePicker() {
     var radios = document.querySelectorAll('input[name="reservation-package"]');
     if (!radios.length) return;
-    var priceEl   = document.querySelector('[data-cta-price]');
-    var variantEl = document.querySelector('[data-cta-variant]');
-    var ctaBtns   = document.querySelectorAll('[data-reserve-cta]');
+    var priceEl    = document.querySelector('[data-cta-price]');
+    var variantEl  = document.querySelector('[data-cta-variant]');
+    var priceFrom  = document.querySelector('.cta-price .cta-price-from');
+    var ctaBtns    = document.querySelectorAll('[data-reserve-cta]');
 
     var LABELS = { basic: 'Basic', flex: 'Flex', premium: 'Premium' };
+    var DEFAULT_PRICE = priceEl ? priceEl.textContent.trim() : '';
 
-    function sync(radio) {
+    function setSelected(radio) {
       var card = radio.closest('.pkg-card');
       var price = card && card.querySelector('.pkg-price-val');
       if (priceEl && price) priceEl.textContent = price.textContent.trim();
-      if (variantEl) variantEl.textContent = '· ' + (LABELS[radio.value] || radio.value);
+      if (variantEl) {
+        variantEl.textContent = '· ' + (LABELS[radio.value] || radio.value);
+        variantEl.hidden = false;
+      }
+      if (priceFrom) priceFrom.hidden = true;
       ctaBtns.forEach(function(btn) {
         btn.textContent = 'Pokračovat k rezervaci →';
         btn.setAttribute('href', 'rezervace-krok-1.html');
       });
     }
 
+    function setUnselected() {
+      if (priceEl) priceEl.textContent = DEFAULT_PRICE;
+      if (variantEl) { variantEl.textContent = ''; variantEl.hidden = true; }
+      if (priceFrom) priceFrom.hidden = false;
+      ctaBtns.forEach(function(btn) {
+        btn.textContent = 'Vybrat variantu ↓';
+        btn.setAttribute('href', '#sec-balicky');
+      });
+    }
+
     radios.forEach(function(r) {
-      r.addEventListener('change', function() { if (r.checked) sync(r); });
-      if (r.checked) sync(r);
+      r.addEventListener('change', function() { if (r.checked) setSelected(r); });
     });
+    var checked = Array.prototype.find.call(radios, function(r) { return r.checked; });
+    if (checked) setSelected(checked); else setUnselected();
   })();
 
   // ── TERM SLIDER ARROWS ─────────────────────────────────
