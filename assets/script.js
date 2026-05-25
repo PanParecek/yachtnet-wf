@@ -309,24 +309,82 @@
 
   function initDestinationSearch() {
     document.querySelectorAll('[data-destination-search]').forEach(function(box) {
+      var field = box.querySelector('.sf-combobox-field');
       var input = box.querySelector('.sf-combobox-input');
       var dropdown = box.querySelector('.sf-combobox-dropdown');
-      if (!input || !dropdown) return;
+      var hidden = box.querySelector('input[type="hidden"]');
+      if (!field || !input || !dropdown) return;
+      var origPlaceholder = input.getAttribute('placeholder') || '';
       var activeIdx = -1;
       var results = [];
+      var selected = []; // pole názvů destinací
 
-      function render(filter) {
+      // Filtr na typy: data-types-only="marina,region" — omezí výchozí dataset jen na vybrané typy
+      var typesOnly = (box.dataset.typesOnly || '').split(',').map(function(s){return s.trim();}).filter(Boolean);
+      var DATA = typesOnly.length
+        ? DESTINATIONS.filter(function(d){ return typesOnly.indexOf(d.type) !== -1; })
+        : DESTINATIONS;
+
+      // Předvyplnění z data-initial="Split,Korfu"
+      var initial = (box.dataset.initial || '').split(',').map(function(s){return s.trim();}).filter(Boolean);
+      initial.forEach(function(name) {
+        var d = DATA.find(function(x){return x.name === name;});
+        if (d && selected.indexOf(name) === -1) selected.push(name);
+      });
+
+      function syncHidden() {
+        if (hidden) hidden.value = selected.join(',');
+      }
+
+      function findDest(name) {
+        return DATA.find(function(d){return d.name === name;})
+            || DESTINATIONS.find(function(d){return d.name === name;})
+            || { name: name, flag: '📍', type: 'marina', country: '' };
+      }
+
+      // API: lze přidat položku zvenčí (např. klik na marina pin v mapě)
+      box._addItem = function(name) {
+        if (!name || selected.indexOf(name) !== -1) return;
+        selected.push(name);
+        renderChips();
+        if (!dropdown.hasAttribute('hidden')) renderDropdown(input.value);
+      };
+
+      function renderChips() {
+        // Odstranit staré chipy (vše kromě inputu)
+        Array.prototype.slice.call(field.children).forEach(function(child) {
+          if (child !== input) field.removeChild(child);
+        });
+        selected.forEach(function(name) {
+          var d = findDest(name);
+          if (!d) return;
+          var chip = document.createElement('span');
+          chip.className = 'sf-chip';
+          chip.dataset.value = name;
+          chip.innerHTML =
+            '<span class="sf-chip-flag">' + d.flag + '</span>' +
+            '<span class="sf-chip-name">' + escapeHtml(name) + '</span>' +
+            '<button type="button" class="sf-chip-remove" aria-label="Odebrat ' + escapeHtml(name) + '">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+            '</button>';
+          field.insertBefore(chip, input);
+        });
+        // Placeholder skrýt, když je něco vybráno
+        input.placeholder = selected.length ? '' : origPlaceholder;
+        syncHidden();
+      }
+
+      function renderDropdown(filter) {
         var q = (filter || '').trim();
         var ql = q.toLowerCase();
         results = ql
-          ? DESTINATIONS.filter(function(d) { return d.name.toLowerCase().indexOf(ql) !== -1 || d.country.toLowerCase().indexOf(ql) !== -1; })
-          : DESTINATIONS.slice();
+          ? DATA.filter(function(d) { return d.name.toLowerCase().indexOf(ql) !== -1 || d.country.toLowerCase().indexOf(ql) !== -1; })
+          : DATA.slice();
         activeIdx = -1;
         if (!results.length) {
           dropdown.innerHTML = '<div class="sf-combobox-empty">Pro „' + escapeHtml(q) + '" nic nenalezeno.</div>';
           return;
         }
-        // Skupiny: country, region, marina (zachovává pořadí registru)
         var html = '';
         var lastType = '';
         results.forEach(function(d, i) {
@@ -334,7 +392,9 @@
             html += '<div class="sf-combobox-section-title">' + (DEST_TYPE_LABEL[d.type] || d.type) + (d.type === 'marina' ? 'y' : (d.type === 'region' ? 'i' : '')) + '</div>';
             lastType = d.type;
           }
-          html += '<button type="button" class="sf-combobox-item" data-idx="' + i + '" data-value="' + escapeHtml(d.name) + '">' +
+          var isChecked = selected.indexOf(d.name) !== -1;
+          html += '<button type="button" class="sf-combobox-item' + (isChecked ? ' is-checked' : '') + '" data-idx="' + i + '" data-value="' + escapeHtml(d.name) + '">' +
+            '<span class="sf-combobox-check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>' +
             '<span class="sf-combobox-flag">' + d.flag + '</span>' +
             '<span class="sf-combobox-name">' + highlightMatch(d.name, q) + '</span>' +
             '<span class="sf-combobox-tag">' + (DEST_TYPE_LABEL[d.type] || d.type) + '</span>' +
@@ -343,20 +403,25 @@
         dropdown.innerHTML = html;
       }
 
+      function toggle(name) {
+        var idx = selected.indexOf(name);
+        if (idx === -1) selected.push(name); else selected.splice(idx, 1);
+        renderChips();
+        renderDropdown(input.value);
+      }
+
       function open() {
-        render(input.value);
+        renderDropdown(input.value);
         dropdown.removeAttribute('hidden');
         box.setAttribute('aria-expanded', 'true');
         input.setAttribute('aria-expanded', 'true');
       }
-
       function close() {
         dropdown.setAttribute('hidden', '');
         box.setAttribute('aria-expanded', 'false');
         input.setAttribute('aria-expanded', 'false');
       }
-
-      function selectActive() {
+      function highlightActive() {
         var items = dropdown.querySelectorAll('.sf-combobox-item');
         items.forEach(function(it, i) { it.classList.toggle('is-active', i === activeIdx); });
         var active = items[activeIdx];
@@ -365,77 +430,105 @@
 
       input.addEventListener('focus', open);
       input.addEventListener('input', function() { open(); });
-      input.addEventListener('blur', function() { setTimeout(close, 150); });
       input.addEventListener('keydown', function(e) {
         var items = dropdown.querySelectorAll('.sf-combobox-item');
         if (e.key === 'ArrowDown') {
           e.preventDefault();
           if (dropdown.hasAttribute('hidden')) open();
           activeIdx = Math.min(activeIdx + 1, items.length - 1);
-          selectActive();
+          highlightActive();
         } else if (e.key === 'ArrowUp') {
           e.preventDefault();
           activeIdx = Math.max(activeIdx - 1, 0);
-          selectActive();
+          highlightActive();
         } else if (e.key === 'Enter') {
           if (activeIdx >= 0 && items[activeIdx]) {
             e.preventDefault();
-            input.value = items[activeIdx].dataset.value;
-            close();
+            toggle(items[activeIdx].dataset.value);
           }
+        } else if (e.key === 'Backspace' && input.value === '' && selected.length) {
+          e.preventDefault();
+          selected.pop();
+          renderChips();
+          renderDropdown(input.value);
         } else if (e.key === 'Escape') {
           close();
           input.blur();
         }
       });
 
+      // Klik na položku dropdownu = toggle (zachová otevřený dropdown)
       dropdown.addEventListener('mousedown', function(e) {
         var item = e.target.closest('.sf-combobox-item');
         if (!item) return;
         e.preventDefault();
-        input.value = item.dataset.value;
-        close();
+        toggle(item.dataset.value);
+        input.focus();
       });
+
+      // Klik na ✕ v chipu = odebrání
+      field.addEventListener('click', function(e) {
+        var btn = e.target.closest('.sf-chip-remove');
+        if (!btn) return;
+        e.preventDefault(); e.stopPropagation();
+        var chip = btn.closest('.sf-chip');
+        if (!chip) return;
+        var name = chip.dataset.value;
+        var idx = selected.indexOf(name);
+        if (idx !== -1) { selected.splice(idx, 1); renderChips(); renderDropdown(input.value); }
+      });
+
+      // Klik kdekoli na pole otevře dropdown (i když má input už focus)
+      field.addEventListener('mousedown', function(e) {
+        if (e.target === field) { e.preventDefault(); input.focus(); }
+        if (dropdown.hasAttribute('hidden')) open();
+      });
+
+      // Zavřít při kliku mimo box (ale chipy zůstanou)
+      document.addEventListener('mousedown', function(e) {
+        if (!box.contains(e.target) && !dropdown.hasAttribute('hidden')) close();
+      });
+
+      renderChips();
     });
   }
 
   function initPeopleSelect() {
-    document.querySelectorAll('[data-people-select]').forEach(function(box) {
-      var trigger = box.querySelector('.sf-people-trigger');
-      var popover = box.querySelector('.sf-people-popover');
-      var val = box.querySelector('.sf-people-val');
-      var counterVal = box.querySelector('.sf-people-counter-val');
-      var dec = popover && popover.querySelector('[data-step="-1"]');
-      var inc = popover && popover.querySelector('[data-step="1"]');
-      var hidden = box.querySelector('input[type="hidden"]');
+    document.querySelectorAll('[data-people-inline]').forEach(function(box) {
+      var input = box.querySelector('.sf-people-input');
+      var dec = box.querySelector('[data-step="-1"]');
+      var inc = box.querySelector('[data-step="1"]');
       var min = parseInt(box.dataset.min, 10) || 1;
       var max = parseInt(box.dataset.max, 10) || 12;
-      var current = parseInt(box.dataset.value || (hidden && hidden.value), 10) || 2;
+      if (!input) return;
 
-      function fmt(n) { return n + ' ' + (n === 1 ? 'osoba' : (n >= 2 && n <= 4 ? 'osoby' : 'osob')) + (n >= max ? '+' : ''); }
-
-      function update() {
-        if (val) val.textContent = fmt(current);
-        if (counterVal) counterVal.textContent = current;
-        if (hidden) hidden.value = current;
-        if (dec) dec.disabled = current <= min;
-        if (inc) inc.disabled = current >= max;
+      function clamp(n) {
+        if (isNaN(n)) return min;
+        return Math.max(min, Math.min(max, n));
       }
-
-      function open() { if (popover) popover.hidden = false; box.setAttribute('aria-expanded', 'true'); }
-      function close() { if (popover) popover.hidden = true; box.setAttribute('aria-expanded', 'false'); }
-
-      if (trigger) trigger.addEventListener('click', function(e) {
+      function setVal(n) {
+        var c = clamp(n);
+        input.value = c;
+        if (dec) dec.disabled = c <= min;
+        if (inc) inc.disabled = c >= max;
+      }
+      if (dec) dec.addEventListener('click', function(e) {
         e.stopPropagation();
-        if (popover && popover.hidden) open(); else close();
+        setVal((parseInt(input.value, 10) || min) - 1);
       });
-      if (dec) dec.addEventListener('click', function(e) { e.stopPropagation(); if (current > min) { current--; update(); } });
-      if (inc) inc.addEventListener('click', function(e) { e.stopPropagation(); if (current < max) { current++; update(); } });
-      if (popover) popover.addEventListener('click', function(e) { e.stopPropagation(); });
-      document.addEventListener('click', function(e) {
-        if (!box.contains(e.target) && popover && !popover.hidden) close();
+      if (inc) inc.addEventListener('click', function(e) {
+        e.stopPropagation();
+        setVal((parseInt(input.value, 10) || min) + 1);
       });
-      update();
+      input.addEventListener('input', function() {
+        var n = parseInt(input.value, 10);
+        if (!isNaN(n)) {
+          if (dec) dec.disabled = n <= min;
+          if (inc) inc.disabled = n >= max;
+        }
+      });
+      input.addEventListener('blur', function() { setVal(parseInt(input.value, 10)); });
+      setVal(parseInt(input.value, 10) || min);
     });
   }
 
@@ -501,6 +594,7 @@
           var dt = new Date(year, month, d);
           var isPast = dt < today;
           var cls = ['sf-cal-day'];
+          if (dt.getDay() === 6) cls.push('is-saturday');
           if (dt.getTime() === today.getTime()) cls.push('is-today');
           if (fromDate && dt.getTime() === fromDate.getTime()) cls.push('is-start');
           if (toDate && dt.getTime() === toDate.getTime()) cls.push('is-end');
@@ -633,7 +727,7 @@
 
   // Marketing perks — visuální přepínače pro lodě (nezávazné taháky).
   const PERKS = {
-    'early-checkin': { label: 'Early check-in', cls: 'card-perk--early', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' },
+    'early-checkin': { label: 'Dřívější nalodění', cls: 'card-perk--early', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' },
     'free-motor':    { label: 'Motor zdarma',  cls: 'card-perk--motor', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>' },
     'deposit-30':    { label: 'První platba 30 %', cls: 'card-perk--deposit', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>' },
     'last-minute':   { label: 'Last minute',  cls: 'card-perk--lastminute', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>' }
@@ -734,12 +828,27 @@
   const TOTAL_PAGES = 19; // simuluje 304 lodí celkem
   let currentPage = 1;
 
+  function getSelectedMarinas() {
+    var box = document.querySelector('.sf-combobox--filter[data-types-only="marina"]');
+    if (!box) return [];
+    return Array.prototype.map.call(
+      box.querySelectorAll('.sf-combobox-field .sf-chip'),
+      function(c) { return c.dataset.value; }
+    );
+  }
+
   function renderAllBoats() {
     const grid = document.getElementById("boatsGrid");
     if (!grid) return;
+    var marinas = getSelectedMarinas();
+    var filtered = marinas.length
+      ? BOATS.filter(function(b) { return marinas.indexOf(b.marina) !== -1; })
+      : BOATS;
     const countEl = document.getElementById("resultCount");
-    if (countEl) countEl.textContent = BOATS.length;
-    grid.innerHTML = BOATS.map(boatCard).join("");
+    if (countEl) countEl.textContent = marinas.length ? filtered.length : 228;
+    grid.innerHTML = filtered.length
+      ? filtered.map(boatCard).join("")
+      : '<div style="padding:40px;text-align:center;color:var(--muted);font-size:14px;">Pro vybraný přístav nejsou žádné lodě.</div>';
     renderPagination(currentPage, TOTAL_PAGES);
   }
 
@@ -1045,12 +1154,89 @@
     var chipsEl = document.getElementById('activeFilterChips');
     if (!chipsEl) return;
     var chips = [];
+
+    // 1) Checkboxy ve filter-group (Typ lodi, Plachty, V\u00fdbava, Speci\u00e1ln\u00ed\u2026)
+    document.querySelectorAll('.filter-group .filter-check input[type="checkbox"]').forEach(function(cb) {
+      if (!cb.checked) return;
+      var labelEl = cb.closest('.filter-check').querySelector('span');
+      if (!labelEl) return;
+      var label = labelEl.textContent.trim().replace(/\s*\(\s*\d+\s*\)\s*$/, '');
+      chips.push({
+        label: label,
+        remove: function() {
+          cb.checked = false;
+          cb.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+
+    // 2) Filter-selecty (.fs-wrap \u2014 Charterov\u00e1 spole\u010dnost, Zna\u010dka/model)
     document.querySelectorAll('.fs-wrap').forEach(function(wrap) {
       wrap.querySelectorAll('.fs-option.selected').forEach(function(opt) {
         if (opt.dataset.value === '' || opt.dataset.value === undefined) return;
-        chips.push({ label: opt.textContent.trim(), wrap: wrap, opt: opt });
+        chips.push({
+          label: opt.textContent.trim(),
+          remove: function() {
+            opt.classList.remove('selected');
+            var anyOpt = wrap.querySelector('.fs-option[data-value=""]');
+            var hasOther = Array.prototype.some.call(
+              wrap.querySelectorAll('.fs-option:not(.fs-group)'),
+              function(o) { return o.classList.contains('selected') && o.dataset.value !== ''; }
+            );
+            if (!hasOther && anyOpt) anyOpt.classList.add('selected');
+            updateTriggerText(wrap);
+          }
+        });
       });
     });
+
+    // 3) Combobox p\u0159\u00edstav\u016f (.sf-combobox--filter)
+    document.querySelectorAll('.sf-combobox--filter').forEach(function(box) {
+      box.querySelectorAll('.sf-combobox-field .sf-chip').forEach(function(chip) {
+        chips.push({
+          label: chip.dataset.value || chip.querySelector('.sf-chip-name')?.textContent || '',
+          remove: function() {
+            var rm = chip.querySelector('.sf-chip-remove');
+            if (rm) rm.click();
+          }
+        });
+      });
+    });
+
+    // 4) Dual range slidery (Cena, D\u00e9lka, Po\u010det osob, Po\u010det kajut, Hodnocen\u00ed\u2026)
+    document.querySelectorAll('.range-dual').forEach(function(rng) {
+      var minEl = rng.querySelector('.range-min');
+      var maxEl = rng.querySelector('.range-max');
+      if (!minEl || !maxEl) return;
+      var rMin = parseFloat(minEl.min), rMax = parseFloat(maxEl.max);
+      var curMin = parseFloat(minEl.value), curMax = parseFloat(maxEl.value);
+      if (!(curMin > rMin || curMax < rMax)) return; // v\u00fdchoz\u00ed pozice
+
+      var scope = rng.closest('.filter-subgroup') || rng.closest('.filter-group');
+      var titleEl = scope && (scope.querySelector('.filter-subtitle') || scope.querySelector('.filter-group-title'));
+      var title = '';
+      if (titleEl) {
+        Array.prototype.forEach.call(titleEl.childNodes, function(n) {
+          if (n.nodeType === 3) title += n.textContent;
+        });
+        title = title.trim();
+      }
+      var minLabel = scope && scope.querySelector('.range-val-min');
+      var maxLabel = scope && scope.querySelector('.range-val-max');
+      var lo = minLabel && minLabel.value ? minLabel.value : String(curMin);
+      var hi = maxLabel && maxLabel.value ? maxLabel.value : String(curMax);
+      chips.push({
+        label: title + ': ' + lo + ' \u2013 ' + hi,
+        remove: function() {
+          minEl.value = rMin;
+          maxEl.value = rMax;
+          minEl.dispatchEvent(new Event('input', { bubbles: true }));
+          maxEl.dispatchEvent(new Event('input', { bubbles: true }));
+          minEl.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
+
     chipsEl.innerHTML = chips.map(function(c, i) {
       return '<div class="active-chip"><span>' + c.label + '</span><span class="active-chip-remove" data-idx="' + i + '">\u00d7</span></div>';
     }).join('');
@@ -1058,14 +1244,7 @@
       var idx = parseInt(btn.dataset.idx);
       var c = chips[idx];
       btn.addEventListener('click', function() {
-        c.opt.classList.remove('selected');
-        var anyOpt = c.wrap.querySelector('.fs-option[data-value=""]');
-        var hasOther = Array.prototype.some.call(
-          c.wrap.querySelectorAll('.fs-option:not(.fs-group)'),
-          function(o) { return o.classList.contains('selected') && o.dataset.value !== ''; }
-        );
-        if (!hasOther && anyOpt) anyOpt.classList.add('selected');
-        updateTriggerText(c.wrap);
+        c.remove();
         renderActiveChips();
       });
     });
@@ -1577,13 +1756,19 @@
         valEl.classList.remove('sf-sel-val-multi');
         if (isMulti) {
           if (selected.length === 0) {
+            valEl.innerHTML = '';
             valEl.textContent = placeholder; valEl.classList.add('is-placeholder');
-          } else if (selected.length === 1) {
-            valEl.textContent = selected[0].label; valEl.classList.remove('is-placeholder');
           } else {
-            valEl.textContent = selected.length + '\u00a0vybráno';
             valEl.classList.remove('is-placeholder');
             valEl.classList.add('sf-sel-val-multi');
+            valEl.innerHTML = selected.map(function(s) {
+              return '<span class="sf-sel-chip" data-value="' + escapeHtml(s.value) + '">' +
+                '<span class="sf-sel-chip-name">' + escapeHtml(s.label) + '</span>' +
+                '<button type="button" class="sf-sel-chip-remove" aria-label="Odebrat ' + escapeHtml(s.label) + '">' +
+                  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+                '</button>' +
+              '</span>';
+            }).join('');
           }
         } else {
           var sel = native.options[native.selectedIndex];
@@ -1608,7 +1793,27 @@
         trigger.classList.toggle('open', open);
         dropdown.classList.toggle('open', open);
       }
-      trigger.addEventListener('click', function(e) { e.stopPropagation(); openClose(); });
+      trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // Klik na ✕ v chipu = odebrání bez otevírání/zavírání dropdownu
+        var rmBtn = e.target.closest('.sf-sel-chip-remove');
+        if (rmBtn) {
+          var chip = rmBtn.closest('.sf-sel-chip');
+          if (chip) {
+            var val = chip.dataset.value;
+            var idx = selected.findIndex(function(s){ return s.value === val; });
+            if (idx !== -1) {
+              selected.splice(idx, 1);
+              dropdown.querySelectorAll('.sf-sel-option, .sf-sel-optgroup-btn').forEach(function(o) {
+                if (o.dataset.value === val) o.classList.remove('is-selected');
+              });
+              syncDisplay();
+            }
+          }
+          return;
+        }
+        openClose();
+      });
       trigger.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openClose(); }
         if (e.key === 'Escape') openClose(false);
@@ -1922,10 +2127,15 @@
     });
   });
 
-  // Reset aktivních filtrů vedle štítků
+  // Reset aktivních filtrů vedle štítků — vyčistí všechny typy filtrů
   var chipsResetBtn = document.getElementById('chipsReset');
   if (chipsResetBtn) {
     chipsResetBtn.addEventListener('click', function() {
+      // Checkboxy ve filter-group
+      document.querySelectorAll('.filter-group .filter-check input[type="checkbox"]').forEach(function(cb) {
+        if (cb.checked) { cb.checked = false; cb.dispatchEvent(new Event('change', { bubbles: true })); }
+      });
+      // fs-wrap selecty
       document.querySelectorAll('.fs-wrap').forEach(function(wrap) {
         wrap.querySelectorAll('.fs-option.selected').forEach(function(opt) {
           if (opt.dataset.value !== '') opt.classList.remove('selected');
@@ -1934,9 +2144,42 @@
         if (anyOpt) anyOpt.classList.add('selected');
         if (typeof updateTriggerText === 'function') updateTriggerText(wrap);
       });
+      // Combobox přístavů — kliknout na ✕ u každého chipu uvnitř
+      document.querySelectorAll('.sf-combobox--filter .sf-chip .sf-chip-remove').forEach(function(rm) {
+        rm.click();
+      });
+      // Dual range slidery — vrátit na extrémy
+      document.querySelectorAll('.range-dual').forEach(function(rng) {
+        var minEl = rng.querySelector('.range-min');
+        var maxEl = rng.querySelector('.range-max');
+        if (!minEl || !maxEl) return;
+        minEl.value = minEl.min;
+        maxEl.value = maxEl.max;
+        minEl.dispatchEvent(new Event('input', { bubbles: true }));
+        maxEl.dispatchEvent(new Event('input', { bubbles: true }));
+      });
       if (typeof renderActiveChips === 'function') renderActiveChips();
     });
   }
+
+  // Hooky pro automatické překreslení chipů při změně filtru
+  document.addEventListener('change', function(e) {
+    if (e.target && e.target.matches('.filter-group .filter-check input[type="checkbox"]')) {
+      if (typeof renderActiveChips === 'function') renderActiveChips();
+    }
+    if (e.target && e.target.matches('.range-dual input[type="range"], .range-val-min, .range-val-max')) {
+      if (typeof renderActiveChips === 'function') renderActiveChips();
+    }
+  });
+  document.querySelectorAll('.sf-combobox--filter .sf-combobox-field').forEach(function(field) {
+    new MutationObserver(function() {
+      if (typeof renderActiveChips === 'function') renderActiveChips();
+      if (typeof renderAllBoats === 'function') renderAllBoats();
+      document.dispatchEvent(new CustomEvent('marinas-filter-changed'));
+    }).observe(field, { childList: true });
+  });
+  // Počáteční vykreslení (Plachetnice + Katamarán jsou předvolené)
+  if (typeof renderActiveChips === 'function') renderActiveChips();
 
   // Na stránce pristav.html vykresli 6 lodí ze splitské oblasti.
   var marinaBoatsGrid = document.getElementById('marinaBoats');
@@ -2380,70 +2623,116 @@
   })();
 
   // ── MAPA / SEZNAM TOGGLE + RENDER PINŮ (pronajem-lodi) ─
+  // Sort tabs — toggle .is-active
+  (function initSortTabs() {
+    var tabs = document.querySelectorAll('.sort-tabs .sort-tab');
+    if (!tabs.length) return;
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+      });
+    });
+  })();
+
   (function initMapView() {
     var canvas = document.getElementById('mapCanvas');
     var pinsHost = document.getElementById('mapPins');
-    var switches = document.querySelectorAll('.view-switch-btn');
-    if (!switches.length) return;
+    var mapEl = document.getElementById('boatsMap');
+    var toggleBtn = document.getElementById('mapToggleBtn');
+    if (!toggleBtn || !mapEl) return;
 
-    function setView(view) {
-      switches.forEach(function(b) {
-        var on = b.dataset.view === view;
-        b.classList.toggle('active', on);
-        b.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-      document.querySelectorAll('[data-view-target]').forEach(function(el) {
-        el.hidden = el.dataset.viewTarget !== view;
-      });
-      if (view === 'map' && pinsHost && !pinsHost.dataset.rendered) renderPins();
+    var labelEl = toggleBtn.querySelector('.map-toggle-label');
+
+    function setMapOpen(open) {
+      mapEl.hidden = !open;
+      toggleBtn.setAttribute('aria-pressed', open ? 'true' : 'false');
+      if (labelEl) labelEl.textContent = open ? 'Skrýt mapu' : 'Zobrazit mapu';
+      if (open && pinsHost && !pinsHost.dataset.rendered) renderPins();
+      if (open) mapEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-    switches.forEach(function(b) { b.addEventListener('click', function() { setView(b.dataset.view); }); });
+    toggleBtn.addEventListener('click', function() {
+      setMapOpen(mapEl.hidden);
+    });
 
     var boatData = window.BOATS || (typeof BOATS !== 'undefined' ? BOATS : null);
     if (!pinsHost || !boatData) return;
 
-    // Deterministické rozprostření pinů po "Jaderském pobřeží"
     function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0; return Math.abs(h); }
-    var BOAT_POS = boatData.map(function(b, i) {
-      var key = (b.name || '') + (b.boatName || '') + i;
-      var h = hash(key);
-      // 2 shluky kolem Splitu/Trogiru + ostatní rozprostřené
-      var marina = (b.marina || '').toLowerCase();
-      var baseX, baseY, spread = 9;
-      if (marina.indexOf('split') !== -1)       { baseX = 32; baseY = 60; spread = 5; }
-      else if (marina.indexOf('trogir') !== -1) { baseX = 38; baseY = 56; spread = 5; }
-      else if (marina.indexOf('šibenik') !== -1 || marina.indexOf('sibenik') !== -1) { baseX = 50; baseY = 48; }
-      else if (marina.indexOf('biograd') !== -1 || marina.indexOf('zadar') !== -1)   { baseX = 60; baseY = 38; }
-      else if (marina.indexOf('dubrovník') !== -1 || marina.indexOf('dubrovnik') !== -1) { baseX = 18; baseY = 78; }
-      else if (marina.indexOf('pula') !== -1)   { baseX = 80; baseY = 22; }
-      else { baseX = 30 + (h % 40); baseY = 30 + ((h >> 4) % 50); }
-      var dx = ((h % 1000) / 1000 - 0.5) * spread;
-      var dy = (((h >> 8) % 1000) / 1000 - 0.5) * spread;
-      return { x: baseX + dx, y: baseY + dy, b: b };
+
+    // Pozice jednotlivých přístavů na "mapě Jadranu"
+    function marinaPos(name) {
+      var m = (name || '').toLowerCase();
+      if (m.indexOf('aci marina split') !== -1)       return { x: 32, y: 62 };
+      if (m.indexOf('split') !== -1)                   return { x: 33, y: 60 };
+      if (m.indexOf('trogir') !== -1)                  return { x: 38, y: 56 };
+      if (m.indexOf('kaštela') !== -1 || m.indexOf('kastela') !== -1) return { x: 36, y: 58 };
+      if (m.indexOf('lav') !== -1)                     return { x: 30, y: 64 };
+      if (m.indexOf('spinut') !== -1)                  return { x: 34, y: 61 };
+      if (m.indexOf('šibenik') !== -1 || m.indexOf('sibenik') !== -1) return { x: 50, y: 48 };
+      if (m.indexOf('biograd') !== -1)                 return { x: 58, y: 40 };
+      if (m.indexOf('zadar') !== -1)                   return { x: 62, y: 36 };
+      if (m.indexOf('dubrovník') !== -1 || m.indexOf('dubrovnik') !== -1) return { x: 18, y: 78 };
+      if (m.indexOf('pula') !== -1)                    return { x: 80, y: 22 };
+      var h = hash(name);
+      return { x: 30 + (h % 40), y: 30 + ((h >> 4) % 50) };
+    }
+
+    // Seskupení lodí podle přístavu + realistický (hashovaný) počet lodí pro wireframe
+    var MARINAS = {};
+    boatData.forEach(function(b) {
+      var key = b.marina || 'Neznámý přístav';
+      if (!MARINAS[key]) {
+        var p = marinaPos(key);
+        MARINAS[key] = { name: key, x: p.x, y: p.y, count: 0 };
+      }
+      MARINAS[key].count++;
+    });
+    // Nahrazení skutečného počtu plausibilní vyšší hodnotou (30–119)
+    Object.keys(MARINAS).forEach(function(key) {
+      MARINAS[key].count = 30 + (hash(key) % 90);
     });
 
-    function priceShort(p) { var n = parseInt(String(p).replace(/\D/g,''), 10) || 0; if (n >= 1000) return Math.round(n / 1000) + 'k Kč'; return n + ' Kč'; }
-    function catName(c) { return c || 'Plachetnice'; }
+    function addMarinaToFilter(name) {
+      var box = document.querySelector('.sf-combobox--filter[data-types-only="marina"]');
+      if (box && typeof box._addItem === 'function') box._addItem(name);
+    }
+    function getSelectedMarinas() {
+      var box = document.querySelector('.sf-combobox--filter[data-types-only="marina"]');
+      if (!box) return [];
+      return Array.prototype.map.call(box.querySelectorAll('.sf-chip'), function(c) { return c.dataset.value; });
+    }
 
-    var currentZoom = 1; // 1 = clustered, 2 = zoomed
+    // Zoom úrovně — threshold pro clustering v % canvasu
+    var ZOOM_THRESHOLDS = [10, 5, 2.5, 0];
+    var zoomIdx = 0;
 
-    function clusterize(items) {
-      // Greedy clustering podle pixelové vzdálenosti (v % canvasu)
-      var threshold = currentZoom === 1 ? 7 : 0;
+    function clusterMarinas(marinas) {
+      var THRESHOLD = ZOOM_THRESHOLDS[zoomIdx];
+      if (THRESHOLD === 0) {
+        return marinas.map(function(m) { return { x: m.x, y: m.y, marinas: [m], totalCount: m.count }; });
+      }
       var clusters = [];
-      items.forEach(function(it) {
+      marinas.forEach(function(m) {
         var found = null;
         for (var i = 0; i < clusters.length; i++) {
           var c = clusters[i];
-          var dx = c.x - it.x, dy = c.y - it.y;
-          if (Math.sqrt(dx*dx + dy*dy) < threshold) { found = c; break; }
+          var dx = c.x - m.x, dy = c.y - m.y;
+          if (Math.sqrt(dx * dx + dy * dy) < THRESHOLD) { found = c; break; }
         }
         if (found) {
-          found.items.push(it);
-          found.x = (found.x * (found.items.length - 1) + it.x) / found.items.length;
-          found.y = (found.y * (found.items.length - 1) + it.y) / found.items.length;
+          found.marinas.push(m);
+          var sx = 0, sy = 0, tc = 0;
+          found.marinas.forEach(function(mm) { sx += mm.x; sy += mm.y; tc += mm.count; });
+          found.x = sx / found.marinas.length;
+          found.y = sy / found.marinas.length;
+          found.totalCount = tc;
         } else {
-          clusters.push({ x: it.x, y: it.y, items: [it] });
+          clusters.push({ x: m.x, y: m.y, marinas: [m], totalCount: m.count });
         }
       });
       return clusters;
@@ -2451,52 +2740,51 @@
 
     function renderPins() {
       pinsHost.innerHTML = '';
-      var clusters = clusterize(BOAT_POS);
+      var selected = getSelectedMarinas();
+      var marinaList = Object.keys(MARINAS).map(function(k) { return MARINAS[k]; });
+      var clusters = clusterMarinas(marinaList);
       clusters.forEach(function(c) {
-        if (c.items.length > 1) {
-          var cl = document.createElement('button');
-          cl.type = 'button';
-          cl.className = 'map-pin map-pin--cluster';
-          cl.style.left = c.x + '%';
-          cl.style.top = c.y + '%';
-          cl.textContent = c.items.length;
-          cl.addEventListener('click', function() {
-            currentZoom = 2;
-            renderPins();
+        var el = document.createElement('button');
+        el.type = 'button';
+        el.style.left = c.x + '%';
+        el.style.top = c.y + '%';
+        if (c.marinas.length === 1) {
+          var m = c.marinas[0];
+          var isSelected = selected.indexOf(m.name) !== -1;
+          el.className = 'map-pin map-pin--marina' + (isSelected ? ' is-selected' : '');
+          el.title = m.name + ' — ' + m.count + ' lodí';
+          el.innerHTML = '<span class="map-pin-shape"><span class="map-pin-count">' + m.count + '</span></span>' +
+                         '<span class="map-pin-name">' + m.name + '</span>';
+          el.addEventListener('click', function() {
+            addMarinaToFilter(m.name);
           });
-          pinsHost.appendChild(cl);
         } else {
-          var it = c.items[0];
-          var pin = document.createElement('button');
-          pin.type = 'button';
-          pin.className = 'map-pin';
-          pin.style.left = it.x + '%';
-          pin.style.top = it.y + '%';
-          pin.title = (it.b.name || '') + (it.b.boatName ? ' "' + it.b.boatName + '"' : '');
-          pin.appendChild(document.createTextNode(priceShort(it.b.price)));
-          var pop = document.createElement('div');
-          pop.className = 'map-popup' + (it.y < 38 ? ' map-popup--below' : '');
-          pop.innerHTML =
-            '<div class="map-popup-img"></div>' +
-            '<div class="map-popup-body">' +
-              '<div class="map-popup-cat">' + catName(it.b.cat) + '</div>' +
-              '<div class="map-popup-name">' + (it.b.name || '') + (it.b.boatName ? ' &middot; "' + it.b.boatName + '"' : '') + '</div>' +
-              '<div class="map-popup-sub">🇭🇷 ' + (it.b.marina || '') + ' · ' + (it.b.company || 'Yachtnet partner') + '</div>' +
-              '<div class="map-popup-specs"><span>' + (it.b.year || '') + '</span><span>' + (it.b.cabins || '') + ' kajut</span><span>' + (it.b.len || '') + '</span></div>' +
-              '<div class="map-popup-price">' + (it.b.price || '') + ' / týden</div>' +
-            '</div>';
-          pin.appendChild(pop);
-          pin.addEventListener('click', function() { window.location.href = 'detail-lodi.html'; });
-          pinsHost.appendChild(pin);
+          el.className = 'map-pin map-pin--cluster';
+          var detail = c.marinas.map(function(m) { return m.name + ' (' + m.count + ')'; }).join(', ');
+          el.title = c.marinas.length + ' přístavů · ' + c.totalCount + ' lodí · ' + detail + ' (klik pro přiblížení)';
+          el.textContent = c.totalCount;
+          el.addEventListener('click', function() {
+            if (zoomIdx < ZOOM_THRESHOLDS.length - 1) {
+              zoomIdx++;
+              renderPins();
+            }
+          });
         }
+        pinsHost.appendChild(el);
       });
       pinsHost.dataset.rendered = '1';
     }
 
+    // Překreslit piny při změně filtru přístavů (zachytí přidání/odebrání chipu)
+    document.addEventListener('marinas-filter-changed', function() {
+      if (pinsHost && pinsHost.dataset.rendered) renderPins();
+    });
+
+    // Zoom +/- tlačítka
     var zoomIn  = canvas && canvas.querySelector('.map-zoom-in');
     var zoomOut = canvas && canvas.querySelector('.map-zoom-out');
-    if (zoomIn)  zoomIn.addEventListener('click',  function() { currentZoom = 2; renderPins(); });
-    if (zoomOut) zoomOut.addEventListener('click', function() { currentZoom = 1; renderPins(); });
+    if (zoomIn)  zoomIn.addEventListener('click',  function() { if (zoomIdx < ZOOM_THRESHOLDS.length - 1) { zoomIdx++; renderPins(); } });
+    if (zoomOut) zoomOut.addEventListener('click', function() { if (zoomIdx > 0) { zoomIdx--; renderPins(); } });
   })();
 
   // ── CREW / INVITE MODALY ──────────────────────────────
@@ -2660,7 +2948,11 @@
       var input = it.querySelector('input[type="checkbox"]');
       var nameEl = it.querySelector('.extra-item-name');
       var priceEl = it.querySelector('.extra-item-price');
-      if (input && nameEl && priceEl) track(input, nameEl.textContent.trim(), priceEl.textContent);
+      if (input && nameEl && priceEl) {
+        var name = nameEl.textContent.replace(/\s*povinné\s*$/, '').trim();
+        if (it.classList.contains('is-required')) name += ' (povinné)';
+        track(input, name, priceEl.textContent);
+      }
     });
     document.querySelectorAll('.pkg-ins-row').forEach(function(row) {
       var input = row.querySelector('.pkg-ins-check');

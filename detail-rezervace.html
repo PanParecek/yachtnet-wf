@@ -3,6 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Zákaz indexování vyhledávači a AI crawlery (wireframe, ne pro veřejnou indexaci) -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="GPTBot" content="noindex, nofollow" />
+  <meta name="ChatGPT-User" content="noindex, nofollow" />
+  <meta name="OAI-SearchBot" content="noindex, nofollow" />
+  <meta name="Google-Extended" content="noindex, nofollow" />
+  <meta name="anthropic-ai" content="noindex, nofollow" />
+  <meta name="Claude-Web" content="noindex, nofollow" />
+  <meta name="ClaudeBot" content="noindex, nofollow" />
+  <meta name="CCBot" content="noindex, nofollow" />
+  <meta name="PerplexityBot" content="noindex, nofollow" />
+  <meta name="Applebot-Extended" content="noindex, nofollow" />
+  <meta name="Bytespider" content="noindex, nofollow" />
+  <meta name="Amazonbot" content="noindex, nofollow" />
+  <meta name="cohere-ai" content="noindex, nofollow" />
+  <meta name="FacebookBot" content="noindex, nofollow" />
+  <meta name="Diffbot" content="noindex, nofollow" />
+  <meta name="omgilibot" content="noindex, nofollow" />
+  <meta name="YouBot" content="noindex, nofollow" />
+  <meta name="ImagesiftBot" content="noindex, nofollow" />
   <title>Detail rezervace — Yachtnet</title>
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +49,21 @@
           <strong>Pozor</strong>, u průkazu <a href="muj-prukaz.html" class="flash-link">Průkaz MDČR C — Pobřežní plavba</a> končí platnost a může kolidovat s datem rezervace. <a href="muj-prukaz.html" class="flash-link">Obnovte si platnost průkazu.</a>
         </div>
       </div>
-      <h1 style="font-size:24px;font-weight:800;margin-bottom:20px;">Elan 45 Impression — "Adriatic Wind"</h1>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;"><h1 style="font-size:24px;font-weight:800;margin:0;">Elan 45 Impression — "Adriatic Wind"</h1><span class="res-code-chip" title="Kód rezervace">KX1BMO</span></div>
+      <div class="res-tabs" role="tablist" style="margin-bottom:20px;">
+        <button class="res-tab is-active" type="button" data-tab="rezervace" role="tab">Rezervace</button>
+        <button class="res-tab" type="button" data-tab="platby" role="tab">Platby</button>
+        <button class="res-tab" type="button" data-tab="crew" role="tab">Crew list</button>
+        <button class="res-tab" type="button" data-tab="plavba" role="tab">Plavba</button>
+        <button class="res-tab" type="button" data-tab="lod" role="tab">Loď</button>
+        <button class="res-tab" type="button" data-tab="dokumenty" role="tab">Dokumenty</button>
+      </div>
+
+      <div class="res-tab-panel" data-panel="rezervace">
+      <div class="account-section">
+        <div class="account-section-title">Postup rezervace</div>
+        <div class="res-steps"><div class="res-step is-done"><div class="res-step-dot"></div><div class="res-step-name">Záloha</div><div class="res-step-val">10 800 Kč</div><div class="res-step-sub">✓ 5. 3. 2026</div></div><div class="res-step"><div class="res-step-dot"></div><div class="res-step-name">Doplatek</div><div class="res-step-val">25 200 Kč</div><div class="res-step-sub">do 12. 6. 2026</div><a class="res-step-pay" href="rezervace-krok-2.html">Uhradit</a></div><div class="res-step"><div class="res-step-dot"></div><div class="res-step-name">Crew list</div><div class="res-step-val">Rozpracován</div><div class="res-step-sub">2 / 6 osob</div><a class="res-step-pay" href="#" onclick="document.querySelector('[data-tab=&quot;crew&quot;]').click();event.preventDefault();">Doplnit</a></div><div class="res-step"><div class="res-step-dot"></div><div class="res-step-name">Check-in</div><div class="res-step-val">Čeká</div><div class="res-step-sub">24 h před</div><a class="res-step-pay" href="#" onclick="event.stopPropagation();">Check-in</a></div></div>
+      </div>
       <div class="account-section">
         <div class="account-section-title">Parametry výpůjčky</div>
         <div class="param-grid">
@@ -84,7 +120,52 @@
           <span class="res-rate-item"><span class="res-rate-label">Yachtnet:</span><span class="res-rate-stars" style="font-size:15px;">★★★★★</span></span>
         </div>
       </div>
+      <div class="account-section">
+        <div class="account-section-title">Doplňkové služby <button class="acc-btn-ghost" type="button" onclick="window.location.href='rezervace-krok-1.html'">+ Dokoupit službu</button></div>
+        <div class="extra-list">
+          <div class="extra-item is-required">
+            <div class="extra-item-info">
+              <div class="extra-item-name">Závěrečný úklid <span class="extra-required-tag">povinné</span></div>
+              <div class="extra-item-desc">Profesionální úklid lodi po návratu</div>
+            </div>
+            <div class="extra-item-price">2 500 Kč</div>
+          </div>
+          <div class="extra-item">
+            <div class="extra-item-info">
+              <div class="extra-item-name">WiFi připojení</div>
+              <div class="extra-item-desc">Přenosný router s neomezeným datovým tarifem</div>
+            </div>
+            <div class="extra-item-price">1 200 Kč</div>
+          </div>
+          <div class="extra-item">
+            <div class="extra-item-info">
+              <div class="extra-item-name">SUP prkno</div>
+              <div class="extra-item-desc">Stand-up paddleboard včetně pádla a leash</div>
+            </div>
+            <div class="extra-item-price">800 Kč</div>
+          </div>
+          <div class="extra-item">
+            <div class="extra-item-info">
+              <div class="extra-item-name">Transfer z/na letiště Split</div>
+              <div class="extra-item-desc">Minibus až 8 osob, objednáno na 12. 7. 2026 v 14:30</div>
+            </div>
+            <div class="extra-item-price">2 200 Kč</div>
+          </div>
+        </div>
+      </div>
+      </div>
 
+      <div class="res-tab-panel" data-panel="lod" hidden>
+      <div class="account-section">
+        <div class="account-section-title">Loď</div>
+        <div style="display:flex;gap:14px;align-items:center;">
+          <div style="width:120px;aspect-ratio:3/2;border-radius:6px;background:var(--cross-bg),var(--img-bg);flex-shrink:0;"></div>
+          <div><div style="font-size:16px;font-weight:700;margin-bottom:4px;">Elan 45 Impression (2022)</div><div style="font-size:13px;color:var(--muted);margin-bottom:10px;">Plachetnice · 13,8 m · 4 kajuty · 8 lůžek</div><a  href="detail-lodi.html" style="font-size:13px;color:var(--int);font-weight:600;text-decoration:none;">Zobrazit detail lodi →</a></div>
+        </div>
+      </div>
+      </div>
+
+      <div class="res-tab-panel" data-panel="platby" hidden>
       <div class="account-section">
         <div class="account-section-title">Přehled plateb</div>
         <div class="res-pay-grid">
@@ -124,12 +205,63 @@
       </div>
 
       <div class="account-section">
-        <div class="account-section-title">Loď</div>
-        <div style="display:flex;gap:14px;align-items:center;">
-          <div style="width:120px;aspect-ratio:3/2;border-radius:6px;background:var(--cross-bg),var(--img-bg);flex-shrink:0;"></div>
-          <div><div style="font-size:16px;font-weight:700;margin-bottom:4px;">Elan 45 Impression (2022)</div><div style="font-size:13px;color:var(--muted);margin-bottom:10px;">Plachetnice · 13,8 m · 4 kajuty · 8 lůžek</div><a  href="detail-lodi.html" style="font-size:13px;color:var(--int);font-weight:600;text-decoration:none;">Zobrazit detail lodi →</a></div>
+        <div class="account-section-title">Varianta rezervace <a class="acc-btn-ghost" href="detail-lodi.html#sec-terminy" style="height:30px;font-size:12px;padding:0 12px;display:inline-flex;align-items:center;">Změnit</a></div>
+        <div class="pkg-summary-card-inline">
+          <div class="pkg-summary-name">Flex <span class="pkg-summary-tag">Nejoblíbenější</span></div>
+          <div class="pkg-summary-sub">30% záloha + storno + pojištění kauce</div>
+          <ul class="pkg-summary-feat">
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Záloha 30 % nyní, doplatek 30 dnů před</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Storno do 60 dnů zdarma (do 12. 5. 2026)</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pojištění kauce 4 000 € v ceně</li>
+          </ul>
         </div>
       </div>
+
+      <div class="account-section">
+        <div class="account-section-title">Zvolená pojištění</div>
+        <div class="pkg-ins-list">
+          <div class="pkg-ins-row pkg-ins-row--selected">
+            <span class="pkg-ins-row-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <span class="pkg-ins-row-text">
+              <span class="pkg-ins-row-name">Pojištění kauce</span>
+              <span class="pkg-ins-row-desc">Vrácení vratné kauce <strong>4 000 €</strong> i při způsobené škodě. Bez papírování po skončení plavby.</span>
+            </span>
+            <span class="pkg-ins-row-price">2 500 Kč</span>
+          </div>
+          <div class="pkg-ins-row pkg-ins-row--selected">
+            <span class="pkg-ins-row-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+            </span>
+            <span class="pkg-ins-row-text">
+              <span class="pkg-ins-row-name">Pojištění storna</span>
+              <span class="pkg-ins-row-desc">Vrácení <strong>až 100 %</strong> ceny rezervace při zrušení z důvodu nemoci, úrazu nebo nečekané události.</span>
+            </span>
+            <span class="pkg-ins-row-price">3 200 Kč</span>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:10px;">Pojištění odpovědnosti nebylo zvoleno. <a href="rezervace-krok-1.html" style="color:var(--int);">Přidat pojištění →</a></p>
+      </div>
+      <div class="account-section">
+        <div class="account-section-title">Souhrn cen</div>
+        <div class="price-summary">
+          <div class="price-line"><span>Pronájem lodi (7 nocí)</span><span>36 000 Kč</span></div>
+          <div class="price-line"><span>Závěrečný úklid <small style="color:var(--muted);">(povinné)</small></span><span>2 500 Kč</span></div>
+          <div class="price-line"><span>WiFi připojení</span><span>1 200 Kč</span></div>
+          <div class="price-line"><span>SUP prkno</span><span>800 Kč</span></div>
+          <div class="price-line"><span>Transfer z/na letiště Split</span><span>2 200 Kč</span></div>
+          <div class="price-line"><span>Pojištění kauce</span><span>2 500 Kč</span></div>
+          <div class="price-line"><span>Pojištění storna</span><span>3 200 Kč</span></div>
+          <div class="price-line"><span>Povinný poplatek</span><span>12 611 Kč</span></div>
+          <div class="price-line discount"><span>Sleva 10 % (early bird)</span><span>−3 600 Kč</span></div>
+          <div class="price-line total price-line--prominent"><span>Celkem</span><span>57 411 Kč</span></div>
+        </div>
+      </div>
+
+      </div>
+
+      <div class="res-tab-panel" data-panel="crew" hidden>
       <div class="account-section">
         <div class="account-section-title">Crew list <button class="acc-btn-ghost" type="button" data-open-crew-modal>+ Přidat osobu</button></div>
         <table class="crew-table">
@@ -141,6 +273,107 @@
           </tbody>
         </table>
       </div>
+      </div>
+
+      <div class="res-tab-panel" data-panel="plavba" hidden>
+        <div class="account-section">
+          <div class="account-section-title">Termíny plavby</div>
+          <div class="param-grid">
+            <div class="param-item">
+              <div class="param-label">Nalodění</div>
+              <div class="param-val">Sob 12. 7. 2025, 17:00</div>
+            </div>
+            <div class="param-item">
+              <div class="param-label">Povinný návrat do mariny</div>
+              <div class="param-val">Pá 18. 7. 2025 do 20:00</div>
+            </div>
+            <div class="param-item">
+              <div class="param-label">Vylodění</div>
+              <div class="param-val">Sob 19. 7. 2025, 09:00</div>
+            </div>
+            <div class="param-item">
+              <div class="param-label">Celková délka</div>
+              <div class="param-val">7 nocí</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="account-section">
+          <div class="account-section-title">Marina</div>
+          <div class="plavba-grid">
+            <div class="plavba-info">
+              <div class="plavba-name">ACI Marina Split</div>
+              <div class="plavba-meta">Uvala Baluni 8, 21000 Split, Chorvatsko</div>
+              <div class="plavba-meta">GPS: 43.5051° N, 16.4338° E</div>
+              <div class="plavba-row"><span class="plavba-row-label">Recepce:</span><span class="plavba-row-val">Po–Ne 7:00–22:00</span></div>
+              <div class="plavba-row"><span class="plavba-row-label">Tankování paliva:</span><span class="plavba-row-val">Po–Ne 8:00–20:00</span></div>
+              <div class="plavba-row"><span class="plavba-row-label">Telefon:</span><span class="plavba-row-val"><a href="tel:+38521398599">+385 21 398 599</a></span></div>
+              <div class="plavba-row"><span class="plavba-row-label">E-mail:</span><span class="plavba-row-val"><a href="mailto:m.split@aci-club.hr">m.split@aci-club.hr</a></span></div>
+              <div class="plavba-row"><span class="plavba-row-label">Web:</span><span class="plavba-row-val"><a href="https://aci-marinas.com/split" target="_blank" rel="noopener">aci-marinas.com/split</a></span></div>
+            </div>
+            <div class="plavba-map" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="account-section">
+          <div class="account-section-title">Parkování v marině</div>
+          <div class="plavba-info-block">
+            <div class="plavba-row"><span class="plavba-row-label">Kapacita:</span><span class="plavba-row-val">130 míst v hlídaném areálu mariny</span></div>
+            <div class="plavba-row"><span class="plavba-row-label">Cena:</span><span class="plavba-row-val">9 € / den, 60 € / týden</span></div>
+            <div class="plavba-row"><span class="plavba-row-label">Rezervace:</span><span class="plavba-row-val">Doporučena v sezóně (červen–září) — rezervujte u recepce min. 7 dní předem</span></div>
+            <div class="plavba-row"><span class="plavba-row-label">Vjezd:</span><span class="plavba-row-val">Brána A — kód obdržíte spolu s check-inem</span></div>
+          </div>
+        </div>
+
+        <div class="account-section">
+          <div class="account-section-title">Charterová společnost</div>
+          <div class="plavba-info-block">
+            <div class="plavba-name">MareSail d.o.o.</div>
+            <div class="plavba-meta">Kontaktní osoba: Marko Brkić (operations manager)</div>
+            <div class="plavba-meta">Recepce: budova A, 1. patro mariny</div>
+            <div class="plavba-row"><span class="plavba-row-label">Telefon:</span><span class="plavba-row-val"><a href="tel:+385912345678">+385 91 234 5678</a></span></div>
+            <div class="plavba-row"><span class="plavba-row-label">E-mail:</span><span class="plavba-row-val"><a href="mailto:charter@maresail.hr">charter@maresail.hr</a></span></div>
+            <div class="plavba-row"><span class="plavba-row-label">Pohotovost 24/7:</span><span class="plavba-row-val"><a href="tel:+385912345678">+385 91 234 5678</a> (technické problémy na lodi)</span></div>
+          </div>
+        </div>
+
+        <div class="account-section">
+          <div class="account-section-title">Nejbližší obchody a služby</div>
+          <div class="plavba-poi-list">
+            <div class="plavba-poi"><div class="plavba-poi-name">Lidl Split</div><div class="plavba-poi-meta">Supermarket · 300 m · 7:00–22:00 (Ne 8:00–20:00)</div></div>
+            <div class="plavba-poi"><div class="plavba-poi-name">Tommy supermarket</div><div class="plavba-poi-meta">Supermarket · 500 m · 6:30–22:00</div></div>
+            <div class="plavba-poi"><div class="plavba-poi-name">Lékárna Marjan</div><div class="plavba-poi-meta">Lékárna · 450 m · Po–Pá 7:00–20:00, So 8:00–14:00</div></div>
+            <div class="plavba-poi"><div class="plavba-poi-name">Restaurace Adriatic</div><div class="plavba-poi-meta">Restaurace · v areálu mariny · 7:00–24:00</div></div>
+            <div class="plavba-poi"><div class="plavba-poi-name">Bankomat OTP banka</div><div class="plavba-poi-meta">Bankomat · vchod do mariny · 24/7</div></div>
+            <div class="plavba-poi"><div class="plavba-poi-name">Taxi stanoviště</div><div class="plavba-poi-meta">Taxi · vstup do mariny · 24/7</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="res-tab-panel" data-panel="dokumenty" hidden>
+        <div class="account-section">
+          <div class="account-section-title">Dokumenty rezervace</div>
+          <div class="doc-list">
+            <a class="doc-item" href="#" target="_blank" rel="noopener">
+              <span class="doc-icon">PDF</span>
+              <div class="doc-info">
+                <div class="doc-name">Předsmluvní informace</div>
+                <div class="doc-meta">PDF · 3 strany · 240 KB · vystaveno 5. 3. 2026</div>
+              </div>
+              <span class="doc-action"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Stáhnout</span>
+            </a>
+            <a class="doc-item" href="#" target="_blank" rel="noopener">
+              <span class="doc-icon">PDF</span>
+              <div class="doc-info">
+                <div class="doc-name">Smlouva o pronájmu lodi</div>
+                <div class="doc-meta">PDF · 8 stran · 510 KB · podepsáno 5. 3. 2026</div>
+              </div>
+              <span class="doc-action"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Stáhnout</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
 
       <!-- Modal: Přidat osobu do Crew listu -->
       <div class="crew-modal" id="crewModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="crewModalTitle">
@@ -281,9 +514,8 @@
         <button class="acc-btn-ghost" style="width:100%;color:#c0392b;border-color:#c0392b;">Zrušit rezervaci</button>
         <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:8px;">Celková cena</div>
-          <div style="font-size:26px;font-weight:800;letter-spacing:-.02em;word-spacing:.15em;">36 000 Kč</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px;">+ 12 611 Kč povinný poplatek</div>
-          <div style="font-size:12px;color:var(--muted);">+ 4 000 € vratná kauce</div>
+          <div style="font-size:26px;font-weight:800;letter-spacing:-.02em;word-spacing:.15em;">57 411 Kč</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">+ 4 000 € vratná kauce (vratná po skončení)</div>
           <div style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:12px;font-weight:700;color:var(--int);">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             Doplatek 25 200 Kč splatný 12. 6. 2026

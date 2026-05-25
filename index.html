@@ -3,6 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Zákaz indexování vyhledávači a AI crawlery (wireframe, ne pro veřejnou indexaci) -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="GPTBot" content="noindex, nofollow" />
+  <meta name="ChatGPT-User" content="noindex, nofollow" />
+  <meta name="OAI-SearchBot" content="noindex, nofollow" />
+  <meta name="Google-Extended" content="noindex, nofollow" />
+  <meta name="anthropic-ai" content="noindex, nofollow" />
+  <meta name="Claude-Web" content="noindex, nofollow" />
+  <meta name="ClaudeBot" content="noindex, nofollow" />
+  <meta name="CCBot" content="noindex, nofollow" />
+  <meta name="PerplexityBot" content="noindex, nofollow" />
+  <meta name="Applebot-Extended" content="noindex, nofollow" />
+  <meta name="Bytespider" content="noindex, nofollow" />
+  <meta name="Amazonbot" content="noindex, nofollow" />
+  <meta name="cohere-ai" content="noindex, nofollow" />
+  <meta name="FacebookBot" content="noindex, nofollow" />
+  <meta name="Diffbot" content="noindex, nofollow" />
+  <meta name="omgilibot" content="noindex, nofollow" />
+  <meta name="YouBot" content="noindex, nofollow" />
+  <meta name="ImagesiftBot" content="noindex, nofollow" />
   <title>Yachtnet — pronájem lodí bez prostředníků</title>
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -85,7 +107,10 @@
           <span class="sf-label">Destinace</span>
           <div class="sf-combobox" data-destination-search aria-expanded="false">
             <svg class="sf-combobox-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input class="sf-combobox-input" type="text" name="location" placeholder="Vyberte zemi, oblast nebo přístav…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" />
+            <div class="sf-combobox-field">
+              <input class="sf-combobox-input" type="text" placeholder="Vyberte zemi, oblast nebo přístav…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" />
+            </div>
+            <input type="hidden" name="location" value="" />
             <div class="sf-combobox-dropdown" hidden></div>
           </div>
         </div>
@@ -112,25 +137,10 @@
         </div>
         <div class="sf-field sf-field--people">
           <span class="sf-label">Počet osob</span>
-          <div class="sf-people" data-people-select data-min="1" data-max="12" data-value="2" aria-expanded="false">
-            <button type="button" class="sf-people-trigger">
-              <span class="sf-people-val">2 osoby</span>
-              <svg class="sf-people-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <input type="hidden" name="people" value="2" />
-            <div class="sf-people-popover" hidden>
-              <div class="sf-people-row">
-                <div>
-                  <div class="sf-people-row-label">Počet osob</div>
-                  <div class="sf-people-row-sub">Včetně dětí</div>
-                </div>
-                <div class="sf-people-counter">
-                  <button type="button" class="sf-people-btn" data-step="-1" aria-label="Méně osob">−</button>
-                  <span class="sf-people-counter-val">2</span>
-                  <button type="button" class="sf-people-btn" data-step="1" aria-label="Více osob">+</button>
-                </div>
-              </div>
-            </div>
+          <div class="sf-people" data-people-inline data-min="1" data-max="12">
+            <button type="button" class="sf-people-btn" data-step="-1" aria-label="Méně osob">−</button>
+            <input type="number" class="sf-people-input" name="people" value="2" min="1" max="12" inputmode="numeric" aria-label="Počet osob" />
+            <button type="button" class="sf-people-btn" data-step="1" aria-label="Více osob">+</button>
           </div>
         </div>
         <button type="button" class="btn-search" onclick="window.location.href='pronajem-lodi.html'">Hledat lodě</button>
@@ -155,19 +165,8 @@
           <div class="promo-banner-eyebrow">Limitovaná akce · únor–březen 2026</div>
           <h2 class="promo-banner-title">Plujte v Thajsku se slevou</h2>
           <p class="promo-banner-text">Flotilová plavba souostrovím Phuket–Phi Phi s místním kapitánem. Samostatná loď pro vaši posádku, společné kotvení a večery.</p>
-          <div class="promo-banner-savings">
-            <div class="promo-banner-saving">
-              <div class="promo-banner-saving-val">−1 000 €</div>
-              <div class="promo-banner-saving-lbl">Startovné</div>
-            </div>
-            <div class="promo-banner-saving">
-              <div class="promo-banner-saving-val">až −1 140 €</div>
-              <div class="promo-banner-saving-lbl">Pronájem lodi</div>
-            </div>
-          </div>
           <div class="promo-banner-cta-row">
             <a class="btn-primary-lg" href="detail-clanku.html">Více informací →</a>
-            <span class="promo-banner-partner">ve spolupráci s <strong>Dream Yacht</strong></span>
           </div>
         </div>
       </article>
@@ -186,23 +185,23 @@
       </div>
       <div class="mosaic-wrap">
         <div class="mosaic">
-          <div class="country country-hr" onclick="Nonewindow.location.href='oblast.html'" style="cursor:pointer;">
+          <div class="country country-hr" onclick="window.location.href='destinace-stat.html'" style="cursor:pointer;">
             <div class="country-overlay"></div>
             <div class="country-label"><div class="country-name">Chorvatsko</div><div class="country-count">142 dostupných lodí</div></div>
           </div>
-          <div class="country country-it" onclick="Nonewindow.location.href='oblast.html'" style="cursor:pointer;">
+          <div class="country country-it" onclick="window.location.href='destinace-stat.html'" style="cursor:pointer;">
             <div class="country-overlay"></div>
             <div class="country-label"><div class="country-name">Itálie</div><div class="country-count">68 lodí</div></div>
           </div>
-          <div class="country country-es" onclick="Nonewindow.location.href='oblast.html'" style="cursor:pointer;">
+          <div class="country country-es" onclick="window.location.href='destinace-stat.html'" style="cursor:pointer;">
             <div class="country-overlay"></div>
             <div class="country-label"><div class="country-name">Španělsko</div><div class="country-count">54 lodí</div></div>
           </div>
-          <div class="country country-gr" onclick="Nonewindow.location.href='oblast.html'" style="cursor:pointer;">
+          <div class="country country-gr" onclick="window.location.href='destinace-stat.html'" style="cursor:pointer;">
             <div class="country-overlay"></div>
             <div class="country-label"><div class="country-name">Řecko</div><div class="country-count">95 lodí</div></div>
           </div>
-          <div class="country country-nl" onclick="Nonewindow.location.href='oblast.html'" style="cursor:pointer;">
+          <div class="country country-nl" onclick="window.location.href='destinace-stat.html'" style="cursor:pointer;">
             <div class="country-overlay"></div>
             <div class="country-label"><div class="country-name">Holandsko</div><div class="country-count">29 lodí</div></div>
           </div>

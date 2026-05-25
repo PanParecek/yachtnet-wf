@@ -3,6 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Zákaz indexování vyhledávači a AI crawlery (wireframe, ne pro veřejnou indexaci) -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="GPTBot" content="noindex, nofollow" />
+  <meta name="ChatGPT-User" content="noindex, nofollow" />
+  <meta name="OAI-SearchBot" content="noindex, nofollow" />
+  <meta name="Google-Extended" content="noindex, nofollow" />
+  <meta name="anthropic-ai" content="noindex, nofollow" />
+  <meta name="Claude-Web" content="noindex, nofollow" />
+  <meta name="ClaudeBot" content="noindex, nofollow" />
+  <meta name="CCBot" content="noindex, nofollow" />
+  <meta name="PerplexityBot" content="noindex, nofollow" />
+  <meta name="Applebot-Extended" content="noindex, nofollow" />
+  <meta name="Bytespider" content="noindex, nofollow" />
+  <meta name="Amazonbot" content="noindex, nofollow" />
+  <meta name="cohere-ai" content="noindex, nofollow" />
+  <meta name="FacebookBot" content="noindex, nofollow" />
+  <meta name="Diffbot" content="noindex, nofollow" />
+  <meta name="omgilibot" content="noindex, nofollow" />
+  <meta name="YouBot" content="noindex, nofollow" />
+  <meta name="ImagesiftBot" content="noindex, nofollow" />
   <title>Detail lodi — Yachtnet</title>
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,8 +85,7 @@
           <a href="#sec-vybaveni" class="detail-toc-link">Vybavení</a>
           <a href="#sec-extras" class="detail-toc-link">Služby navíc</a>
           <a href="#sec-popis" class="detail-toc-link">O lodi</a>
-          <a href="#sec-terminy" class="detail-toc-link">Dostupnost</a>
-          <a href="#sec-balicky" class="detail-toc-link">Balíčky</a>
+          <a href="#sec-terminy" class="detail-toc-link">Varianty rezervace</a>
           <a href="#sec-cena" class="detail-toc-link">Cena</a>
           <a href="#sec-podminky" class="detail-toc-link">Podmínky</a>
           <a href="#sec-faq" class="detail-toc-link">FAQ</a>
@@ -169,7 +190,7 @@
           <div class="extras-list">
             <label class="extra-item"><input type="checkbox" /><div><div class="extra-name">Skipper</div><div class="extra-desc">5 000 Kč / den + strava + vlastní kajuta; fakturováno přímo</div></div><div class="extra-price">5 000 Kč / den</div></label>
             <label class="extra-item"><input type="checkbox" /><div><div class="extra-name">Wi-Fi internet na lodi</div><div class="extra-desc">Neomezený přenos / dle pokrytí sítě (5 GB zahrnuto)</div></div><div class="extra-price">750 Kč / týden</div></label>
-            <label class="extra-item"><input type="checkbox" /><div><div class="extra-name">Pojištění depositní zálohy</div><div class="extra-desc">Krytí celé depositní zálohy při poškození lodi</div></div><div class="extra-price">2 500 Kč / týden</div></label>
+            <label class="extra-item"><input type="checkbox" /><div><div class="extra-name">Pojištění kauce</div><div class="extra-desc">Krytí celé kauce při poškození lodi</div></div><div class="extra-price">2 500 Kč / týden</div></label>
             <label class="extra-item"><input type="checkbox" /><div><div class="extra-name">Hostess</div><div class="extra-desc">5 000 Kč / den + strava + vlastní kajuta; fakturováno přímo</div></div><div class="extra-price">5 000 Kč / den</div></label>
             <label class="extra-item"><input type="checkbox" /><div><div class="extra-name">Zvíře na palubě</div><div class="extra-desc">Poplatek za každé zvíře; fakturováno přímo</div></div><div class="extra-price">5 000 Kč / zvíře</div></label>
           </div>
@@ -290,7 +311,7 @@
               </div>
             </label>
 
-            <label class="pkg-card pkg-card--popular">
+            <label class="pkg-card">
               <input type="radio" name="reservation-package" value="flex" />
               <div class="pkg-card-inner">
                 <div class="pkg-card-head">
@@ -460,7 +481,7 @@
                 <li>Poplatek za přípravu lodi</li>
                 <li>Poplatek za parkování v přístavu</li>
                 <li>Pohonné hmoty</li>
-                <li>Depositní záloha &nbsp;<a href="#" style="color:var(--int);font-size:11px;">Více o pojištění →</a></li>
+                <li>Kauce &nbsp;<a href="#" style="color:var(--int);font-size:11px;">Více o pojištění →</a></li>
               </ul>
             </div>
           </div>
@@ -470,10 +491,10 @@
         <div class="detail-section" id="sec-podminky">
           <div class="detail-section-title">Podmínky pronájmu</div>
           <div class="conditions-grid">
-            <div class="cond-item"><div class="cond-label">Check-in</div><div class="cond-val">13:00</div></div>
-            <div class="cond-item"><div class="cond-label">Check-out</div><div class="cond-val">10:00</div></div>
-            <div class="cond-item"><div class="cond-label">Depositní záloha</div><div class="cond-val">1 500 €</div></div>
-            <div class="cond-item"><div class="cond-label">Pohonné hmoty</div><div class="cond-val">Nejsou v ceně</div></div>
+            <div class="cond-item"><div class="cond-label">Nalodění</div><div class="cond-val">Sobota 14. 6. 2026 od 13:00</div></div>
+            <div class="cond-item"><div class="cond-label">Povinný návrat do mariny</div><div class="cond-val">Pátek 20. 6. 2026 do 20:00</div></div>
+            <div class="cond-item"><div class="cond-label">Vylodění</div><div class="cond-val">Sobota 21. 6. 2026 do 10:00</div></div>
+            <div class="cond-item"><div class="cond-label">Kauce</div><div class="cond-val">1 500 €</div></div>
           </div>
           <div style="margin-top:12px;padding:12px 14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px;">Storno podmínky</div>
@@ -487,8 +508,10 @@
           <div class="detail-section-title">Časté dotazy k pronájmu</div>
           <div class="faq-list">
             <div class="faq-item"><button class="faq-q">Co se stane při špatném počasí? <span class="faq-q-icon">+</span></button><div class="faq-a">V případě extrémního počasí je kapitán oprávněn zůstat v přístavu. Doporučujeme sjednat si cestovní pojištění.</div></div>
-            <div class="faq-item"><button class="faq-q">Jsem pojištěn při problémech na moři? <span class="faq-q-icon">+</span></button><div class="faq-a">Každá loď je vybavena povinným pojištěním odpovědnosti za škody. Pro pokrytí depositu doporučujeme přiobjednání pojištění depositní zálohy.</div></div>
-            <div class="faq-item"><button class="faq-q">Jsou pohonné hmoty zahrnuty v ceně? <span class="faq-q-icon">+</span></button><div class="faq-a">Pohonné hmoty nejsou standardně součástí ceny. Loď přebíráte s plnou nádrží a vracíte ji také s plnou nádrží.</div></div>
+            <div class="faq-item"><button class="faq-q">Jsem pojištěn při problémech na moři? <span class="faq-q-icon">+</span></button><div class="faq-a">Každá loď je vybavena povinným pojištěním odpovědnosti za škody. Pro pokrytí kauce doporučujeme přiobjednání pojištění kauce.</div></div>
+            <div class="faq-item"><button class="faq-q">Jaký kapitánský průkaz potřebuji? <span class="faq-q-icon">+</span></button><div class="faq-a">Pro plavbu v Chorvatsku je nutný mezinárodní průkaz pro plavbu po moři (např. český MDČR C, ICC nebo ekvivalent) <strong>plus VHF radiooperátorský průkaz</strong>. Bez obou dokladů vám charterovka loď nepředá. Pokud průkaz nemáte, můžete si k pronájmu doobjednat <a href="kapitanske-kurzy.html">profesionálního skipera</a>.</div></div>
+            <div class="faq-item"><button class="faq-q">Jsou v ceně i pohonné hmoty a marína v cílovém přístavu? <span class="faq-q-icon">+</span></button><div class="faq-a">Pohonné hmoty (nafta) <strong>nejsou v ceně</strong> — loď přebíráte i vracíte s plnou nádrží, doplnění hradíte sami (typicky 50–200 € za týden podle stylu plavby). Poplatky za přespání v cizích marínách (20–100 € za noc) jsou rovněž na vás. V ceně je první noc v domovské maríně, koncový úklid lodi a turistická taxa.</div></div>
+            <div class="faq-item"><button class="faq-q">Můžu vzít na palubu dítě nebo psa? <span class="faq-q-icon">+</span></button><div class="faq-a">Děti jsou vítány bez omezení — pro děti do 12 let doporučujeme dětskou plovací vestu (lze rezervovat zdarma v sekci „Služby navíc"). Psi jsou povoleni pouze u lodí s označením <strong>Pet friendly</strong> a obvykle se vztahuje příplatek 50–100 € za pobyt. Vyžádejte si potvrzení charterovky před nástupem.</div></div>
           </div>
         </div>
 

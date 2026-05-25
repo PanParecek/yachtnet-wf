@@ -69,46 +69,36 @@
     <!-- HLAVNÍ SLOUPEC -->
     <div class="bk-main">
 
-      <!-- Kontext rezervace (přesunuto ze sidebaru) -->
-      <div class="bk-context-row">
-        <!-- Detaily rezervace -->
-        <div class="bk-card">
-          <div class="bk-card-head"><div class="bk-card-title">Detaily rezervace</div></div>
-          <div class="bk-card-body" style="padding-top:8px;padding-bottom:8px;">
-            <div class="detail-row"><span class="detail-row-label">Nalodění</span><span class="detail-row-val">Sob 12. 7. 2025 · od 17:00</span></div>
-            <div class="detail-row"><span class="detail-row-label">Vylodění</span><span class="detail-row-val">Sob 19. 7. 2025 · do 9:00</span></div>
-            <div class="detail-row"><span class="detail-row-label">Povinný návrat do mariny</span><span class="detail-row-val">Pá 18. 7. do 20:00</span></div>
-            <div class="detail-row"><span class="detail-row-label">Délka pronájmu</span><span class="detail-row-val">7 nocí</span></div>
-            <div class="detail-row"><span class="detail-row-label">Přístav</span><span class="detail-row-val">ACI Marina Split, Chorvatsko</span></div>
-            <div class="detail-row"><span class="detail-row-label">Charterová spol.</span><span class="detail-row-val">MareSail d.o.o.</span></div>
+      <!-- Garance -->
+      <div class="guarantee-strip">
+        <div class="guarantee-item">
+          <div class="guarantee-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <div class="guarantee-text-title">Žádné skryté poplatky</div>
+            <div class="guarantee-text-desc">Cena je finální — bez překvapení při placení</div>
           </div>
         </div>
-
-        <!-- Zvolená varianta -->
-        <div class="bk-card pkg-summary-card">
-          <div class="bk-card-head">
-            <div class="bk-card-title">Varianta rezervace</div>
-            <a class="bk-card-edit" href="detail-lodi.html#sec-balicky">Změnit</a>
+        <div class="guarantee-item">
+          <div class="guarantee-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div>
+            <div class="guarantee-text-title">Pomáháme řešit problémy</div>
+            <div class="guarantee-text-desc">Podpora 24/7 po celou dobu plavby</div>
           </div>
-          <div class="bk-card-body">
-            <div class="pkg-summary-tag">Nejoblíbenější</div>
-            <div class="pkg-summary-name">Flex</div>
-            <div class="pkg-summary-sub">30% záloha + storno + pojištění kauce</div>
-            <ul class="pkg-summary-feat">
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Záloha 30 % nyní, doplatek 30 dnů před</li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Storno do 60 dnů zdarma (do 12. 5. 2025)</li>
-              <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pojištění kauce 4 000 € v ceně</li>
-            </ul>
+        </div>
+        <div class="guarantee-item">
+          <div class="guarantee-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+          <div>
+            <div class="guarantee-text-title">30 let zkušeností</div>
+            <div class="guarantee-text-desc">Prověřené charterové společnosti, tisíce spokojených klientů</div>
           </div>
         </div>
       </div>
 
 
-
       <!-- 1. Rekapitulace lodi -->
       <div class="bk-card">
         <div class="bk-card-head">
-          <div class="bk-card-title">Vaše loď</div>
+          <div class="bk-card-title">Zvolená loď</div>
           <button class="bk-card-edit" onclick="window.location.href='detail-lodi.html'">Změnit loď</button>
         </div>
         <div class="bk-card-body">
@@ -302,6 +292,37 @@
     <!-- POSTRANNÍ PANEL -->
     <div class="bk-sidebar">
 
+      <!-- Detaily rezervace -->
+      <div class="bk-card">
+        <div class="bk-card-head"><div class="bk-card-title">Detaily rezervace</div></div>
+        <div class="bk-card-body" style="padding-top:8px;padding-bottom:8px;">
+          <div class="detail-row"><span class="detail-row-label">Nalodění</span><span class="detail-row-val">Sob 12. 7. 2025 · od 17:00</span></div>
+          <div class="detail-row"><span class="detail-row-label">Vylodění</span><span class="detail-row-val">Sob 19. 7. 2025 · do 9:00</span></div>
+          <div class="detail-row"><span class="detail-row-label">Povinný návrat do mariny</span><span class="detail-row-val">Pá 18. 7. do 20:00</span></div>
+          <div class="detail-row"><span class="detail-row-label">Délka pronájmu</span><span class="detail-row-val">7 nocí</span></div>
+          <div class="detail-row"><span class="detail-row-label">Přístav</span><span class="detail-row-val">ACI Marina Split, Chorvatsko</span></div>
+          <div class="detail-row"><span class="detail-row-label">Charterová spol.</span><span class="detail-row-val">MareSail d.o.o.</span></div>
+        </div>
+      </div>
+
+      <!-- Zvolená varianta -->
+      <div class="bk-card pkg-summary-card">
+        <div class="bk-card-head">
+          <div class="bk-card-title">Zvolená varianta</div>
+          <a class="bk-card-edit" href="detail-lodi.html#sec-balicky">Změnit</a>
+        </div>
+        <div class="bk-card-body">
+          <div class="pkg-summary-tag">Nejoblíbenější</div>
+          <div class="pkg-summary-name">Flex</div>
+          <div class="pkg-summary-sub">30% záloha + storno + pojištění kauce</div>
+          <ul class="pkg-summary-feat">
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Záloha 30 % nyní, doplatek 30 dnů před</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Storno do 60 dnů zdarma (do 12. 5. 2025)</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Pojištění kauce 4 000 € v ceně</li>
+          </ul>
+        </div>
+      </div>
+
       <!-- Souhrn cen -->
       <div class="bk-card" data-summary>
         <div class="bk-card-head"><div class="bk-card-title">Souhrn cen</div></div>
@@ -344,33 +365,10 @@
         </div>
       </div>
 
-      <!-- STICKY CTA + Garance -->
+      <!-- STICKY CTA -->
       <div class="bk-sidebar-cta">
         <button class="btn-booking" onclick="window.location.href='rezervace-krok-2.html'">Pokračovat ke kontrole →</button>
         <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.5;">Rezervace nezavazuje k okamžité platbě</p>
-        <div class="cta-guarantees">
-          <div class="cta-guarantee-item">
-            <span class="cta-guarantee-icon"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <div>
-              <div class="cta-guarantee-title">Žádné skryté poplatky</div>
-              <div class="cta-guarantee-desc">Cena je finální — bez překvapení při placení</div>
-            </div>
-          </div>
-          <div class="cta-guarantee-item">
-            <span class="cta-guarantee-icon"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-            <div>
-              <div class="cta-guarantee-title">Pomáháme řešit problémy</div>
-              <div class="cta-guarantee-desc">Podpora 24/7 po celou dobu plavby</div>
-            </div>
-          </div>
-          <div class="cta-guarantee-item">
-            <span class="cta-guarantee-icon"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
-            <div>
-              <div class="cta-guarantee-title">30 let zkušeností</div>
-              <div class="cta-guarantee-desc">Prověřené charterovky, tisíce spokojených klientů</div>
-            </div>
-          </div>
-        </div>
       </div>
 
     </div><!-- /bk-sidebar -->
