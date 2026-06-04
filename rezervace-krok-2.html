@@ -69,6 +69,26 @@
     <!-- HLAVNÍ SLOUPEC -->
     <div class="bk-main">
 
+      <!-- Loď právě zarezervována jiným zákazníkem — už není dostupná -->
+      <div class="hold-box">
+        <div class="hold-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/><line x1="17" y1="11" x2="22" y2="6"/><line x1="22" y1="11" x2="17" y2="6"/></svg></div>
+        <div style="flex:1;">
+          <div class="hold-title">Loď byla právě zarezervována jiným zákazníkem</div>
+          <div class="hold-desc">Někdo dokončil rezervaci o pár vteřin dříve. Tato loď už není dostupná pro váš termín. Vybrat můžete jinou ve stejném termínu i marině — k dispozici je <strong>14 lodí</strong>.</div>
+        </div>
+        <a class="hold-cta" href="pronajem-lodi.html">Vybrat náhradní loď →</a>
+      </div>
+
+      <!-- Loď rezervovaná jiným zákazníkem — uživatel je ve frontě -->
+      <div class="hold-box">
+        <div class="hold-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div style="flex:1;">
+          <div class="hold-title">Loď je rezervovaná jiným zákazníkem — jste ve frontě</div>
+          <div class="hold-desc">Pokud do 24 hodin nedokončí svou rezervaci, loď bude vaše. Pro jistotu doporučujeme vybrat náhradní loď ve stejném termínu — ve vybrané marině máme ještě <strong>14 volných</strong>.</div>
+        </div>
+        <a class="hold-cta" href="pronajem-lodi.html">Vybrat náhradní loď →</a>
+      </div>
+
       <!-- Časový hold -->
       <div class="hold-box">
         <div class="hold-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
@@ -77,6 +97,36 @@
           <div class="hold-desc">Dokončete rezervaci — loď bude uvolněna ostatním zákazníkům po vypršení limitu.</div>
         </div>
         <div class="hold-timer">14:58</div>
+      </div>
+
+      <!-- Charterovka neumožňuje online rezervaci — čekáme na ruční potvrzení -->
+      <div class="hold-box">
+        <div class="hold-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg></div>
+        <div style="flex:1;">
+          <div class="hold-title">Čekáme na potvrzení charterové společnosti</div>
+          <div class="hold-desc">Tato charterovka neumožňuje okamžitou online rezervaci a potvrzuje termíny ručně (obvykle do 12 hodin). Jakmile potvrdí, dáme vám vědět e-mailem a budete moci pokračovat k platbě. Zatím nic neplatíte.</div>
+        </div>
+        <div class="hold-status">Čekáme…</div>
+      </div>
+
+      <!-- Charterovka potvrdila — uživatel může pokračovat k platbě -->
+      <div class="hold-box hold-box--success">
+        <div class="hold-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div style="flex:1;">
+          <div class="hold-title">Charterová společnost rezervaci potvrdila</div>
+          <div class="hold-desc">Termín i loď máte zajištěné. Pokračujte k platbě zálohy a dokončete rezervaci — doplatky pak zaplatíte standardně 60 a 30 dnů před nástupem.</div>
+        </div>
+        <a class="hold-cta" href="#" onclick="event.preventDefault();var btn=document.querySelector('.btn-booking.reserve');if(btn)btn.scrollIntoView({behavior:'smooth',block:'center'});">Pokračovat k platbě →</a>
+      </div>
+
+      <!-- Předrezervace se nezdařila — platba neproběhla, uživatel musí zkusit znovu -->
+      <div class="hold-box hold-box--error">
+        <div class="hold-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+        <div style="flex:1;">
+          <div class="hold-title">Předrezervace se nezdařila — platba neproběhla</div>
+          <div class="hold-desc">Vaše banka platbu zamítla nebo se přerušilo spojení. Loď zatím není rezervovaná. Zkuste platbu opakovat — pokud se problém opakuje, použijte jinou kartu nebo nás kontaktujte na <a href="tel:+420233354050" style="color:#dc2626;font-weight:700;">+420 233 354 050</a>.</div>
+        </div>
+        <a class="hold-cta" href="#" onclick="event.preventDefault();var btn=document.querySelector('.btn-booking.reserve');if(btn)btn.scrollIntoView({behavior:'smooth',block:'center'});">Opakovat platbu →</a>
       </div>
 
       <!-- Souhrn osobních údajů -->
@@ -184,16 +234,45 @@
         </div>
       </div>
 
+      <!-- Cena za pronájem -->
       <div class="bk-card">
-        <div class="bk-card-head"><div class="bk-card-title">Souhrn cen</div></div>
+        <div class="bk-card-head"><div class="bk-card-title">Cena za pronájem</div></div>
         <div class="bk-card-body">
-          <div class="price-line"><span>Pronájem lodi (7 nocí)</span><span>36 000 Kč</span></div>
-          <div class="price-line"><span>Závěrečný úklid</span><span>2 500 Kč</span></div>
-          <div class="price-line"><span>WiFi připojení</span><span>1 200 Kč</span></div>
-          <div class="price-line"><span>SUP prkno</span><span>800 Kč</span></div>
-          <div class="price-line"><span>Povinný poplatek</span><span>12 611 Kč</span></div>
+          <div class="price-line"><span>Katalogová cena (7 nocí)</span><span>36 000 Kč</span></div>
           <div class="price-line discount"><span>Sleva 10 % (early bird)</span><span>−3 600 Kč</span></div>
-          <div class="price-line total price-line--prominent"><span>Celkem</span><span>49 511 Kč</span></div>
+          <div class="price-line total price-line--prominent"><span>Cena za pronájem celkem</span><span>32 400 Kč</span></div>
+        </div>
+      </div>
+
+      <!-- Poplatky a doplňkové služby -->
+      <div class="bk-card" data-extras-card>
+        <div class="bk-card-head"><div class="bk-card-title">Poplatky a doplňkové služby</div></div>
+        <div class="bk-card-body">
+          <div class="price-section-title">Povinné poplatky</div>
+          <div class="price-line">
+            <span>Transit log <span class="price-line-note">platíte na základně</span></span>
+            <span>12 611 Kč</span>
+          </div>
+          <div class="price-line">
+            <span>Skipper <span class="price-line-note">platíte na základně</span></span>
+            <span>14 000 Kč</span>
+          </div>
+          <div class="price-line">
+            <span>Early check-in <span class="price-line-note">platíte na základně</span></span>
+            <span>0 Kč</span>
+          </div>
+
+          <div class="price-section-title">Pojištění <span class="price-section-note">Platíte pojišťovně · platí se předem</span></div>
+          <div data-pojisteni-anchor>
+            <div class="price-line price-line--empty" data-pojisteni-empty>Žádné pojištění nezvoleno.</div>
+          </div>
+
+          <div class="price-section-title">Vybavení a služby <span class="price-section-note">Platíte na základně · vybavení podléhá potvrzení charterové společnosti</span></div>
+          <div data-extras-anchor>
+            <div class="price-line price-line--empty" data-extras-empty>Žádné vybavení a služby nezvoleny.</div>
+          </div>
+
+          <div class="price-line total price-line--prominent"><span>Poplatky a doplňky celkem</span><span data-extras-total>0 Kč</span></div>
         </div>
       </div>
 
@@ -207,34 +286,45 @@
                 <span class="pay-schedule-row-name">Zaplatíte nyní</span>
                 <span class="pay-schedule-row-sub">Záloha 30 % · online</span>
               </div>
-              <div class="pay-schedule-row-val">11 070 Kč</div>
+              <div class="pay-schedule-row-val" data-pay-now>9 720 Kč</div>
             </div>
             <div class="pay-schedule-row">
               <div class="pay-schedule-row-label">
-                <span class="pay-schedule-row-name">Doplatek 30 dnů před začátkem</span>
-                <span class="pay-schedule-row-sub">12. 6. 2025 · online</span>
+                <span class="pay-schedule-row-name">Doplatek 1 — 60 dnů před začátkem</span>
+                <span class="pay-schedule-row-sub">13. 5. 2026 · online</span>
               </div>
-              <div class="pay-schedule-row-val">25 830 Kč</div>
+              <div class="pay-schedule-row-val" data-pay-rest-1>11 340 Kč</div>
+            </div>
+            <div class="pay-schedule-row">
+              <div class="pay-schedule-row-label">
+                <span class="pay-schedule-row-name">Doplatek 2 — 30 dnů před začátkem</span>
+                <span class="pay-schedule-row-sub">12. 6. 2026 · online</span>
+              </div>
+              <div class="pay-schedule-row-val" data-pay-rest-2>11 340 Kč</div>
             </div>
             <div class="pay-schedule-row">
               <div class="pay-schedule-row-label">
                 <span class="pay-schedule-row-name">Zaplatíte na základně</span>
                 <span class="pay-schedule-row-sub">Povinný poplatek + vratná kauce</span>
               </div>
-              <div class="pay-schedule-row-val">12 611 Kč<br><span class="pay-schedule-row-val-sub">+ 4 000 €</span></div>
+              <div class="pay-schedule-row-val"><span data-pay-marina>26 611 Kč</span><br><span class="pay-schedule-row-val-sub">+ 4 000 €</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- STICKY CTA -->
+      <!-- STICKY button (jen samotné tlačítko se přilepuje k spodnímu okraji viewportu) -->
+      <div class="bk-sticky-button">
+        <button class="btn-booking reserve" onclick="window.location.href='rezervace-potvrzeni.html'">Zaplatit zálohu 30 % — 9 720 Kč</button>
+      </div>
+
+      <!-- Statický blok pod sticky tlačítkem — VOP + microtext -->
       <div class="bk-sidebar-cta">
-        <div class="vop-row" style="margin:0 0 14px;">
+        <div class="vop-row" style="margin:0 0 12px;">
           <input type="checkbox" id="vop" />
           <label for="vop" style="font-size:12px;">Souhlasím s <a href="#" style="color:var(--int);font-weight:600;">VOP</a> a <a href="#" style="color:var(--int);font-weight:600;">Zásadami ochrany osobních údajů</a></label>
         </div>
-        <button class="btn-booking reserve" onclick="window.location.href='rezervace-potvrzeni.html'">Zaplatit zálohu 30 % — 11 070 Kč</button>
-        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.5;">Doplatek 25 830 Kč automaticky 30 dnů před nástupem.</p>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin:0;line-height:1.5;">Doplatek 22 680 Kč rozdělený na 2 splátky, automaticky 60 a 30 dnů před nástupem.</p>
       </div>
 
     </div><!-- /bk-sidebar -->

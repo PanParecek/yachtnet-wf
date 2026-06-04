@@ -97,6 +97,12 @@
   // Ostatní init funkce (mega-menu, teamModal listeners, atd.) běží potom a uvidí už vykreslené komponenty.
   Components.init();
 
+  // Visual emphasis pro přihlášeného uživatele — solid fialová výplň místo decentního outlinu.
+  // Detekce podle textu, abychom nemuseli per-page přidávat modifier class do HTML.
+  document.querySelectorAll('.nav-login-btn').forEach(function(btn) {
+    if (btn.textContent.trim() === 'Můj účet') btn.classList.add('nav-login-btn--account');
+  });
+
   // ── SITEMAP REGISTRY ───────────────────────────────────
   // Jediný zdroj pravdy pro všechny stránky wireframe.
   // Když přidáš / odebereš stránku, uprav tento strom a mapa-stranek.html se sama aktualizuje.
@@ -146,7 +152,9 @@
       ]},
       { href: 'ucet.html', title: 'Můj účet', id: 'page-account', group: true, children: [
         { href: 'seznam-rezervaci.html', title: 'Moje rezervace', id: 'page-reservations', children: [
-          { href: 'detail-rezervace.html', title: 'Detail rezervace', id: 'page-reservation-detail' }
+          { href: 'detail-rezervace.html', title: 'Detail rezervace', id: 'page-reservation-detail', children: [
+            { href: 'check-in.html', title: 'Online check-in', id: 'page-checkin' }
+          ]}
         ]},
         { href: 'prukazy.html', title: 'Moje průkazy', id: 'page-licenses', children: [
           { href: 'muj-prukaz.html', title: 'Detail mého průkazu', id: 'page-license-mine' },
@@ -297,6 +305,18 @@
   ];
 
   const DEST_TYPE_LABEL = { country: 'Země', region: 'Oblast', marina: 'Přístav' };
+  const DEST_TYPE_ORDER = { country: 0, region: 1, marina: 2 };
+  const DEST_SECTION_PLURAL = { country: 'Země', region: 'Oblasti', marina: 'Přístavy' };
+
+  // Kurátorovaný defaultní výpis — co se zobrazí v prázdném dropdownu před prvním písmenem.
+  // Pořadí a obsah ručně udržované obchodem; jména musí existovat v DESTINATIONS.
+  const POPULAR_DESTINATIONS = [
+    { label: 'Top destinace', items: ['Chorvatsko'] },
+    { label: 'Nejoblíbenější přístavy v Chorvatsku', items: ['Split', 'Trogir', 'Dubrovník'] },
+    { label: 'Oblíbené ve Středomoří', items: ['Korfu', 'Athény (Alimos)', 'Sardinie', 'Palma de Mallorca', 'Bodrum'] }
+  ];
+
+  const STAR_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7L12 17.8 5.7 21.2l1.7-7L2 9.5l7.1-.6L12 2z"/></svg>';
 
   function escapeHtml(s) { return String(s).replace(/[&<>"']/g, function(c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); }
 
@@ -374,12 +394,51 @@
         syncHidden();
       }
 
+      function itemHtml(d, idx, q) {
+        var isChecked = selected.indexOf(d.name) !== -1;
+        return '<button type="button" class="sf-combobox-item' + (isChecked ? ' is-checked' : '') + '" data-idx="' + idx + '" data-value="' + escapeHtml(d.name) + '">' +
+          '<span class="sf-combobox-check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>' +
+          '<span class="sf-combobox-flag">' + d.flag + '</span>' +
+          '<span class="sf-combobox-name">' + highlightMatch(d.name, q) + '</span>' +
+          '<span class="sf-combobox-tag">' + (DEST_TYPE_LABEL[d.type] || d.type) + '</span>' +
+        '</button>';
+      }
+
+      function renderPopular() {
+        results = [];
+        activeIdx = -1;
+        var html = '';
+        POPULAR_DESTINATIONS.forEach(function(section) {
+          var items = section.items
+            .map(function(name) { return DATA.find(function(d) { return d.name === name; }); })
+            .filter(Boolean);
+          if (!items.length) return;
+          html += '<div class="sf-combobox-section-title sf-combobox-section-title--popular">' +
+            '<span class="sf-combobox-section-icon">' + STAR_SVG + '</span>' +
+            escapeHtml(section.label) +
+          '</div>';
+          items.forEach(function(d) {
+            var idx = results.length;
+            results.push(d);
+            html += itemHtml(d, idx, '');
+          });
+        });
+        html += '<div class="sf-combobox-popular-hint">Začněte psát pro hledání všech destinací</div>';
+        dropdown.innerHTML = html;
+      }
+
       function renderDropdown(filter) {
         var q = (filter || '').trim();
         var ql = q.toLowerCase();
-        results = ql
-          ? DATA.filter(function(d) { return d.name.toLowerCase().indexOf(ql) !== -1 || d.country.toLowerCase().indexOf(ql) !== -1; })
-          : DATA.slice();
+        if (!ql) { renderPopular(); return; }
+        results = DATA.filter(function(d) { return d.name.toLowerCase().indexOf(ql) !== -1 || d.country.toLowerCase().indexOf(ql) !== -1; });
+        // Systematický výpis: Státy → Oblasti → Přístavy, uvnitř typu abecedně (česky).
+        results.sort(function(a, b) {
+          var ta = DEST_TYPE_ORDER[a.type] != null ? DEST_TYPE_ORDER[a.type] : 99;
+          var tb = DEST_TYPE_ORDER[b.type] != null ? DEST_TYPE_ORDER[b.type] : 99;
+          if (ta !== tb) return ta - tb;
+          return a.name.localeCompare(b.name, 'cs');
+        });
         activeIdx = -1;
         if (!results.length) {
           dropdown.innerHTML = '<div class="sf-combobox-empty">Pro „' + escapeHtml(q) + '" nic nenalezeno.</div>';
@@ -389,16 +448,10 @@
         var lastType = '';
         results.forEach(function(d, i) {
           if (d.type !== lastType) {
-            html += '<div class="sf-combobox-section-title">' + (DEST_TYPE_LABEL[d.type] || d.type) + (d.type === 'marina' ? 'y' : (d.type === 'region' ? 'i' : '')) + '</div>';
+            html += '<div class="sf-combobox-section-title">' + (DEST_SECTION_PLURAL[d.type] || d.type) + '</div>';
             lastType = d.type;
           }
-          var isChecked = selected.indexOf(d.name) !== -1;
-          html += '<button type="button" class="sf-combobox-item' + (isChecked ? ' is-checked' : '') + '" data-idx="' + i + '" data-value="' + escapeHtml(d.name) + '">' +
-            '<span class="sf-combobox-check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>' +
-            '<span class="sf-combobox-flag">' + d.flag + '</span>' +
-            '<span class="sf-combobox-name">' + highlightMatch(d.name, q) + '</span>' +
-            '<span class="sf-combobox-tag">' + (DEST_TYPE_LABEL[d.type] || d.type) + '</span>' +
-          '</button>';
+          html += itemHtml(d, i, q);
         });
         dropdown.innerHTML = html;
       }
@@ -660,20 +713,169 @@
         }
       });
 
+      // Hover preview rozsahu po výběru start dne (před kliknutím na end).
+      function clearRangePreview() {
+        popover.querySelectorAll('.sf-cal-day.is-in-range-preview, .sf-cal-day.is-end-preview').forEach(function(el) {
+          el.classList.remove('is-in-range-preview', 'is-end-preview');
+        });
+      }
+      popover.addEventListener('mouseover', function(e) {
+        if (!fromDate || toDate) return;
+        var dayBtn = e.target.closest('.sf-cal-day');
+        if (!dayBtn || dayBtn.disabled || dayBtn.classList.contains('is-empty')) return;
+        var hoverDate = new Date(
+          parseInt(dayBtn.dataset.year, 10),
+          parseInt(dayBtn.dataset.month, 10),
+          parseInt(dayBtn.dataset.day, 10)
+        );
+        if (hoverDate <= fromDate) { clearRangePreview(); return; }
+        popover.querySelectorAll('.sf-cal-day').forEach(function(el) {
+          el.classList.remove('is-in-range-preview', 'is-end-preview');
+          if (el.disabled || el.classList.contains('is-empty')) return;
+          var dt = new Date(
+            parseInt(el.dataset.year, 10),
+            parseInt(el.dataset.month, 10),
+            parseInt(el.dataset.day, 10)
+          );
+          if (dt.getTime() === hoverDate.getTime()) el.classList.add('is-end-preview');
+          else if (dt > fromDate && dt < hoverDate) el.classList.add('is-in-range-preview');
+        });
+      });
+      popover.addEventListener('mouseleave', clearRangePreview);
+
       document.addEventListener('click', function(e) {
         if (!box.contains(e.target) && !popover.hidden) close();
       });
+
+      // Public API — umožní externí kód (např. active filter chip „×") vymazat termín.
+      box._clear = function() { fromDate = null; toDate = null; updateLabel(); render(); };
 
       updateLabel();
     });
   }
 
+  // ── PROMO SLIDER (Thajsko full-width + slide s dvojicí image-only bannerů) ───
+  // Slidy mají různé typy:
+  //   kind: 'hero' → full-width banner s image + content (Thajsko)
+  //   kind: 'pair' → 2 image-only kartičky vedle sebe (50 % + 50 %), text na obrázku
+  // Šipky/tečky přepínají mezi slidy, výchozí je první (Thajsko).
+  const PROMO_SLIDES = [
+    {
+      kind: 'hero',
+      overlayEyebrow: 'Amazing Thailand',
+      overlayTitle: 'Flotilla Sailing 2026<br>v Andamanském moři',
+      eyebrow: 'Limitovaná akce · únor–březen 2026',
+      title: 'Plujte v Thajsku se slevou',
+      text: 'Flotilová plavba souostrovím Phuket–Phi Phi s místním kapitánem. Samostatná loď pro vaši posádku, společné kotvení a večery.',
+      cta: { label: 'Více informací', href: 'detail-clanku.html' }
+    },
+    {
+      kind: 'pair',
+      tiles: [
+        {
+          eyebrow: 'Předsezóna 2026',
+          title: 'Chorvatsko se slevou 15 %',
+          href: 'pronajem-lodi.html'
+        },
+        {
+          eyebrow: 'Kapitánské kurzy 2026',
+          title: 'Průkaz za 9 dní přímo na moři',
+          href: 'kapitanske-kurzy.html'
+        }
+      ]
+    }
+  ];
+
+  function initPromoSlider() {
+    document.querySelectorAll('[data-promo-slider]').forEach(function(root) {
+      if (!PROMO_SLIDES.length) return;
+      var activeIdx = 0;
+      var hasMore = PROMO_SLIDES.length > 1;
+
+      function heroHtml(b) {
+        return '<article class="promo-banner">' +
+          '<div class="promo-banner-visual">' +
+            '<div class="promo-banner-overlay">' +
+              '<div class="promo-banner-overlay-eyebrow">' + escapeHtml(b.overlayEyebrow) + '</div>' +
+              '<div class="promo-banner-overlay-title">' + b.overlayTitle + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="promo-banner-content">' +
+            '<div class="promo-banner-eyebrow">' + escapeHtml(b.eyebrow) + '</div>' +
+            '<h2 class="promo-banner-title">' + escapeHtml(b.title) + '</h2>' +
+            '<p class="promo-banner-text">' + escapeHtml(b.text) + '</p>' +
+            '<div class="promo-banner-cta-row">' +
+              '<a class="btn-primary-lg" href="' + b.cta.href + '">' + escapeHtml(b.cta.label) + ' →</a>' +
+            '</div>' +
+          '</div>' +
+        '</article>';
+      }
+
+      function tileHtml(t) {
+        var eyebrow = t.eyebrow ? '<div class="promo-tile-eyebrow">' + escapeHtml(t.eyebrow) + '</div>' : '';
+        return '<a class="promo-tile" href="' + t.href + '" aria-label="' + escapeHtml(t.title) + '">' +
+          '<div class="promo-tile-overlay">' +
+            eyebrow +
+            '<div class="promo-tile-title">' + escapeHtml(t.title) + '</div>' +
+          '</div>' +
+        '</a>';
+      }
+
+      function pairHtml(slide) {
+        return '<div class="promo-pair">' +
+          slide.tiles.map(tileHtml).join('') +
+        '</div>';
+      }
+
+      function slideHtml(slide) {
+        if (slide.kind === 'pair') return pairHtml(slide);
+        return heroHtml(slide);
+      }
+
+      function render() {
+        var arrowSvg = function(dir) {
+          var pts = dir === -1 ? '15 18 9 12 15 6' : '9 18 15 12 9 6';
+          return '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="' + pts + '"/></svg>';
+        };
+        var dotsHtml = PROMO_SLIDES.map(function(_, i) {
+          return '<button type="button" class="promo-slider-dot' + (i === activeIdx ? ' is-active' : '') +
+            '" data-promo-dot="' + i + '" aria-label="Banner ' + (i + 1) + ' z ' + PROMO_SLIDES.length + '"></button>';
+        }).join('');
+        var controlsHtml = hasMore
+          ? '<button type="button" class="promo-slider-arrow promo-slider-arrow--prev" data-promo-dir="-1" aria-label="Předchozí banner">' + arrowSvg(-1) + '</button>' +
+            '<button type="button" class="promo-slider-arrow promo-slider-arrow--next" data-promo-dir="1" aria-label="Další banner">' + arrowSvg(1) + '</button>' +
+            '<div class="promo-slider-dots">' + dotsHtml + '</div>'
+          : '';
+        root.innerHTML =
+          '<div class="promo-slider-stage">' +
+            slideHtml(PROMO_SLIDES[activeIdx]) +
+            controlsHtml +
+          '</div>';
+      }
+
+      root.addEventListener('click', function(e) {
+        var dotBtn = e.target.closest('[data-promo-dot]');
+        if (dotBtn) { activeIdx = parseInt(dotBtn.dataset.promoDot, 10); render(); return; }
+        var dirBtn = e.target.closest('[data-promo-dir]');
+        if (dirBtn) {
+          e.preventDefault();
+          var d = parseInt(dirBtn.dataset.promoDir, 10);
+          activeIdx = (activeIdx + d + PROMO_SLIDES.length) % PROMO_SLIDES.length;
+          render();
+        }
+      });
+
+      render();
+    });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() { initDestinationSearch(); initPeopleSelect(); initDateRangePicker(); });
+    document.addEventListener('DOMContentLoaded', function() { initDestinationSearch(); initPeopleSelect(); initDateRangePicker(); initPromoSlider(); });
   } else {
     initDestinationSearch();
     initPeopleSelect();
     initDateRangePicker();
+    initPromoSlider();
   }
 
   // ── BOAT DATA ──────────────────────────────────────────
@@ -1203,6 +1405,40 @@
       });
     });
 
+    // 3b) Top form (.results-hero) \u2014 Destinace, Term\u00edn, Typ lodi
+    document.querySelectorAll('.results-hero').forEach(function(hero) {
+      // Destinace \u2014 chipy ve sf-combobox (bez --filter)
+      hero.querySelectorAll('.sf-combobox:not(.sf-combobox--filter) .sf-combobox-field .sf-chip').forEach(function(chip) {
+        chips.push({
+          label: chip.dataset.value || (chip.querySelector('.sf-chip-name') && chip.querySelector('.sf-chip-name').textContent) || '',
+          remove: function() {
+            var rm = chip.querySelector('.sf-chip-remove');
+            if (rm) rm.click();
+          }
+        });
+      });
+      // Term\u00edn \u2014 kdy\u017e nen\u00ed placeholder
+      hero.querySelectorAll('.sf-daterange').forEach(function(box) {
+        var label = box.querySelector('.sf-daterange-label');
+        if (!label || label.classList.contains('sf-daterange-label--placeholder')) return;
+        chips.push({
+          label: 'Term\u00edn: ' + label.textContent.trim(),
+          remove: function() { if (typeof box._clear === 'function') box._clear(); }
+        });
+      });
+      // Typ lodi \u2014 chipy v .sf-sel triggeru (multi-select)
+      hero.querySelectorAll('.sf-sel .sf-sel-chip').forEach(function(chip) {
+        var nameEl = chip.querySelector('.sf-sel-chip-name');
+        chips.push({
+          label: (nameEl ? nameEl.textContent : chip.dataset.value || '').trim(),
+          remove: function() {
+            var rm = chip.querySelector('.sf-sel-chip-remove');
+            if (rm) rm.click();
+          }
+        });
+      });
+    });
+
     // 4) Dual range slidery (Cena, D\u00e9lka, Po\u010det osob, Po\u010det kajut, Hodnocen\u00ed\u2026)
     document.querySelectorAll('.range-dual').forEach(function(rng) {
       var minEl = rng.querySelector('.range-min');
@@ -1352,6 +1588,15 @@
 
   initFilterSelects();
   renderActiveChips();
+
+  // Re-render active chipů, když uživatel cokoli změní v top form (destinace / termín / typ lodi).
+  // Delegát na .results-hero pokryje všechny interakce (dropdown položka, šipka v kalendáři, X v chipu).
+  document.querySelectorAll('.results-hero').forEach(function(hero) {
+    hero.addEventListener('click', function() { setTimeout(renderActiveChips, 0); });
+    hero.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === 'Backspace') setTimeout(renderActiveChips, 0);
+    });
+  });
 
   // ── SIDEBAR TOGGLE (results page, mobile) ──────────────
   function toggleMobileSidebar() {
@@ -1779,6 +2024,21 @@
           }
         }
       }
+      // Načti pre-vybrané položky z <option selected> v HTML (pro pre-fill widgetu).
+      if (isMulti) {
+        Array.from(native.options).forEach(function(o) {
+          if (o.disabled) return;
+          if (o.hasAttribute('selected') || o.defaultSelected) {
+            var val = o.value || o.text;
+            if (!selected.find(function(s) { return s.value === val; })) {
+              selected.push({ value: val, label: o.text });
+            }
+            var optEl = dropdown.querySelector('.sf-sel-option[data-value="' + val + '"]') ||
+                        dropdown.querySelector('.sf-sel-optgroup-btn[data-value="' + val + '"]');
+            if (optEl) optEl.classList.add('is-selected');
+          }
+        });
+      }
       syncDisplay();
 
       // ── Otevřít / zavřít ──
@@ -1861,6 +2121,127 @@
 
   // Na stránce pronajem-lodi.html vykresli výpis lodí hned po načtení.
   if (document.getElementById('boatsGrid')) renderAllBoats();
+
+  // ── Rate modal (Proběhlé rezervace → Přidat hodnocení) ──
+  (function initRateModal() {
+    var modal = document.getElementById('rateModal');
+    if (!modal) return;
+    var boatLabel = modal.querySelector('[data-rm-boat]');
+    var commentEl = modal.querySelector('[data-rm-comment]');
+    var actionsEl = modal.querySelector('.rate-modal-actions');
+    var errorEl = null;
+    var currentRow = null;
+    var ratings = { boat: 0, charter: 0, yachtnet: 0 };
+
+    function syncStars() {
+      modal.querySelectorAll('.rate-stars-input').forEach(function(group) {
+        var key = group.dataset.rate;
+        var val = ratings[key] || 0;
+        group.querySelectorAll('.rate-star').forEach(function(btn) {
+          var btnVal = parseInt(btn.dataset.val, 10);
+          btn.classList.toggle('is-active', btnVal <= val);
+        });
+      });
+    }
+
+    function clearError() {
+      if (errorEl) { errorEl.remove(); errorEl = null; }
+    }
+
+    function open(row, boatName) {
+      currentRow = row;
+      ratings = { boat: 0, charter: 0, yachtnet: 0 };
+      syncStars();
+      clearError();
+      if (boatLabel) boatLabel.textContent = boatName || '';
+      if (commentEl) commentEl.value = '';
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      currentRow = null;
+      clearError();
+    }
+
+    function renderStars(val) {
+      var html = '';
+      for (var i = 1; i <= 5; i++) {
+        if (i <= val) html += '★';
+        else html += '<span class="res-rate-stars-empty">☆</span>';
+      }
+      return html;
+    }
+
+    function submit() {
+      if (!currentRow) return;
+      if (!ratings.boat || !ratings.charter || !ratings.yachtnet) {
+        clearError();
+        errorEl = document.createElement('div');
+        errorEl.className = 'rate-modal-error';
+        errorEl.textContent = 'Ohodnoťte prosím všechny tři kategorie.';
+        actionsEl.parentNode.insertBefore(errorEl, actionsEl);
+        return;
+      }
+      currentRow.classList.add('res-rate-row--done');
+      currentRow.innerHTML = '<div class="res-rate-display">' +
+        '<span class="res-rate-item"><span class="res-rate-label">Loď:</span><span class="res-rate-stars">' + renderStars(ratings.boat) + '</span></span>' +
+        '<span class="res-rate-item"><span class="res-rate-label">Charterovka:</span><span class="res-rate-stars">' + renderStars(ratings.charter) + '</span></span>' +
+        '<span class="res-rate-item"><span class="res-rate-label">Yachtnet:</span><span class="res-rate-stars">' + renderStars(ratings.yachtnet) + '</span></span>' +
+      '</div>';
+      close();
+    }
+
+    // Open: klik na „Přidat hodnocení" — listener přímo na linku, aby inline
+    // onclick="event.stopPropagation()" v HTML nepřerušil bublání před tímhle.
+    document.querySelectorAll('.res-rate-link').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var row = link.closest('.res-rate-row');
+        var card = link.closest('.res-card');
+        var titleEl = card && card.querySelector('.res-title');
+        open(row, titleEl ? titleEl.textContent : '');
+      });
+    });
+
+    // Klik dovnitř modalu: hvězdy, zavřít, submit
+    modal.addEventListener('click', function(e) {
+      if (e.target.closest('[data-rm-close]')) { close(); return; }
+      var star = e.target.closest('.rate-star');
+      if (star) {
+        var group = star.closest('.rate-stars-input');
+        ratings[group.dataset.rate] = parseInt(star.dataset.val, 10);
+        syncStars();
+        clearError();
+        return;
+      }
+      if (e.target.closest('[data-rm-submit]')) { submit(); return; }
+    });
+
+    // Hover preview hvězd
+    modal.querySelectorAll('.rate-stars-input').forEach(function(group) {
+      group.addEventListener('mouseover', function(e) {
+        var star = e.target.closest('.rate-star');
+        if (!star) return;
+        var hoverVal = parseInt(star.dataset.val, 10);
+        group.querySelectorAll('.rate-star').forEach(function(btn) {
+          btn.classList.toggle('is-hover', parseInt(btn.dataset.val, 10) <= hoverVal);
+        });
+      });
+      group.addEventListener('mouseleave', function() {
+        group.querySelectorAll('.rate-star.is-hover').forEach(function(b) { b.classList.remove('is-hover'); });
+      });
+    });
+
+    // Escape zavře
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !modal.hidden) close();
+    });
+  })();
+
 
   // ── OBLÍBENÉ — výpis + odstranění ────────────
   (function initFavorites() {
@@ -2157,6 +2538,21 @@
         maxEl.value = maxEl.max;
         minEl.dispatchEvent(new Event('input', { bubbles: true }));
         maxEl.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      // Top form (.results-hero) — Destinace, Termín, Typ lodi
+      document.querySelectorAll('.results-hero').forEach(function(hero) {
+        // Destinace — odeber všechny chipy v komboboxu (bez --filter)
+        hero.querySelectorAll('.sf-combobox:not(.sf-combobox--filter) .sf-chip .sf-chip-remove').forEach(function(rm) {
+          rm.click();
+        });
+        // Termín — public API _clear na daterange
+        hero.querySelectorAll('.sf-daterange').forEach(function(box) {
+          if (typeof box._clear === 'function') box._clear();
+        });
+        // Typ lodi — odeber všechny chipy v sf-sel triggeru
+        hero.querySelectorAll('.sf-sel .sf-sel-chip .sf-sel-chip-remove').forEach(function(rm) {
+          rm.click();
+        });
       });
       if (typeof renderActiveChips === 'function') renderActiveChips();
     });
@@ -2697,14 +3093,43 @@
       MARINAS[key].count = 30 + (hash(key) % 90);
     });
 
+    // Filter combobox je teď v top formuláři (Destinace) — sidebarový filtr Přístav byl odstraněn.
+    // Marina chipy přidáváme/odebíráme tam; map state se synchronizuje obousměrně.
+    function getDestBox() {
+      return document.querySelector('.results-hero .sf-combobox[data-destination-search]');
+    }
     function addMarinaToFilter(name) {
-      var box = document.querySelector('.sf-combobox--filter[data-types-only="marina"]');
+      var box = getDestBox();
       if (box && typeof box._addItem === 'function') box._addItem(name);
     }
+    function removeMarinaFromFilter(name) {
+      var box = getDestBox();
+      if (!box) return;
+      var chip = box.querySelector('.sf-chip[data-value="' + CSS.escape(name) + '"]');
+      if (chip) {
+        var rm = chip.querySelector('.sf-chip-remove');
+        if (rm) rm.click();
+      }
+    }
     function getSelectedMarinas() {
-      var box = document.querySelector('.sf-combobox--filter[data-types-only="marina"]');
+      var box = getDestBox();
       if (!box) return [];
       return Array.prototype.map.call(box.querySelectorAll('.sf-chip'), function(c) { return c.dataset.value; });
+    }
+    function toggleMarinaInFilter(name) {
+      if (getSelectedMarinas().indexOf(name) !== -1) removeMarinaFromFilter(name);
+      else addMarinaToFilter(name);
+    }
+    function toggleClusterInFilter(marinas) {
+      var selected = getSelectedMarinas();
+      var allSelected = marinas.every(function(m) { return selected.indexOf(m.name) !== -1; });
+      if (allSelected) {
+        marinas.forEach(function(m) { removeMarinaFromFilter(m.name); });
+      } else {
+        marinas.forEach(function(m) {
+          if (selected.indexOf(m.name) === -1) addMarinaToFilter(m.name);
+        });
+      }
     }
 
     // Zoom úrovně — threshold pro clustering v % canvasu
@@ -2752,22 +3177,21 @@
           var m = c.marinas[0];
           var isSelected = selected.indexOf(m.name) !== -1;
           el.className = 'map-pin map-pin--marina' + (isSelected ? ' is-selected' : '');
-          el.title = m.name + ' — ' + m.count + ' lodí';
+          el.title = m.name + ' — ' + m.count + ' lodí · klik pro ' + (isSelected ? 'odebrání' : 'přidání') + ' do filtru';
           el.innerHTML = '<span class="map-pin-shape"><span class="map-pin-count">' + m.count + '</span></span>' +
                          '<span class="map-pin-name">' + m.name + '</span>';
           el.addEventListener('click', function() {
-            addMarinaToFilter(m.name);
+            toggleMarinaInFilter(m.name);
           });
         } else {
-          el.className = 'map-pin map-pin--cluster';
+          var allInCluster = c.marinas.every(function(mm) { return selected.indexOf(mm.name) !== -1; });
+          el.className = 'map-pin map-pin--cluster' + (allInCluster ? ' is-selected' : '');
           var detail = c.marinas.map(function(m) { return m.name + ' (' + m.count + ')'; }).join(', ');
-          el.title = c.marinas.length + ' přístavů · ' + c.totalCount + ' lodí · ' + detail + ' (klik pro přiblížení)';
+          el.title = c.marinas.length + ' přístavů · ' + c.totalCount + ' lodí · ' + detail + ' · klik pro ' + (allInCluster ? 'odebrání všech' : 'přidání všech') + ' do filtru';
           el.textContent = c.totalCount;
+          var clusterMarinas = c.marinas;
           el.addEventListener('click', function() {
-            if (zoomIdx < ZOOM_THRESHOLDS.length - 1) {
-              zoomIdx++;
-              renderPins();
-            }
+            toggleClusterInFilter(clusterMarinas);
           });
         }
         pinsHost.appendChild(el);
@@ -2775,10 +3199,16 @@
       pinsHost.dataset.rendered = '1';
     }
 
-    // Překreslit piny při změně filtru přístavů (zachytí přidání/odebrání chipu)
-    document.addEventListener('marinas-filter-changed', function() {
-      if (pinsHost && pinsHost.dataset.rendered) renderPins();
-    });
+    // Sleduj změny v destination combobox (chipy se přidávají/mažou) a překreslí piny.
+    var destBox = getDestBox();
+    if (destBox) {
+      var field = destBox.querySelector('.sf-combobox-field');
+      if (field) {
+        new MutationObserver(function() {
+          if (pinsHost && pinsHost.dataset.rendered) renderPins();
+        }).observe(field, { childList: true, subtree: true });
+      }
+    }
 
     // Zoom +/- tlačítka
     var zoomIn  = canvas && canvas.querySelector('.map-zoom-in');
@@ -2885,11 +3315,11 @@
 
   // ── BOOKING SUMMARY — dynamický souhrn cen ──────────────
   (function initBookingSummary() {
-    var summary = document.querySelector('[data-summary]');
-    if (!summary) return;
-    var anchor = summary.querySelector('[data-summary-anchor]');
-    var totalEl = summary.querySelector('[data-summary-total]');
-    if (!anchor || !totalEl) return;
+    var pojAnchor = document.querySelector('[data-pojisteni-anchor]');
+    var extrasAnchor = document.querySelector('[data-extras-anchor]');
+    if (!pojAnchor && !extrasAnchor) return;
+    var pojEmpty = document.querySelector('[data-pojisteni-empty]');
+    var extrasEmpty = document.querySelector('[data-extras-empty]');
 
     function parsePrice(text) {
       var sign = /[−-]/.test(text) ? -1 : 1;
@@ -2901,43 +3331,71 @@
       return (n < 0 ? '−' : '') + abs + ' Kč';
     }
 
-    var staticSum = 0;
-    summary.querySelectorAll('.price-line:not(.total)').forEach(function(line) {
-      var last = line.querySelector('span:last-child');
-      if (last) staticSum += parsePrice(last.textContent);
-    });
-
-    var items = [];
-
-    var PAY_AT_MARINA = 12611;
+    var FIXED_RENT_TOTAL = 59011;
+    var PAY_AT_MARINA_FIXED = 26611;
+    // Povinné poplatky (Transit log 12 611 + Skipper 14 000 + Early check-in 0)
+    // — statické položky vykreslené přímo v HTML druhé karty, vstupují do display totalu.
+    var POVINNE_POPLATKY_FIXED = 26611;
     var DEPOSIT_RATIO = 0.30;
     var payNowEl  = document.querySelector('[data-pay-now]');
     var payRestEl = document.querySelector('[data-pay-rest]');
+    var payRest1El = document.querySelector('[data-pay-rest-1]');
+    var payRest2El = document.querySelector('[data-pay-rest-2]');
 
-    function rebuild() {
+    var pojItems = [], extraItems = [];
+
+    function renderInto(anchor, list, emptyEl) {
+      if (!anchor) return;
       anchor.querySelectorAll('.price-line--dynamic').forEach(function(el) { el.remove(); });
-      var sum = staticSum;
-      items.forEach(function(it) {
+      var any = false;
+      list.forEach(function(it) {
         if (!it.checked) return;
-        sum += it.price;
+        any = true;
         var line = document.createElement('div');
         line.className = 'price-line price-line--dynamic';
+        // Kauce je samostatný typ pojištění (chrání vratnou kauci), nikoli běžné krytí —
+        // oddělíme ho linkou, aby vizuálně neslýval s ostatními pojištěními.
+        if (it.label === 'Pojištění kauce') line.classList.add('price-line--separator');
         line.innerHTML = '<span>' + it.label + '</span><span>' + formatPrice(it.price) + '</span>';
         anchor.appendChild(line);
       });
-      totalEl.textContent = formatPrice(sum);
+      if (emptyEl) emptyEl.style.display = any ? 'none' : '';
+    }
 
-      var online = sum - PAY_AT_MARINA;
-      if (online < 0) online = 0;
+    var extrasTotalEl = document.querySelector('[data-extras-total]');
+
+    function rebuild() {
+      renderInto(pojAnchor, pojItems, pojEmpty);
+      renderInto(extrasAnchor, extraItems, extrasEmpty);
+
+      var pojSum = 0;
+      pojItems.forEach(function(it) { if (it.checked) pojSum += it.price; });
+      var extraSum = 0;
+      extraItems.forEach(function(it) { if (it.checked) extraSum += it.price; });
+
+      // Displayed total v sidebaru = statické povinné poplatky + dynamické pojištění + dynamické vybavení
+      if (extrasTotalEl) extrasTotalEl.textContent = formatPrice(POVINNE_POPLATKY_FIXED + pojSum + extraSum);
+
+      // Rozklad plateb — online (3 řádky) = jen pronájem 32 400 Kč. Pojištění/vybavení tady nejsou.
+      var RENTAL_TOTAL = FIXED_RENT_TOTAL - PAY_AT_MARINA_FIXED;
+      var online = RENTAL_TOTAL;
       var nyni = Math.round(online * DEPOSIT_RATIO);
       var doplatek = online - nyni;
       if (payNowEl) payNowEl.textContent = formatPrice(nyni);
       if (payRestEl) payRestEl.textContent = formatPrice(doplatek);
+      var rest1 = Math.round(doplatek / 2);
+      var rest2 = doplatek - rest1;
+      if (payRest1El) payRest1El.textContent = formatPrice(rest1);
+      if (payRest2El) payRest2El.textContent = formatPrice(rest2);
+
+      // Na základně = povinné poplatky + dynamické vybavení (pojištění platí pojišťovně, ne na základně)
+      var payMarinaEl = document.querySelector('[data-pay-marina]');
+      if (payMarinaEl) payMarinaEl.textContent = formatPrice(POVINNE_POPLATKY_FIXED + extraSum);
     }
 
-    function track(input, label, priceText) {
+    function track(list, input, label, priceText) {
       var item = { label: label, price: parsePrice(priceText), checked: input.checked };
-      items.push(item);
+      list.push(item);
       input.addEventListener('change', function() {
         item.checked = input.checked;
         rebuild();
@@ -2948,17 +3406,18 @@
       var input = it.querySelector('input[type="checkbox"]');
       var nameEl = it.querySelector('.extra-item-name');
       var priceEl = it.querySelector('.extra-item-price');
-      if (input && nameEl && priceEl) {
-        var name = nameEl.textContent.replace(/\s*povinné\s*$/, '').trim();
-        if (it.classList.contains('is-required')) name += ' (povinné)';
-        track(input, name, priceEl.textContent);
-      }
+      if (!input || !nameEl || !priceEl) return;
+      var name = nameEl.textContent.replace(/\s*povinné\s*$/, '').trim();
+      if (/^Skipper/i.test(name)) return;
+      if (it.classList.contains('is-required')) name += ' (povinné)';
+      track(extraItems, input, name, priceEl.textContent);
     });
+
     document.querySelectorAll('.pkg-ins-row').forEach(function(row) {
       var input = row.querySelector('.pkg-ins-check');
       var nameEl = row.querySelector('.pkg-ins-row-name');
       var priceEl = row.querySelector('.pkg-ins-row-price');
-      if (input && nameEl && priceEl) track(input, nameEl.textContent.trim(), priceEl.textContent);
+      if (input && nameEl && priceEl) track(pojItems, input, nameEl.textContent.trim(), priceEl.textContent);
     });
 
     rebuild();

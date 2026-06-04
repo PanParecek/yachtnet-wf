@@ -75,29 +75,21 @@
           <div class="sf-daterange" data-daterange aria-expanded="false">
             <svg class="sf-daterange-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             <button type="button" class="sf-daterange-trigger"><span class="sf-daterange-label sf-daterange-label--placeholder">Kdykoliv</span></button>
-            <input type="hidden" name="from" />
-            <input type="hidden" name="to" />
+            <input type="hidden" name="from" value="2026-07-12" />
+            <input type="hidden" name="to" value="2026-07-19" />
             <div class="sf-daterange-popover" hidden></div>
           </div>
         </div>
         <div class="sf-field sf-field--category">
           <span class="sf-label">Typ lodi</span>
           <select name="category" data-multi data-placeholder="Všechny typy">
-            <option value="" disabled selected>Všechny typy</option>
-            <option value="sailing">Plachetnice</option>
-            <option value="catamaran">Katamarán</option>
+            <option value="" disabled>Všechny typy</option>
+            <option value="sailing" selected>Plachetnice</option>
+            <option value="catamaran" selected>Katamarán</option>
             <option value="motor">Motorová loď</option>
             <option value="river">Říční loď</option>
             <option value="gulet">Gulet</option>
           </select>
-        </div>
-        <div class="sf-field sf-field--people">
-          <span class="sf-label">Počet osob</span>
-          <div class="sf-people" data-people-inline data-min="1" data-max="12">
-            <button type="button" class="sf-people-btn" data-step="-1" aria-label="Méně osob">−</button>
-            <input type="number" class="sf-people-input" name="people" value="4" min="1" max="12" inputmode="numeric" aria-label="Počet osob" />
-            <button type="button" class="sf-people-btn" data-step="1" aria-label="Více osob">+</button>
-          </div>
         </div>
         <button type="button" class="btn-search">Hledat lodě</button>
       </form>
@@ -128,27 +120,6 @@
         <div class="sidebar-header">
           <span class="sidebar-title">Filtry</span>
           <button class="sidebar-close" onclick="toggleMobileSidebar()" aria-label="Zavřít">✕</button>
-        </div>
-        <div class="filter-group">
-          <div class="filter-group-title">Typ lodi</div>
-          <div class="filter-checks">
-            <label class="filter-check"><input type="checkbox" checked /> <span>Plachetnice <span class="count">(58)</span></span></label>
-            <label class="filter-check"><input type="checkbox" checked /> <span>Katamarán <span class="count">(31)</span></span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Motorová loď <span class="count">(24)</span></span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Říční loď <span class="count">(12)</span></span></label>
-            <label class="filter-check"><input type="checkbox" /> <span>Gulet <span class="count">(9)</span></span></label>
-          </div>
-        </div>
-        <div class="filter-group">
-          <div class="filter-group-title">Přístav</div>
-          <div class="sf-combobox sf-combobox--filter" data-destination-search data-types-only="marina" aria-expanded="false">
-            <svg class="sf-combobox-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <div class="sf-combobox-field">
-              <input class="sf-combobox-input" type="text" placeholder="Hledat přístav…" autocomplete="off" role="combobox" aria-autocomplete="list" />
-            </div>
-            <input type="hidden" name="marina" value="" />
-            <div class="sf-combobox-dropdown" hidden></div>
-          </div>
         </div>
         <div class="filter-group">
           <div class="filter-subgroup">

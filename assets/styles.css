@@ -281,6 +281,17 @@
     }
     .nav-login-btn:hover { border-color: var(--int); color: var(--int); }
     .nav-login-btn svg { flex-shrink: 0; }
+    /* Přihlášený uživatel — solid fill, aby Můj účet více vystupoval (než outlined Přihlásit se) */
+    .nav-login-btn--account {
+      background: var(--int);
+      border-color: var(--int);
+      color: #fff;
+    }
+    .nav-login-btn--account:hover {
+      background: var(--int-dark);
+      border-color: var(--int-dark);
+      color: #fff;
+    }
 
     /* ── HERO ────────────────────────────────────── */
     .hero {
@@ -412,6 +423,20 @@
       font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
       color: var(--muted);
     }
+    .sf-combobox-section-title--popular {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--text);
+    }
+    .sf-combobox-section-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 12px; height: 12px; color: var(--int);
+    }
+    .sf-combobox-section-icon svg { width: 100%; height: 100%; }
+    .sf-combobox-popular-hint {
+      margin-top: 4px; padding: 10px 14px;
+      border-top: 1px solid var(--border);
+      font-size: 11px; color: var(--muted); text-align: center;
+    }
     .sf-combobox-item {
       display: flex; align-items: center; gap: 10px;
       width: 100%; padding: 9px 14px;
@@ -522,12 +547,16 @@
     .sf-cal-day:hover:not(:disabled):not(.is-empty) { background: var(--int-soft); color: var(--int); }
     .sf-cal-day.is-empty { cursor: default; visibility: hidden; }
     .sf-cal-day:disabled { color: var(--muted); cursor: not-allowed; opacity: .35; }
-    .sf-cal-day.is-in-range { background: var(--int-soft); color: var(--int); border-radius: 0; }
-    .sf-cal-day.is-start, .sf-cal-day.is-end { background: var(--int); color: #fff; font-weight: 700; }
+    .sf-cal-day.is-in-range,
+    .sf-cal-day.is-in-range-preview { background: var(--int-soft); color: var(--int); border-radius: 0; }
+    .sf-cal-day.is-start,
+    .sf-cal-day.is-end,
+    .sf-cal-day.is-end-preview { background: var(--int); color: #fff; font-weight: 700; }
     .sf-cal-day.is-start { border-top-right-radius: 0; border-bottom-right-radius: 0; }
-    .sf-cal-day.is-end { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+    .sf-cal-day.is-end,
+    .sf-cal-day.is-end-preview { border-top-left-radius: 0; border-bottom-left-radius: 0; }
     .sf-cal-day.is-start.is-end { border-radius: var(--radius); }
-    .sf-cal-day.is-today { font-weight: 800; }
+    .sf-cal-day.is-today { font-weight: 800; box-shadow: inset 0 0 0 1px var(--int); }
     .sf-cal-day.is-saturday:not(:disabled):not(.is-start):not(.is-end):not(.is-in-range) {
       font-weight: 700;
     }
@@ -595,6 +624,89 @@
       .promo-banner-visual { min-height: 180px; }
       .promo-banner-overlay-title { font-size: 20px; }
       .promo-banner-content { padding: 18px 20px; }
+    }
+
+    /* ── PROMO SLIDER (Thajsko hero + slide s dvojicí image-only) ── */
+    .promo-slider { max-width: var(--max); margin: 0 auto; }
+    .promo-slider-stage {
+      position: relative;
+      padding-bottom: 28px; /* místo pro tečky pod bannerem */
+    }
+    .promo-slider-stage .promo-banner { width: 100%; }
+
+    /* Slide typu „pair" — 2 image-only kartičky 50 % + 50 % */
+    .promo-pair {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .promo-tile {
+      position: relative; display: block;
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--cross-bg), var(--img-bg);
+      text-decoration: none; color: #fff;
+      min-height: 240px;
+      transition: transform .15s, box-shadow .15s, border-color .15s;
+    }
+    .promo-tile:hover {
+      transform: translateY(-1px);
+      border-color: var(--int);
+      box-shadow: 0 6px 18px rgba(0,0,0,.10);
+    }
+    .promo-tile-overlay {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 22px 26px 22px;
+      background: linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,.25) 60%, rgba(0,0,0,0) 100%);
+      text-shadow: 0 1px 8px rgba(0,0,0,.35);
+    }
+    .promo-tile-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; opacity: .9; margin-bottom: 6px;
+    }
+    .promo-tile-title {
+      font-size: 22px; font-weight: 800; line-height: 1.15; letter-spacing: -.02em;
+    }
+    @media (max-width: 760px) {
+      .promo-pair { grid-template-columns: 1fr; }
+      .promo-tile { min-height: 180px; }
+      .promo-tile-title { font-size: 18px; }
+    }
+
+    .promo-slider-arrow {
+      position: absolute; top: calc(50% - 14px); /* -14px kvůli kompenzaci padding-bottom pro tečky */
+      transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--surface);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--text); padding: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,.10);
+      transition: border-color .15s, color .15s, background .15s, transform .15s;
+      z-index: 2;
+    }
+    .promo-slider-arrow:hover {
+      border-color: var(--int); color: var(--int);
+      background: var(--surface);
+    }
+    .promo-slider-arrow--prev { left: -22px; }
+    .promo-slider-arrow--next { right: -22px; }
+
+    .promo-slider-dots {
+      position: absolute; left: 50%; bottom: 0;
+      transform: translateX(-50%);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .promo-slider-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      border: none; padding: 0; cursor: pointer;
+      background: var(--border);
+      transition: background .15s, width .15s, border-radius .15s;
+    }
+    .promo-slider-dot:hover { background: var(--muted); }
+    .promo-slider-dot.is-active { background: var(--int); width: 22px; border-radius: 4px; }
+
+    /* Na menších obrazovkách dej šipky dovnitř banneru, aby nepřesahovaly mimo viewport */
+    @media (max-width: 1420px) {
+      .promo-slider-arrow--prev { left: 12px; }
+      .promo-slider-arrow--next { right: 12px; }
     }
 
     /* ── SOCIAL PROOF STRIP ──────────────────────── */
@@ -2058,8 +2170,58 @@
       font-size: 28px; font-weight: 800; letter-spacing: -.02em;
       color: #fff; margin: 0; text-align: center;
     }
-    .results-hero .search-form { margin: 0; align-self: stretch; width: 100%; }
+    .results-hero .search-form {
+      margin: 0; align-self: stretch; width: 100%;
+      background: var(--surface); border-color: var(--border);
+      backdrop-filter: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,.18);
+    }
     .results-hero .search-form .btn-search { flex-shrink: 0; }
+    .results-hero .search-form .sf-label { color: var(--text); }
+
+    /* Invert outlines + textů u controls (bílý wrapper) */
+    .results-hero .search-form .sf-combobox,
+    .results-hero .search-form .sf-daterange,
+    .results-hero .search-form .sf-field select {
+      border-color: var(--border); background: var(--surface); color: var(--text);
+    }
+    .results-hero .search-form .sf-combobox:focus-within,
+    .results-hero .search-form .sf-daterange:focus-within,
+    .results-hero .search-form .sf-field select:focus,
+    .results-hero .search-form .sf-daterange-trigger:focus {
+      outline-color: var(--int);
+    }
+    /* Combobox (destinace) */
+    .results-hero .search-form .sf-combobox-icon { color: var(--muted); }
+    .results-hero .search-form .sf-combobox-input { color: var(--text); }
+    .results-hero .search-form .sf-combobox-input::placeholder { color: var(--muted); }
+    .results-hero .search-form .sf-chip {
+      background: var(--int-soft); border-color: transparent; color: var(--int);
+    }
+    .results-hero .search-form .sf-chip-remove { background: transparent; color: var(--int); }
+    .results-hero .search-form .sf-chip-remove:hover { background: var(--int); color: #fff; }
+    /* Daterange */
+    .results-hero .search-form .sf-daterange-icon { color: var(--muted); }
+    .results-hero .search-form .sf-daterange-label { color: var(--text); }
+    .results-hero .search-form .sf-daterange-label--placeholder { color: var(--muted); }
+    /* Select option list (Typ lodi) */
+    .results-hero .search-form .sf-field select option { color: var(--text); background: var(--surface); }
+    /* Custom select widget (Typ lodi) — .sf-sel-trigger */
+    .results-hero .search-form .sf-sel-trigger {
+      border-color: var(--border); background: var(--surface); color: var(--text);
+    }
+    .results-hero .search-form .sf-sel-trigger:hover { border-color: var(--muted); }
+    .results-hero .search-form .sf-sel-trigger.open {
+      border-color: var(--int); outline-color: rgba(105,3,255,.15);
+    }
+    .results-hero .search-form .sf-sel-val.is-placeholder { color: var(--muted); }
+    .results-hero .search-form .sf-sel-chevron { color: var(--muted); }
+    .results-hero .search-form .sf-sel-trigger.open .sf-sel-chevron { color: var(--int); }
+    .results-hero .search-form .sf-sel-chip {
+      background: var(--int-soft); border-color: transparent; color: var(--int);
+    }
+    .results-hero .search-form .sf-sel-chip-remove { background: transparent; color: var(--int); }
+    .results-hero .search-form .sf-sel-chip-remove:hover { background: var(--int); color: #fff; }
 
     /* ── RESULTS SUBBAR — okolní termíny + mapa ── */
     .results-subbar {
@@ -2069,9 +2231,9 @@
     .results-subbar-inner {
       max-width: var(--max); margin: 0 auto;
       display: flex; align-items: center; gap: 16px;
-      justify-content: space-between; flex-wrap: wrap;
+      justify-content: center; flex-wrap: wrap;
     }
-    .date-nearby { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .date-nearby { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; justify-content: center; }
     .date-nearby-label { font-size: 12px; font-weight: 600; color: var(--text); margin-right: 2px; }
     .date-chip { padding: 5px 12px; font-size: 12px; font-weight: 600; border: 1px solid var(--border); border-radius: 20px; cursor: pointer; background: var(--surface); white-space: nowrap; }
     .date-chip:hover, .date-chip.active { border-color: var(--int); background: var(--int-soft); color: var(--int); }
@@ -2607,14 +2769,20 @@
     .bk-context-row > .bk-card > .bk-card-body { flex: 1; }
     @media (max-width: 760px) { .bk-context-row { grid-template-columns: 1fr; } }
     .bk-sidebar { display: flex; flex-direction: column; gap: 16px; }
+    /* Sticky tlačítko — jen samotný button se přilepuje k spodnímu okraji viewportu.
+       USP/garance zůstávají v přirozené pozici v .bk-sidebar-cta níže (vždy viditelné). */
+    .bk-sticky-button {
+      position: sticky; bottom: 16px; z-index: 10;
+    }
+    .bk-sticky-button .btn-booking {
+      width: 100%;
+      box-shadow: 0 8px 24px rgba(105,3,255,.35), 0 2px 6px rgba(0,0,0,.12);
+    }
     .bk-sidebar-cta {
-      position: sticky; bottom: 0; z-index: 10;
       background: var(--surface);
-      border: 1px solid var(--border); border-top: 1px solid var(--border);
-      border-radius: var(--radius) var(--radius) 0 0;
-      padding: 18px 18px 20px;
-      box-shadow: 0 -10px 24px rgba(0,0,0,.10), 0 -1px 0 var(--border);
-      margin: 0 -1px -1px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px 18px;
     }
 
     .bk-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
@@ -2701,6 +2869,97 @@
     .plavba-row-val { color: var(--text); font-weight: 500; }
     .plavba-row-val a { color: var(--int); text-decoration: none; }
     .plavba-row-val a:hover { text-decoration: underline; }
+    /* ── CHECK-IN — formulář online check-inu ──────────── */
+    .checkin-header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 28px 24px 24px;
+    }
+    .checkin-header-inner {
+      max-width: 820px; margin: 0 auto;
+    }
+    .checkin-title { font-size: 26px; font-weight: 800; letter-spacing: -.02em; margin: 0 0 4px; }
+    .checkin-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+    .checkin-intro { font-size: 14px; color: var(--text); line-height: 1.55; max-width: 640px; margin: 0; }
+
+    .checkin-list { display: flex; flex-direction: column; gap: 0; }
+    .checkin-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px; line-height: 1.5;
+      cursor: pointer;
+    }
+    .checkin-item:last-child { border-bottom: none; }
+    .checkin-item input[type="checkbox"] {
+      width: 18px; height: 18px; accent-color: var(--int);
+      flex-shrink: 0; margin-top: 2px; cursor: pointer;
+    }
+    .checkin-item strong { font-weight: 700; color: var(--text); }
+    .checkin-item a { color: var(--int); text-decoration: none; }
+    .checkin-item a:hover { text-decoration: underline; }
+    .checkin-item input[type="checkbox"]:checked + span { color: var(--muted); }
+    .checkin-item input[type="checkbox"]:checked + span strong { color: var(--muted); }
+
+    .checkin-actions {
+      display: flex; justify-content: flex-end; gap: 12px;
+      margin-top: 8px;
+    }
+    .checkin-actions .btn-booking { padding: 0 28px; }
+
+    /* Disclaimer u Marina / Charterové společnosti — info je orientační */
+    .info-disclaimer {
+      font-size: 11px; color: var(--muted); font-style: italic;
+      line-height: 1.5; margin: 12px 0 0;
+      padding: 8px 12px;
+      background: var(--bg); border-left: 2px solid var(--border);
+      border-radius: 3px;
+    }
+
+    /* Hotline — pohotovostní kontakt 24/7 */
+    .hotline-box {
+      display: flex; align-items: center; gap: 18px;
+      padding: 18px 22px;
+      background: var(--int-soft);
+      border-left: 4px solid var(--int);
+      border-radius: var(--radius);
+    }
+    .hotline-icon {
+      position: relative; flex-shrink: 0;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--int); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .hotline-icon svg { width: 24px; height: 24px; }
+    .hotline-pulse {
+      position: absolute; top: 2px; right: 2px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: #22c55e; border: 2px solid var(--surface);
+    }
+    .hotline-pulse::after {
+      content: ''; position: absolute; inset: -4px;
+      border-radius: 50%; background: rgba(34,197,94,.45);
+      animation: hotlinePulse 1.8s ease-out infinite;
+    }
+    @keyframes hotlinePulse {
+      0%   { transform: scale(.6); opacity: .8; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+    .hotline-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .hotline-tagline { font-size: 12px; color: var(--text); font-weight: 600; }
+    .hotline-number {
+      font-size: 22px; font-weight: 800; color: var(--int);
+      text-decoration: none; letter-spacing: -.01em;
+      line-height: 1.1;
+    }
+    .hotline-number:hover { color: var(--int-dark); }
+    .hotline-note { font-size: 11px; color: var(--muted); }
+    /* Kompaktní varianta pro užší sidebar (menší ikonka, menší typo na čísle) */
+    .hotline-box--compact { gap: 14px; padding: 14px 16px; }
+    .hotline-box--compact .hotline-icon { width: 42px; height: 42px; }
+    .hotline-box--compact .hotline-icon svg { width: 20px; height: 20px; }
+    .hotline-box--compact .hotline-number { font-size: 17px; }
+    .hotline-box--compact .hotline-tagline { font-size: 11px; }
+
     .plavba-poi-list {
       display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
     }
@@ -2735,8 +2994,20 @@
       display: inline-flex; align-items: center; gap: 5px;
       color: var(--int); font-size: 13px; font-weight: 600;
       flex-shrink: 0; white-space: nowrap;
+      text-decoration: none;
     }
     .doc-item:hover .doc-action { color: var(--int-dark); }
+    /* Doc-item s více akcemi (Stáhnout + Odeslat znovu apod.) — wrapperem je <div>, ne <a> */
+    .doc-actions {
+      display: flex; align-items: center; gap: 16px;
+      flex-shrink: 0;
+    }
+    .doc-action-btn {
+      background: none; border: none; padding: 0;
+      font-family: inherit; font-size: 13px; font-weight: 600;
+      color: var(--int); cursor: pointer; white-space: nowrap;
+    }
+    .doc-action-btn:hover { color: var(--int-dark); text-decoration: underline; }
     .extra-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--int); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
     .extra-item-info { flex: 1; }
     .extra-item-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
@@ -2763,7 +3034,7 @@
     .guarantee-icon { width: 36px; height: 36px; background: var(--int); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .guarantee-text-title { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
     .guarantee-text-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-    /* USP přímo v CTA kontejneru — žádné pozadí, jen drobné položky */
+    /* USP přímo v CTA kontejneru — vždy viditelné v přirozené pozici pod sticky buttonem. */
     .cta-guarantees {
       display: flex; flex-direction: column; gap: 10px;
       margin-top: 14px; padding-top: 14px;
@@ -2786,17 +3057,40 @@
     .detail-row-val { font-weight: 600; text-align: right; max-width: 55%; }
 
     /* Price breakdown */
+    .price-section-title {
+      font-size: 11px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      margin: 14px 0 4px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px;
+    }
+    .price-section-title:first-child { margin-top: 0; }
+    .price-section-note {
+      font-size: 11px; font-weight: 500; letter-spacing: 0;
+      text-transform: none; color: var(--muted);
+      width: 100%; margin-top: 1px;
+    }
+    .price-line-note {
+      display: inline-block; margin-left: 6px;
+      font-size: 11px; font-weight: 400; color: var(--muted);
+    }
+    .price-line--subtotal {
+      font-weight: 700; border-bottom: 2px solid var(--border); padding-top: 4px;
+    }
+    .price-line--empty {
+      color: var(--muted); font-style: italic; font-size: 12px;
+      padding: 8px 0;
+    }
     .price-line { display: flex; justify-content: space-between; padding: 9px 0; font-size: 14px; border-bottom: 1px solid var(--border); }
     .price-line:last-of-type { border-bottom: none; }
     .price-line:has(+ .price-line.total) { border-bottom: none; }
-    .price-line.total { font-size: 17px; font-weight: 800; border-top: 2px solid var(--text); border-bottom: none; margin-top: 8px; padding-top: 14px; }
+    .price-line.total { font-size: 14px; font-weight: 800; border-top: 1px solid var(--text); border-bottom: none; margin-top: 8px; padding-top: 12px; }
     .price-line.discount { color: #16a34a; font-weight: 600; }
     .cancel-info { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius); padding: 12px 14px; margin-top: 16px; font-size: 12px; color: #166534; line-height: 1.6; }
     .cancel-info strong { display: block; margin-bottom: 3px; font-size: 13px; }
     .price-line.muted { color: var(--muted); border-bottom: none; padding-top: 4px; padding-bottom: 4px; font-size: 12px; }
     .price-line.muted span:last-child { font-weight: 700; color: var(--text); }
-    .price-line--prominent { font-size: 22px !important; letter-spacing: -.02em; }
-    .price-line--prominent span:last-child { font-size: 24px; word-spacing: 0.2em; }
+    .price-line--prominent { font-size: 15px !important; letter-spacing: -.01em; }
+    .price-line--prominent span:last-child { font-size: 16px; word-spacing: 0.15em; }
+    .price-line--separator { border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 4px; }
 
     /* Přehled plateb */
     .pay-schedule { display: flex; flex-direction: column; }
@@ -2850,6 +3144,45 @@
     .hold-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
     .hold-desc { font-size: 13px; color: var(--muted); }
     .hold-timer { font-size: 22px; font-weight: 800; color: #f59e0b; white-space: nowrap; letter-spacing: .03em; }
+    .hold-status {
+      font-size: 13px; font-weight: 700; color: #f59e0b;
+      white-space: nowrap; letter-spacing: .02em;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .hold-status::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: #f59e0b;
+      animation: holdPulse 1.4s ease-in-out infinite;
+    }
+    @keyframes holdPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .4; transform: scale(.85); }
+    }
+    .hold-cta {
+      flex-shrink: 0; white-space: nowrap;
+      padding: 9px 16px; border-radius: var(--radius);
+      font-size: 13px; font-weight: 700; font-family: inherit;
+      background: #f59e0b; color: #fff; text-decoration: none;
+      transition: background .15s;
+      border: none; cursor: pointer;
+    }
+    .hold-cta:hover { background: #d97706; }
+
+    /* Success variant — zelená (charterovka potvrdila, pokračujte k platbě) */
+    .hold-box--success { background: #ecfdf5; border-color: #a7f3d0; }
+    .hold-box--success .hold-icon { background: #10b981; }
+    .hold-box--success .hold-status { color: #10b981; }
+    .hold-box--success .hold-status::before { background: #10b981; }
+    .hold-box--success .hold-cta { background: #10b981; }
+    .hold-box--success .hold-cta:hover { background: #059669; }
+
+    /* Error variant — červená (předrezervace se nezdařila, opakovat platbu) */
+    .hold-box--error { background: #fef2f2; border-color: #fca5a5; }
+    .hold-box--error .hold-icon { background: #dc2626; }
+    .hold-box--error .hold-status { color: #dc2626; }
+    .hold-box--error .hold-status::before { background: #dc2626; }
+    .hold-box--error .hold-cta { background: #dc2626; }
+    .hold-box--error .hold-cta:hover { background: #b91c1c; }
 
     /* Personal recap */
     .recap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
@@ -3169,6 +3502,44 @@
     .auth-nav { height: 56px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 28px; }
     .auth-body { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 16px; }
     .auth-card { width: 100%; max-width: 400px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 32px; }
+
+    /* Side-by-side layout pro registraci: formulář + benefits panel */
+    .auth-layout {
+      display: grid; grid-template-columns: 400px 340px; gap: 32px;
+      align-items: start;
+    }
+    .auth-benefits {
+      background: var(--int-soft);
+      border: 1px solid #d4c8ff;
+      border-radius: 10px;
+      padding: 26px 26px;
+    }
+    .auth-benefits-title {
+      font-size: 16px; font-weight: 800; letter-spacing: -.01em;
+      margin-bottom: 18px;
+    }
+    .auth-benefits-list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .auth-benefit-item {
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .auth-benefit-icon {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--int); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .auth-benefit-title {
+      font-size: 13px; font-weight: 700; line-height: 1.3; margin-bottom: 3px;
+    }
+    .auth-benefit-desc {
+      font-size: 12px; color: var(--text); line-height: 1.5; opacity: .8;
+    }
+    @media (max-width: 800px) {
+      .auth-layout { grid-template-columns: 1fr; gap: 20px; max-width: 400px; }
+    }
     .auth-title { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
     .auth-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
     .auth-field { margin-bottom: 14px; }
@@ -3406,6 +3777,80 @@
     .res-rate-edit { font-size: 11px; color: var(--int); text-decoration: none; font-weight: 600; }
     .res-rate-edit:hover { color: var(--int-dark); }
 
+    /* ── RATE MODAL — hodnocení proběhlé plavby ────────── */
+    .rate-modal {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .rate-modal[hidden] { display: none; }
+    .rate-modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,.55);
+      animation: rmFade .2s ease;
+    }
+    @keyframes rmFade { from { opacity: 0; } to { opacity: 1; } }
+    .rate-modal-card {
+      position: relative; z-index: 1;
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 32px 32px 24px;
+      width: 100%; max-width: 480px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      max-height: 90vh; overflow-y: auto;
+      animation: rmPop .25s cubic-bezier(.2,.9,.3,1.2);
+    }
+    @keyframes rmPop { from { transform: translateY(8px) scale(.98); opacity: 0; } to { transform: none; opacity: 1; } }
+    .rate-modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 32px; height: 32px; border-radius: 50%;
+      border: none; background: transparent;
+      color: var(--muted); cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: background .15s, color .15s;
+    }
+    .rate-modal-close:hover { background: var(--bg); color: var(--text); }
+    .rate-modal-title { font-size: 20px; font-weight: 800; letter-spacing: -.01em; }
+    .rate-modal-sub { font-size: 13px; color: var(--muted); margin-top: 4px; margin-bottom: 18px; }
+    .rate-modal-list { display: flex; flex-direction: column; }
+    .rate-modal-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .rate-modal-row:last-child { border-bottom: none; }
+    .rate-modal-label { font-size: 14px; font-weight: 600; }
+    .rate-stars-input { display: flex; gap: 2px; }
+    .rate-star {
+      background: none; border: none; padding: 4px 2px;
+      color: #d4d4d4; cursor: pointer;
+      font-size: 26px; line-height: 1;
+      font-family: inherit;
+      transition: color .12s, transform .12s;
+    }
+    .rate-star:hover { transform: scale(1.15); }
+    .rate-star.is-active, .rate-star.is-hover { color: #f5a623; }
+    .rate-modal-comment {
+      width: 100%; margin-top: 14px;
+      padding: 12px; border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit; font-size: 13px;
+      resize: vertical; min-height: 80px;
+      color: var(--text); background: var(--surface);
+    }
+    .rate-modal-comment:focus { outline: 2px solid var(--int); outline-offset: -2px; border-color: transparent; }
+    .rate-modal-comment::placeholder { color: var(--muted); }
+    .rate-modal-actions {
+      display: flex; justify-content: flex-end; gap: 10px;
+      margin-top: 18px;
+    }
+    .rate-modal-actions .btn-primary-lg { padding: 10px 22px; font-size: 13px; }
+    .rate-modal-error {
+      font-size: 12px; color: #e74c3c;
+      margin-top: 8px; text-align: right;
+      min-height: 16px;
+    }
+
     /* Přehled plateb v detailu rezervace */
     .res-pay-grid { display: flex; flex-direction: column; gap: 10px; }
     .res-pay-row {
@@ -3501,7 +3946,26 @@
       background: var(--int); color: #fff;
       transform: translate(-50%, -50%) scale(1.08);
     }
+    .map-pin--cluster.is-selected {
+      background: var(--int-dark); color: #fff;
+      border-color: var(--int-dark);
+      box-shadow: 0 4px 14px rgba(105,3,255,.45);
+    }
     .map-pin--cluster::after { display: none; }
+    /* Selected badge — zelený check v rohu (pin i cluster) */
+    .map-pin--cluster.is-selected::before,
+    .map-pin--marina.is-selected .map-pin-shape::before {
+      content: '✓';
+      position: absolute;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #22c55e; color: #fff;
+      font-size: 11px; font-weight: 800; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid #fff;
+      z-index: 4;
+    }
+    .map-pin--cluster.is-selected::before { top: -4px; right: -4px; }
+    .map-pin--marina.is-selected .map-pin-shape::before { top: -6px; right: -6px; }
 
     /* Marina pin — samotný přístav (teardrop tvar s tipem dolů) */
     .map-pin--marina {

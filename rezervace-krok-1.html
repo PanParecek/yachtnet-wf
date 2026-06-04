@@ -69,6 +69,29 @@
     <!-- HLAVNÍ SLOUPEC -->
     <div class="bk-main">
 
+      <!-- 1. Rekapitulace lodi -->
+      <div class="bk-card">
+        <div class="bk-card-head">
+          <div class="bk-card-title">Vaše loď</div>
+          <button class="bk-card-edit" onclick="window.location.href='detail-lodi.html'">Změnit loď</button>
+        </div>
+        <div class="bk-card-body">
+          <div class="bk-boat">
+            <div class="bk-boat-img"></div>
+            <div>
+              <div class="bk-boat-name">Bavaria C42 <span style="font-weight:400;color:var(--muted);">"Lady One"</span></div>
+              <div class="bk-boat-sub">🇭🇷 ACI Marina Split · Charterová spol. MareSail</div>
+              <div class="bk-boat-specs">
+                <span class="bk-boat-spec"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>12.8 m</span>
+                <span class="bk-boat-spec"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>3 kajuty</span>
+                <span class="bk-boat-spec"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>až 8 osob</span>
+                <span class="bk-boat-spec">Rok 2021</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Kontext rezervace (přesunuto ze sidebaru) -->
       <div class="bk-context-row">
         <!-- Detaily rezervace -->
@@ -105,29 +128,6 @@
 
 
 
-      <!-- 1. Rekapitulace lodi -->
-      <div class="bk-card">
-        <div class="bk-card-head">
-          <div class="bk-card-title">Vaše loď</div>
-          <button class="bk-card-edit" onclick="window.location.href='detail-lodi.html'">Změnit loď</button>
-        </div>
-        <div class="bk-card-body">
-          <div class="bk-boat">
-            <div class="bk-boat-img"></div>
-            <div>
-              <div class="bk-boat-name">Bavaria C42 <span style="font-weight:400;color:var(--muted);">"Lady One"</span></div>
-              <div class="bk-boat-sub">🇭🇷 ACI Marina Split · Charterová spol. MareSail</div>
-              <div class="bk-boat-specs">
-                <span class="bk-boat-spec"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>12.8 m</span>
-                <span class="bk-boat-spec"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>3 kajuty</span>
-                <span class="bk-boat-spec"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>až 8 osob</span>
-                <span class="bk-boat-spec">Rok 2021</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- 2. Pojištění -->
       <div class="bk-card">
         <div class="bk-card-head"><div class="bk-card-title">Zvolte variantu pojištění</div></div>
@@ -135,7 +135,7 @@
           <p class="bk-card-intro">Volitelně přidejte libovolnou kombinaci krytí. Můžete vybrat jedno, všechny, nebo žádné.</p>
           <div class="pkg-ins-list">
             <label class="pkg-ins-row">
-              <input type="checkbox" class="pkg-ins-check" />
+              <input type="checkbox" class="pkg-ins-check" checked />
               <span class="pkg-ins-row-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </span>
@@ -181,6 +181,7 @@
           </a>
         </div>
         <div class="bk-card-body">
+          <p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5;">Nemáte účet? <a href="registrace.html" style="color:var(--int);font-weight:600;">Registrujte se</a> a získejte řadu výhod — věrnostní slevy, rychlejší check-in u dalších rezervací a historii všech plaveb.</p>
           <div class="bk-form-grid">
             <div class="bk-field">
               <label class="bk-label" for="f-name">Jméno <sup>*</sup></label>
@@ -223,14 +224,6 @@
         <div class="bk-card-head"><div class="bk-card-title">Doplňkové služby <span style="font-size:12px;font-weight:400;color:var(--muted);margin-left:6px;">(lze dokoupit později u check-inu)</span></div></div>
         <div class="bk-card-body">
           <div class="extra-list">
-            <label class="extra-item is-required">
-              <input type="checkbox" id="ex1" checked disabled />
-              <div class="extra-item-info">
-                <div class="extra-item-name">Závěrečný úklid <span class="extra-required-tag">povinné</span></div>
-                <div class="extra-item-desc">Profesionální úklid lodi po návratu</div>
-              </div>
-              <div class="extra-item-price">2 500 Kč</div>
-            </label>
             <label class="extra-item is-required">
               <input type="checkbox" id="ex2" checked disabled />
               <div class="extra-item-info">
@@ -302,15 +295,45 @@
     <!-- POSTRANNÍ PANEL -->
     <div class="bk-sidebar">
 
-      <!-- Souhrn cen -->
-      <div class="bk-card" data-summary>
-        <div class="bk-card-head"><div class="bk-card-title">Souhrn cen</div></div>
-        <div class="bk-card-body" data-summary-body>
-          <div class="price-line"><span>Pronájem lodi (7 nocí)</span><span>36 000 Kč</span></div>
-          <div data-summary-anchor></div>
-          <div class="price-line"><span>Povinný poplatek</span><span>12 611 Kč</span></div>
+      <!-- Cena za pronájem -->
+      <div class="bk-card">
+        <div class="bk-card-head"><div class="bk-card-title">Cena za pronájem</div></div>
+        <div class="bk-card-body">
+          <div class="price-line"><span>Katalogová cena (7 nocí)</span><span>36 000 Kč</span></div>
           <div class="price-line discount"><span>Sleva 10 % (early bird)</span><span>−3 600 Kč</span></div>
-          <div class="price-line total price-line--prominent"><span>Celkem</span><span data-summary-total>49 511 Kč</span></div>
+          <div class="price-line total price-line--prominent"><span>Cena za pronájem celkem</span><span>32 400 Kč</span></div>
+        </div>
+      </div>
+
+      <!-- Poplatky a doplňkové služby -->
+      <div class="bk-card" data-extras-card>
+        <div class="bk-card-head"><div class="bk-card-title">Poplatky a doplňkové služby</div></div>
+        <div class="bk-card-body">
+          <div class="price-section-title">Povinné poplatky</div>
+          <div class="price-line">
+            <span>Transit log <span class="price-line-note">platíte na základně</span></span>
+            <span>12 611 Kč</span>
+          </div>
+          <div class="price-line">
+            <span>Skipper <span class="price-line-note">platíte na základně</span></span>
+            <span>14 000 Kč</span>
+          </div>
+          <div class="price-line">
+            <span>Early check-in <span class="price-line-note">platíte na základně</span></span>
+            <span>0 Kč</span>
+          </div>
+
+          <div class="price-section-title">Pojištění <span class="price-section-note">Platíte pojišťovně · platí se předem</span></div>
+          <div data-pojisteni-anchor>
+            <div class="price-line price-line--empty" data-pojisteni-empty>Žádné pojištění nezvoleno.</div>
+          </div>
+
+          <div class="price-section-title">Vybavení a služby <span class="price-section-note">Platíte na základně · vybavení podléhá potvrzení charterové společnosti</span></div>
+          <div data-extras-anchor>
+            <div class="price-line price-line--empty" data-extras-empty>Žádné vybavení a služby nezvoleny.</div>
+          </div>
+
+          <div class="price-line total price-line--prominent"><span>Poplatky a doplňky celkem</span><span data-extras-total>0 Kč</span></div>
         </div>
       </div>
 
@@ -328,26 +351,37 @@
             </div>
             <div class="pay-schedule-row">
               <div class="pay-schedule-row-label">
-                <span class="pay-schedule-row-name">Doplatek 30 dnů před začátkem</span>
-                <span class="pay-schedule-row-sub">12. 6. 2025 · online</span>
+                <span class="pay-schedule-row-name">Doplatek 1 — 60 dnů před začátkem</span>
+                <span class="pay-schedule-row-sub">13. 5. 2026 · online</span>
               </div>
-              <div class="pay-schedule-row-val" data-pay-rest>25 830 Kč</div>
+              <div class="pay-schedule-row-val" data-pay-rest-1>12 915 Kč</div>
+            </div>
+            <div class="pay-schedule-row">
+              <div class="pay-schedule-row-label">
+                <span class="pay-schedule-row-name">Doplatek 2 — 30 dnů před začátkem</span>
+                <span class="pay-schedule-row-sub">12. 6. 2026 · online</span>
+              </div>
+              <div class="pay-schedule-row-val" data-pay-rest-2>12 915 Kč</div>
             </div>
             <div class="pay-schedule-row">
               <div class="pay-schedule-row-label">
                 <span class="pay-schedule-row-name">Zaplatíte na základně</span>
                 <span class="pay-schedule-row-sub">Povinný poplatek + vratná kauce</span>
               </div>
-              <div class="pay-schedule-row-val">12 611 Kč<br><span class="pay-schedule-row-val-sub">+ 4 000 €</span></div>
+              <div class="pay-schedule-row-val"><span data-pay-marina>26 611 Kč</span><br><span class="pay-schedule-row-val-sub">+ 4 000 €</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- STICKY CTA + Garance -->
-      <div class="bk-sidebar-cta">
+      <!-- STICKY button (jen samotné tlačítko se přilepuje k spodnímu okraji viewportu) -->
+      <div class="bk-sticky-button">
         <button class="btn-booking" onclick="window.location.href='rezervace-krok-2.html'">Pokračovat ke kontrole →</button>
-        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.5;">Rezervace nezavazuje k okamžité platbě</p>
+      </div>
+
+      <!-- USP / Garance — statické, v přirozené pozici pod sticky buttonem -->
+      <div class="bk-sidebar-cta">
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:0;margin-bottom:0;line-height:1.5;">Rezervace nezavazuje k okamžité platbě</p>
         <div class="cta-guarantees">
           <div class="cta-guarantee-item">
             <span class="cta-guarantee-icon"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
