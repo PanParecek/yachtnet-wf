@@ -663,6 +663,8 @@
         var nextYear = viewYear, nextMonth = viewMonth + 1;
         if (nextMonth > 11) { nextMonth = 0; nextYear++; }
         var html = '';
+        // Decentní obchodní poznámka nahoře — sobotní turnusy jsou pro klienta výhodnější.
+        html += '<div class="sf-cal-note">V termínu sobota–sobota je největší výběr za nejlepší ceny.</div>';
         html += '<div class="sf-cal-head">';
         html += '<button type="button" class="sf-cal-nav" data-dir="-1" aria-label="Předchozí měsíce"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>';
         html += '<button type="button" class="sf-cal-nav sf-cal-nav--next" data-dir="1" aria-label="Další měsíce"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>';
@@ -2123,15 +2125,26 @@
   if (document.getElementById('boatsGrid')) renderAllBoats();
 
   // ── Rate modal (Proběhlé rezervace → Přidat hodnocení) ──
+  // 4-step wizard:
+  //   1. Celkový dojem (overall rating)
+  //   2. Detailní hodnocení (4 oblasti)
+  //   3. Slovní hodnocení — prompt + photo upload se mění dle overall (1–3 = negativní, 4–5 = pozitivní)
+  //   4. Poděkování (success screen)
   (function initRateModal() {
     var modal = document.getElementById('rateModal');
     if (!modal) return;
     var boatLabel = modal.querySelector('[data-rm-boat]');
     var commentEl = modal.querySelector('[data-rm-comment]');
-    var actionsEl = modal.querySelector('.rate-modal-actions');
+    var textTitleEl = modal.querySelector('[data-rm-text-title]');
+    var textQuestionEl = modal.querySelector('[data-rm-text-question]');
+    var photoBoxEl = modal.querySelector('[data-rm-photo]');
+    var photoListEl = modal.querySelector('[data-rm-photo-list]');
+    var photoInputEl = modal.querySelector('[data-rm-photo-input]');
+    var steps = modal.querySelectorAll('[data-rm-step]');
     var errorEl = null;
     var currentRow = null;
-    var ratings = { boat: 0, charter: 0, yachtnet: 0 };
+    var currentStep = 1;
+    var ratings = { overall: 0, cleanliness: 0, technical: 0, communication: 0, value: 0 };
 
     function syncStars() {
       modal.querySelectorAll('.rate-stars-input').forEach(function(group) {
@@ -2148,13 +2161,45 @@
       if (errorEl) { errorEl.remove(); errorEl = null; }
     }
 
+    function configureTextStep() {
+      var isNegative = ratings.overall > 0 && ratings.overall <= 3;
+      if (isNegative) {
+        if (textTitleEl) textTitleEl.textContent = 'To nás mrzí';
+        if (textQuestionEl) textQuestionEl.textContent = 'Co přesně nebylo v pořádku? Pomůže nám to situaci s charterem/lodí vyřešit.';
+        if (commentEl) commentEl.placeholder = 'Popište prosím, co se nepovedlo…';
+        if (photoBoxEl) photoBoxEl.hidden = false;
+      } else {
+        if (textTitleEl) textTitleEl.textContent = 'Co se vám líbilo nejvíc?';
+        if (textQuestionEl) textQuestionEl.textContent = 'Podělte se o nejlepší momenty — pomůže to ostatním kapitánům.';
+        if (commentEl) commentEl.placeholder = 'Co se vám líbilo na lodi, charterovce, marině…';
+        if (photoBoxEl) photoBoxEl.hidden = true;
+      }
+    }
+
+    function showStep(n) {
+      currentStep = n;
+      clearError();
+      steps.forEach(function(s) {
+        s.hidden = parseInt(s.dataset.rmStep, 10) !== n;
+      });
+      if (n === 3) configureTextStep();
+      var card = modal.querySelector('.rate-modal-card');
+      if (card) card.scrollTop = 0;
+    }
+
+    function resetPhotos() {
+      if (photoListEl) photoListEl.innerHTML = '';
+      if (photoInputEl) photoInputEl.value = '';
+    }
+
     function open(row, boatName) {
       currentRow = row;
-      ratings = { boat: 0, charter: 0, yachtnet: 0 };
+      ratings = { overall: 0, cleanliness: 0, technical: 0, communication: 0, value: 0 };
       syncStars();
-      clearError();
       if (boatLabel) boatLabel.textContent = boatName || '';
       if (commentEl) commentEl.value = '';
+      resetPhotos();
+      showStep(1);
       modal.hidden = false;
       document.body.style.overflow = 'hidden';
     }
@@ -2175,23 +2220,45 @@
       return html;
     }
 
-    function submit() {
-      if (!currentRow) return;
-      if (!ratings.boat || !ratings.charter || !ratings.yachtnet) {
-        clearError();
-        errorEl = document.createElement('div');
-        errorEl.className = 'rate-modal-error';
-        errorEl.textContent = 'Ohodnoťte prosím všechny tři kategorie.';
-        actionsEl.parentNode.insertBefore(errorEl, actionsEl);
-        return;
+    function showError(msg) {
+      clearError();
+      errorEl = document.createElement('div');
+      errorEl.className = 'rate-modal-error';
+      errorEl.textContent = msg;
+      var currentActions = modal.querySelector('[data-rm-step="' + currentStep + '"] .rate-modal-actions');
+      if (currentActions) currentActions.parentNode.insertBefore(errorEl, currentActions);
+    }
+
+    function goNext() {
+      if (currentStep === 1) {
+        if (!ratings.overall) {
+          showError('Ohodnoťte prosím celkový dojem alespoň 1 hvězdičkou.');
+          return;
+        }
+        showStep(2);
+      } else if (currentStep === 2) {
+        if (!ratings.cleanliness || !ratings.technical || !ratings.communication || !ratings.value) {
+          showError('Ohodnoťte prosím všechny čtyři oblasti.');
+          return;
+        }
+        showStep(3);
       }
+    }
+
+    function goBack() {
+      if (currentStep === 2) showStep(1);
+      else if (currentStep === 3) showStep(2);
+    }
+
+    function submit() {
+      // Volá se jen z kroku 3 (poslední krok s daty)
+      if (currentStep !== 3 || !currentRow) return;
+      // Persist do DOMu — zobrazujeme jen celkový dojem (1× 5 hvězd)
       currentRow.classList.add('res-rate-row--done');
       currentRow.innerHTML = '<div class="res-rate-display">' +
-        '<span class="res-rate-item"><span class="res-rate-label">Loď:</span><span class="res-rate-stars">' + renderStars(ratings.boat) + '</span></span>' +
-        '<span class="res-rate-item"><span class="res-rate-label">Charterovka:</span><span class="res-rate-stars">' + renderStars(ratings.charter) + '</span></span>' +
-        '<span class="res-rate-item"><span class="res-rate-label">Yachtnet:</span><span class="res-rate-stars">' + renderStars(ratings.yachtnet) + '</span></span>' +
+        '<span class="res-rate-item"><span class="res-rate-label">Vaše hodnocení:</span><span class="res-rate-stars">' + renderStars(ratings.overall) + '</span></span>' +
       '</div>';
-      close();
+      showStep(4);
     }
 
     // Open: klik na „Přidat hodnocení" — listener přímo na linku, aby inline
@@ -2207,9 +2274,12 @@
       });
     });
 
-    // Klik dovnitř modalu: hvězdy, zavřít, submit
+    // Klik dovnitř modalu: hvězdy, navigace, zavřít, submit
     modal.addEventListener('click', function(e) {
       if (e.target.closest('[data-rm-close]')) { close(); return; }
+      if (e.target.closest('[data-rm-next]')) { goNext(); return; }
+      if (e.target.closest('[data-rm-back]')) { goBack(); return; }
+      if (e.target.closest('[data-rm-submit]')) { submit(); return; }
       var star = e.target.closest('.rate-star');
       if (star) {
         var group = star.closest('.rate-stars-input');
@@ -2218,8 +2288,23 @@
         clearError();
         return;
       }
-      if (e.target.closest('[data-rm-submit]')) { submit(); return; }
     });
+
+    // Photo upload — náhled jmen vybraných souborů (wireframe-level, žádný real upload)
+    if (photoInputEl) {
+      photoInputEl.addEventListener('change', function() {
+        Array.from(photoInputEl.files).forEach(function(file) {
+          var item = document.createElement('div');
+          item.className = 'rate-photo-item';
+          item.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' +
+            '<span class="rate-photo-item-name">' + (file.name || 'fotka') + '</span>' +
+            '<button type="button" class="rate-photo-item-remove" aria-label="Odebrat">×</button>';
+          item.querySelector('.rate-photo-item-remove').addEventListener('click', function() { item.remove(); });
+          if (photoListEl) photoListEl.appendChild(item);
+        });
+        photoInputEl.value = ''; // reset, ať jde znovu zvolit ty samé soubory
+      });
+    }
 
     // Hover preview hvězd
     modal.querySelectorAll('.rate-stars-input').forEach(function(group) {

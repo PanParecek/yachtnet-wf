@@ -570,6 +570,11 @@
     }
     .sf-cal-clear:hover { color: var(--int-dark); }
     .sf-cal-hint { color: var(--muted); }
+    .sf-cal-note {
+      margin-bottom: 10px; padding-bottom: 10px;
+      border-bottom: 1px dashed var(--border);
+      font-size: 11px; color: var(--muted); line-height: 1.5;
+    }
 
     /* ── PROMO BANNER (full-width marketing) ─────────── */
     .promo-band { background: var(--surface); border-bottom: 1px solid var(--border); }
@@ -1724,6 +1729,82 @@
     .licence-item-desc { font-size: 12px; color: var(--muted); }
     .licence-item-arrow { color: var(--int); flex-shrink: 0; align-self: center; }
 
+    /* ── REVIEWS — hodnocení a recenze lodi ──────────── */
+    .reviews-summary {
+      display: grid; grid-template-columns: 220px 1fr; gap: 28px;
+      padding: 22px 24px; margin-bottom: 24px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    }
+    .reviews-summary-overall {
+      text-align: center; align-self: center;
+      padding-right: 28px; border-right: 1px solid var(--border);
+    }
+    .reviews-summary-score {
+      font-size: 44px; font-weight: 800; line-height: 1; letter-spacing: -.02em;
+      color: var(--text);
+    }
+    .reviews-summary-stars { color: #f5a623; font-size: 18px; letter-spacing: 2px; margin: 6px 0 4px; }
+    .reviews-summary-count { font-size: 12px; color: var(--muted); }
+    .reviews-summary-criteria { display: flex; flex-direction: column; gap: 10px; }
+    .reviews-criterion-row {
+      display: grid; grid-template-columns: 180px 1fr 36px; gap: 12px;
+      align-items: center; font-size: 13px;
+    }
+    .reviews-criterion-name { color: var(--text); }
+    .reviews-criterion-bar {
+      height: 6px; border-radius: 3px; background: var(--bg); overflow: hidden;
+      display: block;
+    }
+    .reviews-criterion-bar > span {
+      display: block; height: 100%; background: var(--int); border-radius: 3px;
+    }
+    .reviews-criterion-score { font-weight: 700; text-align: right; color: var(--text); }
+
+    .reviews-list { display: flex; flex-direction: column; gap: 16px; }
+    .review-item {
+      padding: 18px 20px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    }
+    .review-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 12px; margin-bottom: 10px;
+    }
+    .review-author { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .review-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--int-soft); color: var(--int);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; letter-spacing: .02em; flex-shrink: 0;
+    }
+    .review-name { font-size: 14px; font-weight: 700; line-height: 1.2; }
+    .review-meta { font-size: 11px; color: var(--muted); line-height: 1.3; margin-top: 2px; }
+    .review-stars { color: #f5a623; font-size: 14px; letter-spacing: 1px; flex-shrink: 0; }
+    .review-text { font-size: 14px; color: var(--text); line-height: 1.55; margin: 0 0 12px; }
+    .review-criteria {
+      display: flex; flex-wrap: wrap; gap: 4px 18px;
+      padding-top: 10px; border-top: 1px dashed var(--border);
+      font-size: 12px;
+    }
+    .review-criterion { display: inline-flex; align-items: baseline; gap: 5px; }
+    .review-criterion-l { color: var(--muted); }
+    .review-criterion-v { color: #f5a623; letter-spacing: 1px; font-size: 12px; }
+
+    .reviews-more {
+      margin-top: 18px; padding: 10px 22px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      font-size: 13px; font-weight: 600; color: var(--int);
+      font-family: inherit; cursor: pointer;
+      transition: border-color .15s, background .15s;
+    }
+    .reviews-more:hover { border-color: var(--int); background: var(--int-soft); }
+
+    @media (max-width: 760px) {
+      .reviews-summary { grid-template-columns: 1fr; gap: 18px; padding: 18px; }
+      .reviews-summary-overall { padding-right: 0; border-right: none; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+      .reviews-criterion-row { grid-template-columns: 1fr 80px 30px; }
+      .reviews-criterion-name { font-size: 12px; }
+    }
+
     .faq-list { }
     .faq-item { border-top: 1px solid var(--border); }
     .faq-item:last-child { border-bottom: 1px solid var(--border); }
@@ -2171,10 +2252,13 @@
       color: #fff; margin: 0; text-align: center;
     }
     .results-hero .search-form {
-      margin: 0; align-self: stretch; width: 100%;
+      margin: 0; align-self: center; width: 100%; max-width: 66%;
       background: var(--surface); border-color: var(--border);
       backdrop-filter: none;
       box-shadow: 0 4px 20px rgba(0,0,0,.18);
+    }
+    @media (max-width: 800px) {
+      .results-hero .search-form { max-width: 100%; align-self: stretch; }
     }
     .results-hero .search-form .btn-search { flex-shrink: 0; }
     .results-hero .search-form .sf-label { color: var(--text); }
@@ -3571,16 +3655,65 @@
     .otp-input:focus { outline: none; border-color: var(--int); }
 
     /* ── ACCOUNT ─────────────────── */
-    .account-layout { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 60px); }
-    .account-sidebar { border-right: 1px solid var(--border); padding: 24px 0; background: var(--surface); }
-    .account-nav-user { padding: 16px 20px 20px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
-    .account-nav-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--cross-bg), var(--img-bg); margin-bottom: 8px; }
-    .account-nav-name { font-size: 14px; font-weight: 700; }
-    .account-nav-email { font-size: 12px; color: var(--muted); }
-    .account-nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 20px; font-size: 14px; color: var(--text); cursor: pointer; text-decoration: none; border-right: 2px solid transparent; }
-    .account-nav-item:hover { background: var(--int-soft); color: var(--int); }
-    .account-nav-item.active { background: var(--int-soft); color: var(--int); font-weight: 600; border-right-color: var(--int); }
-    .account-main { padding: 32px; background: var(--bg); }
+    /* Horizontální account nav bar nad obsahem (přihlášený uživatel). */
+    .account-layout {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; flex-direction: column;
+      min-height: calc(100vh - 60px);
+    }
+    .account-sidebar {
+      background: transparent;
+      padding: 0 14px;
+      margin-top: 20px;
+      display: flex; align-items: stretch; flex-wrap: wrap;
+      position: relative;
+    }
+    /* Šedá linka na celou šířku ve výšce border-bottom nav-itemů.
+       Active item má vlastní 2px fialový border, který šedou přepíše ve své šířce. */
+    .account-sidebar::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 2px;
+      background: var(--border);
+    }
+    .account-nav-item.active {
+      position: relative;
+      z-index: 1;
+    }
+    .account-nav-user {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      align-items: center; column-gap: 12px; row-gap: 0;
+      padding: 12px 18px 12px 14px;
+      margin-right: 8px;
+      border-right: 1px solid var(--border);
+    }
+    .account-nav-avatar {
+      grid-row: span 2;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--cross-bg), var(--img-bg);
+      flex-shrink: 0;
+    }
+    .account-nav-name { grid-row: 1; font-size: 14px; font-weight: 700; line-height: 1.2; }
+    .account-nav-email { grid-row: 2; font-size: 11px; color: var(--muted); line-height: 1.2; margin-top: 2px; }
+    .account-nav-item {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 18px 14px; font-size: 14px;
+      color: var(--text); text-decoration: none; cursor: pointer;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .account-nav-item:hover { background: transparent; color: var(--int); }
+    .account-nav-item.active {
+      background: transparent; color: var(--int); font-weight: 600;
+      border-bottom-color: var(--int);
+    }
+    /* Odhlásit se — poslední item, posunuté úplně doprava */
+    .account-sidebar > .account-nav-item:last-child { margin-left: auto; }
+    /* Odhlásit se je poslední — sedí hned za .account-nav-user (oba jsou posunuté doprava). */
+    .account-main { padding: 28px; background: var(--bg); flex: 1; }
     .account-section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 20px; }
     .account-section-title { font-size: 15px; font-weight: 700; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
     .acc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -3812,7 +3945,87 @@
     .rate-modal-close:hover { background: var(--bg); color: var(--text); }
     .rate-modal-title { font-size: 20px; font-weight: 800; letter-spacing: -.01em; }
     .rate-modal-sub { font-size: 13px; color: var(--muted); margin-top: 4px; margin-bottom: 18px; }
+    .rate-modal-stepper {
+      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--int); margin-bottom: 8px;
+    }
+    .rate-modal-question {
+      font-size: 14px; color: var(--text); line-height: 1.5;
+      margin: 0 0 14px;
+    }
     .rate-modal-list { display: flex; flex-direction: column; }
+    /* Krok 1 — velké hvězdy zarovnané na střed */
+    .rate-stars-input--lg {
+      gap: 6px; justify-content: center;
+      padding: 18px 0; margin-bottom: 4px;
+    }
+    .rate-stars-input--lg .rate-star { font-size: 40px; padding: 4px 6px; }
+    /* Krok 2 — sloupec kritérií */
+    .rate-modal-criteria {
+      display: flex; flex-direction: column; gap: 0;
+      margin-bottom: 14px;
+    }
+    .rate-criterion {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .rate-criterion:last-child { border-bottom: none; }
+    .rate-criterion-text { flex: 1; min-width: 0; }
+    .rate-criterion-name { font-size: 14px; font-weight: 700; line-height: 1.3; margin-bottom: 3px; }
+    .rate-criterion-q { font-size: 12px; color: var(--muted); line-height: 1.45; }
+    .rate-criterion .rate-stars-input { flex-shrink: 0; }
+    /* Krok 3 — poděkování */
+    .rate-modal-step--thanks {
+      text-align: center; padding: 12px 0;
+    }
+    .rate-modal-success-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: #ecfdf5; color: #10b981;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+    }
+    .rate-modal-thanks {
+      font-size: 14px; color: var(--text); line-height: 1.55;
+      margin: 8px auto 22px; max-width: 360px;
+    }
+    .rate-modal-actions--center { justify-content: center; }
+    /* Krok 3 — photo upload (jen pro negativní hodnocení 1–3 ★) */
+    .rate-photo-upload {
+      margin-top: 12px; padding: 14px;
+      background: #fef2f2; border: 1px dashed #fca5a5; border-radius: var(--radius);
+    }
+    .rate-photo-upload-title {
+      font-size: 12px; font-weight: 700; color: #b91c1c;
+      margin-bottom: 8px;
+    }
+    .rate-photo-upload-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      font-size: 12px; font-weight: 600; color: var(--text);
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+    }
+    .rate-photo-upload-btn:hover { border-color: var(--int); color: var(--int); }
+    .rate-photo-list {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-top: 10px;
+    }
+    .rate-photo-item {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 4px 4px 8px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+      font-size: 11px; color: var(--text); max-width: 220px;
+    }
+    .rate-photo-item-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .rate-photo-item-remove {
+      width: 18px; height: 18px; border-radius: 50%; border: none;
+      background: transparent; color: var(--muted); cursor: pointer;
+      font-size: 14px; line-height: 1; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .rate-photo-item-remove:hover { background: var(--bg); color: #dc2626; }
     .rate-modal-row {
       display: flex; align-items: center; justify-content: space-between;
       padding: 14px 0;
@@ -5845,20 +6058,18 @@
       .auth-content { padding: 24px 0; }
       .auth-card { padding: 24px 20px; border-radius: 8px; }
 
-      /* ── ACCOUNT ── */
-      .account-layout { grid-template-columns: 1fr; min-height: auto; }
-      .account-sidebar {
-        border-right: none; border-bottom: 1px solid var(--border);
-        position: static;
+      /* ── ACCOUNT (mobile) — sidebar horizontálně scrollable ── */
+      .account-layout { min-height: auto; }
+      .account-sidebar { padding: 0; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
+      .account-sidebar::-webkit-scrollbar { display: none; }
+      .account-nav-user {
+        padding: 10px 14px; flex-shrink: 0;
       }
-      .account-nav-user { display: none; }
-      .account-sidebar > nav { display: flex; overflow-x: auto; padding: 0; gap: 0; scrollbar-width: none; }
-      .account-sidebar > nav::-webkit-scrollbar { display: none; }
+      .account-nav-email { display: none; } /* příliš dlouhé pro úzký horizontální bar */
       .account-nav-item {
-        flex-shrink: 0; border-right: none; border-bottom: 2px solid transparent;
-        padding: 12px 16px; font-size: 13px; white-space: nowrap;
+        flex-shrink: 0; padding: 14px 12px; font-size: 13px;
       }
-      .account-nav-item.active { border-bottom-color: var(--int); border-right-color: transparent; }
+      .account-sidebar > .account-nav-item:last-child { margin-left: 0; }
       .account-main { padding: 20px 16px; }
 
       /* ── COMPANIES ── */

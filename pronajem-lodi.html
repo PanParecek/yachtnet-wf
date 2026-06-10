@@ -80,17 +80,6 @@
             <div class="sf-daterange-popover" hidden></div>
           </div>
         </div>
-        <div class="sf-field sf-field--category">
-          <span class="sf-label">Typ lodi</span>
-          <select name="category" data-multi data-placeholder="Všechny typy">
-            <option value="" disabled>Všechny typy</option>
-            <option value="sailing" selected>Plachetnice</option>
-            <option value="catamaran" selected>Katamarán</option>
-            <option value="motor">Motorová loď</option>
-            <option value="river">Říční loď</option>
-            <option value="gulet">Gulet</option>
-          </select>
-        </div>
         <button type="button" class="btn-search">Hledat lodě</button>
       </form>
     </div>
@@ -120,6 +109,16 @@
         <div class="sidebar-header">
           <span class="sidebar-title">Filtry</span>
           <button class="sidebar-close" onclick="toggleMobileSidebar()" aria-label="Zavřít">✕</button>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group-title">Typ lodi</div>
+          <div class="filter-checks">
+            <label class="filter-check"><input type="checkbox" checked /> <span>Plachetnice <span class="count">(58)</span></span></label>
+            <label class="filter-check"><input type="checkbox" checked /> <span>Katamarán <span class="count">(31)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Motorová loď <span class="count">(24)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Říční loď <span class="count">(12)</span></span></label>
+            <label class="filter-check"><input type="checkbox" /> <span>Gulet <span class="count">(9)</span></span></label>
+          </div>
         </div>
         <div class="filter-group">
           <div class="filter-subgroup">
