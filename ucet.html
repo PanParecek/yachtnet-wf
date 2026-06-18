@@ -40,8 +40,8 @@
     <aside class="account-sidebar">
       <div class="account-nav-user">
         <div class="account-nav-avatar"></div>
-        <div class="account-nav-name">Jan Novák</div>
-        <div class="account-nav-email">jan.novak@email.cz</div>
+        <div class="account-nav-name">Jaroslav Zimmermann</div>
+        <div class="account-nav-email">jara.da.zimmermann@ckpolnimarsaleklegal.cz</div>
       </div>
       <a class="account-nav-item"  href="seznam-rezervaci.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Moje rezervace</a>
       <a class="account-nav-item" href="prukazy.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Průkazy</a>
@@ -54,37 +54,45 @@
       <div class="account-section">
         <div class="account-section-title">Základní informace <button class="acc-btn">Uložit</button></div>
         <div class="acc-row">
-          <div class="acc-field"><label>Jméno</label><input class="acc-input" value="Jan" /></div>
-          <div class="acc-field"><label>Příjmení</label><input class="acc-input" value="Novák" /></div>
+          <div class="acc-field"><label>Jméno</label><input class="acc-input" value="Jaroslav" /></div>
+          <div class="acc-field"><label>Příjmení</label><input class="acc-input" value="Zimmermann" /></div>
         </div>
         <div class="acc-row" style="margin-top:14px;">
-          <div class="acc-field"><label>E-mail</label><input class="acc-input" value="jan.novak@email.cz" /></div>
+          <div class="acc-field"><label>E-mail</label><input class="acc-input" value="jara.da.zimmermann@ckpolnimarsaleklegal.cz" /></div>
           <div class="acc-field"><label>Telefon</label><input class="acc-input" value="+420 777 123 456" /></div>
         </div>
       </div>
-      <div class="account-section" data-billing>
-        <div class="account-section-title">Fakturační adresa <button class="acc-btn-ghost">Upravit</button></div>
-        <div class="billing-type-toggle" role="tablist">
-          <label class="billing-type-opt is-active">
-            <input type="radio" name="billing-type" value="person" checked />
-            <span>Fyzická osoba</span>
-          </label>
-          <label class="billing-type-opt">
-            <input type="radio" name="billing-type" value="company" />
-            <span>Firma</span>
-          </label>
-        </div>
-        <div class="acc-row billing-company-row" hidden>
-          <div class="acc-field"><label>Název firmy</label><input class="acc-input" placeholder="Např. Yachtnet s.r.o." /></div>
-          <div class="acc-field"><label>IČ</label><input class="acc-input" placeholder="12345678" inputmode="numeric" /></div>
-        </div>
-        <div class="acc-row">
-          <div class="acc-field"><label>Ulice a čp.</label><input class="acc-input" value="Dlouhá 42" /></div>
-          <div class="acc-field"><label>Město</label><input class="acc-input" value="Praha 1" /></div>
-        </div>
-        <div class="acc-row">
-          <div class="acc-field"><label>PSČ</label><input class="acc-input" value="110 00" /></div>
-          <div class="acc-field"><label>Stát</label><input class="acc-input" value="Česká republika" /></div>
+      <div class="account-section" data-billing-list>
+        <div class="account-section-title">Fakturační adresy <a class="acc-btn-ghost" href="pridat-adresu.html" style="display:inline-flex;align-items:center;text-decoration:none;">+ Přidat adresu</a></div>
+        <div class="billing-addr-list">
+
+          <div class="billing-addr">
+            <div class="billing-addr-body">
+              <span class="billing-addr-badge">Fyzická osoba</span>
+              <div class="billing-addr-lines">
+                <div class="billing-addr-name">Jaroslav Zimmermann</div>
+                <div>Dlouhá 42</div>
+                <div>110 00 Praha 1</div>
+                <div>Česká republika</div>
+              </div>
+            </div>
+            <button class="billing-addr-remove" type="button" data-addr-remove aria-label="Smazat adresu" title="Smazat adresu"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>
+          </div>
+
+          <div class="billing-addr">
+            <div class="billing-addr-body">
+              <span class="billing-addr-badge">Firma</span>
+              <div class="billing-addr-lines">
+                <div class="billing-addr-name">Novák Consulting s.r.o.</div>
+                <div class="billing-addr-ico">IČ 24681012</div>
+                <div>Dlouhá 42</div>
+                <div>110 00 Praha 1</div>
+                <div>Česká republika</div>
+              </div>
+            </div>
+            <button class="billing-addr-remove" type="button" data-addr-remove aria-label="Smazat adresu" title="Smazat adresu"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>
+          </div>
+
         </div>
       </div>
       <div class="account-section">

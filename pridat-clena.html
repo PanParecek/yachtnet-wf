@@ -40,8 +40,8 @@
     <aside class="account-sidebar">
       <div class="account-nav-user">
         <div class="account-nav-avatar"></div>
-        <div class="account-nav-name">Jan Novák</div>
-        <div class="account-nav-email">jan.novak@email.cz</div>
+        <div class="account-nav-name">Jaroslav Zimmermann</div>
+        <div class="account-nav-email">jara.da.zimmermann@ckpolnimarsaleklegal.cz</div>
       </div>
       
       <a class="account-nav-item" href="seznam-rezervaci.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Moje rezervace</a>
@@ -53,7 +53,7 @@
     <main class="account-main">
       <a href="crew.html" style="font-size:13px;color:var(--int);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        Zpět na crew list
+        Zpět na členy posádky
       </a>
 
       <h1 style="font-size:22px;font-weight:800;margin-bottom:8px;">Přidat člena posádky</h1>
@@ -67,6 +67,7 @@
 
         <div class="account-section">
           <div class="account-section-title">Totožnost</div>
+          <p style="font-size:13px;color:var(--muted);margin:-8px 0 14px;">Údaje musí přesně odpovídat cestovnímu dokladu — charterovka je odesílá na oficiální crew list (seznam posádky).</p>
 
           <div class="acc-row">
             <div class="acc-field">
@@ -81,11 +82,26 @@
 
           <div class="acc-row" style="margin-top:14px;">
             <div class="acc-field">
+              <label>Pohlaví <span style="color:var(--int);">*</span></label>
+              <select class="acc-input">
+                <option value="" disabled selected>Vyberte…</option>
+                <option>Muž</option>
+                <option>Žena</option>
+              </select>
+            </div>
+            <div class="acc-field">
               <label>Datum narození <span style="color:var(--int);">*</span></label>
               <input class="acc-input" type="date" />
             </div>
+          </div>
+        </div>
+
+        <div class="account-section">
+          <div class="account-section-title">Narození a pobyt</div>
+
+          <div class="acc-row">
             <div class="acc-field">
-              <label>Občanství <span style="color:var(--int);">*</span></label>
+              <label>Země narození <span style="color:var(--int);">*</span></label>
               <select class="acc-input">
                 <option value="" disabled selected>Vyberte…</option>
                 <option>🇨🇿 Česká republika</option>
@@ -99,6 +115,51 @@
                 <option>Jiná…</option>
               </select>
             </div>
+            <div class="acc-field">
+              <label>Místo narození <span style="color:var(--int);">*</span></label>
+              <input class="acc-input" type="text" placeholder="např. Praha" />
+            </div>
+          </div>
+
+          <div class="acc-row" style="margin-top:14px;">
+            <div class="acc-field">
+              <label>Země pobytu <span style="color:var(--int);">*</span></label>
+              <select class="acc-input">
+                <option value="" disabled selected>Vyberte…</option>
+                <option>🇨🇿 Česká republika</option>
+                <option>🇸🇰 Slovensko</option>
+                <option>🇩🇪 Německo</option>
+                <option>🇦🇹 Rakousko</option>
+                <option>🇵🇱 Polsko</option>
+                <option>🇭🇺 Maďarsko</option>
+                <option>🇬🇧 Velká Británie</option>
+                <option>🇺🇸 USA</option>
+                <option>Jiná…</option>
+              </select>
+            </div>
+            <div class="acc-field">
+              <label>Místo pobytu <span style="color:var(--int);">*</span></label>
+              <input class="acc-input" type="text" placeholder="např. Praha 6" />
+            </div>
+          </div>
+
+          <div class="acc-row" style="margin-top:14px;">
+            <div class="acc-field">
+              <label>Národnost / občanství <span style="color:var(--int);">*</span></label>
+              <select class="acc-input">
+                <option value="" disabled selected>Vyberte…</option>
+                <option>🇨🇿 Česká republika</option>
+                <option>🇸🇰 Slovensko</option>
+                <option>🇩🇪 Německo</option>
+                <option>🇦🇹 Rakousko</option>
+                <option>🇵🇱 Polsko</option>
+                <option>🇭🇺 Maďarsko</option>
+                <option>🇬🇧 Velká Británie</option>
+                <option>🇺🇸 USA</option>
+                <option>Jiná…</option>
+              </select>
+            </div>
+            <div class="acc-field"></div>
           </div>
         </div>
 
@@ -120,15 +181,20 @@
               <input class="acc-input" type="text" placeholder="např. 42857913" />
             </div>
           </div>
+        </div>
 
-          <div class="acc-row" style="margin-top:14px;">
+        <div class="account-section">
+          <div class="account-section-title">Doplňující údaje <span style="font-size:12px;font-weight:400;color:var(--muted);">(volitelné)</span></div>
+
+          <div class="acc-row">
             <div class="acc-field">
-              <label>Datum vystavení</label>
-              <input class="acc-input" type="date" />
+              <label>Velikost ploutví</label>
+              <input class="acc-input" type="text" placeholder="např. 42–43" />
             </div>
-            <div class="acc-field">
-              <label>Platnost dokladu <span style="color:var(--int);">*</span></label>
-              <input class="acc-input" type="date" />
+            <div class="acc-field" style="justify-content:flex-end;">
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:400;min-height:38px;">
+                <input type="checkbox" /> Osoba se sníženou pohyblivostí (PWD)
+              </label>
             </div>
           </div>
         </div>

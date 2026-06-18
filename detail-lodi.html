@@ -68,7 +68,7 @@
       <span class="detail-rating" title="Hodnocení modelu Bavaria C42">
         <span class="detail-rating-stars">★★★★★</span>
         <span class="detail-rating-val">4,8</span>
-        <span class="detail-rating-count">(184 hodnocení)</span>
+        <a href="#sec-recenze" class="detail-rating-count">(184 hodnocení)</a>
       </span>
       <span>· 🇭🇷 <a  href="oblast.html">ACI Marina Split</a></span>
       <span>· Chorvatsko</span>
@@ -88,7 +88,7 @@
           <a href="#sec-terminy" class="detail-toc-link">Varianty rezervace</a>
           <a href="#sec-cena" class="detail-toc-link">Cena</a>
           <a href="#sec-podminky" class="detail-toc-link">Podmínky</a>
-          <a href="#sec-recenze" class="detail-toc-link">Recenze</a>
+          <a href="#sec-recenze" class="detail-toc-link">Hodnocení</a>
           <a href="#sec-faq" class="detail-toc-link">FAQ</a>
           <a href="#sec-charter" class="detail-toc-link">Charterovka</a>
           <a href="#sec-mapa" class="detail-toc-link">Mapa</a>
@@ -384,7 +384,7 @@
           </div><!-- /pkg-step 1 -->
 
           <!-- VARIANTY POJIŠTĚNÍ (řádky s checkboxy — AKTIVNÍ) -->
-          <div class="pkg-step">
+          <div class="pkg-step" id="sec-pojisteni" style="scroll-margin-top:80px;">
             <div class="pkg-step-num">2</div>
             <div class="pkg-step-content">
           <div class="pkg-ins-block">
@@ -430,13 +430,12 @@
               </label>
             </div>
           </div>
-            </div><!-- /pkg-step-content -->
-          </div><!-- /pkg-step 2 -->
-          </div><!-- /pkg-steps -->
-
           <div class="pkg-actions">
             <a href="#sec-balicky" class="btn-reserve btn-reserve--inline" data-reserve-cta>Vybrat variantu ↓</a>
           </div>
+            </div><!-- /pkg-step-content -->
+          </div><!-- /pkg-step 2 -->
+          </div><!-- /pkg-steps -->
 
           <!--
           ── ULOŽENÁ VARIANTA — 3 karty pojištění vedle sebe (k případnému návratu) ──
@@ -535,19 +534,29 @@
             </div>
             <div class="reviews-summary-criteria">
               <div class="reviews-criterion-row">
-                <span class="reviews-criterion-name">Čistota a příprava</span>
+                <span class="reviews-criterion-name">Stav lodě a zařízení</span>
+                <span class="reviews-criterion-bar"><span style="width:90%;"></span></span>
+                <span class="reviews-criterion-score">4,5</span>
+              </div>
+              <div class="reviews-criterion-row">
+                <span class="reviews-criterion-name">Čistota</span>
                 <span class="reviews-criterion-bar"><span style="width:96%;"></span></span>
                 <span class="reviews-criterion-score">4,8</span>
               </div>
               <div class="reviews-criterion-row">
-                <span class="reviews-criterion-name">Technický stav</span>
-                <span class="reviews-criterion-bar"><span style="width:86%;"></span></span>
-                <span class="reviews-criterion-score">4,3</span>
+                <span class="reviews-criterion-name">Převzetí a vrácení</span>
+                <span class="reviews-criterion-bar"><span style="width:92%;"></span></span>
+                <span class="reviews-criterion-score">4,6</span>
               </div>
               <div class="reviews-criterion-row">
-                <span class="reviews-criterion-name">Komunikace &amp; Služby</span>
+                <span class="reviews-criterion-name">Charterová společnost</span>
                 <span class="reviews-criterion-bar"><span style="width:94%;"></span></span>
                 <span class="reviews-criterion-score">4,7</span>
+              </div>
+              <div class="reviews-criterion-row">
+                <span class="reviews-criterion-name">Marina a její služby</span>
+                <span class="reviews-criterion-bar"><span style="width:88%;"></span></span>
+                <span class="reviews-criterion-score">4,4</span>
               </div>
               <div class="reviews-criterion-row">
                 <span class="reviews-criterion-name">Poměr cena / výkon</span>
@@ -571,11 +580,9 @@
                 <div class="review-stars">★★★★★</div>
               </div>
               <p class="review-text">„Skvělá loď, perfektně udržovaná. Vše fungovalo bez problémů — plachty, motor, GPS, autopilot. Charterovka super, check-in i check-out rychlé, klíče během 15 minut. Příští sezónu jdeme znova."</p>
-              <div class="review-criteria">
-                <span class="review-criterion"><span class="review-criterion-l">Čistota:</span> <span class="review-criterion-v">★★★★★</span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Stav:</span> <span class="review-criterion-v">★★★★★</span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Služby:</span> <span class="review-criterion-v">★★★★<span class="res-rate-stars-empty">☆</span></span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Cena/výkon:</span> <span class="review-criterion-v">★★★★★</span></span>
+              <div class="review-pc">
+                <div class="review-pc-row review-pc-row--pos"><span class="review-pc-ico" aria-hidden="true">+</span><span><span class="review-pc-label">Co se líbilo:</span> Perfektně udržovaná loď, vše fungovalo (plachty, motor, GPS, autopilot), bleskový check-in i check-out.</span></div>
+                <div class="review-pc-row review-pc-row--neg"><span class="review-pc-ico" aria-hidden="true">−</span><span><span class="review-pc-label">Co zlepšit:</span> Nenašli jsme nic, co bychom vytkli.</span></div>
               </div>
             </article>
 
@@ -588,14 +595,12 @@
                     <div class="review-meta">duben 2026 · pronájem 5 nocí · ACI Marina Split</div>
                   </div>
                 </div>
-                <div class="review-stars">★★★★<span class="res-rate-stars-empty">☆</span></div>
+                <div class="review-stars">★★★★<span class="res-rate-stars-empty"><span class="res-rate-stars-empty">☆</span></span></div>
               </div>
               <p class="review-text">„Loď je krásná, vybavení v pořádku. Mírně otrávené, že při převzetí chyběl jeden polštář v salónu, ale charterovka ho do hodiny dovezla. Celkově skvělá zkušenost, kapitánovi doporučujeme."</p>
-              <div class="review-criteria">
-                <span class="review-criterion"><span class="review-criterion-l">Čistota:</span> <span class="review-criterion-v">★★★★<span class="res-rate-stars-empty">☆</span></span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Stav:</span> <span class="review-criterion-v">★★★★<span class="res-rate-stars-empty">☆</span></span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Služby:</span> <span class="review-criterion-v">★★★★★</span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Cena/výkon:</span> <span class="review-criterion-v">★★★★<span class="res-rate-stars-empty">☆</span></span></span>
+              <div class="review-pc">
+                <div class="review-pc-row review-pc-row--pos"><span class="review-pc-ico" aria-hidden="true">+</span><span><span class="review-pc-label">Co se líbilo:</span> Krásná loď, vybavení v pořádku, vstřícná a rychlá charterovka.</span></div>
+                <div class="review-pc-row review-pc-row--neg"><span class="review-pc-ico" aria-hidden="true">−</span><span><span class="review-pc-label">Co zlepšit:</span> Při převzetí chyběl polštář v salónu — charterovka ho ale do hodiny dovezla.</span></div>
               </div>
             </article>
 
@@ -611,11 +616,9 @@
                 <div class="review-stars">★★★★★</div>
               </div>
               <p class="review-text">„Plavba kolem Hvaru a Visu byla parádní. Loď velmi prostorná na 6 lidí, klimatizace fungovala bezvadně. Yacht-Pool pojištění kauce nás zachránilo, když jsme drobně škrtli o kotvení — vše bez papírování."</p>
-              <div class="review-criteria">
-                <span class="review-criterion"><span class="review-criterion-l">Čistota:</span> <span class="review-criterion-v">★★★★★</span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Stav:</span> <span class="review-criterion-v">★★★★★</span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Služby:</span> <span class="review-criterion-v">★★★★★</span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Cena/výkon:</span> <span class="review-criterion-v">★★★★★</span></span>
+              <div class="review-pc">
+                <div class="review-pc-row review-pc-row--pos"><span class="review-pc-ico" aria-hidden="true">+</span><span><span class="review-pc-label">Co se líbilo:</span> Prostorná loď pro 6 osob, skvěle fungující klimatizace, pojištění kauce se vyplatilo.</span></div>
+                <div class="review-pc-row review-pc-row--neg"><span class="review-pc-ico" aria-hidden="true">−</span><span><span class="review-pc-label">Co zlepšit:</span> Bez výhrad.</span></div>
               </div>
             </article>
 
@@ -628,14 +631,12 @@
                     <div class="review-meta">srpen 2025 · pronájem 7 nocí · ACI Marina Split</div>
                   </div>
                 </div>
-                <div class="review-stars">★★★<span class="res-rate-stars-empty">☆</span><span class="res-rate-stars-empty">☆</span></div>
+                <div class="review-stars">★★★<span class="res-rate-stars-empty"><span class="res-rate-stars-empty">☆</span></span><span class="res-rate-stars-empty"><span class="res-rate-stars-empty">☆</span></span></div>
               </div>
               <p class="review-text">„Motor jednou v pondělí vypadl, ale charterovka přijela do 2 hodin a vyměnila palivový filtr. Po opravě už bez problémů. Loď je zajímavá, ale za tu cenu bych čekal víc novějšího vybavení (papírové mapy stále ze 2018)."</p>
-              <div class="review-criteria">
-                <span class="review-criterion"><span class="review-criterion-l">Čistota:</span> <span class="review-criterion-v">★★★★<span class="res-rate-stars-empty">☆</span></span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Stav:</span> <span class="review-criterion-v">★★★<span class="res-rate-stars-empty">☆</span><span class="res-rate-stars-empty">☆</span></span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Služby:</span> <span class="review-criterion-v">★★★★★</span></span>
-                <span class="review-criterion"><span class="review-criterion-l">Cena/výkon:</span> <span class="review-criterion-v">★★★<span class="res-rate-stars-empty">☆</span><span class="res-rate-stars-empty">☆</span></span></span>
+              <div class="review-pc">
+                <div class="review-pc-row review-pc-row--pos"><span class="review-pc-ico" aria-hidden="true">+</span><span><span class="review-pc-label">Co se líbilo:</span> Rychlý servis charterovky — porucha motoru vyřešená do 2 hodin výměnou palivového filtru.</span></div>
+                <div class="review-pc-row review-pc-row--neg"><span class="review-pc-ico" aria-hidden="true">−</span><span><span class="review-pc-label">Co zlepšit:</span> Výpadek motoru a starší vybavení (papírové mapy z roku 2018) vzhledem k ceně.</span></div>
               </div>
             </article>
           </div>
