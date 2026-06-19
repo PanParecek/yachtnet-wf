@@ -74,6 +74,167 @@
       '</div></div>';
     },
 
+    loginModal: function() {
+      return '<div class="crew-modal" id="loginModal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">' +
+        '<div class="crew-modal-backdrop" data-login-close></div>' +
+        '<div class="crew-modal-dialog" role="document">' +
+          '<div class="crew-modal-head">' +
+            '<div class="crew-modal-title" id="loginModalTitle">Přihlášení</div>' +
+            '<button class="crew-modal-close" type="button" data-login-close aria-label="Zavřít"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>' +
+          '</div>' +
+          '<div class="crew-modal-body">' +
+            '<div class="login-tabs" role="tablist">' +
+              '<button class="login-tab is-active" type="button" data-login-tab="login" role="tab">Přihlášení</button>' +
+              '<button class="login-tab" type="button" data-login-tab="register" role="tab">Registrace</button>' +
+            '</div>' +
+            '<form data-login-panel="login">' +
+              '<div class="auth-field"><label>E-mail</label><input class="auth-input" type="email" placeholder="vas@email.cz" /></div>' +
+              '<div class="auth-field"><label>Heslo</label><input class="auth-input" type="password" placeholder="••••••••" /></div>' +
+              '<button type="submit" class="auth-btn">Přihlásit se</button>' +
+              '<div class="auth-divider">nebo pokračujte přes</div>' +
+              '<div class="auth-social">' +
+                '<button type="button" class="auth-social-btn" data-login-social><div class="auth-social-icon"></div>Pokračovat přes Google</button>' +
+                '<button type="button" class="auth-social-btn" data-login-social><div class="auth-social-icon"></div>Pokračovat přes Apple</button>' +
+                '<button type="button" class="auth-social-btn" data-login-social><div class="auth-social-icon"></div>Pokračovat přes Facebook</button>' +
+              '</div>' +
+              '<div class="auth-links" style="justify-content:center;"><div class="auth-link"><a href="zapomenute-heslo.html">Zapomenuté heslo</a></div></div>' +
+            '</form>' +
+            '<form data-login-panel="register" hidden onsubmit="event.preventDefault();window.location.href=\'overeni.html\';">' +
+              '<div class="auth-register-cols">' +
+                '<div class="auth-register-main">' +
+              '<div class="auth-sub" style="margin-bottom:16px;">Vytvořte si účet zdarma a začněte plánovat svou plavbu.</div>' +
+              '<div class="auth-field"><label>E-mail</label><input class="auth-input" type="email" placeholder="vas@email.cz" /></div>' +
+              '<button type="submit" class="auth-btn">Vytvořit účet</button>' +
+              '<div class="auth-divider">nebo pokračujte přes</div>' +
+              '<div class="auth-social">' +
+                '<button type="button" class="auth-social-btn" onclick="window.location.href=\'overeni.html\'"><div class="auth-social-icon"></div>Pokračovat přes Google</button>' +
+                '<button type="button" class="auth-social-btn" onclick="window.location.href=\'overeni.html\'"><div class="auth-social-icon"></div>Pokračovat přes Apple</button>' +
+                '<button type="button" class="auth-social-btn" onclick="window.location.href=\'overeni.html\'"><div class="auth-social-icon"></div>Pokračovat přes Facebook</button>' +
+              '</div>' +
+                '</div>' +
+                '<aside class="auth-register-aside">' +
+              '<div class="auth-benefits">' +
+                '<div class="auth-benefits-title">Proč si vytvořit účet?</div>' +
+                '<ul class="auth-benefits-list">' +
+                  '<li class="auth-benefit-item"><span class="auth-benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="auth-benefit-title">Nemusíte znovu vyplňovat údaje</div><div class="auth-benefit-desc">Při dalších rezervacích už jen kliknete „Pokračovat" — kontakty, doklady i kapitánské průkazy máme uložené.</div></div></li>' +
+                  '<li class="auth-benefit-item"><span class="auth-benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><div><div class="auth-benefit-title">Hlídáme platnost průkazů</div><div class="auth-benefit-desc">Upozorníme vás v dostatečném předstihu, než vyprší kapitánský průkaz nebo radiotelefon (SRC).</div></div></li>' +
+                  '<li class="auth-benefit-item"><span class="auth-benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><div><div class="auth-benefit-title">Všechno na jednom místě</div><div class="auth-benefit-desc">Aktuální rezervace, historii plaveb, dokumenty, crew list, boarding pass a hodnocení lodí — vždy přehledně v účtu.</div></div></li>' +
+                  '<li class="auth-benefit-item"><span class="auth-benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><div><div class="auth-benefit-title">Věrnostní slevy a přednostní termíny</div><div class="auth-benefit-desc">Po druhé rezervaci získáváte 5 % slevu napořád a možnost rezervovat nové termíny dříve než ostatní.</div></div></li>' +
+                '</ul>' +
+              '</div>' +
+                '</aside>' +
+              '</div>' +
+              '<div class="auth-links" style="justify-content:center;"><div class="auth-link">Už máte účet? <a href="#" data-login-tab="login">Přihlásit se</a></div></div>' +
+            '</form>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    },
+
+    contactSpecialist: function(opts) {
+      var title = (opts && opts.title) || 'Máte otázky k této lodi? Ozvěte se Monice.';
+      return '<div class="contact-box">' +
+        '<div class="contact-box-title">' + title + '</div>' +
+        '<div class="contact-compact">' +
+          '<div class="contact-avatar-lg"></div>' +
+          '<div class="contact-details">' +
+            '<div class="contact-name">Monika Fomínová</div>' +
+            '<div class="contact-role">Specialista na chartery</div>' +
+            '<div class="contact-info-row">' +
+              '<a href="#" class="contact-info-link"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+420 775 123 456</a>' +
+              '<a href="#" class="contact-info-link"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>monika@yachtnet.cz</a>' +
+            '</div>' +
+          '</div>' +
+          '<div class="contact-quick">' +
+            '<a href="#" class="contact-quick-btn" title="WhatsApp" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.485-8.411"/></svg></a>' +
+            '<a href="#" class="contact-quick-btn" title="Messenger" aria-label="Messenger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.001 11.639C.001 4.95 5.241 0 12.001 0s12 4.95 12 11.639c0 6.689-5.24 11.638-12 11.638-1.21 0-2.38-.16-3.47-.46a.96.96 0 0 0-.64.05l-2.39 1.05a.96.96 0 0 1-1.35-.85l-.07-2.14a.96.96 0 0 0-.32-.68A11.39 11.389 0 0 1 .002 11.639zm8.32-2.19l-3.52 5.6c-.35.53.32 1.139.82.75l3.79-2.87c.26-.2.6-.2.87 0l2.8 2.1c.84.63 2.04.4 2.6-.48l3.52-5.6c.35-.53-.32-1.13-.82-.75l-3.79 2.87c-.25.2-.6.2-.86 0l-2.8-2.1a1.81 1.811 0 0 0-2.61.48z"/></svg></a>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    },
+
+    rateModal: function() {
+      function stars() {
+        return '<button type="button" class="rate-star" data-val="1" aria-label="1 hvězdička">★</button>' +
+          '<button type="button" class="rate-star" data-val="2" aria-label="2 hvězdičky">★</button>' +
+          '<button type="button" class="rate-star" data-val="3" aria-label="3 hvězdičky">★</button>' +
+          '<button type="button" class="rate-star" data-val="4" aria-label="4 hvězdičky">★</button>' +
+          '<button type="button" class="rate-star" data-val="5" aria-label="5 hvězdiček">★</button>';
+      }
+      function crit(name, q, key) {
+        return '<div class="rate-criterion"><div class="rate-criterion-text"><div class="rate-criterion-name">' + name + '</div><div class="rate-criterion-q">' + q + '</div></div><div class="rate-stars-input" data-rate="' + key + '">' + stars() + '</div></div>';
+      }
+      function actions(back, primary, primaryAttr) {
+        return '<div class="rate-modal-actions">' +
+          (back ? '<button type="button" class="btn-secondary" data-rm-back>← Zpět</button>' : '<button type="button" class="btn-secondary" data-rm-close>Zrušit</button>') +
+          '<button type="button" class="btn-primary-lg" ' + primaryAttr + '>' + primary + '</button>' +
+        '</div>';
+      }
+      return '<div class="rate-modal" id="rateModal" hidden role="dialog" aria-label="Hodnocení plavby" aria-modal="true">' +
+        '<div class="rate-modal-backdrop" data-rm-close></div>' +
+        '<div class="rate-modal-card">' +
+          '<button class="rate-modal-close" type="button" data-rm-close aria-label="Zavřít"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>' +
+          '<div class="rate-modal-head"><div class="rate-modal-heading">Hodnocení plavby</div><div class="rate-modal-stepnum" data-rm-stepnum>Krok 1 z 5</div></div>' +
+          '<div class="rate-modal-progress" aria-hidden="true"><div class="rate-modal-progress-fill" data-rm-progress></div></div>' +
+          '<div class="rate-modal-step" data-rm-step="1">' +
+            '<div class="rate-modal-title">Celkový dojem z plavby</div>' +
+            '<div class="rate-modal-sub" data-rm-boat>Hanse 458 — „Polaris"</div>' +
+            '<p class="rate-modal-question">Jak jste byli celkově spokojeni s vaší plavbou?</p>' +
+            '<div class="rate-stars-input rate-stars-input--lg" data-rate="overall">' + stars() + '</div>' +
+            '<p class="rate-modal-hint">Udělte hodnocení pomocí hvězdiček: 1 hvězdička znamená velmi špatné, 5 hvězdiček naopak skvělé.</p>' +
+            actions(false, 'Pokračovat →', 'data-rm-next') +
+          '</div>' +
+          '<div class="rate-modal-step" data-rm-step="2" hidden>' +
+            '<div class="rate-modal-title">Hodnocení lodě</div>' +
+            '<div class="rate-modal-sub">Ohodnoťte stav a parametry samotné lodě</div>' +
+            '<div class="rate-modal-criteria">' +
+              crit('Stav lodě a zařízení', 'Byla loď a všechna zařízení v dobrém stavu a plně funkční? (plachty, motor, přístroje)', 'condition') +
+              crit('Čistota', 'Byla loď při převzetí perfektně čistá a uklizená?', 'cleanliness') +
+            '</div>' +
+            actions(true, 'Pokračovat →', 'data-rm-next') +
+          '</div>' +
+          '<div class="rate-modal-step" data-rm-step="3" hidden>' +
+            '<div class="rate-modal-title">Charterová společnost a marina</div>' +
+            '<div class="rate-modal-criteria">' +
+              crit('Převzetí a vrácení lodě', 'Proběhlo předání a vrácení lodi hladce a bez zbytečných průtahů? Bylo vám vše řádně vysvětleno při převzetí?', 'handover') +
+              crit('Komunikace charterové společnosti', 'Jak hodnotíte profesionalitu a vstřícnost charterové společnosti? Pokud nastaly problémy, pomohla promptně a ochotně s jejich řešením?', 'charter') +
+              crit('Marina a její služby', 'Zhodnoťte samotnou marinu: dostupnost sprch, čistota, parkování nebo check-in.', 'marina') +
+            '</div>' +
+            actions(true, 'Pokračovat →', 'data-rm-next') +
+          '</div>' +
+          '<div class="rate-modal-step" data-rm-step="4" hidden>' +
+            '<div class="rate-modal-title">Slovní hodnocení</div>' +
+            '<p class="rate-modal-question">Napište nám upřímnou recenzi a pomozte dalším kapitánům při výběru té správné lodi!</p>' +
+            '<label for="rm-positive" style="display:flex;align-items:center;font-size:13px;font-weight:700;margin-bottom:6px;"><span class="rate-pc-ico rate-pc-ico--pos" aria-hidden="true">+</span>Co se vám líbilo?</label>' +
+            '<textarea class="rate-modal-comment" id="rm-positive" data-rm-comment-positive rows="3" placeholder="Nejlepší momenty, co byste doporučili…"></textarea>' +
+            '<label for="rm-negative" style="display:flex;align-items:center;font-size:13px;font-weight:700;margin:16px 0 6px;"><span class="rate-pc-ico rate-pc-ico--neg" aria-hidden="true">−</span>Co by se dalo zlepšit?</label>' +
+            '<textarea class="rate-modal-comment" id="rm-negative" data-rm-comment-negative rows="3" placeholder="Co nebylo v pořádku, co by šlo udělat lépe…"></textarea>' +
+            actions(true, 'Pokračovat →', 'data-rm-next') +
+          '</div>' +
+          '<div class="rate-modal-step" data-rm-step="5" hidden>' +
+            '<div class="rate-modal-title">Shrnutí</div>' +
+            '<div class="rate-modal-criteria">' +
+              crit('Poměr cena / výkon', 'Odpovídal váš zážitek a stav lodi zaplacené částce?', 'value') +
+            '</div>' +
+            '<div class="rate-recommend">' +
+              '<div class="rate-recommend-q">Doporučili byste tuto loď přátelům?</div>' +
+              '<div class="rate-recommend-opts">' +
+                '<button type="button" class="rate-rec-btn" data-rm-recommend="yes"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>Ano</button>' +
+                '<button type="button" class="rate-rec-btn" data-rm-recommend="no"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg>Ne</button>' +
+              '</div>' +
+            '</div>' +
+            actions(true, 'Odeslat hodnocení', 'data-rm-submit') +
+          '</div>' +
+          '<div class="rate-modal-step" data-rm-step="6" hidden>' +
+            '<div class="rate-modal-title">Děkujeme za hodnocení</div>' +
+            '<p class="rate-modal-question">Vaše recenze pomůže ostatním jachtařům vybrat správnou loď.</p>' +
+            '<div data-rm-summary></div>' +
+            '<div class="rate-modal-actions rate-modal-actions--center"><button type="button" class="btn-primary-lg" data-rm-close>Zavřít</button></div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    },
+
     init: function() {
       var nodes = document.querySelectorAll('[data-component]');
       nodes.forEach(function(el) {
@@ -97,11 +258,8 @@
   // Ostatní init funkce (mega-menu, teamModal listeners, atd.) běží potom a uvidí už vykreslené komponenty.
   Components.init();
 
-  // Visual emphasis pro přihlášeného uživatele — solid fialová výplň místo decentního outlinu.
-  // Detekce podle textu, abychom nemuseli per-page přidávat modifier class do HTML.
-  document.querySelectorAll('.nav-login-btn').forEach(function(btn) {
-    if (btn.textContent.trim() === 'Můj účet') btn.classList.add('nav-login-btn--account');
-  });
+  // Stav přihlášení v hlavičce řeší initAuth() na konci skriptu (po vykreslení
+  // mobilního menu v initHamburgers), aby zachytil i dynamicky vložená tlačítka.
 
   // ── SITEMAP REGISTRY ───────────────────────────────────
   // Jediný zdroj pravdy pro všechny stránky wireframe.
@@ -114,6 +272,9 @@
             { href: 'rezervace-krok-2.html', title: 'Rezervace — krok 2', id: 'page-booking-2', children: [
               { href: 'rezervace-potvrzeni.html', title: 'Potvrzení rezervace', id: 'page-booking-confirm' }
             ]}
+          ]},
+          { href: 'rezervace-krok-1-zjednodusena.html', title: 'Zjednodušená rezervace — krok 1', id: 'page-booking-1-simple', children: [
+            { href: 'rezervace-krok-2-zjednodusena.html', title: 'Zjednodušená rezervace — krok 2', id: 'page-booking-2-simple' }
           ]}
         ]}
       ]},
@@ -164,7 +325,8 @@
           { href: 'clen-posadky.html', title: 'Detail člena posádky', id: 'page-crew-member' },
           { href: 'pridat-clena.html', title: 'Přidat člena posádky', id: 'page-crew-add' }
         ]},
-        { href: 'oblibene.html', title: 'Oblíbené lodě', id: 'page-favorites' }
+        { href: 'oblibene.html', title: 'Oblíbené lodě', id: 'page-favorites' },
+        { href: 'pridat-adresu.html', title: 'Přidat fakturační adresu', id: 'page-address-add' }
       ]},
       { href: 'o-nas.html', title: 'O nás', id: 'page-about' },
       { href: 'kontakt.html', title: 'Kontakt', id: 'page-contact' }
@@ -2125,26 +2287,30 @@
   if (document.getElementById('boatsGrid')) renderAllBoats();
 
   // ── Rate modal (Proběhlé rezervace → Přidat hodnocení) ──
-  // 4-step wizard:
-  //   1. Celkový dojem (overall rating)
-  //   2. Detailní hodnocení (4 oblasti)
-  //   3. Slovní hodnocení — prompt + photo upload se mění dle overall (1–3 = negativní, 4–5 = pozitivní)
-  //   4. Poděkování (success screen)
+  // Vícekrokový wizard (5 kroků hodnocení + poděkování):
+  //   1. Celkový dojem (overall)
+  //   2. Hodnocení lodě — Stav lodě a zařízení, Čistota
+  //   3. Charterová společnost a marina — Převzetí a vrácení, Charterová společnost, Marina
+  //   4. Slovní hodnocení (pozitiva / negativa)
+  //   5. Shrnutí — Poměr cena / výkon + doporučení
+  //   6. Poděkování (success screen)
   (function initRateModal() {
+    var hasTrigger = document.querySelector('.res-rate-link, [data-open-rating-modal]');
     var modal = document.getElementById('rateModal');
+    if (!modal && hasTrigger && typeof Components.rateModal === 'function') {
+      document.body.insertAdjacentHTML('beforeend', Components.rateModal());
+      modal = document.getElementById('rateModal');
+    }
     if (!modal) return;
     var boatLabel = modal.querySelector('[data-rm-boat]');
-    var commentEl = modal.querySelector('[data-rm-comment]');
-    var textTitleEl = modal.querySelector('[data-rm-text-title]');
-    var textQuestionEl = modal.querySelector('[data-rm-text-question]');
-    var photoBoxEl = modal.querySelector('[data-rm-photo]');
-    var photoListEl = modal.querySelector('[data-rm-photo-list]');
-    var photoInputEl = modal.querySelector('[data-rm-photo-input]');
+    var positiveEl = modal.querySelector('[data-rm-comment-positive]');
+    var negativeEl = modal.querySelector('[data-rm-comment-negative]');
+    var marinaCommentEl = modal.querySelector('[data-rm-marina-comment]');
     var steps = modal.querySelectorAll('[data-rm-step]');
     var errorEl = null;
     var currentRow = null;
     var currentStep = 1;
-    var ratings = { overall: 0, cleanliness: 0, technical: 0, communication: 0, value: 0 };
+    var ratings = { overall: 0, condition: 0, cleanliness: 0, handover: 0, value: 0, charter: 0, marina: 0, recommend: '' };
 
     function syncStars() {
       modal.querySelectorAll('.rate-stars-input').forEach(function(group) {
@@ -2161,44 +2327,28 @@
       if (errorEl) { errorEl.remove(); errorEl = null; }
     }
 
-    function configureTextStep() {
-      var isNegative = ratings.overall > 0 && ratings.overall <= 3;
-      if (isNegative) {
-        if (textTitleEl) textTitleEl.textContent = 'To nás mrzí';
-        if (textQuestionEl) textQuestionEl.textContent = 'Co přesně nebylo v pořádku? Pomůže nám to situaci s charterem/lodí vyřešit.';
-        if (commentEl) commentEl.placeholder = 'Popište prosím, co se nepovedlo…';
-        if (photoBoxEl) photoBoxEl.hidden = false;
-      } else {
-        if (textTitleEl) textTitleEl.textContent = 'Co se vám líbilo nejvíc?';
-        if (textQuestionEl) textQuestionEl.textContent = 'Podělte se o nejlepší momenty — pomůže to ostatním kapitánům.';
-        if (commentEl) commentEl.placeholder = 'Co se vám líbilo na lodi, charterovce, marině…';
-        if (photoBoxEl) photoBoxEl.hidden = true;
-      }
-    }
-
     function showStep(n) {
       currentStep = n;
       clearError();
       steps.forEach(function(s) {
         s.hidden = parseInt(s.dataset.rmStep, 10) !== n;
       });
-      if (n === 3) configureTextStep();
+      var progress = modal.querySelector('[data-rm-progress]');
+      if (progress) progress.style.width = (Math.min(n, 5) / 5 * 100) + '%';
+      var stepnum = modal.querySelector('[data-rm-stepnum]');
+      if (stepnum) stepnum.textContent = n <= 5 ? ('Krok ' + n + ' z 5') : '';
       var card = modal.querySelector('.rate-modal-card');
       if (card) card.scrollTop = 0;
     }
 
-    function resetPhotos() {
-      if (photoListEl) photoListEl.innerHTML = '';
-      if (photoInputEl) photoInputEl.value = '';
-    }
-
     function open(row, boatName) {
       currentRow = row;
-      ratings = { overall: 0, cleanliness: 0, technical: 0, communication: 0, value: 0 };
+      ratings = { overall: 0, condition: 0, cleanliness: 0, handover: 0, value: 0, charter: 0, marina: 0, recommend: '' };
       syncStars();
+      modal.querySelectorAll('[data-rm-recommend]').forEach(function(b) { b.classList.remove('is-active'); });
       if (boatLabel) boatLabel.textContent = boatName || '';
-      if (commentEl) commentEl.value = '';
-      resetPhotos();
+      if (positiveEl) positiveEl.value = '';
+      if (negativeEl) negativeEl.value = '';
       showStep(1);
       modal.hidden = false;
       document.body.style.overflow = 'hidden';
@@ -2232,33 +2382,95 @@
     function goNext() {
       if (currentStep === 1) {
         if (!ratings.overall) {
-          showError('Ohodnoťte prosím celkový dojem alespoň 1 hvězdičkou.');
+          showError('Ohodnoťte prosím celkový dojem.');
           return;
         }
         showStep(2);
       } else if (currentStep === 2) {
-        if (!ratings.cleanliness || !ratings.technical || !ratings.communication || !ratings.value) {
-          showError('Ohodnoťte prosím všechny čtyři oblasti.');
+        if (!ratings.condition || !ratings.cleanliness) {
+          showError('Ohodnoťte prosím stav lodě i čistotu.');
           return;
         }
         showStep(3);
+      } else if (currentStep === 3) {
+        if (!ratings.handover || !ratings.charter || !ratings.marina) {
+          showError('Ohodnoťte prosím všechny tři oblasti.');
+          return;
+        }
+        showStep(4);
+      } else if (currentStep === 4) {
+        showStep(5);
       }
     }
 
     function goBack() {
       if (currentStep === 2) showStep(1);
       else if (currentStep === 3) showStep(2);
+      else if (currentStep === 4) showStep(3);
+      else if (currentStep === 5) showStep(4);
+    }
+
+    function renderSummary() {
+      var box = modal.querySelector('[data-rm-summary]');
+      if (!box) return;
+      function esc(s) { return String(s).replace(/[&<>]/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
+      var items = [
+        ['Celkový dojem', ratings.overall],
+        ['Stav lodě a zařízení', ratings.condition],
+        ['Čistota', ratings.cleanliness],
+        ['Převzetí a vrácení', ratings.handover],
+        ['Charterová společnost', ratings.charter],
+        ['Marina a její služby', ratings.marina],
+        ['Poměr cena / výkon', ratings.value]
+      ];
+      var sum = 0, n = 0;
+      items.forEach(function(it) { if (it[1]) { sum += it[1]; n++; } });
+      var avg = n ? (sum / n) : 0;
+      var word = avg >= 4.5 ? 'Výborné' : avg >= 3.75 ? 'Velmi dobré' : avg >= 3 ? 'Dobré' : avg >= 2 ? 'Průměrné' : 'Slabé';
+      var html = '<div class="rate-sum-score"><span class="rate-sum-score-num">' + avg.toFixed(1).replace('.', ',') + '</span><span class="rate-sum-score-scale">/ 5</span><span class="rate-sum-stars">' + renderStars(Math.round(avg)) + '</span><span class="rate-sum-score-word">' + word + '</span></div>';
+      html += '<div class="rate-sum-grid">';
+      items.forEach(function(it) {
+        var v = (it[1] || 0);
+        html += '<div><div class="rate-sum-item-head"><span>' + it[0] + '</span><strong>' + v + '</strong></div><div class="rate-sum-bar"><div class="rate-sum-bar-fill" style="width:' + (v * 20) + '%"></div></div></div>';
+      });
+      html += '</div>';
+      var recYes = ratings.recommend === 'yes', recNo = ratings.recommend === 'no';
+      if (recYes || recNo) {
+        html += '<div class="rate-sum-recommend"><span>Doporučili byste tuto loď přátelům?</span><strong class="' + (recYes ? 'rate-sum-rec--yes' : 'rate-sum-rec--no') + '">' + (recYes ? 'Ano' : 'Ne') + '</strong></div>';
+      }
+      var pos = positiveEl && positiveEl.value.trim() ? esc(positiveEl.value.trim()) : 'Bez komentáře.';
+      var neg = negativeEl && negativeEl.value.trim() ? esc(negativeEl.value.trim()) : 'Bez komentáře.';
+      html += '<div class="rate-sum-notes">' +
+        '<div class="rate-sum-note"><div class="rate-sum-note-head"><span class="rate-pc-ico rate-pc-ico--pos" aria-hidden="true">+</span>Pozitiva</div><p>' + pos + '</p></div>' +
+        '<div class="rate-sum-note"><div class="rate-sum-note-head"><span class="rate-pc-ico rate-pc-ico--neg" aria-hidden="true">−</span>Negativa</div><p>' + neg + '</p></div>' +
+      '</div>';
+      box.innerHTML = html;
     }
 
     function submit() {
-      // Volá se jen z kroku 3 (poslední krok s daty)
-      if (currentStep !== 3 || !currentRow) return;
-      // Persist do DOMu — zobrazujeme jen celkový dojem (1× 5 hvězd)
-      currentRow.classList.add('res-rate-row--done');
-      currentRow.innerHTML = '<div class="res-rate-display">' +
-        '<span class="res-rate-item"><span class="res-rate-label">Vaše hodnocení:</span><span class="res-rate-stars">' + renderStars(ratings.overall) + '</span></span>' +
-      '</div>';
-      showStep(4);
+      // Volá se z posledního kroku (Shrnutí)
+      if (currentStep !== 5) return;
+      if (!ratings.value) {
+        showError('Ohodnoťte prosím poměr cena / výkon.');
+        return;
+      }
+      if (!ratings.recommend) {
+        showError('Odpovězte prosím, zda byste loď doporučili.');
+        return;
+      }
+      // Persist do DOMu (jen pokud otevřeno z řádku rezervace) — hvězdičky + číselný průměr
+      if (currentRow) {
+        var pvals = [ratings.overall, ratings.condition, ratings.cleanliness, ratings.handover, ratings.charter, ratings.marina, ratings.value];
+        var psum = 0, pcnt = 0;
+        pvals.forEach(function(x) { if (x) { psum += x; pcnt++; } });
+        var pavg = pcnt ? (psum / pcnt) : 0;
+        currentRow.classList.add('res-rate-row--done');
+        currentRow.innerHTML = '<div class="res-rate-display">' +
+          '<span class="res-rate-item"><span class="res-rate-label">Vaše hodnocení:</span><span class="res-rate-stars">' + renderStars(Math.round(pavg)) + '</span><span class="res-rate-avg">' + pavg.toFixed(1).replace('.', ',') + '</span></span>' +
+        '</div>';
+      }
+      renderSummary();
+      showStep(6);
     }
 
     // Open: klik na „Přidat hodnocení" — listener přímo na linku, aby inline
@@ -2274,12 +2486,28 @@
       });
     });
 
+    // Open i z detailu rezervace (tlačítko „Vyplnit hodnocení")
+    document.querySelectorAll('[data-open-rating-modal]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var h1 = document.querySelector('.account-main h1, h1');
+        open(null, h1 ? h1.textContent.trim() : '');
+      });
+    });
+
     // Klik dovnitř modalu: hvězdy, navigace, zavřít, submit
     modal.addEventListener('click', function(e) {
       if (e.target.closest('[data-rm-close]')) { close(); return; }
       if (e.target.closest('[data-rm-next]')) { goNext(); return; }
       if (e.target.closest('[data-rm-back]')) { goBack(); return; }
       if (e.target.closest('[data-rm-submit]')) { submit(); return; }
+      var rec = e.target.closest('[data-rm-recommend]');
+      if (rec) {
+        ratings.recommend = rec.getAttribute('data-rm-recommend');
+        modal.querySelectorAll('[data-rm-recommend]').forEach(function(b) { b.classList.toggle('is-active', b === rec); });
+        clearError();
+        return;
+      }
       var star = e.target.closest('.rate-star');
       if (star) {
         var group = star.closest('.rate-stars-input');
@@ -2289,22 +2517,6 @@
         return;
       }
     });
-
-    // Photo upload — náhled jmen vybraných souborů (wireframe-level, žádný real upload)
-    if (photoInputEl) {
-      photoInputEl.addEventListener('change', function() {
-        Array.from(photoInputEl.files).forEach(function(file) {
-          var item = document.createElement('div');
-          item.className = 'rate-photo-item';
-          item.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' +
-            '<span class="rate-photo-item-name">' + (file.name || 'fotka') + '</span>' +
-            '<button type="button" class="rate-photo-item-remove" aria-label="Odebrat">×</button>';
-          item.querySelector('.rate-photo-item-remove').addEventListener('click', function() { item.remove(); });
-          if (photoListEl) photoListEl.appendChild(item);
-        });
-        photoInputEl.value = ''; // reset, ať jde znovu zvolit ty samé soubory
-      });
-    }
 
     // Hover preview hvězd
     modal.querySelectorAll('.rate-stars-input').forEach(function(group) {
@@ -3331,6 +3543,68 @@
     }
   })();
 
+  // ── CREW LIST (detail-rezervace) — mazání osob ─────────
+  (function initCrewList() {
+    var table = document.querySelector('.crew-table');
+    if (!table) return;
+    var tbody = table.querySelector('tbody');
+    if (!tbody) return;
+    var freeRow = tbody.querySelector('.crew-free-row');
+
+    // res-step "X / Y osob" souhrn (horní lišta plateb/kroků)
+    var stepSub = null;
+    document.querySelectorAll('.res-step').forEach(function(step) {
+      var name = step.querySelector('.res-step-name');
+      if (name && name.textContent.trim() === 'Crew list') {
+        stepSub = step.querySelector('.res-step-sub');
+      }
+    });
+
+    function personRows() {
+      return Array.prototype.filter.call(tbody.querySelectorAll('tr'), function(tr) {
+        return !tr.classList.contains('crew-free-row');
+      });
+    }
+
+    function pluralMista(n) {
+      if (n === 1) return 'volné místo';
+      if (n >= 2 && n <= 4) return 'volná místa';
+      return 'volných míst';
+    }
+
+    // Kapacita = aktuální osoby + volná místa (spočítáno jednou při startu)
+    var freeStart = freeRow ? parseInt((freeRow.textContent.match(/\d+/) || [0])[0], 10) : 0;
+    var TOTAL = personRows().length + freeStart;
+
+    function refresh() {
+      var count = personRows().length;
+      var free = TOTAL - count;
+      if (freeRow) {
+        var cell = freeRow.querySelector('td');
+        if (free > 0) {
+          freeRow.hidden = false;
+          if (cell) cell.textContent = '+ ' + free + ' ' + pluralMista(free);
+        } else {
+          freeRow.hidden = true;
+        }
+      }
+      if (stepSub) stepSub.textContent = count + ' / ' + TOTAL + ' osob';
+    }
+
+    tbody.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-crew-remove]');
+      if (!btn) return;
+      var tr = btn.closest('tr');
+      if (!tr) return;
+      var name = ((tr.querySelector('td') || {}).textContent || '').trim();
+      if (!window.confirm('Odebrat ' + (name || 'tuto osobu') + ' z crew listu?')) return;
+      tr.remove();
+      refresh();
+    });
+
+    refresh();
+  })();
+
   (function initInviteModal() {
     bindModal('inviteModal', '[data-open-invite-modal]', '[data-close-invite-modal]');
   })();
@@ -3381,6 +3655,12 @@
         });
       });
     });
+    // Otevři tab podle URL hashe (např. detail-rezervace.html#crew)
+    var hash = (window.location.hash || '').slice(1);
+    if (hash) {
+      var hashTab = Array.prototype.find.call(tabs, function(t) { return t.dataset.tab === hash; });
+      if (hashTab) hashTab.click();
+    }
   })();
 
   // ── ÚČET — fakturační adresa FO/Firma ──────────────────
@@ -3388,14 +3668,105 @@
     var billing = document.querySelector('[data-billing]');
     if (!billing) return;
     var companyRow = billing.querySelector('.billing-company-row');
+    var personRow = billing.querySelector('.billing-person-row');
     var radios = billing.querySelectorAll('input[name="billing-type"]');
     function sync() {
       var v = billing.querySelector('input[name="billing-type"]:checked');
-      if (!v || !companyRow) return;
-      companyRow.hidden = v.value !== 'company';
+      if (!v) return;
+      if (companyRow) companyRow.hidden = v.value !== 'company';
+      if (personRow) personRow.hidden = v.value !== 'person';
     }
     radios.forEach(function(r) { r.addEventListener('change', sync); });
     sync();
+  })();
+
+  // ── ÚČET — fakturační adresy (mazání) ──────────────────
+  (function initBillingAddresses() {
+    var list = document.querySelector('[data-billing-list]');
+    if (!list) return;
+    list.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-addr-remove]');
+      if (!btn) return;
+      var card = btn.closest('.billing-addr');
+      if (!card) return;
+      var name = ((card.querySelector('.billing-addr-name') || {}).textContent || '').trim();
+      if (!window.confirm('Smazat fakturační adresu' + (name ? ' „' + name + '"' : '') + '?')) return;
+      card.remove();
+    });
+  })();
+
+  // ── FAKTURAČNÍ ADRESA — uložení z formuláře a návrat ────
+  (function initAddressForm() {
+    var form = document.querySelector('[data-address-form]');
+    if (!form) return;
+    function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var typeEl = form.querySelector('input[name="billing-type"]:checked');
+      var data = {
+        type: typeEl ? typeEl.value : 'person',
+        firstName: val('addr-fname'),
+        lastName: val('addr-lname'),
+        company: val('addr-company'),
+        ico: val('addr-ico'),
+        street: val('addr-street'),
+        city: val('addr-city'),
+        zip: val('addr-zip'),
+        country: val('addr-country')
+      };
+      try { sessionStorage.setItem('yn_billing', JSON.stringify(data)); } catch (err) {}
+      var ret = new URLSearchParams(window.location.search).get('return');
+      window.location.href = ret || 'ucet.html';
+    });
+  })();
+
+  // ── FAKTURAČNÍ ADRESA — výzva / box (detail rezervace) ──
+  (function initBillingBox() {
+    var section = document.querySelector('[data-billing-section]');
+    if (!section) return;
+    var prompt = section.querySelector('[data-billing-prompt]');
+    var box = section.querySelector('[data-billing-box]');
+    var ACCOUNT_NAME = 'Jaroslav Zimmermann';
+    var TRASH = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>';
+
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function read() { try { return JSON.parse(sessionStorage.getItem('yn_billing') || 'null'); } catch (e) { return null; } }
+
+    function render() {
+      var d = read();
+      if (!d) {
+        if (prompt) prompt.hidden = false;
+        if (box) { box.hidden = true; box.innerHTML = ''; }
+        return;
+      }
+      var isCompany = d.type === 'company';
+      var personName = [d.firstName, d.lastName].filter(Boolean).join(' ') || ACCOUNT_NAME;
+      var lines = '<div class="billing-addr-name">' + esc(isCompany ? (d.company || 'Firma') : personName) + '</div>';
+      if (isCompany && d.ico) lines += '<div class="billing-addr-ico">IČ ' + esc(d.ico) + '</div>';
+      if (d.street) lines += '<div>' + esc(d.street) + '</div>';
+      var cityLine = [d.zip, d.city].filter(Boolean).join(' ');
+      if (cityLine) lines += '<div>' + esc(cityLine) + '</div>';
+      if (d.country) lines += '<div>' + esc(d.country) + '</div>';
+      box.innerHTML =
+        '<div class="billing-addr">' +
+          '<div class="billing-addr-body">' +
+            '<span class="billing-addr-badge">' + (isCompany ? 'Firma' : 'Fyzická osoba') + '</span>' +
+            '<div class="billing-addr-lines">' + lines + '</div>' +
+          '</div>' +
+          '<button class="billing-addr-remove" type="button" data-billing-clear aria-label="Smazat adresu" title="Smazat adresu">' + TRASH + '</button>' +
+        '</div>';
+      box.hidden = false;
+      if (prompt) prompt.hidden = true;
+    }
+
+    section.addEventListener('click', function(e) {
+      if (!e.target.closest('[data-billing-clear]')) return;
+      if (!window.confirm('Smazat fakturační adresu?')) return;
+      try { sessionStorage.removeItem('yn_billing'); } catch (err) {}
+      render();
+    });
+
+    render();
   })();
 
   // ── BOOKING SUMMARY — dynamický souhrn cen ──────────────
@@ -3508,6 +3879,56 @@
     rebuild();
   })();
 
+  // ── POJIŠTĚNÍ V SIDEBARU (zjednodušený krok 2) ──────────
+  // Samostatný box „Pojištění" + řádek v Přehledu plateb. Pojištění se platí
+  // přímo pojišťovně (do 10 dnů od podpisu smlouvy), proto nevstupuje do
+  // pronájmu, poplatků ani online záloh.
+  (function initSimpleInsurance() {
+    var card = document.querySelector('[data-simple-poj-card]');
+    if (!card) return;
+    var anchor = card.querySelector('[data-simple-poj-anchor]');
+    var totalEl = card.querySelector('[data-simple-poj-total]');
+    var payrow = document.querySelector('[data-simple-poj-payrow]');
+    var payval = document.querySelector('[data-simple-poj-payval]');
+
+    function parsePrice(text) {
+      var n = (text.match(/[\d\s ]+/) || ['0'])[0].replace(/[\s ]/g, '');
+      return parseInt(n, 10) || 0;
+    }
+    function formatPrice(n) {
+      return n.toLocaleString('cs').replace(/ /g, ' ') + ' Kč';
+    }
+
+    var items = Array.prototype.slice.call(document.querySelectorAll('.pkg-ins-row')).map(function(row) {
+      var input = row.querySelector('.pkg-ins-check');
+      var nameEl = row.querySelector('.pkg-ins-row-name');
+      var priceEl = row.querySelector('.pkg-ins-row-price');
+      return { input: input, name: nameEl ? nameEl.textContent.trim() : '', price: priceEl ? parsePrice(priceEl.textContent) : 0 };
+    }).filter(function(it) { return it.input; });
+
+    function rebuild() {
+      if (anchor) anchor.querySelectorAll('.price-line--dynamic').forEach(function(el) { el.remove(); });
+      var sum = 0, any = false;
+      items.forEach(function(it) {
+        if (!it.input.checked) return;
+        any = true; sum += it.price;
+        if (anchor) {
+          var line = document.createElement('div');
+          line.className = 'price-line price-line--dynamic';
+          line.innerHTML = '<span>' + it.name + '</span><span>' + formatPrice(it.price) + '</span>';
+          anchor.appendChild(line);
+        }
+      });
+      if (totalEl) totalEl.textContent = formatPrice(sum);
+      card.hidden = !any;
+      if (payrow) payrow.hidden = !any;
+      if (payval) payval.textContent = formatPrice(sum);
+    }
+
+    items.forEach(function(it) { it.input.addEventListener('change', rebuild); });
+    rebuild();
+  })();
+
   // ── RESERVATION PACKAGE PICKER (detail-lodi) ──────────
   (function initPackagePicker() {
     var radios = document.querySelectorAll('input[name="reservation-package"]');
@@ -3532,6 +3953,7 @@
       ctaBtns.forEach(function(btn) {
         btn.textContent = 'Pokračovat k rezervaci →';
         btn.setAttribute('href', 'rezervace-krok-1.html');
+        btn.classList.add('btn-reserve--continue');
       });
     }
 
@@ -3542,11 +3964,18 @@
       ctaBtns.forEach(function(btn) {
         btn.textContent = 'Vybrat variantu ↓';
         btn.setAttribute('href', '#sec-balicky');
+        btn.classList.remove('btn-reserve--continue');
       });
     }
 
     radios.forEach(function(r) {
-      r.addEventListener('change', function() { if (r.checked) setSelected(r); });
+      r.addEventListener('change', function() {
+        if (!r.checked) return;
+        setSelected(r);
+        // Po zvolení varianty sjet na výběr pojištění (zelený stav tlačítka zůstává).
+        var ins = document.getElementById('sec-pojisteni');
+        if (ins) ins.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
     var checked = Array.prototype.find.call(radios, function(r) { return r.checked; });
     if (checked) setSelected(checked); else setUnselected();
@@ -3565,4 +3994,110 @@
         list.scrollBy({ left: step, behavior: 'smooth' });
       });
     });
+  })();
+
+  // ── PŘIHLÁŠENÍ — modal nad rozhraním + stav v hlavičce ──
+  // Běží na konci: modal se injektuje na každou stránku, tlačítko "Přihlásit se"
+  // ho otevře (bez navigace). Po přihlášení uživatel zůstane na stránce a tlačítko
+  // se přepne na plnou ikonku + křestní jméno. Stránky účtu (natvrdo "Můj účet")
+  // se berou jako přihlášené. Stav drží sessionStorage (reset = nová záložka).
+  (function initAuth() {
+    var ACCOUNT = { firstName: 'Jaroslav' };
+    var KEY = 'yn_loggedin';
+    var OUTLINE = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+    var SOLID = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/></svg>';
+
+    function isLoggedIn() { try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+    function setLoggedIn(v) { try { if (v) sessionStorage.setItem(KEY, '1'); else sessionStorage.removeItem(KEY); } catch (e) {} }
+    function truncName(n) { return n.length > 9 ? n.slice(0, 9) + '…' : n; }
+
+    if (!document.getElementById('loginModal') && typeof Components.loginModal === 'function') {
+      document.body.insertAdjacentHTML('beforeend', Components.loginModal());
+    }
+    var modal = document.getElementById('loginModal');
+
+    function switchTab(name) {
+      if (!modal) return;
+      modal.querySelectorAll('.login-tab[data-login-tab]').forEach(function(t) {
+        t.classList.toggle('is-active', t.getAttribute('data-login-tab') === name);
+      });
+      modal.querySelectorAll('[data-login-panel]').forEach(function(p) {
+        p.hidden = p.getAttribute('data-login-panel') !== name;
+      });
+      modal.classList.toggle('is-register-wide', name === 'register');
+      var title = modal.querySelector('#loginModalTitle');
+      if (title) title.textContent = name === 'register' ? 'Registrace' : 'Přihlášení';
+    }
+    function openModal(tab) {
+      tab = tab || 'login';
+      if (typeof closeMobileNav === 'function') closeMobileNav();
+      if (!modal) return;
+      switchTab(tab);
+      modal.hidden = false;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      var first = modal.querySelector('[data-login-panel="' + tab + '"] .auth-input');
+      if (first) first.focus();
+    }
+    function closeModal() {
+      if (!modal) return;
+      modal.hidden = true;
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    function doLogin() { setLoggedIn(true); closeModal(); renderNav(); }
+
+    function renderNav() {
+      var loggedIn = isLoggedIn();
+      document.querySelectorAll('.nav-login-btn').forEach(function(btn) {
+        if (loggedIn) {
+          btn.innerHTML = SOLID + truncName(ACCOUNT.firstName);
+          btn.classList.add('nav-login-btn--account');
+          btn.onclick = function() { window.location.href = 'seznam-rezervaci.html'; };
+        } else {
+          btn.innerHTML = OUTLINE + 'Přihlásit se';
+          btn.classList.remove('nav-login-btn--account');
+          btn.onclick = function(e) { e.preventDefault(); openModal(); };
+        }
+      });
+    }
+
+    // Stránky účtu mají natvrdo "Můj účet" → ber jako přihlášeného a zapamatuj.
+    var onAccountPage = Array.prototype.some.call(document.querySelectorAll('.nav-login-btn'), function(b) {
+      return b.textContent.trim() === 'Můj účet';
+    });
+    if (onAccountPage) setLoggedIn(true);
+
+    renderNav();
+
+    // Odhlásit se — vyčistit stav a vrátit na úvod (odhlášený)
+    document.querySelectorAll('.account-nav-item').forEach(function(item) {
+      if (item.textContent.trim() === 'Odhlásit se') {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          setLoggedIn(false);
+          window.location.href = 'index.html';
+        });
+      }
+    });
+
+    // Otevření modalu i z jiných míst než hlavičky (např. „Přihlásit se" v kontaktních údajích)
+    document.querySelectorAll('[data-login-open]').forEach(function(el) {
+      el.addEventListener('click', function(e) { e.preventDefault(); openModal(el.getAttribute('data-login-open') || 'login'); });
+    });
+
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target.closest('[data-login-close]')) { closeModal(); return; }
+        var tab = e.target.closest('[data-login-tab]');
+        if (tab) { e.preventDefault(); switchTab(tab.getAttribute('data-login-tab')); return; }
+        if (e.target.closest('[data-login-social]')) { e.preventDefault(); doLogin(); return; }
+      });
+      modal.addEventListener('submit', function(e) {
+        if (e.target.closest('[data-login-panel="login"]')) { e.preventDefault(); doLogin(); }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && !modal.hidden) closeModal();
+      });
+    }
   })();
