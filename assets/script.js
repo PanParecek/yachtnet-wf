@@ -209,6 +209,15 @@
             '<textarea class="rate-modal-comment" id="rm-positive" data-rm-comment-positive rows="3" placeholder="Nejlepší momenty, co byste doporučili…"></textarea>' +
             '<label for="rm-negative" style="display:flex;align-items:center;font-size:13px;font-weight:700;margin:16px 0 6px;"><span class="rate-pc-ico rate-pc-ico--neg" aria-hidden="true">−</span>Co by se dalo zlepšit?</label>' +
             '<textarea class="rate-modal-comment" id="rm-negative" data-rm-comment-negative rows="3" placeholder="Co nebylo v pořádku, co by šlo udělat lépe…"></textarea>' +
+            '<div class="rate-upload">' +
+              '<label class="rate-upload-zone" data-rm-dropzone>' +
+                '<input type="file" accept="image/*" multiple class="rate-upload-input" data-rm-photo-input />' +
+                '<span class="rate-upload-ico"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span>' +
+                '<span class="rate-upload-text"><strong>Přetáhněte fotky sem</strong> nebo klikněte pro výběr</span>' +
+                '<span class="rate-upload-hint">Na telefonu otevře fotoaparát nebo galerii</span>' +
+              '</label>' +
+              '<div class="rate-upload-list" data-rm-photo-list></div>' +
+            '</div>' +
             actions(true, 'Pokračovat →', 'data-rm-next') +
           '</div>' +
           '<div class="rate-modal-step" data-rm-step="5" hidden>' +
@@ -321,6 +330,7 @@
           { href: 'muj-prukaz.html', title: 'Detail mého průkazu', id: 'page-license-mine' },
           { href: 'pridat-prukaz.html', title: 'Přidat průkaz', id: 'page-license-add' }
         ]},
+        { href: 'moje-pojisteni.html', title: 'Moje pojištění', id: 'page-insurance' },
         { href: 'crew.html', title: 'Crew list', id: 'page-crew', children: [
           { href: 'clen-posadky.html', title: 'Detail člena posádky', id: 'page-crew-member' },
           { href: 'pridat-clena.html', title: 'Přidat člena posádky', id: 'page-crew-add' }
@@ -368,6 +378,68 @@
     document.addEventListener('DOMContentLoaded', renderSitemap);
   } else {
     renderSitemap();
+  }
+
+  // ── PLOVOUCÍ WIREFRAME SITEMAP (dostupná na každé stránce) ──
+  // Hamburger button vpravo nahoře otevře boční panel se stromem všech stránek.
+  // Reuse SITEMAP_TREE + renderSitemapNode. Markup se injektuje do <body>.
+  function initSitemapWidget() {
+    if (!document.body || document.querySelector('.yn-sm-fab')) return;
+    var total = countSitemapNodes(SITEMAP_TREE);
+    var tree = '<ul class="sm-tree">' + SITEMAP_TREE.map(function(n) { return '<li>' + renderSitemapNode(n) + '</li>'; }).join('') + '</ul>';
+    var html =
+      '<button class="yn-sm-fab" type="button" aria-label="Mapa stránek (wireframe)" aria-expanded="false">' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>' +
+      '</button>' +
+      '<div class="yn-sm-overlay" data-yn-sm-close hidden></div>' +
+      '<aside class="yn-sm-panel" aria-hidden="true" aria-label="Mapa stránek (wireframe)">' +
+        '<div class="yn-sm-head">' +
+          '<div class="yn-sm-head-text"><span class="yn-sm-eyebrow">Wireframe</span><span class="yn-sm-title">Mapa stránek</span></div>' +
+          '<span class="yn-sm-count">' + total + ' stránek</span>' +
+          '<button class="yn-sm-close" type="button" data-yn-sm-close aria-label="Zavřít"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>' +
+        '</div>' +
+        '<div class="yn-sm-tree">' + tree + '</div>' +
+        '<a class="yn-sm-foot" href="mapa-stranek.html">Otevřít celou mapu stránek →</a>' +
+      '</aside>';
+    document.body.insertAdjacentHTML('beforeend', html);
+
+    var fab = document.querySelector('.yn-sm-fab');
+    var panel = document.querySelector('.yn-sm-panel');
+    var overlay = document.querySelector('.yn-sm-overlay');
+
+    // Zvýraznění aktuální stránky
+    var current = (location.pathname.split('/').pop() || 'index.html');
+    panel.querySelectorAll('.sm-node').forEach(function(a) {
+      var href = (a.getAttribute('href') || '').split('/').pop();
+      if (href && href === current) a.classList.add('sm-node--current');
+    });
+
+    function openPanel() {
+      overlay.hidden = false;
+      requestAnimationFrame(function() { overlay.classList.add('show'); panel.classList.add('open'); });
+      panel.setAttribute('aria-hidden', 'false');
+      fab.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      var cur = panel.querySelector('.sm-node--current');
+      if (cur) cur.scrollIntoView({ block: 'center' });
+    }
+    function closePanel() {
+      panel.classList.remove('open');
+      overlay.classList.remove('show');
+      panel.setAttribute('aria-hidden', 'true');
+      fab.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      setTimeout(function() { if (!panel.classList.contains('open')) overlay.hidden = true; }, 260);
+    }
+    fab.addEventListener('click', openPanel);
+    panel.querySelectorAll('[data-yn-sm-close]').forEach(function(el) { el.addEventListener('click', closePanel); });
+    overlay.addEventListener('click', closePanel);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && panel.classList.contains('open')) closePanel(); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSitemapWidget);
+  } else {
+    initSitemapWidget();
   }
 
   // ── DESTINATIONS REGISTRY ───────────────────────────────
@@ -2306,6 +2378,9 @@
     var positiveEl = modal.querySelector('[data-rm-comment-positive]');
     var negativeEl = modal.querySelector('[data-rm-comment-negative]');
     var marinaCommentEl = modal.querySelector('[data-rm-marina-comment]');
+    var photoInputEl = modal.querySelector('[data-rm-photo-input]');
+    var photoListEl = modal.querySelector('[data-rm-photo-list]');
+    var dropzoneEl = modal.querySelector('[data-rm-dropzone]');
     var steps = modal.querySelectorAll('[data-rm-step]');
     var errorEl = null;
     var currentRow = null;
@@ -2349,6 +2424,9 @@
       if (boatLabel) boatLabel.textContent = boatName || '';
       if (positiveEl) positiveEl.value = '';
       if (negativeEl) negativeEl.value = '';
+      if (photoListEl) photoListEl.innerHTML = '';
+      if (photoInputEl) photoInputEl.value = '';
+      if (dropzoneEl) dropzoneEl.classList.remove('is-dragover');
       showStep(1);
       modal.hidden = false;
       document.body.style.overflow = 'hidden';
@@ -2425,13 +2503,14 @@
       ];
       var sum = 0, n = 0;
       items.forEach(function(it) { if (it[1]) { sum += it[1]; n++; } });
-      var avg = n ? (sum / n) : 0;
-      var word = avg >= 4.5 ? 'Výborné' : avg >= 3.75 ? 'Velmi dobré' : avg >= 3 ? 'Dobré' : avg >= 2 ? 'Průměrné' : 'Slabé';
-      var html = '<div class="rate-sum-score"><span class="rate-sum-score-num">' + avg.toFixed(1).replace('.', ',') + '</span><span class="rate-sum-score-scale">/ 5</span><span class="rate-sum-stars">' + renderStars(Math.round(avg)) + '</span><span class="rate-sum-score-word">' + word + '</span></div>';
+      // Hvězdy (1–5) přepočítáváme na stupnici do 10 — váha hvězdy = 2 body.
+      var avg = n ? (sum / n) * 2 : 0;
+      var word = avg >= 9 ? 'Výborné' : avg >= 7.5 ? 'Velmi dobré' : avg >= 6 ? 'Dobré' : avg >= 4 ? 'Průměrné' : 'Slabé';
+      var html = '<div class="rate-sum-score"><span class="rate-sum-score-num">' + avg.toFixed(1).replace('.', ',') + '</span><span class="rate-sum-score-scale">/ 10</span><span class="rate-sum-stars">' + renderStars(Math.round(avg / 2)) + '</span><span class="rate-sum-score-word">' + word + '</span></div>';
       html += '<div class="rate-sum-grid">';
       items.forEach(function(it) {
-        var v = (it[1] || 0);
-        html += '<div><div class="rate-sum-item-head"><span>' + it[0] + '</span><strong>' + v + '</strong></div><div class="rate-sum-bar"><div class="rate-sum-bar-fill" style="width:' + (v * 20) + '%"></div></div></div>';
+        var v = (it[1] || 0) * 2;
+        html += '<div><div class="rate-sum-item-head"><span>' + it[0] + '</span><strong>' + v + '</strong></div><div class="rate-sum-bar"><div class="rate-sum-bar-fill" style="width:' + (v * 10) + '%"></div></div></div>';
       });
       html += '</div>';
       var recYes = ratings.recommend === 'yes', recNo = ratings.recommend === 'no';
@@ -2464,9 +2543,10 @@
         var psum = 0, pcnt = 0;
         pvals.forEach(function(x) { if (x) { psum += x; pcnt++; } });
         var pavg = pcnt ? (psum / pcnt) : 0;
+        var pavg10 = pavg * 2;
         currentRow.classList.add('res-rate-row--done');
         currentRow.innerHTML = '<div class="res-rate-display">' +
-          '<span class="res-rate-item"><span class="res-rate-label">Vaše hodnocení:</span><span class="res-rate-stars">' + renderStars(Math.round(pavg)) + '</span><span class="res-rate-avg">' + pavg.toFixed(1).replace('.', ',') + '</span></span>' +
+          '<span class="res-rate-item"><span class="res-rate-label">Vaše hodnocení:</span><span class="res-rate-stars">' + renderStars(Math.round(pavg)) + '</span><span class="res-rate-avg">' + pavg10.toFixed(1).replace('.', ',') + ' / 10</span></span>' +
         '</div>';
       }
       renderSummary();
@@ -2517,6 +2597,37 @@
         return;
       }
     });
+
+    // Nahrávání fotek — náhledy jmen + drag & drop (wireframe-level, žádný real upload)
+    function addPhotos(files) {
+      if (!photoListEl || !files) return;
+      Array.prototype.forEach.call(files, function(file) {
+        if (file.type && file.type.indexOf('image/') !== 0) return;
+        var item = document.createElement('div');
+        item.className = 'rate-upload-item';
+        item.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' +
+          '<span class="rate-upload-item-name">' + (file.name || 'fotka') + '</span>' +
+          '<button type="button" class="rate-upload-item-remove" aria-label="Odebrat">×</button>';
+        item.querySelector('.rate-upload-item-remove').addEventListener('click', function(e) { e.preventDefault(); item.remove(); });
+        photoListEl.appendChild(item);
+      });
+    }
+    if (photoInputEl) {
+      photoInputEl.addEventListener('change', function() { addPhotos(photoInputEl.files); photoInputEl.value = ''; });
+    }
+    if (dropzoneEl) {
+      ['dragenter', 'dragover'].forEach(function(ev) {
+        dropzoneEl.addEventListener(ev, function(e) { e.preventDefault(); dropzoneEl.classList.add('is-dragover'); });
+      });
+      ['dragleave', 'dragend'].forEach(function(ev) {
+        dropzoneEl.addEventListener(ev, function(e) { e.preventDefault(); dropzoneEl.classList.remove('is-dragover'); });
+      });
+      dropzoneEl.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropzoneEl.classList.remove('is-dragover');
+        if (e.dataTransfer && e.dataTransfer.files) addPhotos(e.dataTransfer.files);
+      });
+    }
 
     // Hover preview hvězd
     modal.querySelectorAll('.rate-stars-input').forEach(function(group) {

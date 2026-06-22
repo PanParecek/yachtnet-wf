@@ -246,82 +246,31 @@
         </div>
       </div>
 
-      <!-- Cena za pronájem -->
-      <div class="bk-card">
-        <div class="bk-card-head"><div class="bk-card-title">Cena za pronájem</div></div>
+      <!-- Cena a poplatky (sloučená tabulka) -->
+      <div class="bk-card" data-extras-card>
+        <div class="bk-card-head"><div class="bk-card-title">Cena a poplatky</div></div>
         <div class="bk-card-body">
+          <div class="price-section-title">Pronájem</div>
           <div class="price-line"><span>Katalogová cena (7 nocí)</span><span>36 000 Kč</span></div>
           <div class="price-line discount"><span>Sleva 10 % (early bird)</span><span>−3 600 Kč</span></div>
-          <div class="price-line total price-line--prominent"><span>Cena za pronájem celkem</span><span>32 400 Kč</span></div>
-        </div>
-      </div>
+          <div class="price-line total"><span>Cena za pronájem</span><span>32 400 Kč</span></div>
 
-      <!-- Poplatky a doplňkové služby -->
-      <div class="bk-card" data-extras-card>
-        <div class="bk-card-head"><div class="bk-card-title">Poplatky a doplňkové služby</div></div>
-        <div class="bk-card-body">
-          <div class="price-section-title">Povinné poplatky</div>
-          <div class="price-line">
-            <span>Transit log <span class="price-line-note">platíte na základně</span></span>
-            <span>12 611 Kč</span>
-          </div>
-          <div class="price-line">
-            <span>Skipper <span class="price-line-note">platíte na základně</span></span>
-            <span>14 000 Kč</span>
-          </div>
-          <div class="price-line">
-            <span>Early check-in <span class="price-line-note">platíte na základně</span></span>
-            <span>0 Kč</span>
-          </div>
+          <div class="price-section-title">Povinné poplatky <span class="price-section-note">platíte na základně</span></div>
+          <div class="price-line"><span>Transit log</span><span>12 611 Kč</span></div>
+          <div class="price-line"><span>Skipper</span><span>14 000 Kč</span></div>
+          <div class="price-line"><span>Early check-in</span><span>0 Kč</span></div>
 
-          <div class="price-section-title">Pojištění <span class="price-section-note">Platíte pojišťovně · platí se předem</span></div>
+          <div class="price-section-title">Pojištění <span class="price-section-note">platíte pojišťovně</span></div>
           <div data-pojisteni-anchor>
             <div class="price-line price-line--empty" data-pojisteni-empty>Žádné pojištění nezvoleno.</div>
           </div>
 
-          <div class="price-section-title">Vybavení a služby <span class="price-section-note">Platíte na základně · vybavení podléhá potvrzení charterové společnosti</span></div>
+          <div class="price-section-title">Vybavení a služby <span class="price-section-note">platíte na základně</span></div>
           <div data-extras-anchor>
             <div class="price-line price-line--empty" data-extras-empty>Žádné vybavení a služby nezvoleny.</div>
           </div>
 
           <div class="price-line total price-line--prominent"><span>Poplatky a doplňky celkem</span><span data-extras-total>0 Kč</span></div>
-        </div>
-      </div>
-
-      <!-- Přehled plateb -->
-      <div class="bk-card">
-        <div class="bk-card-head"><div class="bk-card-title">Přehled plateb</div></div>
-        <div class="bk-card-body">
-          <div class="pay-schedule">
-            <div class="pay-schedule-row">
-              <div class="pay-schedule-row-label">
-                <span class="pay-schedule-row-name">Zaplatíte nyní</span>
-                <span class="pay-schedule-row-sub">Záloha 30 % · online</span>
-              </div>
-              <div class="pay-schedule-row-val" data-pay-now>9 720 Kč</div>
-            </div>
-            <div class="pay-schedule-row">
-              <div class="pay-schedule-row-label">
-                <span class="pay-schedule-row-name">Doplatek 1 — 60 dnů před začátkem</span>
-                <span class="pay-schedule-row-sub">13. 5. 2026 · online</span>
-              </div>
-              <div class="pay-schedule-row-val" data-pay-rest-1>11 340 Kč</div>
-            </div>
-            <div class="pay-schedule-row">
-              <div class="pay-schedule-row-label">
-                <span class="pay-schedule-row-name">Doplatek 2 — 30 dnů před začátkem</span>
-                <span class="pay-schedule-row-sub">12. 6. 2026 · online</span>
-              </div>
-              <div class="pay-schedule-row-val" data-pay-rest-2>11 340 Kč</div>
-            </div>
-            <div class="pay-schedule-row">
-              <div class="pay-schedule-row-label">
-                <span class="pay-schedule-row-name">Zaplatíte na základně</span>
-                <span class="pay-schedule-row-sub">Povinný poplatek + vratná kauce</span>
-              </div>
-              <div class="pay-schedule-row-val"><span data-pay-marina>26 611 Kč</span><br><span class="pay-schedule-row-val-sub">+ 4 000 €</span></div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -336,7 +285,7 @@
           <input type="checkbox" id="vop" />
           <label for="vop" style="font-size:12px;">Souhlasím s <a href="#" style="color:var(--int);font-weight:600;">VOP</a> a <a href="#" style="color:var(--int);font-weight:600;">Zásadami ochrany osobních údajů</a></label>
         </div>
-        <p style="font-size:11px;color:var(--muted);text-align:center;margin:0;line-height:1.5;">Doplatek 22 680 Kč rozdělený na 2 splátky, automaticky 60 a 30 dnů před nástupem.</p>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin:0;line-height:1.5;">Nyní zaplatíte zálohu 30 % ve výši <strong>9 720 Kč</strong>. Zbývajících 22 680 Kč doplatíte ve dvou splátkách 60 a 30 dnů před nástupem.</p>
       </div>
 
       <div data-component="contactSpecialist"></div>
