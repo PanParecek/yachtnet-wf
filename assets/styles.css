@@ -81,8 +81,9 @@
     }
     .nav-dropdown-kurzy-right { display: flex; flex-direction: column; }
     .nav-dropdown-kurzy-cols {
-      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px;
     }
+    .nav-dropdown-group + .nav-dropdown-group { margin-top: 22px; }
     .nav-dropdown-kurzy-actions {
       display: flex; gap: 24px;
       margin-top: auto; padding-top: 18px;
@@ -135,7 +136,7 @@
       display: block; text-decoration: none;
       font-size: 11px; font-weight: 700; letter-spacing: .1em;
       text-transform: uppercase; color: var(--muted);
-      transition: color .15s;
+      margin-bottom: 18px; transition: color .15s;
     }
     .nav-dropdown-panel a.nav-dropdown-col-title--link:hover { color: var(--int); }
     .nav-dropdown-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
@@ -868,6 +869,16 @@
     .course-img {
       width: 100%; aspect-ratio: 3/2;
       background: var(--cross-bg), var(--img-bg);
+      position: relative;
+    }
+    /* Overlay štítek „Doporučujeme" na obrázku karty */
+    .course-rec-badge {
+      position: absolute; top: 10px; left: 10px; z-index: 2;
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px;
+      background: #facc15; color: #422006; border: 1px solid #ca8a04;
+      box-shadow: 0 1px 3px rgba(0,0,0,.15);
     }
     .course-body { padding: 18px; }
 
@@ -937,6 +948,8 @@
       background: var(--bg); color: var(--text);
       border: 1px solid var(--border); border-radius: 20px; font-weight: 500;
     }
+    /* Štítek prerekvizity — zvýrazněný (vyžaduje jiný průkaz) */
+    .course-tag--req { background: var(--int-soft); color: var(--int); border-color: var(--int); font-weight: 700; }
 
     /* ── TESTIMONIALS ────────────────────────────── */
     .testi-tabs { display: flex; justify-content: center; gap: 0; margin-bottom: 28px; border-bottom: 2px solid var(--border); }
@@ -1589,6 +1602,9 @@
     .equip-list-item.missing svg { color: var(--muted); opacity: .5; }
 
     .extras-list { display: flex; flex-direction: column; gap: 10px; }
+    /* Odkaz „+ N dalších doplňků" pod seznamem (extras může být mnohem víc) */
+    .extras-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 14px; font-weight: 700; color: var(--int); text-decoration: none; cursor: pointer; }
+    .extras-more:hover { color: var(--int-dark); text-decoration: underline; }
     .extra-item {
       display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px;
       border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); cursor: pointer;
@@ -2640,6 +2656,7 @@
     .step-guide { margin: 28px 0; }
     .step-guide-title { font-size: 16px; font-weight: 700; margin-bottom: 20px; }
     .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .steps[hidden] { display: none; }
     .step { display: flex; gap: 20px; align-items: flex-start; position: relative; padding-bottom: 24px; }
     .step:last-child { padding-bottom: 0; }
     .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--int); color: #fff; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1; }
@@ -2929,6 +2946,22 @@
     .bk-boat-specs { display: flex; gap: 14px; flex-wrap: wrap; }
     .bk-boat-spec { font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 4px; }
 
+    /* Zvolené kurzy v objednávkovém funnelu (sidebar) */
+    .order-course-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .order-course-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .order-course-item:first-child { padding-top: 0; }
+    .order-course-item:has(+ .price-line.total) { border-bottom: none; }
+    .order-course-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .order-course-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .order-course-price { font-size: 14px; font-weight: 700; white-space: nowrap; }
+
+    /* Dárkový voucher (krok 2 rezervace) */
+    .voucher-toggle { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text); }
+    .voucher-toggle input { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--int); cursor: pointer; }
+    .voucher-form { display: flex; gap: 10px; margin-top: 14px; }
+    .voucher-form .voucher-input { flex: 1; margin: 0; }
+    .voucher-form .voucher-apply { flex-shrink: 0; white-space: nowrap; width: auto; }
+
     /* Extras */
     .extra-list { display: flex; flex-direction: column; gap: 10px; }
     .extra-item {
@@ -2938,6 +2971,17 @@
     }
     .extra-item:hover { border-color: var(--int); }
     .extra-item:has(input:checked) { border-color: var(--int); background: var(--int-soft); }
+    /* Skryté služby (show-hide) — .extra-item má display:flex, proto explicitně */
+    .extra-item[hidden] { display: none; }
+    /* Zakoupená služba — zelená indikace */
+    .extra-item.is-bought { background: #f0fdf4; border-color: #bbf7d0; }
+    .extra-item.is-bought:hover { border-color: #bbf7d0; }
+    .svc-status { color: #16a34a; flex-shrink: 0; display: flex; margin-top: 1px; }
+    .svc-bought-tag { display: inline-block; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: #15803d; background: #dcfce7; border: 1px solid #86efac; padding: 1px 7px; border-radius: 999px; margin-right: 6px; white-space: nowrap; }
+    /* Akční lišta výběru služeb */
+    .svc-action { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 16px; padding: 12px 16px; background: var(--int-soft); border: 1px solid var(--int); border-radius: 10px; }
+    .svc-action-summary { font-size: 14px; font-weight: 700; color: var(--text); }
+    .svc-action .acc-btn { white-space: nowrap; width: auto; }
     .extra-item.is-required { cursor: default; }
     .extra-item.is-required:hover { border-color: var(--int); }
     .extra-item.is-required input[type="checkbox"] { cursor: not-allowed; opacity: .65; }
@@ -2948,6 +2992,14 @@
       padding: 1px 6px; border-radius: 3px;
       vertical-align: 1px;
     }
+    /* Počítadlo kusů (mínus / input / plus) */
+    .qty-stepper { display: inline-flex; align-items: center; align-self: center; flex-shrink: 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--surface); }
+    .qty-btn { width: 30px; height: 30px; border: none; background: var(--bg); color: var(--text); font-size: 17px; font-weight: 700; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .12s, color .12s; }
+    .qty-btn:hover { background: var(--int-soft); color: var(--int); }
+    .qty-input { width: 36px; height: 30px; border: none; border-left: 1px solid var(--border); border-right: 1px solid var(--border); text-align: center; font-size: 13px; font-weight: 700; color: var(--text); background: var(--surface); }
+    /* Odebrat z košíku */
+    .svc-remove { align-self: center; flex-shrink: 0; width: 32px; height: 32px; border: none; background: none; color: var(--muted); border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: color .12s, background .12s; }
+    .svc-remove:hover { color: #dc2626; background: #fef2f2; }
 
     /* Kód rezervace — chip vedle H1 */
     .res-code-chip {
@@ -3713,6 +3765,9 @@
     }
     .auth-btn:hover { background: var(--int-dark); color: #fff; }
     .auth-btn:visited { color: #fff; }
+    /* Připravené k akci (např. vybrané termíny) — zelené potvrzovací zabarvení */
+    .auth-btn.is-ready { background: #16a34a; }
+    .auth-btn.is-ready:hover { background: #15803d; }
     .auth-divider { display: flex; align-items: center; gap: 10px; margin: 18px 0; font-size: 12px; color: var(--muted); }
     .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
     .auth-social { display: flex; flex-direction: column; gap: 8px; }
@@ -4210,6 +4265,17 @@
     }
     .rate-star:hover { transform: scale(1.15); }
     .rate-star.is-active, .rate-star.is-hover { color: #f5a623; }
+    /* Půlhvězdička — zlatá levá polovina překryje šedou hvězdu (jen v modálu hodnocení).
+       Padding symetrický → 50 % šířky tlačítka = přesně střed glyfu. */
+    .rate-stars-input .rate-star { position: relative; }
+    .rate-stars-input .rate-star.is-half::before {
+      content: "★";
+      position: absolute; left: 0; top: 0;
+      height: 100%; width: 50%;
+      padding: inherit; box-sizing: border-box;
+      overflow: hidden; text-align: left;
+      color: #f5a623; pointer-events: none;
+    }
     .rate-modal-comment {
       width: 100%; margin-top: 14px;
       padding: 12px; border: 1px solid var(--border);
@@ -4461,6 +4527,9 @@
     .flash--success .flash-icon { color: #16a34a; }
     .flash--error   { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
     .flash--error .flash-icon { color: #dc2626; }
+    .flash--blue    { background: #eff6ff; border: 1px solid #93c5fd; color: #1e40af; }
+    .flash--blue .flash-icon { color: #2563eb; }
+    .flash--blue .flash-link { color: #1e40af; }
 
     /* Parametry výpůjčky v detailu rezervace */
     .param-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 18px; }
@@ -4751,6 +4820,15 @@
     .course-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
     .course-name a { color: var(--int); text-decoration: none; }
     .course-name a:hover { color: var(--int-dark); text-decoration: underline; }
+    /* Neklikací (statická) karta kroku — bez kurzoru a hover efektu */
+    .course-card--static { cursor: default; }
+    .course-card--static:hover { border-color: var(--border); box-shadow: none; transform: none; }
+    /* Přepínač variant kroků — obyčejné textové odkazy */
+    .kroky-variant-links { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; }
+    .kroky-variant-link { color: var(--muted); text-decoration: none; font-weight: 600; }
+    .kroky-variant-link:hover { color: var(--int); }
+    .kroky-variant-link.is-active { color: var(--int); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+    .kroky-variant-sep { color: var(--border); }
     .course-params { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12px; color: var(--muted); }
     .course-price { font-size: 18px; font-weight: 800; color: var(--text); flex-shrink: 0; }
     .license-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
@@ -4836,6 +4914,13 @@
       transition: transform .15s, box-shadow .15s;
     }
     .wizard-result-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+    .wizard-restart {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 14px; margin-left: 10px; padding: 10px 4px;
+      background: none; border: none; color: rgba(255,255,255,.85);
+      font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer;
+    }
+    .wizard-restart:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 
     /* Stepper v hero wizardu */
     .wizard-stepper {
@@ -5059,6 +5144,29 @@
       box-shadow: 0 4px 14px rgba(0,0,0,.04);
     }
     .dates-card .dates-table th { background: transparent; }
+    /* Akordeon termínů — skryté řádky a ovladač „+ X dalších termínů" */
+    .dates-row--extra { display: none; }
+    .dates-table.is-open .dates-row--extra { display: table-row; }
+    .dates-more-btn {
+      width: 100%; margin: 4px 0 6px; padding: 11px;
+      background: none; border: none; border-top: 1px solid var(--border);
+      color: var(--int); font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer;
+    }
+    .dates-more-btn:hover { color: var(--int-dark); }
+    /* Klikací typ kurzu v termínové listině */
+    .term-course { color: var(--int); font-weight: 600; text-decoration: none; }
+    .term-course:hover { text-decoration: underline; }
+    /* Plovoucí sticky lišta výběru termínů */
+    .term-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: var(--surface); border-top: 1px solid var(--border); box-shadow: 0 -4px 24px rgba(0,0,0,.10); padding: 14px 0; }
+    .term-bar-inner { max-width: var(--max); margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: flex-end; gap: 18px; }
+    .term-bar-count { font-size: 13px; color: var(--muted); }
+    /* VIP termín — prémiový zlatý štítek */
+    .vip-tag {
+      display: inline-block; margin-left: 6px; vertical-align: middle;
+      font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      color: #8a6d00; background: #ffe7a3; border: 1px solid #e8c45e;
+      padding: 1px 7px; border-radius: 999px;
+    }
 
     /* Detail kurzu – lead odstavec */
     .course-lead {
@@ -5264,6 +5372,18 @@
       color: rgba(255,255,255,.88);
       margin: 0; max-width: 580px;
     }
+    /* Štítky průkazů, pro které je kurz potřebný (v tmavém hero) */
+    .license-hero-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; }
+    .license-hero-tags-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: rgba(255,255,255,.55); margin-right: 2px; }
+    .license-hero-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600; color: #fff;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22);
+      padding: 5px 12px; border-radius: 999px; text-decoration: none;
+      transition: background .15s, border-color .15s;
+    }
+    .license-hero-tag:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.45); color: #fff; }
+    .license-hero-tag svg { opacity: .8; }
     .license-hero-summary {
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.18);
@@ -6461,6 +6581,9 @@
     .sm-node:hover { border-color: var(--int); color: var(--int); }
     .sm-node.sm-root { font-size: 15px; font-weight: 700; padding: 8px 16px; border-color: var(--int); color: var(--int); background: var(--int-soft); }
     .sm-node.sm-group { font-weight: 700; background: var(--bg); }
+    /* Složka bez vlastní stránky (např. „Archiv") — neklikací popisek */
+    .sm-node.sm-folder { font-weight: 700; background: var(--bg); color: var(--muted); cursor: default; border-style: dashed; }
+    .sm-node.sm-folder:hover { border-color: var(--border); color: var(--muted); }
     .sm-node-id { font-size: 10px; color: var(--muted); font-weight: 400; font-family: monospace; }
     .sm-section { margin-bottom: 40px; }
     .sm-section-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }

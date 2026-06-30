@@ -58,7 +58,7 @@
         '<div class="sp-item">' +
           '<span class="sp-google-icon" aria-label="Google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span>' +
           '<span class="sp-score">' + score + '</span>' +
-          '<div><div class="sp-stars">★★★★★</div><div class="sp-label">' + label + '</div></div>' +
+          '<div><div class="sp-stars">★</div><div class="sp-label">' + label + '</div></div>' +
         '</div>' +
         '<div class="sp-divider"></div>' +
         '<div class="sp-trust" title="Yacht-Pool International · Financial Security System">' +
@@ -133,16 +133,20 @@
 
     contactSpecialist: function(opts) {
       var title = (opts && opts.title) || 'Máte otázky k této lodi? Ozvěte se Monice.';
+      var name = (opts && opts.name) || 'Monika Fomínová';
+      var role = (opts && opts.role) || 'Specialista na chartery';
+      var phone = (opts && opts.phone) || '+420 775 123 456';
+      var email = (opts && opts.email) || 'monika@yachtnet.cz';
       return '<div class="contact-box">' +
         '<div class="contact-box-title">' + title + '</div>' +
         '<div class="contact-compact">' +
           '<div class="contact-avatar-lg"></div>' +
           '<div class="contact-details">' +
-            '<div class="contact-name">Monika Fomínová</div>' +
-            '<div class="contact-role">Specialista na chartery</div>' +
+            '<div class="contact-name">' + name + '</div>' +
+            '<div class="contact-role">' + role + '</div>' +
             '<div class="contact-info-row">' +
-              '<a href="#" class="contact-info-link"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+420 775 123 456</a>' +
-              '<a href="#" class="contact-info-link"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>monika@yachtnet.cz</a>' +
+              '<a href="#" class="contact-info-link"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>' + phone + '</a>' +
+              '<a href="#" class="contact-info-link"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>' + email + '</a>' +
             '</div>' +
           '</div>' +
           '<div class="contact-quick">' +
@@ -181,7 +185,7 @@
             '<div class="rate-modal-sub" data-rm-boat>Hanse 458 — „Polaris"</div>' +
             '<p class="rate-modal-question">Jak jste byli celkově spokojeni s vaší plavbou?</p>' +
             '<div class="rate-stars-input rate-stars-input--lg" data-rate="overall">' + stars() + '</div>' +
-            '<p class="rate-modal-hint">Udělte hodnocení pomocí hvězdiček: 1 hvězdička znamená velmi špatné, 5 hvězdiček naopak skvělé.</p>' +
+            '<p class="rate-modal-hint">Udělte hodnocení pomocí hvězdiček: 1 hvězdička znamená velmi špatné, 5 hvězdiček naopak skvělé. Kliknutím na levou polovinu hvězdy udělíte půlhvězdičku.</p>' +
             actions(false, 'Pokračovat →', 'data-rm-next') +
           '</div>' +
           '<div class="rate-modal-step" data-rm-step="2" hidden>' +
@@ -244,6 +248,190 @@
       '</div>';
     },
 
+    // ── SDÍLENÉ BLOKY OBJEDNÁVKOVÉHO FUNNELU (jachta i kurz) ──
+    // Jediný zdroj pravdy pro prvky společné oběma verzím funnelu. Změna zde se
+    // propíše do rezervace lodi i objednávky kurzu zároveň. NAV a stepper zůstávají
+    // inline v každé stránce (per-page stav/varianta — viz konvence v CLAUDE.md).
+
+    // Krok 1 — Kontaktní údaje (formulář)
+    bookingContact: function() {
+      return '<div class="bk-card">' +
+        '<div class="bk-card-head">' +
+          '<div class="bk-card-title">Kontaktní údaje</div>' +
+          '<a class="btn-secondary btn-secondary--sm" href="#" data-login-open><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Přihlásit se</a>' +
+        '</div>' +
+        '<div class="bk-card-body">' +
+          '<p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5;">Nemáte účet? <a href="#" data-login-open="register" style="color:var(--int);font-weight:600;">Registrujte se</a> a získejte řadu výhod — věrnostní slevy, rychlejší odbavení a přehled všech objednávek v jednom účtu.</p>' +
+          '<div class="bk-form-grid">' +
+            '<div class="bk-field"><label class="bk-label" for="f-name">Jméno <sup>*</sup></label><input class="bk-input" id="f-name" type="text" placeholder="Např. Jan" /></div>' +
+            '<div class="bk-field"><label class="bk-label" for="f-surname">Příjmení <sup>*</sup></label><input class="bk-input" id="f-surname" type="text" placeholder="Např. Novák" /></div>' +
+            '<div class="bk-field"><label class="bk-label" for="f-email">E-mail <sup>*</sup></label><input class="bk-input" id="f-email" type="email" placeholder="jan.novak@email.cz" /></div>' +
+            '<div class="bk-field"><label class="bk-label" for="f-phone">Telefon <sup>*</sup></label><div class="phone-row"><select class="phone-prefix"><option>🇨🇿 +420</option><option>🇸🇰 +421</option><option>🇩🇪 +49</option><option>🇦🇹 +43</option><option>🇵🇱 +48</option><option>🇬🇧 +44</option><option>🇺🇸 +1</option></select><input class="bk-input" id="f-phone" type="tel" placeholder="775 123 456" style="flex:1;" /></div></div>' +
+          '</div>' +
+          '<p style="font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6;">Potvrzení a veškerá komunikace bude zaslána na zadaný e-mail. Telefonní číslo slouží pro urgentní kontakt.</p>' +
+        '</div>' +
+      '</div>';
+    },
+
+    // Krok 1 — Poznámka
+    bookingNote: function() {
+      return '<div class="bk-card">' +
+        '<div class="bk-card-head"><div class="bk-card-title">Poznámka</div></div>' +
+        '<div class="bk-card-body"><div class="bk-field"><textarea class="bk-input bk-textarea" id="f-note" rows="2" placeholder="Speciální požadavky, dotazy…" aria-label="Poznámka"></textarea></div></div>' +
+      '</div>';
+    },
+
+    // Krok 2 — Rekapitulace kontaktních údajů (read-only)
+    bookingRecap: function(opts) {
+      var editHref = (opts && opts.editHref) || 'rezervace-krok-1-v2.html';
+      return '<div class="bk-card">' +
+        '<div class="bk-card-head">' +
+          '<div class="bk-card-title">Vaše kontaktní údaje</div>' +
+          '<button class="bk-card-edit" onclick="window.location.href=\'' + editHref + '\'">Upravit</button>' +
+        '</div>' +
+        '<div class="bk-card-body"><div class="recap-grid">' +
+          '<div class="recap-field"><div class="recap-field-label">Jméno</div><div class="recap-field-val">Jaroslav</div></div>' +
+          '<div class="recap-field"><div class="recap-field-label">Příjmení</div><div class="recap-field-val">Zimmermann</div></div>' +
+          '<div class="recap-field"><div class="recap-field-label">E-mail</div><div class="recap-field-val">jara.da.zimmermann@ckpolnimarsaleklegal.cz</div></div>' +
+          '<div class="recap-field"><div class="recap-field-label">Telefon</div><div class="recap-field-val">+420 775 123 456</div></div>' +
+        '</div></div>' +
+      '</div>';
+    },
+
+    // Krok 2 — Způsob platby (data-amount = částka k úhradě v bankovním převodu)
+    bookingPayment: function(opts) {
+      var amount = (opts && opts.amount) || '9 720 Kč';
+      var qr = '<svg class="payment-qr-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" width="120" height="120" role="img" aria-label="QR kód pro platbu převodem" shape-rendering="crispEdges"><rect width="25" height="25" fill="#fff"/><path fill="#1e1e1c" d="M0 0h7v7H0zM18 0h7v7h-7zM0 18h7v7H0z"/><path fill="#fff" d="M1 1h5v5H1zM19 1h5v5h-5zM1 19h5v5H1z"/><path fill="#1e1e1c" d="M2 2h3v3H2zM20 2h3v3h-3zM2 20h3v3H2z"/><path fill="#1e1e1c" d="M8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM6 8h1v1h-1zM6 10h1v1h-1zM6 12h1v1h-1zM6 14h1v1h-1zM6 16h1v1h-1zM8 0h1v1h-1zM10 0h1v1h-1zM13 0h1v1h-1zM15 0h1v1h-1zM9 1h1v1h-1zM12 1h1v1h-1zM16 1h1v1h-1zM8 2h1v1h-1zM11 2h1v1h-1zM14 2h1v1h-1zM10 3h1v1h-1zM13 3h1v1h-1zM15 3h1v1h-1zM9 4h1v1h-1zM12 4h1v1h-1zM16 4h1v1h-1zM8 5h1v1h-1zM11 5h1v1h-1zM14 5h1v1h-1zM8 7h1v1h-1zM11 7h1v1h-1zM14 7h1v1h-1zM1 8h1v1h-1zM3 8h1v1h-1zM9 8h1v1h-1zM12 8h1v1h-1zM15 8h1v1h-1zM19 8h1v1h-1zM22 8h1v1h-1zM0 9h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM10 9h1v1h-1zM13 9h1v1h-1zM16 9h1v1h-1zM18 9h1v1h-1zM21 9h1v1h-1zM24 9h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM8 10h1v1h-1zM11 10h1v1h-1zM14 10h1v1h-1zM20 10h1v1h-1zM23 10h1v1h-1zM1 11h1v1h-1zM3 11h1v1h-1zM9 11h1v1h-1zM12 11h1v1h-1zM17 11h1v1h-1zM19 11h1v1h-1zM22 11h1v1h-1zM24 11h1v1h-1zM0 12h1v1h-1zM4 12h1v1h-1zM7 12h1v1h-1zM10 12h1v1h-1zM13 12h1v1h-1zM15 12h1v1h-1zM18 12h1v1h-1zM21 12h1v1h-1zM2 13h1v1h-1zM5 13h1v1h-1zM8 13h1v1h-1zM11 13h1v1h-1zM16 13h1v1h-1zM20 13h1v1h-1zM23 13h1v1h-1zM1 14h1v1h-1zM3 14h1v1h-1zM9 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM17 14h1v1h-1zM19 14h1v1h-1zM22 14h1v1h-1zM24 14h1v1h-1zM0 15h1v1h-1zM4 15h1v1h-1zM7 15h1v1h-1zM10 15h1v1h-1zM13 15h1v1h-1zM18 15h1v1h-1zM21 15h1v1h-1zM2 16h1v1h-1zM5 16h1v1h-1zM8 16h1v1h-1zM11 16h1v1h-1zM15 16h1v1h-1zM20 16h1v1h-1zM23 16h1v1h-1zM9 17h1v1h-1zM12 17h1v1h-1zM14 17h1v1h-1zM17 17h1v1h-1zM19 17h1v1h-1zM22 17h1v1h-1zM24 17h1v1h-1zM8 18h1v1h-1zM11 18h1v1h-1zM14 18h1v1h-1zM17 18h1v1h-1zM20 18h1v1h-1zM23 18h1v1h-1zM9 19h1v1h-1zM12 19h1v1h-1zM15 19h1v1h-1zM19 19h1v1h-1zM22 19h1v1h-1zM24 19h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM13 20h1v1h-1zM16 20h1v1h-1zM18 20h1v1h-1zM21 20h1v1h-1zM9 21h1v1h-1zM12 21h1v1h-1zM14 21h1v1h-1zM17 21h1v1h-1zM20 21h1v1h-1zM23 21h1v1h-1zM8 22h1v1h-1zM11 22h1v1h-1zM15 22h1v1h-1zM19 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM10 23h1v1h-1zM13 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM21 23h1v1h-1zM9 24h1v1h-1zM12 24h1v1h-1zM14 24h1v1h-1zM17 24h1v1h-1zM20 24h1v1h-1zM23 24h1v1h-1z"/></svg>';
+      return '<div class="bk-card">' +
+        '<div class="bk-card-head"><div class="bk-card-title">Způsob platby</div></div>' +
+        '<div class="bk-card-body">' +
+          '<label class="payment-option payment-option--bank">' +
+            '<input type="radio" name="payment" checked />' +
+            '<div class="payment-option-label">' +
+              '<div class="payment-option-title">Bankovní převod</div>' +
+              '<div class="payment-option-desc">Platba převodem — objednávku potvrdíme po připsání na náš účet, obvykle do 2–3 pracovních dnů.</div>' +
+              '<div class="bank-details">' +
+                '<div class="bank-detail-row"><span class="bank-detail-l">Číslo účtu</span><span class="bank-detail-v">2701893461 / 2010</span></div>' +
+                '<div class="bank-detail-row"><span class="bank-detail-l">Variabilní symbol</span><span class="bank-detail-v">78421305</span></div>' +
+                '<div class="bank-detail-row"><span class="bank-detail-l">Částka k úhradě</span><span class="bank-detail-v">' + amount + '</span></div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="payment-qr">' + qr +
+              '<span class="payment-qr-cap"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/></svg> Naskenujte v bankovní aplikaci</span>' +
+            '</div>' +
+          '</label>' +
+          '<label class="payment-option">' +
+            '<input type="radio" name="payment" />' +
+            '<div class="payment-option-label">' +
+              '<div class="payment-option-title">Platební karta</div>' +
+              '<div class="payment-option-desc">Budete přesměrováni na platební bránu PayU — Visa, Mastercard, Maestro</div>' +
+            '</div>' +
+            '<div class="payment-logos"><span class="payment-logo visa">VISA</span><span class="payment-logo mc">MC</span><span class="payment-logo">Maestro</span><span class="payment-logo secure"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>SSL</span><span class="payment-logo" style="font-size:9px;letter-spacing:.01em;">PayU</span></div>' +
+          '</label>' +
+          '<label class="payment-option">' +
+            '<input type="radio" name="payment" />' +
+            '<div class="payment-option-label">' +
+              '<div class="payment-option-title">Google Pay / Apple Pay</div>' +
+              '<div class="payment-option-desc">Rychlá platba přes váš mobilní účet</div>' +
+            '</div>' +
+            '<div class="payment-logos"><span class="payment-logo" style="font-weight:700;">G Pay</span><span class="payment-logo" style="font-weight:700;">Pay</span></div>' +
+          '</label>' +
+        '</div>' +
+      '</div>';
+    },
+
+    // Krok 1 — Blok výhod / USP (data-variant: yacht | course)
+    bookingGuarantees: function(opts) {
+      var variant = (opts && opts.variant) || 'yacht';
+      function item(icon, title, desc) {
+        return '<div class="cta-guarantee-item"><span class="cta-guarantee-icon">' + icon + '</span><div><div class="cta-guarantee-title">' + title + '</div><div class="cta-guarantee-desc">' + desc + '</div></div></div>';
+      }
+      var ICO = {
+        check: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+        phone: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+        trophy: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>',
+        shield: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>',
+        globe: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+        users: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>'
+      };
+      var inner = variant === 'course'
+        ? item(ICO.shield, 'Akreditovaný výcvik', 'Certifikovaní instruktoři a oficiální zkoušky') +
+          item(ICO.globe, 'Mezinárodně platný průkaz', 'VMP, MDČR i ICC uznávané v zahraničí') +
+          item(ICO.users, 'Malé skupiny', 'Maximálně 6 účastníků, individuální přístup')
+        : item(ICO.check, 'Žádné skryté poplatky', 'Cena je finální — bez překvapení při placení') +
+          item(ICO.phone, 'Pomáháme řešit problémy', 'Podpora 24/7 po celou dobu plavby') +
+          item(ICO.trophy, '30 let zkušeností', 'Prověřené charterovky, tisíce spokojených klientů');
+      return '<div class="cta-guarantees">' + inner + '</div>';
+    },
+
+    // Krok 2 — Uplatnění dárkového voucheru (checkbox → odhalí input + tlačítko)
+    bookingVoucher: function() {
+      return '<div class="bk-card">' +
+        '<div class="bk-card-body">' +
+          '<label class="voucher-toggle"><input type="checkbox" data-voucher-check /><span>Mám dárkový voucher a chci ho uplatnit</span></label>' +
+          '<div class="voucher-form" data-voucher-form hidden>' +
+            '<input class="bk-input voucher-input" type="text" placeholder="Zadejte kód voucheru" aria-label="Kód voucheru" />' +
+            '<button class="acc-btn voucher-apply" type="button">Uplatnit</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    },
+
+    // ── SDÍLENÉ BLOKY POTVRZOVACÍ STRÁNKY (rezervace lodi i objednávka kurzu) ──
+
+    // Výzva k registraci (data-success-href = kam po založení účtu)
+    confirmRegister: function(opts) {
+      var href = (opts && opts.successHref) || 'seznam-rezervaci.html';
+      return '<div class="confirm-register">' +
+        '<div class="confirm-register-title">Založte si účet a usnadněte si život</div>' +
+        '<div class="confirm-register-sub">Mějte rezervace, doklady i kapitánské průkazy přehledně na jednom místě — příště vyplníte už jen heslo.</div>' +
+        '<form class="confirm-register-form" onsubmit="event.preventDefault();window.location.href=\'' + href + '\';">' +
+          '<div class="auth-field"><label>Heslo</label><input class="auth-input" type="password" placeholder="Zvolte si heslo" /></div>' +
+          '<button type="submit" class="auth-btn">Založit účet</button>' +
+          '<div class="auth-divider">nebo pokračujte přes</div>' +
+          '<div class="auth-social">' +
+            '<button type="button" class="auth-social-btn" onclick="window.location.href=\'' + href + '\'"><div class="auth-social-icon"></div>Pokračovat přes Google</button>' +
+            '<button type="button" class="auth-social-btn" onclick="window.location.href=\'' + href + '\'"><div class="auth-social-icon"></div>Pokračovat přes Facebook</button>' +
+            '<button type="button" class="auth-social-btn" onclick="window.location.href=\'' + href + '\'"><div class="auth-social-icon"></div>Pokračovat přes Apple</button>' +
+          '</div>' +
+        '</form>' +
+      '</div>';
+    },
+
+    // Karta „Sledujte nás" (sociální sítě) — identická pro obě verze
+    confirmSocial: function() {
+      return '<div class="confirm-card">' +
+        '<div class="confirm-card-head"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>Sledujte nás</div>' +
+        '<div class="confirm-card-body">' +
+          '<p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Sdílejte svůj zážitek a sledujte nás na sociálních sítích — tipy, fotky od zákazníků a novinky každý týden.</p>' +
+          '<div class="social-grid">' +
+            '<button class="social-follow-btn"><div class="social-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>Facebook</button>' +
+            '<button class="social-follow-btn"><div class="social-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>Instagram</button>' +
+            '<button class="social-follow-btn"><div class="social-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></div>YouTube</button>' +
+            '<button class="social-follow-btn"><div class="social-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>LinkedIn</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    },
+
+    // Karta „tipy z Magazínu" — identická pro obě verze
+    confirmMagazine: function() {
+      function teaser(title, meta) {
+        return '<div class="mag-teaser-item" onclick="window.location.href=\'detail-clanku.html\'"><div class="mag-teaser-thumb"></div><div><div class="mag-teaser-title">' + title + '</div><div style="font-size:11px;color:var(--muted);margin-top:3px;">' + meta + '</div></div></div>';
+      }
+      return '<div class="confirm-card" style="grid-column:1/-1;">' +
+        '<div class="confirm-card-head"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Tipy z Magazínu</div>' +
+        '<div class="confirm-card-body">' +
+          '<div class="mag-teaser-list">' +
+            teaser('7denní itinerář po Chorvatsku: ze Splitu do Dubrovníku přes ostrovy', '10 min čtení · Tipy na trasy') +
+            teaser('10 věcí, které musí každý charterista zkontrolovat před vyplutím', '8 min čtení · Bezpečnost') +
+            teaser('Jak číst námořní předpověď počasí pro plavbu na moři', '6 min čtení · Kapitánské zkušenosti') +
+          '</div>' +
+          '<div style="text-align:center;margin-top:20px;"><button onclick="window.location.href=\'magazin.html\'" style="padding:10px 28px;background:var(--int);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;">Otevřít Yachtnet Magazín →</button></div>' +
+        '</div>' +
+      '</div>';
+    },
+
     init: function() {
       var nodes = document.querySelectorAll('[data-component]');
       nodes.forEach(function(el) {
@@ -277,13 +465,10 @@
     { href: 'index.html', title: 'Úvodní stránka', id: 'page-home', icon: '🏠', root: true, children: [
       { href: 'pronajem-lodi.html', title: 'Výsledky hledání', id: 'page-results', group: true, children: [
         { href: 'detail-lodi.html', title: 'Detail lodi', id: 'page-detail', children: [
-          { href: 'rezervace-krok-1.html', title: 'Rezervace — krok 1', id: 'page-booking-1', children: [
-            { href: 'rezervace-krok-2.html', title: 'Rezervace — krok 2', id: 'page-booking-2', children: [
+          { href: 'rezervace-krok-1-v2.html', title: 'Rezervace — krok 1', id: 'page-booking-1', children: [
+            { href: 'rezervace-krok-2-v2.html', title: 'Rezervace — krok 2', id: 'page-booking-2', children: [
               { href: 'rezervace-potvrzeni.html', title: 'Potvrzení rezervace', id: 'page-booking-confirm' }
             ]}
-          ]},
-          { href: 'rezervace-krok-1-zjednodusena.html', title: 'Zjednodušená rezervace — krok 1', id: 'page-booking-1-simple', children: [
-            { href: 'rezervace-krok-2-zjednodusena.html', title: 'Zjednodušená rezervace — krok 2', id: 'page-booking-2-simple' }
           ]}
         ]}
       ]},
@@ -310,7 +495,13 @@
         { href: 'detail-kurzu.html', title: 'Detail kurzu', id: 'page-course', children: [
           { href: 'terminy-kurzu.html', title: 'Termíny kurzu', id: 'page-course-dates' }
         ]},
-        { href: 'detail-prukazu.html', title: 'Detail průkazu', id: 'page-license' }
+        { href: 'detail-prukazu.html', title: 'Detail průkazu', id: 'page-license', children: [
+          { href: 'objednavka-kurzu-krok-1.html', title: 'Objednávka kurzu — krok 1', id: 'page-course-order-1', children: [
+            { href: 'objednavka-kurzu-krok-2.html', title: 'Objednávka kurzu — krok 2', id: 'page-course-order-2', children: [
+              { href: 'objednavka-kurzu-potvrzeni.html', title: 'Objednávka kurzu — potvrzení', id: 'page-course-order-confirm' }
+            ]}
+          ]}
+        ]}
       ]},
       { href: 'magazin.html', title: 'Magazín', id: 'page-magazine', group: true, children: [
         { href: 'detail-clanku.html', title: 'Článek', id: 'page-article' }
@@ -323,7 +514,13 @@
       { href: 'ucet.html', title: 'Můj účet', id: 'page-account', group: true, children: [
         { href: 'seznam-rezervaci.html', title: 'Moje rezervace', id: 'page-reservations', children: [
           { href: 'detail-rezervace.html', title: 'Detail rezervace', id: 'page-reservation-detail', children: [
-            { href: 'check-in.html', title: 'Online check-in', id: 'page-checkin' }
+            { href: 'check-in.html', title: 'Online check-in', id: 'page-checkin' },
+            { href: 'objednavka-sluzeb.html', title: 'Objednávka doplňkových služeb', id: 'page-services-order' }
+          ]}
+        ]},
+        { href: 'moje-kurzy.html', title: 'Moje kurzy', id: 'page-my-courses', children: [
+          { href: 'muj-kurz.html', title: 'Detail mého kurzu', id: 'page-my-course-detail', children: [
+            { href: 'upravit-udaje-kurzu.html', title: 'Upravit údaje ke kurzu', id: 'page-edit-course-data' }
           ]}
         ]},
         { href: 'prukazy.html', title: 'Moje průkazy', id: 'page-licenses', children: [
@@ -339,14 +536,19 @@
         { href: 'pridat-adresu.html', title: 'Přidat fakturační adresu', id: 'page-address-add' }
       ]},
       { href: 'o-nas.html', title: 'O nás', id: 'page-about' },
-      { href: 'kontakt.html', title: 'Kontakt', id: 'page-contact' }
+      { href: 'kontakt.html', title: 'Kontakt', id: 'page-contact' },
+      { title: 'Archiv', id: 'archiv', icon: '📁', folder: true, children: [
+        { href: 'rezervace-krok-1-v1.html', title: 'Rezervace — krok 1 (v1, původní)', id: 'page-booking-1-v1', children: [
+          { href: 'rezervace-krok-2-v1.html', title: 'Rezervace — krok 2 (v1, původní)', id: 'page-booking-2-v1' }
+        ]}
+      ]}
     ]}
   ];
 
   function countSitemapNodes(nodes) {
     var count = 0;
     nodes.forEach(function(n) {
-      count += 1;
+      if (n.href) count += 1; // složky (uzly bez href) se nepočítají jako stránky
       if (n.children) count += countSitemapNodes(n.children);
     });
     return count;
@@ -356,9 +558,13 @@
     var classes = ['sm-node'];
     if (node.root) classes.push('sm-root');
     if (node.group) classes.push('sm-group');
+    if (node.folder) classes.push('sm-folder');
     var icon = node.icon ? (node.icon + ' ') : '';
     var id = node.id ? '<span class="sm-node-id">' + node.id + '</span>' : '';
-    var anchor = '<a class="' + classes.join(' ') + '" href="' + node.href + '">' + icon + node.title + ' ' + id + '</a>';
+    // Uzel bez href (např. složka „Archiv") se vykreslí jako neklikací popisek.
+    var anchor = node.href
+      ? '<a class="' + classes.join(' ') + '" href="' + node.href + '">' + icon + node.title + ' ' + id + '</a>'
+      : '<span class="' + classes.join(' ') + '">' + icon + node.title + ' ' + id + '</span>';
     var inner = '';
     if (node.children && node.children.length) {
       inner = '<ul>' + node.children.map(function(c) { return '<li>' + renderSitemapNode(c) + '</li>'; }).join('') + '</ul>';
@@ -1195,9 +1401,10 @@
     const persons = b.persons || b.berths;
     const lenMatch = (b.len || '').match(/(\d+[.,]?\d*)/);
     const lenFt = lenMatch ? (parseFloat(lenMatch[1].replace(',', '.')) * 3.28084).toFixed(1).replace('.', ',') + ' ft' : '';
-    const ratingVal = (b.rating != null ? b.rating : 4.7).toFixed(1).replace('.', ',');
+    // Hodnocení se zobrazuje na stupnici do 10 (data jsou 0–5 → ×2).
+    const ratingVal = ((b.rating != null ? b.rating : 4.7) * 2).toFixed(1).replace('.', ',');
     const ratingCount = b.ratingCount != null ? b.ratingCount : 124;
-    const ratingHtml = '<div class="card-rating" title="Hodnocení modelu ' + b.name + '"><span class="card-rating-stars">★★★★★</span><span class="card-rating-val">' + ratingVal + '</span><span class="card-rating-count">(' + ratingCount + ' hodnocení)</span></div>';
+    const ratingHtml = '<div class="card-rating" title="Hodnocení modelu ' + b.name + '"><span class="card-rating-stars">★</span><span class="card-rating-val">' + ratingVal + ' / 10</span><span class="card-rating-count">(' + ratingCount + ' hodnocení)</span></div>';
     const statusMap = {
       reserved:    { cls: 'card-status--reserved',    label: 'Rezervovaná' },
       prereserved: { cls: 'card-status--prereserved', label: 'Předrezervovaná' },
@@ -2026,25 +2233,37 @@
         '<div class="nav-dropdown-kurzy-right">' +
           '<div class="nav-dropdown-kurzy-cols">' +
             '<div class="nav-dropdown-col">' +
-              '<a class="nav-dropdown-col-title nav-dropdown-col-title--link" href="kurzy-na-mori.html">Moře</a>' +
-              '<ul class="nav-dropdown-list">' +
-                '<li><a href="detail-prukazu.html">MDČR C</a></li>' +
-                '<li><a href="detail-prukazu.html">Chorvatský průkaz B</a></li>' +
-              '</ul>' +
+              '<div class="nav-dropdown-group">' +
+                '<a class="nav-dropdown-col-title--link" href="vsechny-kurzy.html">Průkazy na moře</a>' +
+                '<ul class="nav-dropdown-list">' +
+                  '<li><a href="detail-prukazu.html">Průkaz MDČR C</a></li>' +
+                  '<li><a href="detail-prukazu.html">Chorvatský průkaz B</a></li>' +
+                '</ul>' +
+              '</div>' +
+              '<div class="nav-dropdown-group">' +
+                '<a class="nav-dropdown-col-title--link" href="vsechny-kurzy.html">Průkazy na řeky a jezera</a>' +
+                '<ul class="nav-dropdown-list">' +
+                  '<li><a href="detail-prukazu.html">VMP — Vůdce malého plavidla</a></li>' +
+                  '<li><a href="detail-prukazu.html">VRP — Vůdce rekreačního plavidla</a></li>' +
+                '</ul>' +
+              '</div>' +
             '</div>' +
             '<div class="nav-dropdown-col">' +
-              '<a class="nav-dropdown-col-title nav-dropdown-col-title--link" href="kurzy-na-mori.html">Řeky</a>' +
-              '<ul class="nav-dropdown-list">' +
-                '<li><a href="detail-prukazu.html">Velitel malého plavidla</a></li>' +
-                '<li><a href="detail-prukazu.html">Velitel rekreačního plavidla</a></li>' +
-              '</ul>' +
-            '</div>' +
-            '<div class="nav-dropdown-col">' +
-              '<div class="nav-dropdown-col-title">Speciality</div>' +
-              '<ul class="nav-dropdown-list">' +
-                '<li><a href="detail-prukazu.html">SRC — Radiotelefon</a></li>' +
-                '<li><a href="detail-kurzu.html">Zdokonalovací kurzy</a></li>' +
-              '</ul>' +
+              '<div class="nav-dropdown-group">' +
+                '<div class="nav-dropdown-col-title">Kurzy</div>' +
+                '<ul class="nav-dropdown-list">' +
+                  '<li><a href="detail-kurzu.html">Praxe na moři</a></li>' +
+                  '<li><a href="detail-kurzu.html">Teorie pro říční plavbu</a></li>' +
+                  '<li><a href="detail-kurzu.html">Teorie pro námořní plavbu</a></li>' +
+                '</ul>' +
+              '</div>' +
+              '<div class="nav-dropdown-group">' +
+                '<div class="nav-dropdown-col-title">Speciality</div>' +
+                '<ul class="nav-dropdown-list">' +
+                  '<li><a href="detail-kurzu.html">Offshore zdokonalovací plavba</a></li>' +
+                  '<li><a href="detail-kurzu.html">Přístavní manévry</a></li>' +
+                '</ul>' +
+              '</div>' +
             '</div>' +
           '</div>' +
           '<div class="nav-dropdown-kurzy-actions">' +
@@ -2055,6 +2274,10 @@
             '<a href="terminy-kurzu.html" class="nav-dropdown-footer-link">' +
               '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' +
               'Termíny kurzů' +
+            '</a>' +
+            '<a href="srovnani-prukazu.html" class="nav-dropdown-footer-link">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg>' +
+              'Porovnání průkazů' +
             '</a>' +
           '</div>' +
         '</div>' +
@@ -2387,14 +2610,26 @@
     var currentStep = 1;
     var ratings = { overall: 0, condition: 0, cleanliness: 0, handover: 0, value: 0, charter: 0, marina: 0, recommend: '' };
 
+    // Vykreslí jednu skupinu hvězd pro danou hodnotu (podporuje půlhvězdy, krok 0,5).
+    function paintStars(group, value) {
+      var v = value || 0;
+      group.querySelectorAll('.rate-star').forEach(function(btn) {
+        var bv = parseInt(btn.dataset.val, 10);
+        btn.classList.toggle('is-active', v >= bv);
+        btn.classList.toggle('is-half', v >= bv - 0.5 && v < bv);
+      });
+    }
+
+    // Hodnota hvězdy podle pozice kurzoru: levá polovina = půlhvězda (bv − 0,5), pravá = celá.
+    function starValueFromEvent(star, e) {
+      var bv = parseInt(star.dataset.val, 10);
+      var rect = star.getBoundingClientRect();
+      return (e.clientX - rect.left) < rect.width / 2 ? bv - 0.5 : bv;
+    }
+
     function syncStars() {
       modal.querySelectorAll('.rate-stars-input').forEach(function(group) {
-        var key = group.dataset.rate;
-        var val = ratings[key] || 0;
-        group.querySelectorAll('.rate-star').forEach(function(btn) {
-          var btnVal = parseInt(btn.dataset.val, 10);
-          btn.classList.toggle('is-active', btnVal <= val);
-        });
+        paintStars(group, ratings[group.dataset.rate] || 0);
       });
     }
 
@@ -2439,14 +2674,6 @@
       clearError();
     }
 
-    function renderStars(val) {
-      var html = '';
-      for (var i = 1; i <= 5; i++) {
-        if (i <= val) html += '★';
-        else html += '<span class="res-rate-stars-empty">☆</span>';
-      }
-      return html;
-    }
 
     function showError(msg) {
       clearError();
@@ -2506,7 +2733,7 @@
       // Hvězdy (1–5) přepočítáváme na stupnici do 10 — váha hvězdy = 2 body.
       var avg = n ? (sum / n) * 2 : 0;
       var word = avg >= 9 ? 'Výborné' : avg >= 7.5 ? 'Velmi dobré' : avg >= 6 ? 'Dobré' : avg >= 4 ? 'Průměrné' : 'Slabé';
-      var html = '<div class="rate-sum-score"><span class="rate-sum-score-num">' + avg.toFixed(1).replace('.', ',') + '</span><span class="rate-sum-score-scale">/ 10</span><span class="rate-sum-stars">' + renderStars(Math.round(avg / 2)) + '</span><span class="rate-sum-score-word">' + word + '</span></div>';
+      var html = '<div class="rate-sum-score"><span class="rate-sum-score-num">' + avg.toFixed(1).replace('.', ',') + '</span><span class="rate-sum-score-scale">/ 10</span><span class="rate-sum-stars">★</span><span class="rate-sum-score-word">' + word + '</span></div>';
       html += '<div class="rate-sum-grid">';
       items.forEach(function(it) {
         var v = (it[1] || 0) * 2;
@@ -2546,7 +2773,7 @@
         var pavg10 = pavg * 2;
         currentRow.classList.add('res-rate-row--done');
         currentRow.innerHTML = '<div class="res-rate-display">' +
-          '<span class="res-rate-item"><span class="res-rate-label">Vaše hodnocení:</span><span class="res-rate-stars">' + renderStars(Math.round(pavg)) + '</span><span class="res-rate-avg">' + pavg10.toFixed(1).replace('.', ',') + ' / 10</span></span>' +
+          '<span class="res-rate-item"><span class="res-rate-label">Vaše hodnocení:</span><span class="res-rate-stars">★</span><span class="res-rate-avg">' + pavg10.toFixed(1).replace('.', ',') + ' / 10</span></span>' +
         '</div>';
       }
       renderSummary();
@@ -2591,7 +2818,7 @@
       var star = e.target.closest('.rate-star');
       if (star) {
         var group = star.closest('.rate-stars-input');
-        ratings[group.dataset.rate] = parseInt(star.dataset.val, 10);
+        ratings[group.dataset.rate] = starValueFromEvent(star, e);
         syncStars();
         clearError();
         return;
@@ -2629,18 +2856,16 @@
       });
     }
 
-    // Hover preview hvězd
+    // Hover preview hvězd — průběžně podle pozice kurzoru (umožní náhled půlhvězdy),
+    // po opuštění se vrátí ke skutečně zvolené hodnotě.
     modal.querySelectorAll('.rate-stars-input').forEach(function(group) {
-      group.addEventListener('mouseover', function(e) {
+      group.addEventListener('mousemove', function(e) {
         var star = e.target.closest('.rate-star');
         if (!star) return;
-        var hoverVal = parseInt(star.dataset.val, 10);
-        group.querySelectorAll('.rate-star').forEach(function(btn) {
-          btn.classList.toggle('is-hover', parseInt(btn.dataset.val, 10) <= hoverVal);
-        });
+        paintStars(group, starValueFromEvent(star, e));
       });
       group.addEventListener('mouseleave', function() {
-        group.querySelectorAll('.rate-star.is-hover').forEach(function(b) { b.classList.remove('is-hover'); });
+        paintStars(group, ratings[group.dataset.rate] || 0);
       });
     });
 
@@ -3196,6 +3421,17 @@
       }
     });
 
+    // Začít znovu — reset celého průvodce
+    var restartBtn = document.getElementById('kkWizardRestart');
+    if (restartBtn) restartBtn.addEventListener('click', function() {
+      current = 1;
+      selections = {};
+      box.querySelectorAll('.wizard-opt.is-active').forEach(function(o) { o.classList.remove('is-active'); });
+      if (resultEl) resultEl.setAttribute('hidden', '');
+      nextBtn.removeAttribute('hidden');
+      render();
+    });
+
     render();
   })();
 
@@ -3220,20 +3456,26 @@
     var anchor = document.getElementById('sec-terminy');
     var checkboxes = document.querySelectorAll('.dates-table tbody input[type="checkbox"]');
     if (!checkboxes.length) return;
+    // Labely a cíl jsou konfigurovatelné přes data atributy (detail průkazu vs. detail kurzu).
+    var labelEmpty = btn.getAttribute('data-label-empty') || 'Zvolte termíny';
+    var labelReady = btn.getAttribute('data-label-ready') || 'Rezervovat vybrané termíny';
+    var reserveHref = btn.getAttribute('data-reserve-href') || 'objednavka-kurzu-krok-1.html';
 
     function anySelected() {
       for (var i = 0; i < checkboxes.length; i++) if (checkboxes[i].checked) return true;
       return false;
     }
     function render() {
-      btn.textContent = anySelected() ? 'Rezervovat vybrané termíny' : 'Zvolte termíny';
+      var sel = anySelected();
+      btn.textContent = sel ? labelReady : labelEmpty;
+      btn.classList.toggle('is-ready', sel);
     }
     checkboxes.forEach(function(cb) {
       cb.addEventListener('change', render);
     });
     btn.addEventListener('click', function() {
       if (anySelected()) {
-        window.location.href = 'rezervace-krok-1.html';
+        window.location.href = reserveHref;
       } else if (anchor) {
         anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -3774,6 +4016,198 @@
     }
   })();
 
+  // ── DÁRKOVÝ VOUCHER (krok 2) — checkbox odhalí input + tlačítko ──
+  (function initVoucher() {
+    document.querySelectorAll('[data-voucher-check]').forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        var card = cb.closest('.bk-card');
+        var form = card && card.querySelector('[data-voucher-form]');
+        if (form) form.hidden = !cb.checked;
+      });
+    });
+  })();
+
+  // ── AKORDEON TERMÍNŮ (detail kurzu) — „+ X dalších termínů" ──
+  (function initDatesAccordion() {
+    document.querySelectorAll('[data-dates-toggle]').forEach(function(btn) {
+      var card = btn.closest('.dates-card');
+      var table = card && card.querySelector('.dates-table');
+      if (!table) return;
+      var extra = table.querySelectorAll('.dates-row--extra').length;
+      if (!extra) { btn.hidden = true; return; }
+      btn.textContent = '+ ' + extra + ' dalších termínů ▾';
+      btn.addEventListener('click', function() {
+        var open = table.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.textContent = open ? 'Zobrazit méně ▴' : ('+ ' + extra + ' dalších termínů ▾');
+      });
+    });
+  })();
+
+  // ── PŘEPÍNAČ VARIANT KROKŮ (detail průkazu) — C / B ──
+  (function initKrokySwitch() {
+    var btns = document.querySelectorAll('[data-kroky]');
+    if (!btns.length) return;
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var v = btn.getAttribute('data-kroky');
+        btns.forEach(function(b) { b.classList.toggle('is-active', b === btn); });
+        document.querySelectorAll('[data-kroky-variant]').forEach(function(s) {
+          s.hidden = s.getAttribute('data-kroky-variant') !== v;
+        });
+      });
+    });
+  })();
+
+  // ── DOPLŇKOVÉ SLUŽBY (detail rezervace) — show-hide + výběr a objednání ──
+  (function initServiceExtras() {
+    var list = document.querySelector('[data-svc-list]');
+    if (!list) return;
+    function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+    function plural(n) { return n === 1 ? 'služba' : (n >= 2 && n <= 4 ? 'služby' : 'služeb'); }
+
+    // Zobrazit / skrýt další služby
+    var moreBtn = document.querySelector('[data-svc-more]');
+    var moreLabel = moreBtn && moreBtn.querySelector('[data-svc-more-label]');
+    var extras = list.querySelectorAll('.svc-extra');
+    if (moreBtn && moreLabel && extras.length) {
+      moreLabel.textContent = '+ ' + extras.length + ' dalších služeb a vybavení';
+      moreBtn.addEventListener('click', function () {
+        var open = moreBtn.classList.toggle('is-open');
+        extras.forEach(function (el) { el.hidden = !open; });
+        moreLabel.textContent = open ? '− Zobrazit méně' : ('+ ' + extras.length + ' dalších služeb a vybavení');
+      });
+    } else if (moreBtn) {
+      moreBtn.hidden = true;
+    }
+
+    // Výběr služeb → akční lišta
+    var checks = list.querySelectorAll('[data-svc-check]');
+    var action = document.querySelector('[data-svc-action]');
+    var summary = document.querySelector('[data-svc-summary]');
+    function update() {
+      var count = 0, sum = 0;
+      checks.forEach(function (cb) { if (cb.checked) { count++; sum += parseInt(cb.getAttribute('data-price'), 10) || 0; } });
+      if (action) action.hidden = count === 0;
+      if (summary) summary.textContent = 'Vybráno ' + count + ' ' + plural(count) + ' · ' + fmt(sum) + ' Kč';
+    }
+    checks.forEach(function (cb) { cb.addEventListener('change', update); });
+    update();
+  })();
+
+  // ── DOPLŇKOVÉ SLUŽBY — počítadlo kusů + odebrání z košíku ──
+  (function initServiceCart() {
+    function parseNum(s) { return parseInt(String(s).replace(/[^\d]/g, ''), 10) || 0; }
+    function fmtNum(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+
+    function recalcSidebar() {
+      var totalEl = document.querySelector('[data-sum-total]');
+      if (!totalEl) return;
+      var total = 0;
+      document.querySelectorAll('[data-sum-line]').forEach(function (el) { total += parseNum(el.getAttribute('data-amount')); });
+      totalEl.textContent = fmtNum(total) + ' Kč';
+    }
+
+    // Počítadla kusů (mínus / input / plus)
+    document.querySelectorAll('[data-qty]').forEach(function (st) {
+      var input = st.querySelector('[data-qty-input]');
+      var unit = parseNum(st.getAttribute('data-unit'));
+      var syncKey = st.getAttribute('data-qty-sync');
+      var row = st.closest('.extra-item');
+      var rowPrice = row && row.querySelector('.extra-item-price');
+      var cb = row && row.querySelector('[data-svc-check]');
+      function apply(q) {
+        q = Math.max(1, q);
+        input.value = q;
+        var line = unit * q;
+        if (rowPrice && unit) rowPrice.textContent = fmtNum(line) + ' Kč';
+        if (syncKey) {
+          var sb = document.querySelector('[data-sum-line="' + syncKey + '"]');
+          if (sb) { sb.setAttribute('data-amount', line); sb.textContent = fmtNum(line) + ' Kč'; }
+          var badge = document.querySelector('[data-sum-qty="' + syncKey + '"]');
+          if (badge) badge.textContent = q > 1 ? '× ' + q : '';
+          recalcSidebar();
+        }
+        // detail rezervace: cena se promítne i do výběrové lišty
+        if (cb) { cb.setAttribute('data-price', line); cb.dispatchEvent(new Event('change', { bubbles: true })); }
+      }
+      st.querySelector('[data-qty-dec]').addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); apply((parseInt(input.value, 10) || 1) - 1); });
+      st.querySelector('[data-qty-inc]').addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); apply((parseInt(input.value, 10) || 1) + 1); });
+    });
+
+    // Odebrání položky z košíku (objednávka služeb)
+    document.querySelectorAll('[data-cart-remove]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var row = btn.closest('[data-cart-row]');
+        if (!row) return;
+        var key = row.getAttribute('data-cart-row');
+        row.remove();
+        var line = document.querySelector('[data-sum-line="' + key + '"]');
+        if (line) { var pl = line.closest('.price-line'); if (pl) pl.remove(); }
+        recalcSidebar();
+      });
+    });
+  })();
+
+  // ── OBJEDNÁVKA SLUŽEB krok 2 — platba vs. jen odsouhlasení ──
+  (function initSvcConfirm() {
+    var radios = document.querySelectorAll('input[name="svc-confirm"]');
+    if (!radios.length) return;
+    var payWrap = document.querySelector('[data-svc-pay-wrap]');
+    var btn = document.querySelector('[data-svc-confirm-btn]');
+    function update() {
+      var sel = document.querySelector('input[name="svc-confirm"]:checked');
+      var isPay = sel && sel.value === 'pay';
+      if (payWrap) payWrap.hidden = !isPay;
+      if (btn) btn.textContent = isPay ? (btn.getAttribute('data-pay-label') || 'Zaplatit') : (btn.getAttribute('data-confirm-label') || 'Závazně objednat');
+    }
+    radios.forEach(function (r) { r.addEventListener('change', update); });
+    update();
+  })();
+
+  // ── TERMÍNOVÁ LISTINA — filtr typu (Vše / Moře / Řeka / Speciality) ──
+  (function initTermFilter() {
+    var sw = document.querySelector('[data-term-filter]');
+    if (!sw) return;
+    var rows = document.querySelectorAll('[data-term-row]');
+    sw.querySelectorAll('[data-cat]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var cat = btn.getAttribute('data-cat');
+        sw.querySelectorAll('[data-cat]').forEach(function(b) { b.classList.toggle('is-active', b === btn); });
+        rows.forEach(function(r) {
+          r.style.display = (cat === 'all' || r.getAttribute('data-row-cat') === cat) ? '' : 'none';
+        });
+      });
+    });
+  })();
+
+  // ── TERMÍNOVÁ LISTINA — výběr termínů + plovoucí sticky lišta ──
+  (function initTermSelect() {
+    var bar = document.querySelector('[data-term-bar]');
+    if (!bar) return;
+    var countEl = bar.querySelector('[data-term-count]');
+    var rowChecks = document.querySelectorAll('[data-term-row] input[type="checkbox"]');
+    var selectAll = document.querySelector('.dates-table thead input[type="checkbox"]');
+    function plural(n) { return n === 1 ? 'vybraný termín' : (n >= 2 && n <= 4 ? 'vybrané termíny' : 'vybraných termínů'); }
+    function update() {
+      var n = 0;
+      rowChecks.forEach(function(cb) { if (cb.checked) n++; });
+      bar.hidden = n === 0;
+      countEl.textContent = n + ' ' + plural(n);
+    }
+    rowChecks.forEach(function(cb) { cb.addEventListener('change', update); });
+    if (selectAll) selectAll.addEventListener('change', function() {
+      rowChecks.forEach(function(cb) {
+        var row = cb.closest('[data-term-row]');
+        if (row && row.style.display !== 'none') cb.checked = selectAll.checked;
+      });
+      update();
+    });
+    update();
+  })();
+
   // ── ÚČET — fakturační adresa FO/Firma ──────────────────
   (function initBillingType() {
     var billing = document.querySelector('[data-billing]');
@@ -4063,7 +4497,7 @@
       if (priceFrom) priceFrom.hidden = true;
       ctaBtns.forEach(function(btn) {
         btn.textContent = 'Pokračovat k rezervaci →';
-        btn.setAttribute('href', 'rezervace-krok-1.html');
+        btn.setAttribute('href', 'rezervace-krok-1-v2.html');
         btn.classList.add('btn-reserve--continue');
       });
     }

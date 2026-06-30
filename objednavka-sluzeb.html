@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Zákaz indexování vyhledávači a AI crawlery (wireframe, ne pro veřejnou indexaci) -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="GPTBot" content="noindex, nofollow" />
+  <meta name="ChatGPT-User" content="noindex, nofollow" />
+  <meta name="OAI-SearchBot" content="noindex, nofollow" />
+  <meta name="Google-Extended" content="noindex, nofollow" />
+  <meta name="anthropic-ai" content="noindex, nofollow" />
+  <meta name="Claude-Web" content="noindex, nofollow" />
+  <meta name="ClaudeBot" content="noindex, nofollow" />
+  <meta name="CCBot" content="noindex, nofollow" />
+  <meta name="PerplexityBot" content="noindex, nofollow" />
+  <meta name="Applebot-Extended" content="noindex, nofollow" />
+  <meta name="Bytespider" content="noindex, nofollow" />
+  <meta name="Amazonbot" content="noindex, nofollow" />
+  <meta name="cohere-ai" content="noindex, nofollow" />
+  <meta name="FacebookBot" content="noindex, nofollow" />
+  <meta name="Diffbot" content="noindex, nofollow" />
+  <meta name="omgilibot" content="noindex, nofollow" />
+  <meta name="YouBot" content="noindex, nofollow" />
+  <meta name="ImagesiftBot" content="noindex, nofollow" />
+  <title>Objednávka doplňkových služeb — Yachtnet</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+<div id="page-services-order">
+
+  <nav class="bk-nav"><div class="bk-nav-inner">
+    <div class="bk-nav-left">
+      <a class="nav-logo"  href="index.html"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></a>
+      <button class="bk-nav-back" onclick="window.location.href='detail-rezervace.html'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Zpět na rezervaci
+      </button>
+    </div>
+    <div class="nav-actions"><a class="nav-phone" href="tel:+420233354050" aria-label="+420 233 354 050"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="nav-phone-num">+420 233 354 050</span></a><select class="nav-mini-select" aria-label="Jazyk"><option>CS</option><option>EN</option><option>DE</option></select><select class="nav-mini-select" aria-label="Měna"><option>Kč</option><option>€</option><option>$</option></select><button class="nav-login-btn" onclick="window.location.href='ucet.html'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Můj účet</button></div>
+  </div></nav>
+
+  <!-- STEPPER (krok 1 výběr proběhl v detailu rezervace) -->
+  <div class="bk-stepper-wrap"><div class="bk-stepper">
+    <a class="bk-step done" href="detail-rezervace.html">
+      <div class="bk-step-num"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="bk-step-label">Výběr služeb</div>
+    </a>
+    <a class="bk-step active" href="objednavka-sluzeb.html">
+      <div class="bk-step-num">2</div>
+      <div class="bk-step-label">Potvrzení a platba</div>
+    </a>
+    <a class="bk-step" href="#">
+      <div class="bk-step-num">3</div>
+      <div class="bk-step-label">Hotovo</div>
+    </a>
+  </div></div>
+
+  <!-- OBSAH -->
+  <div class="bk-body">
+
+    <!-- HLAVNÍ SLOUPEC -->
+    <div class="bk-main">
+
+      <!-- Vybrané služby -->
+      <div class="bk-card">
+        <div class="bk-card-head">
+          <div class="bk-card-title">Vybrané služby</div>
+          <button class="bk-card-edit" onclick="window.location.href='detail-rezervace.html'">Upravit výběr</button>
+        </div>
+        <div class="bk-card-body">
+          <p class="bk-card-intro">Objednáváte k rezervaci <strong>Elan 45 Impression „Adriatic Wind"</strong> (KX1BMO).</p>
+          <div class="extra-list">
+            <div class="extra-item" data-cart-row="wifi">
+              <div class="extra-item-info">
+                <div class="extra-item-name">WiFi připojení</div>
+                <div class="extra-item-desc">Přenosný router s neomezeným datovým tarifem</div>
+              </div>
+              <div class="extra-item-price">1 200 Kč</div>
+              <button type="button" class="svc-remove" data-cart-remove aria-label="Odebrat ze seznamu" title="Odebrat">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+              </button>
+            </div>
+            <div class="extra-item" data-cart-row="sup">
+              <div class="extra-item-info">
+                <div class="extra-item-name">SUP prkno</div>
+                <div class="extra-item-desc">Stand-up paddleboard včetně pádla a leash</div>
+              </div>
+              <div class="qty-stepper" data-qty data-unit="800" data-qty-sync="sup">
+                <button type="button" class="qty-btn" data-qty-dec aria-label="Méně kusů">−</button>
+                <input class="qty-input" data-qty-input value="1" inputmode="numeric" readonly />
+                <button type="button" class="qty-btn" data-qty-inc aria-label="Více kusů">+</button>
+              </div>
+              <div class="extra-item-price">800 Kč</div>
+              <button type="button" class="svc-remove" data-cart-remove aria-label="Odebrat ze seznamu" title="Odebrat">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modrá info hláška — charterovka vyžaduje pouze potvrzení, platba na základně -->
+      <div class="flash flash--blue" role="status" style="margin-top:18px;">
+        <span class="flash-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </span>
+        <div class="flash-body">
+          <strong>Platba probíhá až na základně.</strong> Charterová společnost u těchto služeb nevyžaduje platbu předem — nyní pouze <strong>závazně potvrzujete zájem</strong> o vybrané služby. Částku uhradíte při nalodění přímo na základně.
+        </div>
+      </div>
+
+    </div><!-- /bk-main -->
+
+    <!-- POSTRANNÍ PANEL -->
+    <div class="bk-sidebar">
+
+      <div class="bk-card">
+        <div class="bk-card-head"><div class="bk-card-title">Souhrn objednávky</div></div>
+        <div class="bk-card-body">
+          <div class="price-line" data-cart-row="wifi"><span>WiFi připojení</span><span data-sum-line="wifi" data-amount="1200">1 200 Kč</span></div>
+          <div class="price-line" data-cart-row="sup"><span>SUP prkno <span data-sum-qty="sup" style="color:var(--muted);font-weight:600;"></span></span><span data-sum-line="sup" data-amount="800">800 Kč</span></div>
+          <div class="price-line total price-line--prominent"><span>Celkem</span><span data-sum-total>2 000 Kč</span></div>
+        </div>
+      </div>
+
+      <!-- STICKY button -->
+      <div class="bk-sticky-button">
+        <button class="btn-booking reserve" onclick="window.location.href='detail-rezervace.html'">Potvrdit (platba na základně)</button>
+      </div>
+
+      <!-- VOP + microtext -->
+      <div class="bk-sidebar-cta">
+        <div class="vop-row" style="margin:0 0 12px;">
+          <input type="checkbox" id="vop" />
+          <label for="vop" style="font-size:12px;">Souhlasím s <a href="#" style="color:var(--int);font-weight:600;">VOP</a> a závazně objednávám vybrané služby.</label>
+        </div>
+        <p style="font-size:11px;color:var(--muted);text-align:center;margin:0;line-height:1.5;">Po potvrzení se služby objeví v detailu rezervace jako zakoupené a charterová společnost je připraví k vašemu termínu.</p>
+      </div>
+
+      <div data-component="contactSpecialist"></div>
+
+    </div><!-- /bk-sidebar -->
+
+  </div><!-- /bk-body -->
+
+</div><!-- /page-services-order -->
+
+<script src="assets/script.js"></script>
+</body>
+</html>

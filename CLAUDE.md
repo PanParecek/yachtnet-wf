@@ -135,6 +135,13 @@ NAV (horní menu) a mega-menu jsou v každé stránce duplikované jako HTML —
 - **Malé šedé popisky** (`.sec-label`, `.spec-l`, `.article-meta`, field labels atd.) — barva `var(--text)`, nikoli `var(--muted)`
 - Font-size: min. 11 px pro jednořádkové labely, min. 12 px pro metadata
 
+## Typografická pravidla
+
+- Jednotlivé odstavce <P> jsou od sebe odděleny mezerou. Nepoužívat měkké entery.
+- Na konci řádku se nesmí vyskytovat jednoslabičné předložky a spojky.
+- Perex má vždy alespoň dva řádky.
+- Délka řádku - maximální délka řádku je cca 90 znaků včetně mezer.
+
 ## Ikonky
 
 - **Pouze jednobarevné** — vždy inline SVG s `stroke="currentColor"` nebo `fill="currentColor"`; žádné barevné emoji v UI

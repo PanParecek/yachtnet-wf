@@ -91,29 +91,28 @@
   </nav>
   <div style="max-width:var(--max);margin:0 auto;padding:32px 28px;display:grid;grid-template-columns:1fr 300px;gap:28px;">
     <div>
-      <h2 class="sec-title" id="sec-kurzy" style="font-size:22px;margin:8px 0 20px;scroll-margin-top:120px;">Průkaz získáte po absolvování těchto kurzů</h2>
-      <div class="steps">
+      <div style="display:flex;gap:12px;align-items:flex-start;background:var(--int-soft);border:1px solid var(--int);border-radius:10px;padding:14px 16px;margin-bottom:24px;">
+        <span style="flex-shrink:0;color:var(--int);margin-top:1px;" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
+        <div style="font-size:14px;line-height:1.55;color:var(--text);">
+          <strong>Prerekvizita:</strong> Pro získání průkazu MDČR B musíte mít již absolvovaný <a href="detail-prukazu.html" style="color:var(--int);font-weight:700;">Průkaz MDČR C</a>. Pokud ho ještě nemáte, začněte jím.
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:8px 0 20px;">
+        <h2 class="sec-title" id="sec-kurzy" style="font-size:22px;margin:0;scroll-margin-top:120px;">Průkaz získáte po absolvování těchto kroků</h2>
+        <div class="kroky-variant-links" aria-label="Varianta průkazu">
+          <a href="#sec-kurzy" class="kroky-variant-link is-active" data-kroky="c">MDČR C</a>
+          <span class="kroky-variant-sep" aria-hidden="true">/</span>
+          <a href="#sec-kurzy" class="kroky-variant-link" data-kroky="b">MDČR B</a>
+        </div>
+      </div>
+      <div class="steps" data-kroky-variant="c">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-content">
             <div class="course-card course-card--horizontal" onclick="window.location.href='detail-kurzu.html'">
-              <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-              <div class="course-info">
-                <div class="course-name"><a href="detail-kurzu.html">Teoretický kurz</a></div>
-                <div class="course-desc">Pravidla plavby, navigace, meteorologie, COLREG, bezpečnost a právo. Online + prezenčně.</div>
-                <div class="course-params"><span>2 dny · Praha / Brno</span><span>32 hodin teorie</span><span>Online záznamy 60 dní</span></div>
-              </div>
-              <div class="course-price">Od 6 900 Kč</div>
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="course-card course-card--horizontal" onclick="window.location.href='detail-kurzu.html'">
               <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18a4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0"/><path d="M3 13a4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0"/><path d="M3 8a4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0"/></svg></div>
               <div class="course-info">
-                <div class="course-name"><a href="detail-kurzu.html">Praktický kurz na moři</a></div>
+                <div class="course-name"><a href="detail-kurzu.html">Praktický kurz na moři C</a></div>
                 <div class="course-desc">Týdenní plavba s instruktorem v Chorvatsku — kotvení, manévry, navigace a vahta. Skupina max 6 osob.</div>
                 <div class="course-params"><span>5–7 dní</span><span>Chorvatsko / Řecko</span><span>ACI Marina Split</span></div>
               </div>
@@ -122,25 +121,109 @@
           </div>
         </div>
         <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="course-card course-card--horizontal" onclick="window.location.href='detail-kurzu.html'">
+              <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+              <div class="course-info">
+                <div class="course-name"><a href="detail-kurzu.html">Příprava na zkoušku</a></div>
+                <div class="course-desc">Teorie a opakování před státní zkouškou — pravidla plavby, navigace, meteorologie, COLREG a právo. Online + prezenčně.</div>
+                <div class="course-params"><span>2 dny · Praha / Brno</span><span>32 hodin teorie</span><span>Online záznamy 60 dní</span></div>
+              </div>
+              <div class="course-price">Od 6 900 Kč</div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
           <div class="step-num">3</div>
           <div class="step-content">
             <div class="exams-list">
               <a class="exam-row" href="#">
-                <div class="exam-row-name">Zkouška MDČR C — Pobřežní plavba</div>
-                <div class="exam-row-meta">Státní zkouška · Praha (MDČR) · 60 otázek + praxe · opakovaný termín 700 Kč</div>
+                <div class="exam-row-name">Zkouška</div>
+                <div class="exam-row-meta">Státní zkouška MDČR C · Praha (MDČR) · 60 otázek + praxe · opakovaný termín 700 Kč</div>
                 <div class="exam-row-price">2 500 Kč</div>
               </a>
             </div>
-
-            <div class="sec-label" style="margin:22px 0 10px;">Doporučené kurzy</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
             <div class="course-card course-card--horizontal" onclick="window.location.href='detail-prukazu.html'">
               <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/><path d="M9.09 2.09A19.5 19.5 0 0 1 22 11.33"/></svg></div>
               <div class="course-info">
-                <div class="course-name"><a href="detail-prukazu.html">SRC — Radiostanice</a></div>
-                <div class="course-desc">Krátkodosahový VHF průkaz. Pro plavbu MDČR C není povinný, ale doporučujeme ho — na moři je nenahraditelný v nouzových situacích.</div>
+                <div class="course-name"><a href="detail-prukazu.html">Kurz SRC — Radiostanice</a></div>
+                <div class="course-desc">Krátkodosahový VHF průkaz. Na moři je nenahraditelný v nouzových situacích — komunikace s pobřežní stráží i ostatními plavidly.</div>
                 <div class="course-params"><span>1 den · Praha</span><span>ČTÚ zkouška</span><span>Celoživotní platnost</span></div>
               </div>
               <div class="course-price">Od 3 900 Kč</div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="exams-list">
+              <div class="exam-row">
+                <div class="exam-row-name">SRC zkouška — VHF radiostanice</div>
+                <div class="exam-row-meta">Samostatná zkouška u <a href="https://www.ctu.cz" target="_blank" rel="noopener" style="color:var(--int);font-weight:600;">Českého telekomunikačního úřadu (ČTÚ) ↗</a> · přihlášení a termíny zajišťuje ČTÚ</div>
+                <div class="exam-row-price">400 Kč</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="steps" data-kroky-variant="b" hidden>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="course-card course-card--horizontal course-card--static">
+              <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18a4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0"/><path d="M3 13a4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0"/><path d="M3 8a4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0 4 4 0 0 1 4 0 4 4 0 0 0 4 0"/></svg></div>
+              <div class="course-info">
+                <div class="course-name">1 500 NM pod vedením</div>
+                <div class="course-desc">Doložte 1 500 nautických mil pod vedením instruktora. Pokud je ještě nemáte napluté, přihlaste se na <a href="detail-kurzu.html" style="color:var(--int);font-weight:600;">Offshore přeplavbu na Maltu</a>.</div>
+                <div class="course-params"><span>Offshore plavba</span><span>Doložení mílí</span></div>
+              </div>
+              <div class="course-price">Od 32 000 Kč</div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="course-card course-card--horizontal course-card--static">
+              <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg></div>
+              <div class="course-info">
+                <div class="course-name">1 000 NM vlastních</div>
+                <div class="course-desc">Doložte 1 000 nautických mil z vlastních plaveb. Vyrazte na moře samostatně — <a href="pronajem-lodi.html" style="color:var(--int);font-weight:600;">pronajměte si loď</a> a sbírejte míle.</div>
+                <div class="course-params"><span>Samostatné plavby</span><span>Pronájem lodi</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="course-card course-card--horizontal" onclick="window.location.href='detail-kurzu.html'">
+              <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+              <div class="course-info">
+                <div class="course-name"><a href="detail-kurzu.html">Příprava teoretická B</a></div>
+                <div class="course-desc">Rozšiřující teorie pro MDČR B — plánování offshore plaveb, navigace na delší vzdálenosti, meteorologie a bezpečnost na moři. Online + prezenčně.</div>
+                <div class="course-params"><span>2 dny · Praha</span><span>Online + prezenčně</span></div>
+              </div>
+              <div class="course-price">Od 7 900 Kč</div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="exams-list">
+              <a class="exam-row" href="#">
+                <div class="exam-row-name">Zkouška B</div>
+                <div class="exam-row-meta">Státní zkouška MDČR B · Praha (MDČR) · teorie + praxe do 200 NM · opakovaný termín 700 Kč</div>
+                <div class="exam-row-price">2 500 Kč</div>
+              </a>
             </div>
           </div>
         </div>
@@ -250,7 +333,7 @@
       </div>
       <div class="lektori-list" id="licenseLektori" style="margin-bottom:8px;">
         <button type="button" class="team-card" data-tm-name="Mgr. Tomáš Krejčí" data-tm-role="Lektor MDČR C, B, A" data-tm-miles="22 000" data-tm-email="tomas@yachtnet.cz" data-tm-phone="+420 603 222 333" data-tm-photos="6" data-tm-bio="Tomáš učí kapitány už osmým rokem. Má dar vysvětlit i tu nejnudnější část COLREGu tak, že ji zapamatujete na první poslech. V létě skipper, v zimě teorie."><div class="team-photo"></div><div class="team-name">Mgr. Tomáš Krejčí</div><div class="team-role">Lektor MDČR C, B, A</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>22 000 NM</div></button>
-        <button type="button" class="team-card" data-tm-name="Ing. Pavel Voženílek" data-tm-role="Hlavní instruktor MDČR A" data-tm-miles="40 000" data-tm-email="pavel@yachtnet.cz" data-tm-phone="+420 602 100 200" data-tm-photos="5" data-tm-bio="Zakladatel Yachtnet a vášnivý kapitán s více než 25 lety na moři. U kurzů A vede praktické plavby."><div class="team-photo"></div><div class="team-name">Ing. Pavel Voženílek</div><div class="team-role">Hlavní instruktor MDČR A</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>40 000 NM</div></button>
+        <button type="button" class="team-card" data-tm-name="Ing. Martin Voženílek" data-tm-role="Hlavní instruktor MDČR A" data-tm-miles="40 000" data-tm-email="pavel@yachtnet.cz" data-tm-phone="+420 602 100 200" data-tm-photos="5" data-tm-bio="Zakladatel Yachtnet a vášnivý kapitán s více než 25 lety na moři. U kurzů A vede praktické plavby."><div class="team-photo"></div><div class="team-name">Ing. Martin Voženílek</div><div class="team-role">Hlavní instruktor MDČR A</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>40 000 NM</div></button>
         <button type="button" class="team-card" data-tm-name="Bc. Klára Müllerová" data-tm-role="Lektorka teorie a meteo" data-tm-miles="9 800" data-tm-email="klara@yachtnet.cz" data-tm-phone="+420 775 900 200" data-tm-photos="4" data-tm-bio="Klára je vyhlášená vykladačka meteorologie pro plavbu. Z její přednášky o Adriatic weather patterns si studenti pamatují i to, kdy fouká bóra, ještě roky po kurzu."><div class="team-photo"></div><div class="team-name">Bc. Klára Müllerová</div><div class="team-role">Lektorka teorie a meteo</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>9 800 NM</div></button>
         <button type="button" class="team-card" data-tm-name="Kpt. Martin Dvořák" data-tm-role="Praktická plavba — moře" data-tm-miles="35 200" data-tm-email="martin@yachtnet.cz" data-tm-phone="+420 602 333 444" data-tm-photos="6" data-tm-bio="Martin vede praktické plavby v Chorvatsku už dvanáctým rokem. Bývalý kapitán námořní obchodní lodi, dnes nejtvrdší a zároveň nejoblíbenější instruktor naší flotily."><div class="team-photo"></div><div class="team-name">Kpt. Martin Dvořák</div><div class="team-role">Praktická plavba — moře</div><div class="team-miles"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>35 200 NM</div></button>
       </div>
@@ -510,11 +593,8 @@
     </div>
     <div>
       <div class="account-section" style="position:sticky;top:20px;">
-        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Celková cena balíčku</div>
-        <div style="font-size:28px;font-weight:800;color:var(--int);margin-bottom:2px;">Od 23 900 Kč</div>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Teorie + Praxe + Zkouška</div>
         <button class="auth-btn" id="licenseReserveBtn" style="margin-bottom:10px;">Zvolte termíny</button>
-        <button class="acc-btn-ghost" style="width:100%;">Koupit jako dárkový poukaz</button>
+        <button class="acc-btn-ghost" style="width:100%;" onclick="window.location.href='objednavka-kurzu-krok-1.html'">Koupit jako dárkový poukaz</button>
       </div>
     </div>
   </div>
