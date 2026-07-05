@@ -91,9 +91,9 @@
       <div class="date-nearby">
         <span class="date-nearby-label">Okolní termíny:</span>
         <div class="date-chip">24.–31. 5.</div>
-        <div class="date-chip">31. 5.–7. 6.</div>
+        <div class="date-chip active">31. 5.–7. 6.</div>
         <div class="date-chip">7.–14. 6.</div>
-        <div class="date-chip active">14.–21. 6.</div>
+        <div class="date-chip">14.–21. 6.</div>
         <div class="date-chip">21.–28. 6.</div>
         <div class="date-chip">28. 6.–5. 7.</div>
         <div class="date-chip">5.–12. 7.</div>
@@ -442,15 +442,10 @@
       </aside>
 
       <main class="boats-main" id="boatsMain">
-        <!-- Mobilní tlačítko filtry — zobrazí se jen na mobilu -->
-        <button class="mobile-filter-btn" id="mobileFilterBtn" onclick="toggleMobileSidebar()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-          Filtry
-        </button>
         <div class="help-banner">
           <div class="help-banner-avatar" aria-hidden="true"></div>
           <div class="help-banner-body">
-            <div class="help-banner-text">Nenašli jste vhodnou loď? <strong>Najdeme ji za vás</strong> — ozvěte se nám a poradíme.</div>
+            <div class="help-banner-text"><span class="hb-text-desktop">Nenašli jste vhodnou loď? <strong>Najdeme ji za vás</strong> — ozvěte se nám a poradíme.</span><span class="hb-text-mobile">Poradíme vám s výběrem!</span></div>
             <div class="help-banner-meta">
               <span class="help-banner-name">Monika</span><span class="help-banner-role"> · operátorka charterů</span>
               <span class="help-banner-sep"></span>
@@ -468,7 +463,7 @@
         </div>
         <div class="boats-topbar">
           <div class="results-meta">
-            Máme pro vás <strong id="resultCount">228</strong> lodí
+            Máme pro vás <strong id="resultCount" data-result-count>228</strong> lodí
           </div>
           <div class="sort-tabs" role="tablist" aria-label="Řazení">
             <button type="button" class="sort-tab is-active" data-sort="recommended" role="tab" aria-selected="true">Doporučené</button>
@@ -480,10 +475,37 @@
               <span class="map-toggle-label">Zobrazit mapu</span>
             </button>
           </div>
+          <!-- Mobilní ovládací řada: Filtr (dominantní) / Řazení (dropdown) / Mapa -->
+          <div class="boats-controls">
+            <button type="button" class="boats-ctrl boats-ctrl--primary" onclick="toggleMobileSidebar()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+              Filtr
+            </button>
+            <div class="sort-select" id="sortSelect">
+              <button type="button" class="boats-ctrl sort-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="18" x2="9" y2="18"/></svg>
+                Řazení
+                <svg class="sort-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <ul class="sort-menu" role="listbox" aria-label="Řazení lodí">
+                <li class="sort-opt is-selected" data-sort="recommended" role="option" aria-selected="true">Doporučené</li>
+                <li class="sort-opt" data-sort="price-asc" role="option" aria-selected="false">Od nejlevnější</li>
+                <li class="sort-opt" data-sort="price-desc" role="option" aria-selected="false">Od nejdražší</li>
+                <li class="sort-opt" data-sort="year-desc" role="option" aria-selected="false">Rok: od nejnovější</li>
+              </ul>
+            </div>
+            <button type="button" class="boats-ctrl" id="mapCtrlBtn" aria-pressed="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+              Mapa
+            </button>
+          </div>
         </div>
         <div class="chips-bar-wrap">
           <div class="active-chips-bar" id="activeFilterChips"></div>
-          <button type="button" class="chips-reset" id="chipsReset">Resetovat filtry</button>
+          <div class="chips-footer">
+            <span class="results-meta results-meta--m">Máme pro vás <strong data-result-count>228</strong> lodí</span>
+            <button type="button" class="chips-reset" id="chipsReset">Resetovat filtry</button>
+          </div>
         </div>
 
         <!-- MAP OVERLAY — vkládá se nad seznam, seznam zůstává viditelný -->

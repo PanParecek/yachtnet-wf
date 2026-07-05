@@ -11,7 +11,7 @@
 
     footer: function() {
       return '<footer class="footer">' +
-        '<div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>' +
+        '<div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-contacts"><a class="footer-nl-contact" href="tel:+420233354050"><span class="footer-nl-contact-label">Rezervace a kurzy</span><span class="footer-nl-contact-val">+420 233 354 050</span></a><a class="footer-nl-contact" href="tel:+420211222940"><span class="footer-nl-contact-label">Non-stop servis</span><span class="footer-nl-contact-val">+420 211 222 940</span></a><a class="footer-nl-contact" href="mailto:info@yachtnet.cz"><span class="footer-nl-contact-val">info@yachtnet.cz</span></a></div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>' +
         '<div class="footer-cols-wrap"><div class="footer-cols">' +
           '<div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Kariéra</a></li><li><a href="mapa-stranek.html">Mapa stránek</a></li></ul></div>' +
           '<div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="detail-kategorie.html">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>' +
@@ -1118,19 +1118,22 @@
         return html;
       }
 
+      function isCalMobile() { return window.matchMedia('(max-width: 680px)').matches; }
+
       function render() {
+        var mobile = isCalMobile();
         var nextYear = viewYear, nextMonth = viewMonth + 1;
         if (nextMonth > 11) { nextMonth = 0; nextYear++; }
         var html = '';
         // Decentní obchodní poznámka nahoře — sobotní turnusy jsou pro klienta výhodnější.
         html += '<div class="sf-cal-note">V termínu sobota–sobota je největší výběr za nejlepší ceny.</div>';
         html += '<div class="sf-cal-head">';
-        html += '<button type="button" class="sf-cal-nav" data-dir="-1" aria-label="Předchozí měsíce"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>';
-        html += '<button type="button" class="sf-cal-nav sf-cal-nav--next" data-dir="1" aria-label="Další měsíce"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>';
+        html += '<button type="button" class="sf-cal-nav" data-dir="-1" aria-label="Předchozí měsíc' + (mobile ? '' : 'e') + '"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>';
+        html += '<button type="button" class="sf-cal-nav sf-cal-nav--next" data-dir="1" aria-label="Další měsíc' + (mobile ? '' : 'e') + '"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>';
         html += '</div>';
         html += '<div class="sf-cal-months">';
         html += renderMonth(viewYear, viewMonth);
-        html += renderMonth(nextYear, nextMonth);
+        if (!mobile) html += renderMonth(nextYear, nextMonth);
         html += '</div>';
         var hint = (fromDate && !toDate) ? 'Vyberte konec rozpětí' : 'Klikněte na začátek a konec';
         html += '<div class="sf-cal-foot">';
@@ -1152,7 +1155,7 @@
         e.stopPropagation();
         var navBtn = e.target.closest('.sf-cal-nav');
         if (navBtn) {
-          var dir = parseInt(navBtn.dataset.dir, 10) * 2;
+          var dir = parseInt(navBtn.dataset.dir, 10) * (isCalMobile() ? 1 : 2);
           viewMonth += dir;
           while (viewMonth > 11) { viewMonth -= 12; viewYear++; }
           while (viewMonth < 0) { viewMonth += 12; viewYear--; }
@@ -1303,9 +1306,11 @@
             '" data-promo-dot="' + i + '" aria-label="Banner ' + (i + 1) + ' z ' + PROMO_SLIDES.length + '"></button>';
         }).join('');
         var controlsHtml = hasMore
-          ? '<button type="button" class="promo-slider-arrow promo-slider-arrow--prev" data-promo-dir="-1" aria-label="Předchozí banner">' + arrowSvg(-1) + '</button>' +
-            '<button type="button" class="promo-slider-arrow promo-slider-arrow--next" data-promo-dir="1" aria-label="Další banner">' + arrowSvg(1) + '</button>' +
-            '<div class="promo-slider-dots">' + dotsHtml + '</div>'
+          ? '<div class="promo-slider-controls">' +
+              '<button type="button" class="promo-slider-arrow promo-slider-arrow--prev" data-promo-dir="-1" aria-label="Předchozí banner">' + arrowSvg(-1) + '</button>' +
+              '<div class="promo-slider-dots">' + dotsHtml + '</div>' +
+              '<button type="button" class="promo-slider-arrow promo-slider-arrow--next" data-promo-dir="1" aria-label="Další banner">' + arrowSvg(1) + '</button>' +
+            '</div>'
           : '';
         root.innerHTML =
           '<div class="promo-slider-stage">' +
@@ -1417,10 +1422,10 @@
   };
 
   function boatCard(b) {
-    const MAX_TAGS = 4;
-    const visibleTags = b.amenities.slice(0, MAX_TAGS).map(a => `<span class="amenity-tag">${a}</span>`).join("");
-    const extraCount = Math.max(0, b.amenities.length - MAX_TAGS);
-    const tags = visibleTags + (extraCount ? `<span class="amenity-tag amenity-tag--more">+${extraCount}</span>` : "");
+    // Vybavení: vykreslíme všechny štítky + skrytý „+N" chip. Po renderu je fitAmenityRow()
+    // ořízne na jednu řádku a doplní správný počet skrytých do „+N" (nikdy nezalomí na 2 řádky).
+    const tags = b.amenities.map(a => `<span class="amenity-tag">${a}</span>`).join("") +
+      `<span class="amenity-tag amenity-tag--more" hidden>+0</span>`;
     const discountBadge = b.discount ? `<span class="badge badge-dis">−${b.discount} %</span>` : "";
     const rec = b.rec ? `<span class="badge badge-rec">★ Doporučujeme</span>` : "";
     const oldPriceVal = b.discount ? `${Math.round(parseInt(b.price.replace(/\D/g,"")) / (1 - b.discount/100)).toLocaleString("cs")} Kč` : "";
@@ -1444,7 +1449,8 @@
     };
     const statusKey = b.status || (b.reserved ? 'reserved' : 'free');
     const status = statusMap[statusKey] || statusMap.free;
-    const statusHtml = '<span class="card-status ' + status.cls + '"><span class="card-status-dot"></span>' + status.label + '</span>';
+    // Status = jen barevná tečka (bez labelu), umístěná za název modelu. Vysvětlení jen v title.
+    const statusHtml = '<span class="card-status card-status--dot ' + status.cls + '" title="' + status.label + '"><span class="card-status-dot"></span></span>';
     return `
       <div class="boat-card" data-href="detail-lodi.html" role="link" tabindex="0">
         <div class="card-img" data-img-idx="0" data-img-total="5">
@@ -1455,7 +1461,7 @@
         <div class="card-body">
           <div>
             <div class="card-badges">${rec}${perksHtml}</div>
-            <div class="card-name">${b.name}</div>
+            <div class="card-name">${b.name} ${statusHtml}</div>
             <div class="card-boat-name">"${b.boatName || "Lady One"}"</div>
             ${ratingHtml}
             <div class="card-marina">🇭🇷 <a href="oblast.html" style="color:var(--int);text-decoration:none;">${b.marina}${MARINA_CITY[b.marina] ? ' (' + MARINA_CITY[b.marina] + ')' : ''}</a></div>
@@ -1472,9 +1478,7 @@
           <div class="card-amenities">${tags}</div>
         </div>
         <div class="card-side">
-          <div class="card-side-top">
-            ${statusHtml}
-          </div>
+          <div class="card-side-top"></div>
           <div class="card-side-bottom">
             <div class="card-price">
               ${oldPrice}
@@ -1487,7 +1491,6 @@
             </div>
             <div class="card-side-actions">
               <button class="card-icon-btn" type="button" aria-label="Přidat do oblíbených" data-fav-id="${favId}" data-fav-name='${favName.replace(/'/g, "&apos;")}'><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="card-icon-tooltip" role="tooltip">Přidat do oblíbených</span></button>
-              <button class="btn-view" onclick="window.location.href='detail-lodi.html'">Detail →</button>
             </div>
           </div>
         </div>
@@ -1514,6 +1517,33 @@
     );
   }
 
+  // Ořízne řádek s vybavením na JEDNU řádku a doplní „+N" skrytých položek (nikdy nezalomí).
+  function fitAmenityRow(el) {
+    var more = el.querySelector('.amenity-tag--more');
+    var tags = Array.prototype.slice.call(el.querySelectorAll('.amenity-tag:not(.amenity-tag--more)'));
+    if (!tags.length || !more) return;
+    var total = tags.length;
+    tags.forEach(function(t) { t.hidden = false; });
+    more.hidden = true;
+    var firstTop = tags[0].offsetTop;
+    var fit = 0;
+    for (var i = 0; i < total; i++) { if (tags[i].offsetTop <= firstTop) fit++; else break; }
+    if (fit >= total) return; // vše se vejde na jednu řádku, „+N" netřeba
+    more.hidden = false;
+    var visible = fit;
+    for (var j = visible; j < total; j++) tags[j].hidden = true;
+    more.textContent = '+' + (total - visible);
+    // pokud „+N" přeteče na druhou řádku, uber štítky po jednom
+    while (visible > 1 && more.offsetTop > firstTop) {
+      visible--;
+      tags[visible].hidden = true;
+      more.textContent = '+' + (total - visible);
+    }
+  }
+  function fitAllAmenityRows() {
+    document.querySelectorAll('#boatsGrid .card-amenities').forEach(fitAmenityRow);
+  }
+
   function renderAllBoats() {
     const grid = document.getElementById("boatsGrid");
     if (!grid) return;
@@ -1521,13 +1551,21 @@
     var filtered = marinas.length
       ? BOATS.filter(function(b) { return marinas.indexOf(b.marina) !== -1; })
       : BOATS;
-    const countEl = document.getElementById("resultCount");
-    if (countEl) countEl.textContent = marinas.length ? filtered.length : 228;
+    var resultCount = marinas.length ? filtered.length : 228;
+    document.querySelectorAll('[data-result-count]').forEach(function(el) { el.textContent = resultCount; });
     grid.innerHTML = filtered.length
       ? filtered.map(boatCard).join("")
       : '<div style="padding:40px;text-align:center;color:var(--muted);font-size:14px;">Pro vybraný přístav nejsou žádné lodě.</div>';
     renderPagination(currentPage, TOTAL_PAGES);
+    fitAllAmenityRows();
   }
+
+  // Přepočet ořezu vybavení při změně šířky viewportu (debounce).
+  var _fitTimer = null;
+  window.addEventListener('resize', function() {
+    clearTimeout(_fitTimer);
+    _fitTimer = setTimeout(fitAllAmenityRows, 150);
+  });
 
   function renderPagination(page, total) {
     const wrap = document.getElementById("pagination");
@@ -2084,34 +2122,126 @@
     document.body.style.overflow = isOpen ? '' : 'hidden';
   }
 
+  // ── SDÍLENÁ DATA NAVIGACE — jediný zdroj pravdy pro desktop mega-menu i mobilní akordeon ──
+  // Přidání/změna odkazu tady se automaticky propíše do OBOU menu (desktop dropdown i mobilní akordeon).
+  var NAV_RENTAL_DATA = {
+    cta: { label: 'Najít loď', sub: 'Prohlédnout všechny dostupné lodě', href: 'pronajem-lodi.html' },
+    columns: [
+      { title: 'Hledat podle', items: [
+        { label: 'Destinace', href: 'destinace.html' },
+        { label: 'Kategorie lodí', href: 'kategorie-lodi.html' },
+        { label: 'Značky lodí', href: 'prehled-znacek.html' },
+        { label: 'Charterové společnosti', href: 'charterove-spolecnosti.html' }
+      ]},
+      { title: 'Informace', items: [
+        { label: 'Jak funguje pronájem?', href: '#' },
+        { label: 'Pojištění', href: '#' },
+        { label: 'Často se ptáte', href: '#' }
+      ]}
+    ],
+    article: { eyebrow: 'Z magazínu', title: 'Jak vybrat správnou loď?', href: 'detail-clanku.html' }
+  };
+
+  var NAV_KURZY_DATA = {
+    cta: { label: 'Vše o kapitánských kurzech', sub: 'Co vás čeká, jaké průkazy nabízíme a jak probíhá výuka', href: 'kapitanske-kurzy.html' },
+    groups: [
+      { title: 'Průkazy na moře', titleHref: 'vsechny-kurzy.html', items: [
+        { label: 'Průkaz MDČR C', href: 'detail-prukazu.html' },
+        { label: 'Chorvatský průkaz B', href: 'detail-prukazu.html' }
+      ]},
+      { title: 'Průkazy na řeky a jezera', titleHref: 'vsechny-kurzy.html', items: [
+        { label: 'VMP — Vůdce malého plavidla', href: 'detail-prukazu.html' },
+        { label: 'VRP — Vůdce rekreačního plavidla', href: 'detail-prukazu.html' }
+      ]},
+      { title: 'Kurzy', items: [
+        { label: 'Praxe na moři', href: 'detail-kurzu.html' },
+        { label: 'Teorie pro říční plavbu', href: 'detail-kurzu.html' },
+        { label: 'Teorie pro námořní plavbu', href: 'detail-kurzu.html' }
+      ]},
+      { title: 'Speciality', items: [
+        { label: 'Offshore zdokonalovací plavba', href: 'detail-kurzu.html' },
+        { label: 'Přístavní manévry', href: 'detail-kurzu.html' }
+      ]}
+    ],
+    footerLinks: [
+      { label: 'Všechny průkazy a kurzy', href: 'vsechny-kurzy.html', icon: 'list' },
+      { label: 'Termíny kurzů', href: 'terminy-kurzu.html', icon: 'calendar' },
+      { label: 'Porovnání průkazů', href: 'srovnani-prukazu.html', icon: 'compare' }
+    ]
+  };
+
+  // Ploché odkazy v mobilním menu, které na desktopu nemají vlastní mega-menu.
+  var NAV_FLAT_LINKS = [
+    { label: 'O nás', href: 'o-nas.html' },
+    { label: 'Magazín', href: 'magazin.html' },
+    { label: 'Kontakt', href: 'kontakt.html' }
+  ];
+
+  var NAV_FOOTER_ICONS = {
+    list: '<rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="12" width="18" height="4" rx="1"/><rect x="3" y="20" width="18" height="0.5"/>',
+    calendar: '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+    compare: '<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/>'
+  };
+
   // ── HAMBURGER MENU — generická implementace pro všechny stránky ──
-  var MOBILE_RENTAL_ACCORDION =
-    '<div class="nav-mobile-group">' +
+  function renderMobileRentalAccordion() {
+    var html = '<div class="nav-mobile-group">' +
       '<button type="button" class="nav-mobile-link nav-mobile-group-toggle" aria-expanded="false">' +
         '<span>Pronájem lodí</span>' +
         '<svg class="nav-mobile-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' +
       '</button>' +
       '<div class="nav-mobile-group-panel">' +
-        '<a class="nav-mobile-sublink nav-mobile-sublink-cta" href="pronajem-lodi.html">' +
-          'Najít loď' +
+        '<a class="nav-mobile-sublink nav-mobile-sublink-cta" href="' + NAV_RENTAL_DATA.cta.href + '">' +
+          NAV_RENTAL_DATA.cta.label +
           '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
-        '</a>' +
-        '<div class="nav-mobile-sub-title">Hledat podle</div>' +
-        '<a class="nav-mobile-sublink" href="destinace.html">Destinace</a>' +
-        '<a class="nav-mobile-sublink" href="kategorie-lodi.html">Kategorie lodí</a>' +
-        '<a class="nav-mobile-sublink" href="prehled-znacek.html">Značky lodí</a>' +
-        '<a class="nav-mobile-sublink" href="charterove-spolecnosti.html">Charterové společnosti</a>' +
-        '<div class="nav-mobile-sub-title">Z magazínu</div>' +
-        '<a class="nav-mobile-sublink" href="detail-clanku.html">Jak vybrat správnou loď?</a>' +
+        '</a>';
+    NAV_RENTAL_DATA.columns.forEach(function(col) {
+      html += '<div class="nav-mobile-sub-title">' + col.title + '</div>';
+      col.items.forEach(function(item) {
+        html += '<a class="nav-mobile-sublink" href="' + item.href + '">' + item.label + '</a>';
+      });
+    });
+    html += '<div class="nav-mobile-sub-title">' + NAV_RENTAL_DATA.article.eyebrow + '</div>' +
+        '<a class="nav-mobile-sublink" href="' + NAV_RENTAL_DATA.article.href + '">' + NAV_RENTAL_DATA.article.title + '</a>' +
       '</div>' +
     '</div>';
+    return html;
+  }
 
-  var MOBILE_LINKS_HTML =
-    MOBILE_RENTAL_ACCORDION +
-    '<a class="nav-mobile-link" href="kapitanske-kurzy.html">Kapitánské kurzy</a>' +
-    '<a class="nav-mobile-link" href="o-nas.html">O nás</a>' +
-    '<a class="nav-mobile-link" href="magazin.html">Magazín</a>' +
-    '<a class="nav-mobile-link" href="kontakt.html">Kontakt</a>';
+  function renderMobileKurzyAccordion() {
+    var html = '<div class="nav-mobile-group">' +
+      '<button type="button" class="nav-mobile-link nav-mobile-group-toggle" aria-expanded="false">' +
+        '<span>Kapitánské kurzy</span>' +
+        '<svg class="nav-mobile-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' +
+      '</button>' +
+      '<div class="nav-mobile-group-panel">' +
+        '<a class="nav-mobile-sublink nav-mobile-sublink-cta" href="' + NAV_KURZY_DATA.cta.href + '">' +
+          NAV_KURZY_DATA.cta.label +
+          '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
+        '</a>';
+    NAV_KURZY_DATA.groups.forEach(function(group) {
+      html += group.titleHref
+        ? '<a class="nav-mobile-sub-title nav-mobile-sub-title--link" href="' + group.titleHref + '">' + group.title + '</a>'
+        : '<div class="nav-mobile-sub-title">' + group.title + '</div>';
+      group.items.forEach(function(item) {
+        html += '<a class="nav-mobile-sublink" href="' + item.href + '">' + item.label + '</a>';
+      });
+    });
+    html += '<div class="nav-mobile-sub-title">Rychlé odkazy</div>';
+    NAV_KURZY_DATA.footerLinks.forEach(function(fl) {
+      html += '<a class="nav-mobile-sublink" href="' + fl.href + '">' + fl.label + '</a>';
+    });
+    html += '</div></div>';
+    return html;
+  }
+
+  function renderMobileLinksHTML() {
+    var html = renderMobileRentalAccordion() + renderMobileKurzyAccordion();
+    NAV_FLAT_LINKS.forEach(function(link) {
+      html += '<a class="nav-mobile-link" href="' + link.href + '">' + link.label + '</a>';
+    });
+    return html;
+  }
 
   var MOBILE_ACTIONS_HTML =
     '<div class="nav-select-wrap">' +
@@ -2191,7 +2321,7 @@
       var menu = document.createElement('div');
       menu.className = 'nav-mobile-menu';
       menu.innerHTML =
-        '<div class="nav-mobile-links">' + MOBILE_LINKS_HTML + '</div>' +
+        '<div class="nav-mobile-links">' + renderMobileLinksHTML() + '</div>' +
         '<div class="nav-mobile-actions">' + MOBILE_ACTIONS_HTML + '</div>';
       nav.appendChild(menu);
 
@@ -2202,119 +2332,91 @@
   initHamburgers();
 
   // ── MEGA MENU pro "Pronájem lodí" ────────────────────────
-  var MEGA_MENU_HTML =
-    '<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">' +
+  function renderMegaMenuHTML() {
+    var html = '<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">' +
       'Pronájem lodí' +
       '<svg class="nav-dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' +
     '</button>' +
     '<div class="nav-dropdown-panel" role="menu">' +
       '<div class="nav-dropdown-grid">' +
-        '<a class="nav-dropdown-cta" href="pronajem-lodi.html">' +
+        '<a class="nav-dropdown-cta" href="' + NAV_RENTAL_DATA.cta.href + '">' +
           '<div>' +
-            '<div class="nav-dropdown-cta-label">Najít loď</div>' +
-            '<div class="nav-dropdown-cta-sub">Prohlédnout všechny dostupné lodě</div>' +
+            '<div class="nav-dropdown-cta-label">' + NAV_RENTAL_DATA.cta.label + '</div>' +
+            '<div class="nav-dropdown-cta-sub">' + NAV_RENTAL_DATA.cta.sub + '</div>' +
           '</div>' +
           '<span class="nav-dropdown-cta-arrow" aria-hidden="true">' +
             '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
           '</span>' +
-        '</a>' +
-        '<div class="nav-dropdown-col">' +
-          '<div class="nav-dropdown-col-title">Hledat podle</div>' +
-          '<ul class="nav-dropdown-list">' +
-            '<li><a href="destinace.html">Destinace</a></li>' +
-            '<li><a href="kategorie-lodi.html">Kategorie lodí</a></li>' +
-            '<li><a href="prehled-znacek.html">Značky lodí</a></li>' +
-            '<li><a href="charterove-spolecnosti.html">Charterové společnosti</a></li>' +
-          '</ul>' +
-        '</div>' +
-        '<div class="nav-dropdown-col">' +
-          '<div class="nav-dropdown-col-title">Informace</div>' +
-          '<ul class="nav-dropdown-list">' +
-            '<li><a href="#">Jak funguje pronájem?</a></li>' +
-            '<li><a href="#">Pojištění</a></li>' +
-            '<li><a href="#">Často se ptáte</a></li>' +
-          '</ul>' +
-        '</div>' +
-        '<a class="nav-dropdown-article" href="detail-clanku.html">' +
+        '</a>';
+    NAV_RENTAL_DATA.columns.forEach(function(col) {
+      html += '<div class="nav-dropdown-col">' +
+        '<div class="nav-dropdown-col-title">' + col.title + '</div>' +
+        '<ul class="nav-dropdown-list">' +
+          col.items.map(function(item) { return '<li><a href="' + item.href + '">' + item.label + '</a></li>'; }).join('') +
+        '</ul>' +
+      '</div>';
+    });
+    html += '<a class="nav-dropdown-article" href="' + NAV_RENTAL_DATA.article.href + '">' +
           '<div class="nav-dropdown-article-img"></div>' +
           '<div class="nav-dropdown-article-body">' +
-            '<div class="nav-dropdown-article-eyebrow">Z magazínu</div>' +
-            '<div class="nav-dropdown-article-title">Jak vybrat správnou loď?</div>' +
+            '<div class="nav-dropdown-article-eyebrow">' + NAV_RENTAL_DATA.article.eyebrow + '</div>' +
+            '<div class="nav-dropdown-article-title">' + NAV_RENTAL_DATA.article.title + '</div>' +
             '<div class="nav-dropdown-article-cta">Přečíst článek →</div>' +
           '</div>' +
         '</a>' +
       '</div>' +
     '</div>';
+    return html;
+  }
 
-  var KURZY_MENU_HTML =
-    '<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">' +
+  function renderKurzyMenuHTML() {
+    var html = '<button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true">' +
       'Kapitánské kurzy' +
       '<svg class="nav-dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' +
     '</button>' +
     '<div class="nav-dropdown-panel nav-dropdown-panel--kurzy" role="menu">' +
       '<div class="nav-dropdown-grid--kurzy">' +
-        '<a class="nav-dropdown-cta" href="kapitanske-kurzy.html">' +
+        '<a class="nav-dropdown-cta" href="' + NAV_KURZY_DATA.cta.href + '">' +
           '<div>' +
-            '<div class="nav-dropdown-cta-label">Vše o kapitánských kurzech</div>' +
-            '<div class="nav-dropdown-cta-sub">Co vás čeká, jaké průkazy nabízíme a jak probíhá výuka</div>' +
+            '<div class="nav-dropdown-cta-label">' + NAV_KURZY_DATA.cta.label + '</div>' +
+            '<div class="nav-dropdown-cta-sub">' + NAV_KURZY_DATA.cta.sub + '</div>' +
           '</div>' +
           '<span class="nav-dropdown-cta-arrow" aria-hidden="true">' +
             '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>' +
           '</span>' +
         '</a>' +
         '<div class="nav-dropdown-kurzy-right">' +
-          '<div class="nav-dropdown-kurzy-cols">' +
-            '<div class="nav-dropdown-col">' +
-              '<div class="nav-dropdown-group">' +
-                '<a class="nav-dropdown-col-title--link" href="vsechny-kurzy.html">Průkazy na moře</a>' +
-                '<ul class="nav-dropdown-list">' +
-                  '<li><a href="detail-prukazu.html">Průkaz MDČR C</a></li>' +
-                  '<li><a href="detail-prukazu.html">Chorvatský průkaz B</a></li>' +
-                '</ul>' +
-              '</div>' +
-              '<div class="nav-dropdown-group">' +
-                '<a class="nav-dropdown-col-title--link" href="vsechny-kurzy.html">Průkazy na řeky a jezera</a>' +
-                '<ul class="nav-dropdown-list">' +
-                  '<li><a href="detail-prukazu.html">VMP — Vůdce malého plavidla</a></li>' +
-                  '<li><a href="detail-prukazu.html">VRP — Vůdce rekreačního plavidla</a></li>' +
-                '</ul>' +
-              '</div>' +
-            '</div>' +
-            '<div class="nav-dropdown-col">' +
-              '<div class="nav-dropdown-group">' +
-                '<div class="nav-dropdown-col-title">Kurzy</div>' +
-                '<ul class="nav-dropdown-list">' +
-                  '<li><a href="detail-kurzu.html">Praxe na moři</a></li>' +
-                  '<li><a href="detail-kurzu.html">Teorie pro říční plavbu</a></li>' +
-                  '<li><a href="detail-kurzu.html">Teorie pro námořní plavbu</a></li>' +
-                '</ul>' +
-              '</div>' +
-              '<div class="nav-dropdown-group">' +
-                '<div class="nav-dropdown-col-title">Speciality</div>' +
-                '<ul class="nav-dropdown-list">' +
-                  '<li><a href="detail-kurzu.html">Offshore zdokonalovací plavba</a></li>' +
-                  '<li><a href="detail-kurzu.html">Přístavní manévry</a></li>' +
-                '</ul>' +
-              '</div>' +
-            '</div>' +
-          '</div>' +
+          '<div class="nav-dropdown-kurzy-cols">';
+    // Rozdělit skupiny do dvou sloupců po dvou, stejně jako v původním layoutu.
+    for (var colIdx = 0; colIdx < NAV_KURZY_DATA.groups.length; colIdx += 2) {
+      html += '<div class="nav-dropdown-col">';
+      [NAV_KURZY_DATA.groups[colIdx], NAV_KURZY_DATA.groups[colIdx + 1]].forEach(function(group) {
+        if (!group) return;
+        html += '<div class="nav-dropdown-group">' +
+          (group.titleHref
+            ? '<a class="nav-dropdown-col-title--link" href="' + group.titleHref + '">' + group.title + '</a>'
+            : '<div class="nav-dropdown-col-title">' + group.title + '</div>') +
+          '<ul class="nav-dropdown-list">' +
+            group.items.map(function(item) { return '<li><a href="' + item.href + '">' + item.label + '</a></li>'; }).join('') +
+          '</ul>' +
+        '</div>';
+      });
+      html += '</div>';
+    }
+    html += '</div>' +
           '<div class="nav-dropdown-kurzy-actions">' +
-            '<a href="vsechny-kurzy.html" class="nav-dropdown-footer-link">' +
-              '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="12" width="18" height="4" rx="1"/><rect x="3" y="20" width="18" height="0.5"/></svg>' +
-              'Všechny průkazy a kurzy' +
-            '</a>' +
-            '<a href="terminy-kurzu.html" class="nav-dropdown-footer-link">' +
-              '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' +
-              'Termíny kurzů' +
-            '</a>' +
-            '<a href="srovnani-prukazu.html" class="nav-dropdown-footer-link">' +
-              '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg>' +
-              'Porovnání průkazů' +
-            '</a>' +
+            NAV_KURZY_DATA.footerLinks.map(function(fl) {
+              return '<a href="' + fl.href + '" class="nav-dropdown-footer-link">' +
+                '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + NAV_FOOTER_ICONS[fl.icon] + '</svg>' +
+                fl.label +
+              '</a>';
+            }).join('') +
           '</div>' +
         '</div>' +
       '</div>' +
     '</div>';
+    return html;
+  }
 
   function wireMegaMenu(li) {
     var btn = li.querySelector('.nav-dropdown-toggle');
@@ -2352,12 +2454,12 @@
       });
       if (rentalLi) {
         rentalLi.classList.add('nav-dropdown');
-        rentalLi.innerHTML = MEGA_MENU_HTML;
+        rentalLi.innerHTML = renderMegaMenuHTML();
         wireMegaMenu(rentalLi);
       }
       if (kurzyLi) {
         kurzyLi.classList.add('nav-dropdown');
-        kurzyLi.innerHTML = KURZY_MENU_HTML;
+        kurzyLi.innerHTML = renderKurzyMenuHTML();
         wireMegaMenu(kurzyLi);
       }
     });
@@ -2611,7 +2713,15 @@
   initSfSelects();
 
   // Na stránce pronajem-lodi.html vykresli výpis lodí hned po načtení.
-  if (document.getElementById('boatsGrid')) renderAllBoats();
+  if (document.getElementById('boatsGrid')) {
+    renderAllBoats();
+    // Uložená alt. varianta karty „fotka nahoře" (viz styles.css .boats-list--photo-top).
+    // Zobrazíš ji přidáním ?variant=photo-top do URL (jen na mobilní šířce < 768px).
+    if (/[?&]variant=photo-top(&|$)/.test(location.search)) {
+      document.getElementById('boatsGrid').classList.add('boats-list--photo-top');
+      fitAllAmenityRows(); // změna šířky → přepočítej ořez vybavení
+    }
+  }
 
   // ── Rate modal (Proběhlé rezervace → Přidat hodnocení) ──
   // Vícekrokový wizard (5 kroků hodnocení + poděkování):
@@ -3744,6 +3854,32 @@
     });
   })();
 
+  // Řazení — dropdown (mobilní ovládací řada), stejný styl jako fs-select
+  (function initSortSelect() {
+    var sel = document.getElementById('sortSelect');
+    if (!sel) return;
+    var trigger = sel.querySelector('.sort-select-trigger');
+    var opts = sel.querySelectorAll('.sort-opt');
+    function close() { sel.classList.remove('is-open'); trigger.setAttribute('aria-expanded', 'false'); }
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var open = sel.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    opts.forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        opts.forEach(function(o) { o.classList.remove('is-selected'); o.setAttribute('aria-selected', 'false'); });
+        opt.classList.add('is-selected'); opt.setAttribute('aria-selected', 'true');
+        // Sync se skrytými sort-taby, ať stav řazení sedí i s desktop variantou
+        var tab = document.querySelector('.sort-tabs .sort-tab[data-sort="' + opt.getAttribute('data-sort') + '"]');
+        if (tab) tab.click();
+        close();
+      });
+    });
+    document.addEventListener('click', function(e) { if (!e.target.closest('#sortSelect')) close(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close(); });
+  })();
+
   (function initMapView() {
     var canvas = document.getElementById('mapCanvas');
     var pinsHost = document.getElementById('mapPins');
@@ -3753,15 +3889,20 @@
     if (!toggleBtn || !mapEl) return;
 
     var labelEl = toggleBtn.querySelector('.map-toggle-label');
+    var ctrlBtn = document.getElementById('mapCtrlBtn'); // mapové tlačítko v mobilní řadě
 
     function setMapOpen(open) {
       mapEl.hidden = !open;
       toggleBtn.setAttribute('aria-pressed', open ? 'true' : 'false');
       if (labelEl) labelEl.textContent = open ? 'Skrýt mapu' : 'Zobrazit mapu';
+      if (ctrlBtn) { ctrlBtn.classList.toggle('is-active', open); ctrlBtn.setAttribute('aria-pressed', open ? 'true' : 'false'); }
       if (open && pinsHost && !pinsHost.dataset.rendered) renderPins();
       if (open) mapEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
     toggleBtn.addEventListener('click', function() {
+      setMapOpen(mapEl.hidden);
+    });
+    if (ctrlBtn) ctrlBtn.addEventListener('click', function() {
       setMapOpen(mapEl.hidden);
     });
 

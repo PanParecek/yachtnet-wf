@@ -640,7 +640,7 @@
     .promo-slider { max-width: var(--max); margin: 0 auto; }
     .promo-slider-stage {
       position: relative;
-      padding-bottom: 28px; /* místo pro tečky pod bannerem */
+      padding-bottom: 44px; /* místo pro ovládací řádek (šipky + tečky) pod bannerem */
     }
     .promo-slider-stage .promo-banner { width: 100%; }
 
@@ -681,27 +681,28 @@
       .promo-tile-title { font-size: 18px; }
     }
 
+    /* Ovládací řádek — šipky + tečky pohromadě, vystředěné pod bannerem */
+    .promo-slider-controls {
+      position: absolute; left: 50%; bottom: 0;
+      transform: translateX(-50%);
+      display: flex; align-items: center; gap: 14px;
+      z-index: 2;
+    }
     .promo-slider-arrow {
-      position: absolute; top: calc(50% - 14px); /* -14px kvůli kompenzaci padding-bottom pro tečky */
-      transform: translateY(-50%);
-      width: 44px; height: 44px; border-radius: 50%;
+      flex-shrink: 0;
+      width: 36px; height: 36px; border-radius: 50%;
       border: 1px solid var(--border); background: var(--surface);
       display: inline-flex; align-items: center; justify-content: center;
       cursor: pointer; color: var(--text); padding: 0;
       box-shadow: 0 4px 12px rgba(0,0,0,.10);
-      transition: border-color .15s, color .15s, background .15s, transform .15s;
-      z-index: 2;
+      transition: border-color .15s, color .15s, background .15s;
     }
     .promo-slider-arrow:hover {
       border-color: var(--int); color: var(--int);
       background: var(--surface);
     }
-    .promo-slider-arrow--prev { left: -22px; }
-    .promo-slider-arrow--next { right: -22px; }
 
     .promo-slider-dots {
-      position: absolute; left: 50%; bottom: 0;
-      transform: translateX(-50%);
       display: flex; align-items: center; gap: 8px;
     }
     .promo-slider-dot {
@@ -712,12 +713,6 @@
     }
     .promo-slider-dot:hover { background: var(--muted); }
     .promo-slider-dot.is-active { background: var(--int); width: 22px; border-radius: 4px; }
-
-    /* Na menších obrazovkách dej šipky dovnitř banneru, aby nepřesahovaly mimo viewport */
-    @media (max-width: 1420px) {
-      .promo-slider-arrow--prev { left: 12px; }
-      .promo-slider-arrow--next { right: 12px; }
-    }
 
     /* ── SOCIAL PROOF STRIP ──────────────────────── */
     .social-proof {
@@ -810,7 +805,7 @@
     .inner-sm    { max-width: var(--max); margin: 0 auto; padding: 40px 40px; }
 
     .sec-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-    .sec-title { font-size: 26px; font-weight: 700; letter-spacing: -.03em; margin-bottom: 6px; }
+    .sec-title { font-size: 21px; font-weight: 700; letter-spacing: -.03em; margin-bottom: 6px; }
     .sec-sub   { font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 600px; margin-bottom: 36px; }
     .sec-header { margin-bottom: 36px; }
     .sec-header-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
@@ -1312,7 +1307,7 @@
     }
     .btn-apply:hover { background: var(--int-dark); }
 
-    .boats-main { background: var(--bg); padding: 24px 28px; }
+    .boats-main { background: var(--bg); padding: 24px 28px; min-width: 0; }
     .boats-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
     .results-meta { font-size: 14px; }
     .results-meta strong { font-weight: 700; }
@@ -1340,10 +1335,10 @@
     .boat-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
-      display: flex; flex-direction: row; height: 270px;
+      display: flex; flex-direction: row; min-height: 270px;
       cursor: pointer; padding: 10px 0 10px 10px;
     }
-    .boat-card .card-body, .boat-card .card-side { overflow: hidden; }
+    .boat-card .card-body, .boat-card .card-side { overflow: visible; }
     /* Hodnocení modelu */
     .card-rating { display: inline-flex; align-items: center; gap: 6px; margin: 4px 0 6px; font-size: 12px; }
     .card-rating-stars { color: #f5a623; letter-spacing: 1px; font-size: 13px; }
@@ -1421,7 +1416,7 @@
     }
     .card-img-dot.is-active { background: #fff; width: 18px; border-radius: 4px; }
     .card-body {
-      flex: 1; padding: 18px 20px; display: flex; flex-direction: column; justify-content: space-between;
+      flex: 1; min-width: 0; padding: 18px 20px; display: flex; flex-direction: column; justify-content: space-between;
       border-right: 1px solid var(--border);
     }
     .card-name { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
@@ -1441,7 +1436,7 @@
     .spec-l { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
     .spec-v { font-size: 13px; font-weight: 600; }
     .spec-sub { font-size: 10px; font-weight: 500; color: var(--muted); margin-left: 2px; }
-    .card-amenities { display: flex; flex-wrap: nowrap; gap: 5px; overflow: hidden; }
+    .card-amenities { display: flex; flex-wrap: wrap; gap: 5px; }
     .amenity-tag {
       font-size: 11px; padding: 3px 9px;
       background: var(--int-soft); color: #5a00d4;
@@ -1472,6 +1467,8 @@
     .card-status--prereserved .card-status-dot { background: #f97316; }
     .card-status--reserved { color: #b91c1c; }
     .card-status--reserved .card-status-dot { background: #dc2626; }
+    /* Status jako pouhá tečka za názvem modelu (bez labelu) */
+    .card-status--dot { display: inline-flex; vertical-align: middle; margin-left: 6px; position: relative; top: -1px; }
     .card-side-bottom { display: flex; flex-direction: column; gap: 10px; }
     .card-price { display: flex; flex-direction: column; gap: 2px; }
     .price-old-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 2px; }
@@ -2442,6 +2439,7 @@
     .help-banner-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
     .help-banner-text { font-size: 13px; }
     .help-banner-text strong { color: var(--int); }
+    .hb-text-mobile { display: none; }
     .help-banner-meta {
       display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px;
       font-size: 12px; color: var(--text);
@@ -2542,6 +2540,8 @@
       flex-shrink: 0;
     }
     .chips-reset:hover { color: var(--int-dark); }
+    .chips-footer { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .results-meta--m { display: none; }
     .chips-bar-wrap:has(.active-chips-bar:empty) { display: none; }
 
     /* ── Toggle switche na konci sidebaru ── */
@@ -2847,6 +2847,11 @@
       display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
     }
     .footer-nl-title { font-size: 16px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .footer-nl-contacts { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+    .footer-nl-contact { display: flex; flex-direction: column; line-height: 1.3; text-decoration: none; color: #fff; }
+    .footer-nl-contact-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .04em; }
+    .footer-nl-contact-val { font-size: 15px; font-weight: 700; }
+    .footer-nl-contact:hover .footer-nl-contact-val { text-decoration: underline; }
     .footer-nl-form { display: flex; flex-direction: column; gap: 10px; flex: 1; max-width: 480px; }
     .footer-nl-row { display: flex; gap: 8px; }
     .footer-nl-input {
@@ -3702,6 +3707,47 @@
       background-size: 9px; background-repeat: no-repeat; background-position: center;
     }
     .fs-value-multi { color: var(--int); font-weight: 600; }
+
+    /* Mobilní ovládací řada výpisu: Filtr / Řazení / Mapa (skrytá na desktopu) */
+    .boats-controls { display: none; gap: 8px; }
+    .boats-controls > * { flex: 1 1 0; min-width: 0; }
+    .boats-ctrl {
+      width: 100%; height: 40px; box-sizing: border-box;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 0 8px; font-family: inherit; font-size: 13px; font-weight: 600; white-space: nowrap;
+      background: var(--surface); color: var(--text); border: 1px solid var(--border);
+      border-radius: var(--radius); cursor: pointer;
+      transition: border-color .12s, color .12s, background .12s;
+    }
+    .boats-ctrl svg { flex-shrink: 0; }
+    .boats-ctrl:hover { border-color: var(--int); color: var(--int); }
+    .boats-ctrl--primary { background: var(--int); color: #fff; border-color: var(--int); }
+    .boats-ctrl--primary:hover { background: var(--int-dark); border-color: var(--int-dark); color: #fff; }
+    .boats-ctrl.is-active { background: var(--int-soft); border-color: var(--int); color: var(--int); }
+    /* Řazení — dropdown ve stylu fs-selectu (single-select) */
+    .sort-select { position: relative; }
+    .sort-chevron { color: var(--muted); transition: transform .15s; }
+    .sort-select.is-open .sort-chevron { transform: rotate(180deg); }
+    .sort-select.is-open > .boats-ctrl { border-color: var(--int); color: var(--int); }
+    .sort-menu {
+      position: absolute; top: calc(100% + 4px); left: 0; right: auto; z-index: 500;
+      min-width: 190px; max-width: calc(100vw - 32px);
+      list-style: none; margin: 0; padding: 4px 0;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      box-shadow: 0 4px 20px rgba(0,0,0,.14); overflow: hidden; display: none;
+    }
+    .sort-select.is-open .sort-menu { display: block; }
+    .sort-opt {
+      position: relative; padding: 9px 12px 9px 32px;
+      font-size: 13px; color: var(--text); cursor: pointer; white-space: nowrap;
+    }
+    .sort-opt:hover { background: var(--int-soft); color: var(--int); }
+    .sort-opt.is-selected { color: var(--int); font-weight: 600; }
+    .sort-opt.is-selected::before {
+      content: ''; position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+      width: 13px; height: 11px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%236903FF' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 6l3 3 5-5'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
 
     /* Active filter chips bar (main content area) */
     .active-chips-bar { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 0 14px; }
@@ -6383,6 +6429,48 @@
       .results-subbar-inner { gap: 10px; }
       .map-toggle-btn { width: 100%; justify-content: center; }
 
+      /* Řazení + mapa v .boats-controls; počet lodí přesunut dolů pod aktivní filtry */
+      .boats-topbar { flex-direction: column; align-items: stretch; gap: 12px; }
+      .boats-topbar .sort-tabs { display: none; }
+      .boats-topbar .results-meta { display: none; }
+      .boats-controls { display: flex; width: 100%; }
+
+      /* Okolní termíny — jedna řada bez nadpisu, scroll s náznakem pokračování vpravo */
+      .date-nearby-label { display: none; }
+      .date-nearby {
+        flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto;
+        scrollbar-width: none; -webkit-overflow-scrolling: touch;
+        -webkit-mask-image: linear-gradient(to right, #000 88%, transparent);
+                mask-image: linear-gradient(to right, #000 88%, transparent);
+      }
+      .date-nearby::-webkit-scrollbar { display: none; }
+      .date-chip { flex-shrink: 0; }
+
+      /* Help banner — kompaktní: text vedle fotky, bez CTA, vejde se na výšku fotky */
+      .help-banner { flex-wrap: nowrap; align-items: center; gap: 12px; padding: 12px; }
+      .help-banner-avatar { width: 78px; height: 78px; }
+      .help-banner-body { gap: 2px; justify-content: center; }
+      .hb-text-desktop { display: none; }
+      .hb-text-mobile { display: inline; }
+      .help-banner-text { font-size: 13px; font-weight: 700; line-height: 1.25; }
+      .help-banner-meta { display: block; gap: 0; font-size: 12px; line-height: 1.55; }
+      .help-banner-sep { display: none; }
+      .help-banner-contact { display: flex; }
+      .help-banner-cta { display: none; }
+
+      /* Aktivní filtry — jedna řada mimo viewport; počet lodí + reset pod nimi */
+      .chips-bar-wrap { flex-direction: column; align-items: stretch; gap: 8px; }
+      .chips-bar-wrap .active-chips-bar {
+        flex: 0 0 auto; flex-wrap: nowrap; overflow-x: auto; padding: 0 0 4px;
+        scrollbar-width: none; -webkit-overflow-scrolling: touch;
+        -webkit-mask-image: linear-gradient(to right, #000 90%, transparent);
+                mask-image: linear-gradient(to right, #000 90%, transparent);
+      }
+      .chips-bar-wrap .active-chips-bar::-webkit-scrollbar { display: none; }
+      .active-chips-bar > * { flex-shrink: 0; }
+      .chips-footer { justify-content: space-between; width: 100%; }
+      .results-meta--m { display: inline; font-size: 13px; color: var(--muted); }
+
       /* Sidebar jako drawer */
       .results-layout { grid-template-columns: 1fr; }
       .sidebar {
@@ -6397,18 +6485,68 @@
       .boats-main { padding: 14px 16px; }
       .active-chips-bar { padding: 0 0 12px; }
 
-      /* Boat karta — vertikální */
-      .boat-card { flex-direction: column; min-height: auto; }
-      .card-img { width: 100%; height: 190px; }
-      .card-body { border-right: none; border-bottom: 1px solid var(--border); }
-      .card-side {
-        width: 100%; flex-direction: row; align-items: center;
-        padding: 12px 16px; gap: 12px;
+      /* Boat karta — kompaktní mobil: obrázek vlevo (~1/3), metadata vpravo, cena+CTA dole */
+      .boat-card { flex-flow: row wrap; min-height: auto; padding: 10px; gap: 10px 12px; align-items: flex-start; }
+      .card-img {
+        width: 34%; max-width: 130px; min-width: 92px; flex-shrink: 0;
+        height: auto; aspect-ratio: 4 / 3; max-height: 130px;
+        margin: 0; align-self: flex-start;
       }
-      .card-side-top { margin-bottom: 0; }
-      .card-side-bottom { flex-direction: row; align-items: center; gap: 12px; flex: 1; justify-content: flex-end; }
-      .price-val { font-size: 18px; }
-      .btn-view { width: auto; padding: 9px 20px; }
+      .card-img-dots { bottom: 5px; }
+      .card-body {
+        flex: 1 1 0; min-width: 0; padding: 0; gap: 5px;
+        border-right: none; border-bottom: none;
+        justify-content: flex-start; font-size: 12px;
+      }
+      .card-name { font-size: 14px; margin-bottom: 0; }
+      .card-boat-name { font-size: 12px; }
+      .card-rating { margin: 1px 0; font-size: 12px; }
+      .card-rating-stars { font-size: 12px; }
+      .card-marina { font-size: 12px; margin-bottom: 1px; }
+      .card-company { font-size: 11px; margin-bottom: 4px; }
+      .card-badges { margin-bottom: 3px; }
+      .card-badges .badge, .card-badges .card-perk { font-size: 11px; }
+      .card-specs { gap: 7px 14px; margin-bottom: 0; }
+      .spec-l { font-size: 11px; }
+      .spec-v { font-size: 12px; }
+      /* Vybavení: jedna řádka, přebytek se ořízne do „+N" přes JS (fitAmenityRow) */
+      .card-amenities { flex-wrap: wrap; overflow: hidden; gap: 6px; margin: 3px 0 0; }
+      .amenity-tag { font-size: 11px; }
+      /* Status + cena + CTA — celá šířka, úsporně */
+      .card-side {
+        flex-basis: 100%; width: 100%; flex-direction: column; align-items: stretch;
+        padding: 9px 0 0; gap: 7px; border-top: 1px solid var(--border);
+      }
+      .card-side-top { display: none; }
+      .card-side-bottom { flex-direction: row; align-items: center; gap: 12px; justify-content: space-between; }
+      .card-price { gap: 0; }
+      .price-val { font-size: 14px; }
+      .price-sub { font-size: 11px; margin-top: 0; }
+      /* Srdíčko (oblíbené) zcela doleva, cena vpravo */
+      .card-side-actions { flex: 0 0 auto; order: -1; }
+      .btn-view { width: auto; padding: 8px 16px; font-size: 13px; }
+
+      /* ── ULOŽENÁ VARIANTA: fotka nahoře a vyšší (stackovaný layout) ──
+         Aktivní zůstává kompaktní verze výše. Tuto variantu zapneš přidáním
+         třídy `boats-list--photo-top` na kontejner #boatsGrid (.boats-list).
+         Ponechává stejný formát (fonty 12/11, štítky), jen mění rozložení. */
+      .boats-list--photo-top .boat-card { flex-flow: column nowrap; align-items: stretch; }
+      .boats-list--photo-top .card-img {
+        width: 100%; max-width: none; min-width: 0;
+        height: 260px; max-height: none; aspect-ratio: auto;
+        margin: 0; align-self: stretch;
+      }
+      .boats-list--photo-top .card-img-dots { bottom: 8px; }
+      .boats-list--photo-top .card-body { padding: 8px 0 0; }
+      .boats-list--photo-top .card-amenities {
+        flex-wrap: wrap; overflow: visible; margin: 6px 0 0; padding: 0;
+      }
+      .boats-list--photo-top .card-side {
+        flex-direction: row; align-items: center; gap: 12px;
+        padding: 10px 0 0; border-top: 1px solid var(--border);
+      }
+      .boats-list--photo-top .card-side-top { flex-shrink: 0; margin-bottom: 0; }
+      .boats-list--photo-top .card-side-bottom { flex: 1; flex-direction: row; align-items: center; justify-content: flex-end; }
 
       /* Pagination */
       .pagination { gap: 4px; }
@@ -6782,9 +6920,13 @@
     }
     .nav-mobile-group.open .nav-mobile-group-panel { display: block; }
     .nav-mobile-sub-title {
+      display: block;
       font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
       color: var(--muted); margin: 12px 0 4px;
+      text-decoration: none;
     }
+    a.nav-mobile-sub-title--link { color: var(--int); }
+    a.nav-mobile-sub-title--link:hover { color: var(--int-dark); text-decoration: underline; }
     .nav-mobile-sublink {
       display: block; padding: 9px 0; font-size: 14px; font-weight: 500;
       color: var(--text); text-decoration: none;
@@ -6856,17 +6998,17 @@
       .hero-title { font-size: 32px; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 10px; }
       .hero-sub   { font-size: 14px; margin-bottom: 18px; }
 
-      /* Search form — vertical stack, full width */
+      /* Search form — 2 pole vedle sebe (šetří místo), pod sebe až na ≤540px */
       .search-form {
-        display: flex; flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 10px;
+        display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 10px 12px;
         width: 100%; padding: 16px; border-radius: 8px;
         backdrop-filter: blur(6px);
       }
-      /* Zrušit flex-basis z desktop řádkového layoutu — ve sloupci se z basis stávala výška pole → obří mezery */
+      /* Zrušit flex-basis z desktop řádkového layoutu — v gridu se z basis stávala výška pole → obří mezery */
       .search-form .sf-field { flex: 0 0 auto; width: 100%; min-width: 0; max-width: none; }
       .sf-field select { width: 100%; min-width: 0; }
       .date-combined { width: 100%; min-width: 0; }
-      .btn-search { width: 100%; height: 46px; font-size: 15px; border-radius: var(--radius); }
+      .btn-search { grid-column: 1 / -1; width: 100%; height: 46px; font-size: 15px; border-radius: var(--radius); }
 
       /* Social proof boxíky — na mobilu pod sebe, plná šířka */
       .social-proof--hero { flex-direction: column; margin-top: 16px; gap: 8px; }
@@ -6882,7 +7024,6 @@
       /* ── Section helpers ── */
       .inner    { padding: 32px 16px; }
       .inner-sm { padding: 24px 16px; }
-      .sec-title { font-size: 21px; }
       .sec-header { margin-bottom: 20px; }
 
       /* ── Destination mosaic ──
@@ -6928,12 +7069,12 @@
         display: flex; gap: 14px;
         overflow-x: auto; scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
-        margin: 0 -16px; padding: 0 16px 12px;
+        padding-bottom: 12px;
         scrollbar-width: none;
       }
       .courses-grid::-webkit-scrollbar { display: none; }
       .course-card {
-        flex: 0 0 280px; scroll-snap-align: start;
+        flex: 0 0 90%; scroll-snap-align: start;
       }
       .course-img { aspect-ratio: 2/1; }
       .courses-arrows { display: flex; }
@@ -6947,7 +7088,7 @@
       .carousel-wrap { gap: 16px; }
 
       /* ── Image divider banner ── */
-      .img-banner { height: 200px; }
+      .img-banner { height: auto; min-height: 200px; padding: 28px 0; }
       .img-banner-content { padding: 0 20px; }
       .img-banner-title { font-size: 18px; }
       .img-banner-sub   { font-size: 13px; margin-bottom: 16px; }
@@ -6988,14 +7129,40 @@
         grid-template-columns: 1fr 1fr;
         gap: 24px 16px;
       }
-      /* Brand column full width */
-      .footer-cols .footer-col:first-child { grid-column: 1 / -1; }
+      /* 4 sloupce s odkazy (Blog, Typ pronájmu, Kapitánské kurzy, Přehledy) do mřížky 2×2 */
+      /* Yacht-Pool odznak full width */
+      .footer-cols .footer-col:nth-child(5) { grid-column: 1 / -1; }
       /* Social/help column full width */
       .footer-cols .footer-col:last-child  { grid-column: 1 / -1; }
 
       .footer-bottom {
         padding: 16px; flex-direction: column; gap: 8px; text-align: center;
       }
+    }
+
+    /* ════════════════════════════════════
+       DATERANGE POPOVER MOBILE ≤ 680px
+       Dvouměsíční grid (620px) by na mobilu přetekl mimo viewport —
+       jeden měsíc + spodní vysouvací panel (bottom sheet) místo dropdownu.
+    ════════════════════════════════════ */
+    @media (max-width: 680px) {
+      .sf-cal-months { grid-template-columns: 1fr; }
+      .sf-daterange-popover {
+        position: fixed; left: 0; right: 0; bottom: 0; top: auto;
+        width: auto; max-width: none;
+        max-height: 80vh; overflow-y: auto;
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 -8px 30px rgba(0,0,0,.25);
+        padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+      }
+    }
+
+    /* ════════════════════════════════════
+       SEARCH FORM STACK ≤ 540px
+       Na užších telefonech už 2 pole vedle sebe nemají místo — přejít na sloupec.
+    ════════════════════════════════════ */
+    @media (max-width: 540px) {
+      .search-form { grid-template-columns: 1fr; }
     }
 
     /* ════════════════════════════════════
@@ -7012,13 +7179,6 @@
 
       /* Logos — 2 col */
       .logos-row { grid-template-columns: repeat(2, 1fr); }
-
-      /* Footer — single col */
-      .footer-cols {
-        grid-template-columns: 1fr;
-      }
-      .footer-cols .footer-col:first-child,
-      .footer-cols .footer-col:last-child { grid-column: auto; }
     }
 
     /* ══════════════════════════════════════════════════
