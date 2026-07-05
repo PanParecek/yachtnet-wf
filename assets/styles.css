@@ -11,6 +11,9 @@
       --int:      #6903FF;
       --int-dark: #5200cc;
       --int-soft: #f0ecff;
+      --warn:        #e0730a;  /* oranžová – upozornění / prerekvizita */
+      --warn-soft:   #fbf1e4;  /* světle oranžové podbarvení bloku */
+      --warn-border: #ecc79a;  /* jemné oranžové ohraničení */
       --img-bg:   #555555;
       --cross-bg: linear-gradient(to bottom right, transparent calc(50% - .9px), rgba(255,255,255,.3) calc(50% - .9px), rgba(255,255,255,.3) calc(50% + .9px), transparent calc(50% + .9px)), linear-gradient(to bottom left, transparent calc(50% - .9px), rgba(255,255,255,.3) calc(50% - .9px), rgba(255,255,255,.3) calc(50% + .9px), transparent calc(50% + .9px));
       --radius:   6px;
@@ -297,10 +300,10 @@
 
     /* ── HERO ────────────────────────────────────── */
     .hero {
-      height: 420px;
+      height: auto; min-height: 420px;
       background: linear-gradient(rgba(0,0,0,.48), rgba(0,0,0,.48)), var(--cross-bg), var(--img-bg);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      position: relative;
+      position: relative; padding: 40px 0;
     }
     .hero-content { text-align: center; z-index: 1; padding: 0 24px; max-width: var(--max); width: 100%; }
     .hero-title { font-size: 30px; font-weight: 700; letter-spacing: -.03em; color: #fff; margin-bottom: 6px; }
@@ -720,6 +723,37 @@
     .social-proof {
       background: var(--surface); border-bottom: 1px solid var(--border);
     }
+    /* ── Social proof jako boxíky přímo v hero obrázku (varianta „hero") ── */
+    .social-proof--hero {
+      background: none; border: none;
+      display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px;
+      width: 100%; margin-top: 22px; text-align: left;
+    }
+    .social-proof--hero .sp-box {
+      display: flex; align-items: center; gap: 11px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22);
+      border-radius: 12px; padding: 11px 16px; color: #fff;
+    }
+    .social-proof--hero .sp-box-lines { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+    .social-proof--hero .sp-box-title { font-size: 13px; font-weight: 800; }
+    .social-proof--hero .sp-box-sub { font-size: 11px; color: rgba(255,255,255,.72); }
+    .social-proof--hero .sp-box-mark {
+      flex-shrink: 0; width: 34px; height: 34px; border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; letter-spacing: .02em; color: #fff;
+      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28);
+    }
+    .social-proof--hero .sp-box-mark--iso { border-radius: 50%; font-size: 11px; }
+    .social-proof--hero .sp-box-gicon {
+      flex-shrink: 0; width: 34px; height: 34px; border-radius: 8px; background: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .social-proof--hero .sp-box-stars { color: #f5a623; font-size: 13px; letter-spacing: 1px; }
+    .social-proof--hero .sp-box-score { font-size: 20px; font-weight: 800; margin-left: 6px; }
+    .social-proof--hero .sp-box--quote { flex: 1 1 260px; min-width: 220px; }
+    .social-proof--hero .sp-box-qmark { color: rgba(255,255,255,.5); font-size: 26px; font-weight: 800; line-height: .5; align-self: flex-start; margin-top: 4px; }
+    .social-proof--hero .sp-box-qtext { font-size: 13px; font-style: italic; }
+    .social-proof--hero .sp-box-qauthor { font-size: 12px; font-weight: 700; color: rgba(255,255,255,.82); margin-top: 3px; }
     .social-proof-inner {
       max-width: var(--max); margin: 0 auto; padding: 14px 40px;
       display: flex; align-items: center; justify-content: center;
@@ -3125,6 +3159,12 @@
     }
     .hotline-number:hover { color: var(--int-dark); }
     .hotline-note { font-size: 11px; color: var(--muted); }
+    /* Dostupnost specialistky + integrovaná hotline uvnitř kontaktního boxu */
+    .contact-hours { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .contact-hours svg { flex-shrink: 0; }
+    .contact-hotline { display: flex; align-items: center; gap: 14px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .contact-hotline .hotline-icon { width: 42px; height: 42px; }
+    .contact-hotline .hotline-icon svg { width: 20px; height: 20px; }
     /* Kompaktní varianta pro užší sidebar (menší ikonka, menší typo na čísle) */
     .hotline-box--compact { gap: 14px; padding: 14px 16px; }
     .hotline-box--compact .hotline-icon { width: 42px; height: 42px; }
@@ -3852,8 +3892,8 @@
     .acc-field label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; }
     .acc-input { width: 100%; height: 38px; padding: 0 10px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 14px; font-family: inherit; background: var(--bg); color: var(--text); box-sizing: border-box; }
     .acc-input:focus { outline: none; border-color: var(--int); }
-    .acc-btn { height: 36px; padding: 0 20px; background: var(--int); color: #fff; border: none; border-radius: var(--radius); font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; }
-    .acc-btn-ghost { height: 36px; padding: 0 20px; background: transparent; color: var(--int); border: 1.5px solid var(--int); border-radius: var(--radius); font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; }
+    .acc-btn { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 20px; background: var(--int); color: #fff; border: none; border-radius: var(--radius); font-size: 13px; font-weight: 700; font-family: inherit; line-height: 1; text-decoration: none; cursor: pointer; }
+    .acc-btn-ghost { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 20px; background: transparent; color: var(--int); border: 1.5px solid var(--int); border-radius: var(--radius); font-size: 13px; font-weight: 700; font-family: inherit; line-height: 1; text-decoration: none; cursor: pointer; }
 
     /* Fakturační adresa — toggle FO / Firma */
     .billing-type-toggle {
@@ -4360,7 +4400,40 @@
     .map-zoom-btn:hover { border-color: var(--int); color: var(--int); }
     .map-zoom-in { top: 14px; }
     .map-zoom-out { top: 52px; }
-    .map-pins { position: absolute; inset: 0; }
+    /* Návodný stupňový ovladač zoomu (nahrazuje ikonky +/−) */
+    .map-levels {
+      position: absolute; top: 14px; right: 14px; z-index: 3;
+      display: flex; flex-direction: column; align-items: stretch; gap: 5px;
+    }
+    .map-level {
+      border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;
+      padding: 7px 14px; border-radius: 999px; white-space: nowrap; text-align: left;
+      box-shadow: 0 2px 6px rgba(0,0,0,.12);
+      transition: background .12s, color .12s, border-color .12s;
+    }
+    .map-level:hover { border-color: var(--int); color: var(--int); }
+    .map-level.is-active { background: var(--dark); color: #fff; border-color: var(--dark); }
+    .map-level.is-active:hover { color: #fff; }
+    .map-pins { position: absolute; inset: 0; z-index: 1; }
+    /* Reálná mapa (OpenStreetMap) jako podklad; piny a clustery se modelují nad ní */
+    .map-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; z-index: 0; }
+    /* Nad reálnou mapou skryjeme drátěnkovou mřížku i popisek „Jaderské pobřeží" */
+    .map-canvas--live::before, .map-canvas--live::after { display: none; }
+    .map-canvas--live { background: #aacbe0; }
+    /* CTA dole na mapě — skryté, objeví se po kliknutí na pin; vede na výpis lodí pod mapou */
+    .map-reveal-btn {
+      position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 4;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--int); color: #fff; text-decoration: none;
+      padding: 11px 22px; border-radius: 999px;
+      font-family: inherit; font-size: 14px; font-weight: 700; white-space: nowrap;
+      box-shadow: 0 6px 20px rgba(105,3,255,.5);
+      transition: background .15s, transform .12s;
+    }
+    .map-reveal-btn:hover { background: var(--int-dark); transform: translateX(-50%) translateY(-2px); }
+    .map-reveal-btn[hidden] { display: none; }
+    #boatsGrid { scroll-margin-top: 84px; }
     .map-pin {
       position: absolute; transform: translate(-50%, -50%);
       background: var(--int); color: #fff;
@@ -4374,8 +4447,6 @@
       z-index: 1;
     }
     .map-pin:hover, .map-pin.is-active {
-      background: var(--int-dark);
-      transform: translate(-50%, -50%) scale(1.08);
       z-index: 50;
     }
     .map-pin--cluster {
@@ -4455,9 +4526,9 @@
       border: 1px solid var(--border);
       pointer-events: none;
     }
-    .map-pin--marina:hover .map-pin-shape {
-      transform: scale(1.08);
-    }
+    /* Hover = jen změna barvy na černou (jako selected), bez oválu, bez poskočení, nic navíc */
+    .map-pin--marina:hover .map-pin-shape { background: var(--dark); }
+    .map-pin--marina:hover .map-pin-shape::after { background: var(--dark); }
 
     /* Map popup */
     .map-popup {
@@ -4767,6 +4838,15 @@
     }
     .btn-primary:hover { background: var(--int-dark); color: #fff; }
 
+    /* Záhlaví přehledu kurzů — jednotná výška všech prvků + fialový outline button */
+    .kurzy-h1-actions .kurzy-switch,
+    .kurzy-h1-actions .btn-secondary,
+    .kurzy-h1-actions .btn-primary { height: 40px; box-sizing: border-box; }
+    .kurzy-h1-actions .btn-secondary,
+    .kurzy-h1-actions .btn-primary { padding-top: 0; padding-bottom: 0; }
+    .kurzy-h1-actions .btn-secondary { border-color: var(--int); color: var(--int); }
+    .kurzy-h1-actions .btn-secondary:hover { background: var(--int-soft); border-color: var(--int); color: var(--int); }
+
     /* Kategorie lodí — řádkové karty (kategorie-lodi.html) */
     .cat-row-list { display: flex; flex-direction: column; gap: 14px; }
     .cat-row {
@@ -4823,6 +4903,15 @@
     /* Neklikací (statická) karta kroku — bez kurzoru a hover efektu */
     .course-card--static { cursor: default; }
     .course-card--static:hover { border-color: var(--border); box-shadow: none; transform: none; }
+
+    /* Prerekvizita — krok-upozornění (oranžové); znovupoužitelné i pro říční průkazy */
+    .step-num--prereq { background: var(--warn); }
+    .course-card--prereq { background: var(--warn-soft); border-color: var(--warn-border); }
+    .course-card--prereq:hover { border-color: var(--warn-border); box-shadow: none; transform: none; }
+    .course-icon-box--prereq { background: var(--warn); color: #fff; }
+    .course-card--prereq .course-desc { color: var(--text); }
+    .course-card--prereq .course-desc a { color: var(--warn); font-weight: 700; text-decoration: none; }
+    .course-card--prereq .course-desc a:hover { text-decoration: underline; }
     /* Přepínač variant kroků — obyčejné textové odkazy */
     .kroky-variant-links { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; }
     .kroky-variant-link { color: var(--muted); text-decoration: none; font-weight: 600; }
@@ -4914,30 +5003,57 @@
       transition: transform .15s, box-shadow .15s;
     }
     .wizard-result-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+    /* Dvě doporučené kombinace kurzů — boxíky nad sebou s „+" mezi nimi */
+    .wizard-combo { display: flex; flex-direction: column; align-items: stretch; gap: 8px; margin: 14px 0 4px; }
+    .wizard-course {
+      display: block; text-decoration: none; color: #fff;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.35);
+      border-radius: 8px; padding: 12px 14px;
+      transition: background .15s, border-color .15s;
+    }
+    .wizard-course:hover { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.6); }
+    .wizard-course-name { display: block; font-size: 15px; font-weight: 800; }
+    .wizard-course-sub { display: block; font-size: 12px; color: rgba(255,255,255,.82); margin-top: 3px; line-height: 1.45; }
+    .wizard-combo-plus {
+      align-self: center; width: 26px; height: 26px; border-radius: 50%;
+      background: #fff; color: var(--int);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800; line-height: 1;
+    }
+    /* Doporučený postup — řádek štítků se šipkami */
+    .wizard-path { margin-top: 16px; }
+    .wizard-path-label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8); margin-bottom: 8px; }
+    .wizard-path-chips { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+    .wizard-path-chip {
+      background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.42);
+      color: #fff; font-size: 12px; font-weight: 700;
+      padding: 4px 11px; border-radius: 999px; white-space: nowrap;
+    }
+    .wizard-path-arrow { color: rgba(255,255,255,.72); font-weight: 800; font-size: 13px; }
+
+    /* Patička wizardu — Zpět + Začít znovu pod fialovým boxem */
+    .wizard-foot { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: -4px; }
     .wizard-restart {
       display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 14px; margin-left: 10px; padding: 10px 4px;
-      background: none; border: none; color: rgba(255,255,255,.85);
-      font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer;
+      background: none; border: none; padding: 2px 8px;
+      color: var(--muted); font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer;
+      transition: color .15s;
     }
-    .wizard-restart:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+    .wizard-restart:hover { color: var(--int); text-decoration: underline; text-underline-offset: 3px; }
+    .wizard-restart[hidden] { display: none; }
 
-    /* Stepper v hero wizardu */
-    .wizard-stepper {
-      display: flex; align-items: center; gap: 6px;
-      padding: 0 4px;
+    /* Progress bar v hero wizardu — nahrazuje číslovaný stepper (cesty mohou být různě dlouhé) */
+    .wizard-progress {
+      height: 6px; border-radius: 999px;
+      background: var(--int-soft); overflow: hidden;
+      margin: 0 2px;
     }
-    .wizard-step-dot {
-      width: 26px; height: 26px; border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700;
-      background: var(--bg); border: 1px solid var(--border);
-      color: var(--muted); flex-shrink: 0;
-      transition: background .15s, color .15s, border-color .15s;
+    .wizard-progress-fill {
+      display: block; height: 100%; width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--int), var(--int-dark));
+      transition: width .4s cubic-bezier(.4, 0, .2, 1);
     }
-    .wizard-step-dot.is-current { background: var(--int); color: #fff; border-color: var(--int); }
-    .wizard-step-dot.is-done { background: var(--int-soft); color: var(--int); border-color: var(--int-soft); }
-    .wizard-step-line { flex: 1 1 auto; height: 1px; background: var(--border); }
 
     /* Aktivní volba ve wizardu */
     .wizard-box--vertical .wizard-opt.is-active {
@@ -4954,6 +5070,16 @@
     }
     .wizard-next:hover:not(:disabled) { background: var(--int-dark); }
     .wizard-next:disabled { opacity: .45; cursor: not-allowed; }
+
+    /* Zpět — decentní sekundární akce ve wizard patičce */
+    .wizard-back {
+      background: none; border: none; padding: 2px 8px;
+      font-family: inherit; font-size: 13px; font-weight: 600;
+      color: var(--muted); cursor: pointer;
+      transition: color .15s;
+    }
+    .wizard-back:hover { color: var(--int); text-decoration: underline; text-underline-offset: 3px; }
+    .wizard-back[hidden] { display: none; }
 
     /* Dárkový poukaz – fotbanner */
     .gift-banner {
@@ -5153,6 +5279,14 @@
       color: var(--int); font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer;
     }
     .dates-more-btn:hover { color: var(--int-dark); }
+    /* Prostý odkaz „Zobrazit další(ch) X termínů" bez ohraničené karty (výpis termínů na detailu průkazu) */
+    .dates-group + .dates-group { margin-top: 16px; }
+    .dates-more-link {
+      display: block; width: 100%; text-align: center; margin: 10px 0 4px;
+      background: none; border: none; color: var(--int);
+      font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer;
+    }
+    .dates-more-link:hover { color: var(--int-dark); text-decoration: underline; }
     /* Klikací typ kurzu v termínové listině */
     .term-course { color: var(--int); font-weight: 600; text-decoration: none; }
     .term-course:hover { text-decoration: underline; }
@@ -6483,7 +6617,7 @@
 
     /* ── PLOVOUCÍ WIREFRAME SITEMAP (button + boční panel) ── */
     .yn-sm-fab {
-      position: fixed; top: 16px; right: 16px; z-index: 1200;
+      position: fixed; bottom: 16px; right: 16px; z-index: 1200;
       width: 44px; height: 44px; border-radius: 10px;
       background: var(--text); color: #fff; border: none; cursor: pointer;
       display: inline-flex; align-items: center; justify-content: center;
@@ -6534,7 +6668,7 @@
     }
     .yn-sm-foot:hover { background: var(--int-soft); }
     @media (max-width: 767px) {
-      .yn-sm-fab { top: 12px; right: 12px; width: 40px; height: 40px; }
+      .yn-sm-fab { bottom: 12px; right: 12px; width: 40px; height: 40px; }
     }
 
     /* ── SITEMAP PAGE ────────────────────────────────── */
@@ -6679,7 +6813,7 @@
 
       .inner   { padding: 44px 24px; }
       .inner-sm { padding: 32px 24px; }
-      .hero    { height: 380px; }
+      .hero    { height: auto; min-height: 380px; }
       .hero-title { font-size: 27px; }
 
       /* Search form — two fields per row */
@@ -6716,21 +6850,28 @@
       .nav-inner { padding: 0 16px; }
 
       /* ── Hero ── */
-      .hero { height: auto; padding: 36px 0 28px; overflow: visible; }
+      /* Nezarovnávat na střed roztaženého hero — zarovnat nahoru, ~100px mezera, obsah pod sebe, hero končí co nejdřív */
+      .hero { height: auto; min-height: 0; justify-content: flex-start; padding: 100px 0 28px; overflow: visible; }
       .hero-content { padding: 0 16px; text-align: left; }
-      .hero-title { font-size: 23px; letter-spacing: -.02em; margin-bottom: 8px; }
-      .hero-sub   { font-size: 13px; margin-bottom: 18px; }
+      .hero-title { font-size: 32px; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 10px; }
+      .hero-sub   { font-size: 14px; margin-bottom: 18px; }
 
       /* Search form — vertical stack, full width */
       .search-form {
-        display: flex; flex-direction: column; gap: 8px;
-        width: 100%; padding: 14px 16px; border-radius: 8px;
+        display: flex; flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 10px;
+        width: 100%; padding: 16px; border-radius: 8px;
         backdrop-filter: blur(6px);
       }
-      .sf-field { width: 100%; }
+      /* Zrušit flex-basis z desktop řádkového layoutu — ve sloupci se z basis stávala výška pole → obří mezery */
+      .search-form .sf-field { flex: 0 0 auto; width: 100%; min-width: 0; max-width: none; }
       .sf-field select { width: 100%; min-width: 0; }
       .date-combined { width: 100%; min-width: 0; }
       .btn-search { width: 100%; height: 46px; font-size: 15px; border-radius: var(--radius); }
+
+      /* Social proof boxíky — na mobilu pod sebe, plná šířka */
+      .social-proof--hero { flex-direction: column; margin-top: 16px; gap: 8px; }
+      .social-proof--hero .sp-box { width: 100%; }
+      .social-proof--hero .sp-box--quote { flex: 0 0 auto; min-width: 0; }
 
       /* ── Social proof ── */
       .social-proof-inner { padding: 10px 16px; gap: 12px; }
@@ -6861,7 +7002,7 @@
        SMALL MOBILE ≤ 479px
     ════════════════════════════════════ */
     @media (max-width: 479px) {
-      .hero-title { font-size: 20px; }
+      .hero-title { font-size: 32px; }
 
       /* Mosaic tiles even shorter */
       .mosaic { grid-template-rows: 130px 130px; }

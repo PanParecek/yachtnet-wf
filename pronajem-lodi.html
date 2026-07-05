@@ -488,11 +488,13 @@
 
         <!-- MAP OVERLAY — vkládá se nad seznam, seznam zůstává viditelný -->
         <div class="boats-map" id="boatsMap" hidden>
-          <div class="map-canvas" id="mapCanvas">
-            <div class="map-attribution">© Yachtnet · Wireframe map</div>
+          <div class="map-canvas map-canvas--live" id="mapCanvas">
+            <iframe class="map-frame" title="Mapa Jaderského pobřeží (OpenStreetMap)" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=12.2%2C42.1%2C20.6%2C45.8&amp;layer=mapnik"></iframe>
+            <div class="map-attribution">Mapa © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · piny modelové</div>
             <button type="button" class="map-zoom-btn map-zoom-in" aria-label="Přiblížit">+</button>
             <button type="button" class="map-zoom-btn map-zoom-out" aria-label="Oddálit">−</button>
             <div class="map-pins" id="mapPins"></div>
+            <a class="map-reveal-btn" id="mapRevealBtn" href="#boatsGrid" hidden>Zobrazit dostupné lodě<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></a>
           </div>
         </div>
 

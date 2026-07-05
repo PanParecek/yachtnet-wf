@@ -47,7 +47,7 @@
     <div class="license-hero-inner">
       <div class="license-hero-text">
         <div class="license-hero-eyebrow">Námořní průkaz · MDČR C</div>
-        <h1 class="license-hero-title">Průkaz MDČR C — Pobřežní plavba</h1>
+        <h1 class="license-hero-title" id="licenseH1">Průkaz MDČR C — Pobřežní plavba</h1>
         <p class="license-hero-perex">Nejvyšší český průkaz pro plavbu na moři. Opravňuje k velení rekreačního plavidla bez omezení vzdálenosti od pobřeží — mezinárodně uznávaný v Chorvatsku, Řecku, Itálii, Španělsku i Turecku.</p>
       </div>
       <div class="license-hero-summary">
@@ -91,18 +91,12 @@
   </nav>
   <div style="max-width:var(--max);margin:0 auto;padding:32px 28px;display:grid;grid-template-columns:1fr 300px;gap:28px;">
     <div>
-      <div style="display:flex;gap:12px;align-items:flex-start;background:var(--int-soft);border:1px solid var(--int);border-radius:10px;padding:14px 16px;margin-bottom:24px;">
-        <span style="flex-shrink:0;color:var(--int);margin-top:1px;" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>
-        <div style="font-size:14px;line-height:1.55;color:var(--text);">
-          <strong>Prerekvizita:</strong> Pro získání průkazu MDČR B musíte mít již absolvovaný <a href="detail-prukazu.html" style="color:var(--int);font-weight:700;">Průkaz MDČR C</a>. Pokud ho ještě nemáte, začněte jím.
-        </div>
-      </div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:8px 0 20px;">
         <h2 class="sec-title" id="sec-kurzy" style="font-size:22px;margin:0;scroll-margin-top:120px;">Průkaz získáte po absolvování těchto kroků</h2>
         <div class="kroky-variant-links" aria-label="Varianta průkazu">
-          <a href="#sec-kurzy" class="kroky-variant-link is-active" data-kroky="c">MDČR C</a>
+          <a href="#sec-kurzy" class="kroky-variant-link is-active" data-kroky="c" data-h1="Průkaz MDČR C — Pobřežní plavba">MDČR C</a>
           <span class="kroky-variant-sep" aria-hidden="true">/</span>
-          <a href="#sec-kurzy" class="kroky-variant-link" data-kroky="b">MDČR B</a>
+          <a href="#sec-kurzy" class="kroky-variant-link" data-kroky="b" data-h1="Průkaz MDČR B — Plavba na větší vzdálenosti">MDČR B</a>
         </div>
       </div>
       <div class="steps" data-kroky-variant="c">
@@ -137,43 +131,43 @@
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <div class="exams-list">
-              <a class="exam-row" href="#">
-                <div class="exam-row-name">Zkouška</div>
-                <div class="exam-row-meta">Státní zkouška MDČR C · Praha (MDČR) · 60 otázek + praxe · opakovaný termín 700 Kč</div>
-                <div class="exam-row-price">2 500 Kč</div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-content">
-            <div class="course-card course-card--horizontal" onclick="window.location.href='detail-prukazu.html'">
-              <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/><path d="M9.09 2.09A19.5 19.5 0 0 1 22 11.33"/></svg></div>
+            <div class="course-card course-card--horizontal" onclick="window.location.href='detail-zkousky.html'">
+              <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></div>
               <div class="course-info">
-                <div class="course-name"><a href="detail-prukazu.html">Kurz SRC — Radiostanice</a></div>
-                <div class="course-desc">Krátkodosahový VHF průkaz. Na moři je nenahraditelný v nouzových situacích — komunikace s pobřežní stráží i ostatními plavidly.</div>
-                <div class="course-params"><span>1 den · Praha</span><span>ČTÚ zkouška</span><span>Celoživotní platnost</span></div>
+                <div class="course-name"><a href="detail-zkousky.html">Zkouška</a></div>
+                <div class="course-desc">Státní zkouška MDČR C před komisí — teoretický test a praktická plavba.</div>
+                <div class="course-params"><span>Praha (MDČR)</span><span>60 otázek + praxe</span><span>Opakovaný termín 700 Kč</span></div>
               </div>
-              <div class="course-price">Od 3 900 Kč</div>
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">5</div>
-          <div class="step-content">
-            <div class="exams-list">
-              <div class="exam-row">
-                <div class="exam-row-name">SRC zkouška — VHF radiostanice</div>
-                <div class="exam-row-meta">Samostatná zkouška u <a href="https://www.ctu.cz" target="_blank" rel="noopener" style="color:var(--int);font-weight:600;">Českého telekomunikačního úřadu (ČTÚ) ↗</a> · přihlášení a termíny zajišťuje ČTÚ</div>
-                <div class="exam-row-price">400 Kč</div>
-              </div>
+              <div class="course-price">2 500 Kč</div>
             </div>
           </div>
         </div>
       </div>
+      <div data-kroky-variant="c" style="margin-top:32px;">
+        <h2 class="sec-title" style="font-size:22px;margin-bottom:16px;">Doporučujeme doplnit</h2>
+        <div class="course-card course-card--horizontal" onclick="window.location.href='detail-kurzu.html'">
+          <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12"/><path d="M9.09 2.09A19.5 19.5 0 0 1 22 11.33"/></svg></div>
+          <div class="course-info">
+            <div class="course-name"><a href="detail-kurzu.html">Kurz SRC — Radiostanice</a></div>
+            <div class="course-desc">Krátkodosahový VHF průkaz. Na moři je nenahraditelný v nouzových situacích — komunikace s pobřežní stráží i ostatními plavidly.</div>
+            <div class="course-params"><span>1 den · Praha</span><span>ČTÚ zkouška</span><span>Celoživotní platnost</span></div>
+          </div>
+          <div class="course-price">Od 3 900 Kč</div>
+        </div>
+      </div>
       <div class="steps" data-kroky-variant="b" hidden>
+        <div class="step">
+          <div class="step-num step-num--prereq" aria-hidden="true">!</div>
+          <div class="step-content">
+            <div class="course-card course-card--horizontal course-card--static course-card--prereq">
+              <div class="course-icon-box course-icon-box--prereq"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+              <div class="course-info">
+                <div class="course-name">Máte již průkaz MDČR C?</div>
+                <div class="course-desc">Pro absolvování tohoto kurzu musíte mít nutně již splněný <a href="detail-prukazu.html">Průkaz MDČR C</a>. Pokud ho ještě nemáte, začněte nejdřív jím.</div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-content">
@@ -218,12 +212,14 @@
         <div class="step">
           <div class="step-num">4</div>
           <div class="step-content">
-            <div class="exams-list">
-              <a class="exam-row" href="#">
-                <div class="exam-row-name">Zkouška B</div>
-                <div class="exam-row-meta">Státní zkouška MDČR B · Praha (MDČR) · teorie + praxe do 200 NM · opakovaný termín 700 Kč</div>
-                <div class="exam-row-price">2 500 Kč</div>
-              </a>
+            <div class="course-card course-card--horizontal" onclick="window.location.href='detail-zkousky.html'">
+              <div class="course-icon-box"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></div>
+              <div class="course-info">
+                <div class="course-name"><a href="detail-zkousky.html">Zkouška B</a></div>
+                <div class="course-desc">Státní zkouška MDČR B před komisí — teoretická i praktická část do 200 NM od pobřeží.</div>
+                <div class="course-params"><span>Praha (MDČR)</span><span>Teorie + praxe do 200 NM</span><span>Opakovaný termín 700 Kč</span></div>
+              </div>
+              <div class="course-price">2 500 Kč</div>
             </div>
           </div>
         </div>
@@ -231,22 +227,44 @@
       <h2 class="sec-title" id="sec-terminy" style="font-size:22px;margin:48px 0 20px;scroll-margin-top:120px;">Výpis termínů všech částí</h2>
       <div class="account-section">
         <div style="font-size:13px;font-weight:700;margin-bottom:8px;">Teorie</div>
-        <table class="dates-table" style="margin-bottom:16px;">
-          <thead><tr><th></th><th>Datum</th><th>Místo</th><th>Kapacita</th><th>Cena</th></tr></thead>
-          <tbody>
-            <tr><td><input type="checkbox" /></td><td>10.–11. 5. 2025</td><td>Praha</td><td><span class="badge-spots">6 míst</span></td><td><strong>4 200 Kč</strong></td></tr>
-            <tr><td><input type="checkbox" /></td><td>7.–8. 6. 2025</td><td>Praha</td><td><span class="badge-spots">8 míst</span></td><td><strong>4 200 Kč</strong></td></tr>
-          </tbody>
-        </table>
-        <div style="font-size:13px;font-weight:700;margin-bottom:8px;">Praxe</div>
-        <table class="dates-table" style="margin-bottom:16px;">
-          <thead><tr><th></th><th>Datum</th><th>Místo</th><th>Kapacita</th><th>Cena</th></tr></thead>
-          <tbody>
-            <tr><td><input type="checkbox" /></td><td>17.–21. 5. 2025</td><td>Split, Chorvatsko</td><td><span class="badge-spots">4 místa</span></td><td><strong>8 700 Kč</strong></td></tr>
-            <tr><td><input type="checkbox" /></td><td>14.–18. 6. 2025</td><td>Korfu, Řecko</td><td><span class="badge-sold-out">Obsazeno</span></td><td><strong>8 700 Kč</strong></td></tr>
-          </tbody>
-        </table>
-        <div style="font-size:13px;font-weight:700;margin-bottom:8px;">Zkouška</div>
+        <div class="dates-group">
+          <table class="dates-table" style="margin-bottom:0;">
+            <thead><tr><th></th><th>Datum</th><th>Místo</th><th>Kapacita</th><th>Cena</th></tr></thead>
+            <tbody>
+              <tr><td><input type="checkbox" /></td><td>10.–11. 5. 2025</td><td>Praha</td><td><span class="badge-spots">6 míst</span></td><td><strong>4 200 Kč</strong></td></tr>
+              <tr><td><input type="checkbox" /></td><td>7.–8. 6. 2025</td><td>Praha</td><td><span class="badge-spots">8 míst</span></td><td><strong>4 200 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>5.–6. 7. 2025</td><td>Praha</td><td><span class="badge-spots">8 míst</span></td><td><strong>4 200 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>2.–3. 8. 2025</td><td>Brno</td><td><span class="badge-spots">6 míst</span></td><td><strong>4 200 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>6.–7. 9. 2025</td><td>Praha</td><td><span class="badge-sold-out">Obsazeno</span></td><td><strong>4 200 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>4.–5. 10. 2025</td><td>Praha</td><td><span class="badge-spots">10 míst</span></td><td><strong>4 200 Kč</strong></td></tr>
+            </tbody>
+          </table>
+          <button type="button" class="dates-more-link" data-dates-toggle aria-expanded="false">Zobrazit další 4 termíny</button>
+        </div>
+        <div style="font-size:13px;font-weight:700;margin:16px 0 8px;">Praxe</div>
+        <div class="dates-group">
+          <table class="dates-table" style="margin-bottom:0;">
+            <thead><tr><th></th><th>Datum</th><th>Místo</th><th>Kapacita</th><th>Cena</th></tr></thead>
+            <tbody>
+              <tr><td><input type="checkbox" /></td><td>17.–21. 5. 2025</td><td>Split, Chorvatsko</td><td><span class="badge-spots">4 místa</span></td><td><strong>8 700 Kč</strong></td></tr>
+              <tr><td><input type="checkbox" /></td><td>14.–18. 6. 2025</td><td>Korfu, Řecko</td><td><span class="badge-sold-out">Obsazeno</span></td><td><strong>8 700 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>12.–16. 6. 2025</td><td>Trogir, Chorvatsko</td><td><span class="badge-spots">5 míst</span></td><td><strong>8 700 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>5.–9. 7. 2025</td><td>Split, Chorvatsko</td><td><span class="badge-sold-out">Obsazeno</span></td><td><strong>9 900 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>19.–23. 7. 2025</td><td>Šibenik, Chorvatsko</td><td><span class="badge-spots">3 místa</span></td><td><strong>9 900 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>2.–6. 8. 2025</td><td>Split, Chorvatsko</td><td><span class="badge-spots">6 míst</span></td><td><strong>10 900 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>16.–20. 8. 2025</td><td>Korfu, Řecko</td><td><span class="badge-spots">4 místa</span></td><td><strong>10 900 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>30. 8.–3. 9. 2025</td><td>Split, Chorvatsko</td><td><span class="badge-sold-out">Obsazeno</span></td><td><strong>8 700 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>13.–17. 9. 2025</td><td>Trogir, Chorvatsko</td><td><span class="badge-spots">6 míst</span></td><td><strong>8 700 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>27. 9.–1. 10. 2025</td><td>Split, Chorvatsko</td><td><span class="badge-spots">5 míst</span></td><td><strong>8 700 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>11.–15. 10. 2025</td><td>Šibenik, Chorvatsko</td><td><span class="badge-spots">2 místa</span></td><td><strong>8 700 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>8.–12. 5. 2026</td><td>Split, Chorvatsko</td><td><span class="badge-spots">6 míst</span></td><td><strong>8 700 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>22.–26. 5. 2026</td><td>Korfu, Řecko</td><td><span class="badge-spots">5 míst</span></td><td><strong>8 700 Kč</strong></td></tr>
+              <tr class="dates-row--extra"><td><input type="checkbox" /></td><td>5.–9. 6. 2026</td><td>Split, Chorvatsko</td><td><span class="badge-sold-out">Obsazeno</span></td><td><strong>9 900 Kč</strong></td></tr>
+            </tbody>
+          </table>
+          <button type="button" class="dates-more-link" data-dates-toggle aria-expanded="false">Zobrazit dalších 12 termínů</button>
+        </div>
+        <div style="font-size:13px;font-weight:700;margin:16px 0 8px;">Zkouška</div>
         <table class="dates-table">
           <thead><tr><th></th><th>Datum</th><th>Místo</th><th>Kapacita</th><th>Cena</th></tr></thead>
           <tbody>
@@ -592,7 +610,7 @@
       </div>
     </div>
     <div>
-      <div class="account-section" style="position:sticky;top:20px;">
+      <div class="account-section" style="position:sticky;top:116px;">
         <button class="auth-btn" id="licenseReserveBtn" style="margin-bottom:10px;">Zvolte termíny</button>
         <button class="acc-btn-ghost" style="width:100%;" onclick="window.location.href='objednavka-kurzu-krok-1.html'">Koupit jako dárkový poukaz</button>
       </div>

@@ -54,6 +54,15 @@
       var author = (opts && opts.author) || '— Tomáš K.';
       var score = (opts && opts.score) || '5,0';
       var label = (opts && opts.label) || 'Průměrné hodnocení ze 192 recenzí na Googlu';
+      // Hero varianta — social proof jako boxíky přímo v hero obrázku (na mobilu pod sebou)
+      if (opts && opts.variant === 'hero') {
+        return '<div class="social-proof social-proof--hero">' +
+          '<div class="sp-box sp-box--trust"><span class="sp-box-mark sp-box-mark--yp">YP</span><span class="sp-box-lines"><span class="sp-box-title">Checked &amp; Trusted</span><span class="sp-box-sub">Yacht-Pool · valid 2026</span></span></div>' +
+          '<div class="sp-box sp-box--iso"><span class="sp-box-mark sp-box-mark--iso">ISO</span><span class="sp-box-lines"><span class="sp-box-title">ISO 9001:2015</span><span class="sp-box-sub">od roku 2004</span></span></div>' +
+          '<div class="sp-box sp-box--google"><span class="sp-box-gicon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span><span class="sp-box-lines"><span class="sp-box-sub">' + label + '</span><span class="sp-box-stars">★★★★★</span></span><span class="sp-box-score">' + score + '</span></div>' +
+          '<div class="sp-box sp-box--quote"><span class="sp-box-qmark" aria-hidden="true">"</span><span class="sp-box-lines"><span class="sp-box-qtext">' + quote + '</span><span class="sp-box-qauthor">' + author + '</span></span></div>' +
+        '</div>';
+      }
       return '<div class="social-proof"><div class="social-proof-inner">' +
         '<div class="sp-item">' +
           '<span class="sp-google-icon" aria-label="Google"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span>' +
@@ -144,6 +153,7 @@
           '<div class="contact-details">' +
             '<div class="contact-name">' + name + '</div>' +
             '<div class="contact-role">' + role + '</div>' +
+            '<div class="contact-hours"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Odpovídá denně 9–17</div>' +
             '<div class="contact-info-row">' +
               '<a href="#" class="contact-info-link"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>' + phone + '</a>' +
               '<a href="#" class="contact-info-link"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>' + email + '</a>' +
@@ -152,6 +162,14 @@
           '<div class="contact-quick">' +
             '<a href="#" class="contact-quick-btn" title="WhatsApp" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.485-8.411"/></svg></a>' +
             '<a href="#" class="contact-quick-btn" title="Messenger" aria-label="Messenger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.001 11.639C.001 4.95 5.241 0 12.001 0s12 4.95 12 11.639c0 6.689-5.24 11.638-12 11.638-1.21 0-2.38-.16-3.47-.46a.96.96 0 0 0-.64.05l-2.39 1.05a.96.96 0 0 1-1.35-.85l-.07-2.14a.96.96 0 0 0-.32-.68A11.39 11.389 0 0 1 .002 11.639zm8.32-2.19l-3.52 5.6c-.35.53.32 1.139.82.75l3.79-2.87c.26-.2.6-.2.87 0l2.8 2.1c.84.63 2.04.4 2.6-.48l3.52-5.6c.35-.53-.32-1.13-.82-.75l-3.79 2.87c-.25.2-.6.2-.86 0l-2.8-2.1a1.81 1.811 0 0 0-2.61.48z"/></svg></a>' +
+          '</div>' +
+        '</div>' +
+        '<div class="contact-hotline">' +
+          '<div class="hotline-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.1-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="hotline-pulse"></span></div>' +
+          '<div class="hotline-body">' +
+            '<div class="hotline-tagline">Hotline 24/7 v případě nouze</div>' +
+            '<a class="hotline-number" href="tel:+420777888999">+420 777 888 999</a>' +
+            '<div class="hotline-note">Linka je monitorována</div>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -495,6 +513,7 @@
         { href: 'detail-kurzu.html', title: 'Detail kurzu', id: 'page-course', children: [
           { href: 'terminy-kurzu.html', title: 'Termíny kurzu', id: 'page-course-dates' }
         ]},
+        { href: 'detail-zkousky.html', title: 'Detail zkoušky', id: 'page-exam' },
         { href: 'detail-prukazu.html', title: 'Detail průkazu', id: 'page-license', children: [
           { href: 'objednavka-kurzu-krok-1.html', title: 'Objednávka kurzu — krok 1', id: 'page-course-order-1', children: [
             { href: 'objednavka-kurzu-krok-2.html', title: 'Objednávka kurzu — krok 2', id: 'page-course-order-2', children: [
@@ -1384,6 +1403,19 @@
     }).join('');
   }
 
+  // Město u mariny — z některých názvů marin (Lav, Spinut…) není poznat, kde přesně kotví.
+  const MARINA_CITY = {
+    'ACI Marina Split': 'Split',
+    'Marina Lav': 'Split',
+    'Marina Spinut': 'Split',
+    'Marina Kaštela': 'Kaštela',
+    'Marina Trogir': 'Trogir',
+    'Marina Šibenik': 'Šibenik',
+    'ACI Marina Dubrovník': 'Dubrovník',
+    'Marina Biograd': 'Biograd na Moru',
+    'Marina Zadar': 'Zadar'
+  };
+
   function boatCard(b) {
     const MAX_TAGS = 4;
     const visibleTags = b.amenities.slice(0, MAX_TAGS).map(a => `<span class="amenity-tag">${a}</span>`).join("");
@@ -1426,7 +1458,7 @@
             <div class="card-name">${b.name}</div>
             <div class="card-boat-name">"${b.boatName || "Lady One"}"</div>
             ${ratingHtml}
-            <div class="card-marina">🇭🇷 <a href="oblast.html" style="color:var(--int);text-decoration:none;">${b.marina}</a></div>
+            <div class="card-marina">🇭🇷 <a href="oblast.html" style="color:var(--int);text-decoration:none;">${b.marina}${MARINA_CITY[b.marina] ? ' (' + MARINA_CITY[b.marina] + ')' : ''}</a></div>
             <div class="card-company"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>Charterovka <a href="charterova-spolecnost.html">${b.company || "Yachtnet partner"}</a></div>
             <div class="card-specs">
               <div class="spec"><span class="spec-l">Rok</span><span class="spec-v">${b.year}</span></div>
@@ -3372,12 +3404,21 @@
     var box = document.getElementById('kkWizard');
     if (!box) return;
     var nextBtn = document.getElementById('kkWizardNext');
+    var backBtn = document.getElementById('kkWizardBack');
+    var restartBtn = document.getElementById('kkWizardRestart');
     var resultEl = document.getElementById('kkWizardResult');
-    var dots = box.querySelectorAll('.wizard-step-dot');
+    var progressEl = document.getElementById('kkWizardProgress');
+    var barEl = document.getElementById('kkWizardBar');
     var steps = box.querySelectorAll('.wizard-step[data-step]');
     var total = parseInt(box.dataset.totalSteps, 10) || steps.length;
     var current = 1;
     var selections = {};
+
+    function setProgress(pct) {
+      pct = Math.max(0, Math.min(100, Math.round(pct)));
+      if (barEl) barEl.style.width = pct + '%';
+      if (progressEl) progressEl.setAttribute('aria-valuenow', pct);
+    }
 
     function render() {
       steps.forEach(function(s) {
@@ -3385,15 +3426,13 @@
         if (n === current) s.removeAttribute('hidden');
         else s.setAttribute('hidden', '');
       });
-      dots.forEach(function(d) {
-        var n = parseInt(d.dataset.step, 10);
-        d.classList.remove('is-current', 'is-done');
-        if (n < current) d.classList.add('is-done');
-        else if (n === current) d.classList.add('is-current');
-      });
+      // Průběh jako loading bar — cesty mohou být různě dlouhé, proto ne 1-2-3.
+      // Poslední díl zůstává pro výsledek (proto total + 1).
+      setProgress(current / (total + 1) * 100);
       var hasSelection = !!selections[current];
       nextBtn.disabled = !hasSelection;
       nextBtn.textContent = (current === total) ? 'Doporučit průkaz →' : 'Pokračovat →';
+      if (backBtn) backBtn.hidden = (current === 1);
     }
 
     box.addEventListener('click', function(e) {
@@ -3407,27 +3446,47 @@
       nextBtn.disabled = false;
     });
 
+    function showResult() {
+      steps.forEach(function(s) { s.setAttribute('hidden', ''); });
+      nextBtn.setAttribute('hidden', '');
+      if (resultEl) resultEl.removeAttribute('hidden');
+      setProgress(100);
+      if (backBtn) backBtn.hidden = false;       // umožnit návrat k poslední otázce
+      if (restartBtn) restartBtn.hidden = false; // Začít znovu jen ve výsledku
+    }
+
     nextBtn.addEventListener('click', function() {
       if (!selections[current]) return;
       if (current < total) {
         current += 1;
         render();
       } else {
-        // Final – show result
-        steps.forEach(function(s) { s.setAttribute('hidden', ''); });
-        nextBtn.setAttribute('hidden', '');
-        if (resultEl) resultEl.removeAttribute('hidden');
-        dots.forEach(function(d) { d.classList.remove('is-current'); d.classList.add('is-done'); });
+        showResult();
+      }
+    });
+
+    // Zpět — o krok nazpět, případně z výsledku zpět na poslední otázku
+    if (backBtn) backBtn.addEventListener('click', function() {
+      if (resultEl && !resultEl.hasAttribute('hidden')) {
+        resultEl.setAttribute('hidden', '');
+        if (restartBtn) restartBtn.hidden = true;
+        nextBtn.removeAttribute('hidden');
+        render();
+        return;
+      }
+      if (current > 1) {
+        current -= 1;
+        render();
       }
     });
 
     // Začít znovu — reset celého průvodce
-    var restartBtn = document.getElementById('kkWizardRestart');
     if (restartBtn) restartBtn.addEventListener('click', function() {
       current = 1;
       selections = {};
       box.querySelectorAll('.wizard-opt.is-active').forEach(function(o) { o.classList.remove('is-active'); });
       if (resultEl) resultEl.setAttribute('hidden', '');
+      restartBtn.hidden = true;
       nextBtn.removeAttribute('hidden');
       render();
     });
@@ -3690,6 +3749,7 @@
     var pinsHost = document.getElementById('mapPins');
     var mapEl = document.getElementById('boatsMap');
     var toggleBtn = document.getElementById('mapToggleBtn');
+    var revealBtn = document.getElementById('mapRevealBtn'); // CTA „Zobrazit dostupné lodě" — jen na výpisu s mapou
     if (!toggleBtn || !mapEl) return;
 
     var labelEl = toggleBtn.querySelector('.map-toggle-label');
@@ -3705,43 +3765,84 @@
       setMapOpen(mapEl.hidden);
     });
 
-    var boatData = window.BOATS || (typeof BOATS !== 'undefined' ? BOATS : null);
-    if (!pinsHost || !boatData) return;
+    if (!pinsHost) return;
 
-    function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0; return Math.abs(h); }
+    // Chorvatské pobřeží jako hierarchie oblastí (makro-oblast → oblast → přístav).
+    // Diagonála z levého horního rohu (SZ – Istrie) do pravého dolního (JV – Dubrovník),
+    // aby obrys imitoval tvar Chorvatska. Názvy = reálné destinace z DESTINATIONS,
+    // takže klik na pin přidá do filtru odpovídající oblast / přístav.
+    // Konkrétní mariny (listy) — zařazené do vodního revíru a města; pozice NW→SE v % plátna nad reálnou mapou Chorvatska.
+    var MARINAS = [
+      { name:'Marina Poreč',           city:'Poreč',       revir:'Západní Istrie',        x: 9,  y: 12, count: 22 },
+      { name:'ACI Marina Rovinj',      city:'Rovinj',      revir:'Západní Istrie',        x: 12, y: 15, count: 31 },
+      { name:'ACI Marina Pula',        city:'Pula',        revir:'Jižní Istrie',          x: 15, y: 19, count: 44 },
+      { name:'ACI Marina Rijeka',      city:'Rijeka',      revir:'Kvarnerský záliv',      x: 21, y: 24, count: 38 },
+      { name:'Marina Punat',           city:'Krk',         revir:'Kvarnerský záliv',      x: 25, y: 27, count: 52 },
+      { name:'Marina Mali Lošinj',     city:'Mali Lošinj', revir:'Ostrovy Cres a Lošinj', x: 22, y: 31, count: 29 },
+      { name:'Marina Senj',            city:'Senj',        revir:'Podvelebitský kanál',   x: 30, y: 34, count: 18 },
+      { name:'Marina Dalmacija',       city:'Zadar',       revir:'Zadarský kanál',        x: 36, y: 40, count: 71 },
+      { name:'ACI Marina Zadar',       city:'Zadar',       revir:'Zadarský kanál',        x: 39, y: 43, count: 63 },
+      { name:'Marina Kornati Biograd', city:'Biograd',     revir:'Souostroví Kornati',    x: 43, y: 46, count: 48 },
+      { name:'Marina Hramina Murter',  city:'Murter',      revir:'Souostroví Kornati',    x: 46, y: 49, count: 40 },
+      { name:'Marina Mandalina',       city:'Šibenik',     revir:'Šibenické ostrovy',     x: 50, y: 51, count: 55 },
+      { name:'Marina Frapa Rogoznica', city:'Rogoznica',   revir:'Šibenické ostrovy',     x: 54, y: 54, count: 47 },
+      { name:'SCT Marina Trogir',      city:'Trogir',      revir:'Bračský kanál',         x: 60, y: 59, count: 66 },
+      { name:'ACI Marina Split',       city:'Split',       revir:'Bračský kanál',         x: 66, y: 64, count: 92 },
+      { name:'Městský přístav Split',  city:'Split',       revir:'Bračský kanál',         x: 68, y: 67, count: 40 },
+      { name:'ACI Marina Palmižana',   city:'Hvar',        revir:'Ostrov Hvar a Vis',     x: 62, y: 70, count: 37 },
+      { name:'ACI Marina Korčula',     city:'Korčula',     revir:'Elafitské ostrovy',     x: 78, y: 78, count: 34 },
+      { name:'Kotviště Šipan',         city:'Dubrovník',   revir:'Elafitské ostrovy',     x: 82, y: 82, count: 12 },
+      { name:'ACI Marina Dubrovník',   city:'Dubrovník',   revir:'Elafitské ostrovy',     x: 87, y: 87, count: 58 }
+    ];
 
-    // Pozice jednotlivých přístavů na "mapě Jadranu"
-    function marinaPos(name) {
-      var m = (name || '').toLowerCase();
-      if (m.indexOf('aci marina split') !== -1)       return { x: 32, y: 62 };
-      if (m.indexOf('split') !== -1)                   return { x: 33, y: 60 };
-      if (m.indexOf('trogir') !== -1)                  return { x: 38, y: 56 };
-      if (m.indexOf('kaštela') !== -1 || m.indexOf('kastela') !== -1) return { x: 36, y: 58 };
-      if (m.indexOf('lav') !== -1)                     return { x: 30, y: 64 };
-      if (m.indexOf('spinut') !== -1)                  return { x: 34, y: 61 };
-      if (m.indexOf('šibenik') !== -1 || m.indexOf('sibenik') !== -1) return { x: 50, y: 48 };
-      if (m.indexOf('biograd') !== -1)                 return { x: 58, y: 40 };
-      if (m.indexOf('zadar') !== -1)                   return { x: 62, y: 36 };
-      if (m.indexOf('dubrovník') !== -1 || m.indexOf('dubrovnik') !== -1) return { x: 18, y: 78 };
-      if (m.indexOf('pula') !== -1)                    return { x: 80, y: 22 };
-      var h = hash(name);
-      return { x: 30 + (h % 40), y: 30 + ((h >> 4) % 50) };
+    // Ilustrativní vyšší stupně (jiné měřítko mapy): globální oblasti (nad mapou světa) a státy (nad Evropou/Středomořím).
+    var AREAS = [
+      { name:'Středomoří',    x: 53, y: 30, count: 2480 },
+      { name:'Karibik',       x: 27, y: 45, count: 1360 },
+      { name:'Indický oceán', x: 68, y: 55, count: 420 },
+      { name:'Polynésie',     x: 10, y: 62, count: 310 },
+      { name:'Mikronésie',    x: 90, y: 50, count: 190 }
+    ];
+    var COUNTRIES = [
+      { name:'Španělsko',  x: 17, y: 55, count: 640 },
+      { name:'Itálie',     x: 45, y: 55, count: 1120 },
+      { name:'Chorvatsko', x: 55, y: 44, count: 897 },
+      { name:'Řecko',      x: 66, y: 66, count: 730 },
+      { name:'Turecko',    x: 82, y: 62, count: 410 }
+    ];
+
+    // Seskupení podle klíče → centroid pozice + součet lodí (pořadí dle prvního výskytu).
+    function aggregate(items, keyFn) {
+      var groups = {}, order = [];
+      items.forEach(function(m) {
+        var k = keyFn(m);
+        if (!groups[k]) { groups[k] = { name: k, sx: 0, sy: 0, n: 0, count: 0 }; order.push(k); }
+        var g = groups[k];
+        g.sx += m.x; g.sy += m.y; g.n++; g.count += m.count;
+      });
+      return order.map(function(k) {
+        var g = groups[k];
+        return { name: g.name, x: g.sx / g.n, y: g.sy / g.n, count: g.count };
+      });
     }
 
-    // Seskupení lodí podle přístavu + realistický (hashovaný) počet lodí pro wireframe
-    var MARINAS = {};
-    boatData.forEach(function(b) {
-      var key = b.marina || 'Neznámý přístav';
-      if (!MARINAS[key]) {
-        var p = marinaPos(key);
-        MARINAS[key] = { name: key, x: p.x, y: p.y, count: 0 };
-      }
-      MARINAS[key].count++;
-    });
-    // Nahrazení skutečného počtu plausibilní vyšší hodnotou (30–119)
-    Object.keys(MARINAS).forEach(function(key) {
-      MARINAS[key].count = 30 + (hash(key) % 90);
-    });
+    // 5 stupňů: globální sailing areas → státy → regiony → města → mariny.
+    // Ke každému stupni patří i výřez reálné mapy (bbox), takže se přibližuje i podklad.
+    var LEVELS = [
+      AREAS,                                               // 1 – globální sailing areas (svět)
+      COUNTRIES,                                           // 2 – státy (Evropa / Středomoří)
+      aggregate(MARINAS, function(m) { return m.revir; }), // 3 – regiony (vodní revíry Chorvatska)
+      aggregate(MARINAS, function(m) { return m.city; }),  // 4 – města
+      MARINAS.map(function(m) { return { name: m.name, x: m.x, y: m.y, count: m.count }; }) // 5 – mariny
+    ];
+    var MAP_BBOX = [
+      '-168,-55,192,74',       // svět
+      '-13,29,42,60',          // Evropa / Středomoří
+      '12.2,42.1,20.6,45.8',   // Chorvatsko
+      '12.2,42.1,20.6,45.8',
+      '12.2,42.1,20.6,45.8'
+    ];
+    var zoomIdx = 2; // start na regionech (chorvatské pobřeží)
 
     // Filter combobox je teď v top formuláři (Destinace) — sidebarový filtr Přístav byl odstraněn.
     // Marina chipy přidáváme/odebíráme tam; map state se synchronizuje obousměrně.
@@ -3770,83 +3871,26 @@
       if (getSelectedMarinas().indexOf(name) !== -1) removeMarinaFromFilter(name);
       else addMarinaToFilter(name);
     }
-    function toggleClusterInFilter(marinas) {
-      var selected = getSelectedMarinas();
-      var allSelected = marinas.every(function(m) { return selected.indexOf(m.name) !== -1; });
-      if (allSelected) {
-        marinas.forEach(function(m) { removeMarinaFromFilter(m.name); });
-      } else {
-        marinas.forEach(function(m) {
-          if (selected.indexOf(m.name) === -1) addMarinaToFilter(m.name);
-        });
-      }
-    }
-
-    // Zoom úrovně — threshold pro clustering v % canvasu
-    var ZOOM_THRESHOLDS = [10, 5, 2.5, 0];
-    var zoomIdx = 0;
-
-    function clusterMarinas(marinas) {
-      var THRESHOLD = ZOOM_THRESHOLDS[zoomIdx];
-      if (THRESHOLD === 0) {
-        return marinas.map(function(m) { return { x: m.x, y: m.y, marinas: [m], totalCount: m.count }; });
-      }
-      var clusters = [];
-      marinas.forEach(function(m) {
-        var found = null;
-        for (var i = 0; i < clusters.length; i++) {
-          var c = clusters[i];
-          var dx = c.x - m.x, dy = c.y - m.y;
-          if (Math.sqrt(dx * dx + dy * dy) < THRESHOLD) { found = c; break; }
-        }
-        if (found) {
-          found.marinas.push(m);
-          var sx = 0, sy = 0, tc = 0;
-          found.marinas.forEach(function(mm) { sx += mm.x; sy += mm.y; tc += mm.count; });
-          found.x = sx / found.marinas.length;
-          found.y = sy / found.marinas.length;
-          found.totalCount = tc;
-        } else {
-          clusters.push({ x: m.x, y: m.y, marinas: [m], totalCount: m.count });
-        }
-      });
-      return clusters;
-    }
-
+    // Vždy „kapka" (teardrop) s počtem uvnitř a štítkem pod ní — nikdy kolečko-cluster.
+    // Pin je vlastně cluster dané oblasti; při zoomu se rozpadne na piny nižší úrovně.
     function renderPins() {
       pinsHost.innerHTML = '';
       var selected = getSelectedMarinas();
-      var marinaList = Object.keys(MARINAS).map(function(k) { return MARINAS[k]; });
-      var clusters = clusterMarinas(marinaList);
-      clusters.forEach(function(c) {
+      LEVELS[zoomIdx].forEach(function(p) {
+        var isSel = selected.indexOf(p.name) !== -1;
         var el = document.createElement('button');
         el.type = 'button';
-        el.style.left = c.x + '%';
-        el.style.top = c.y + '%';
-        if (c.marinas.length === 1) {
-          var m = c.marinas[0];
-          var isSelected = selected.indexOf(m.name) !== -1;
-          el.className = 'map-pin map-pin--marina' + (isSelected ? ' is-selected' : '');
-          el.title = m.name + ' — ' + m.count + ' lodí · klik pro ' + (isSelected ? 'odebrání' : 'přidání') + ' do filtru';
-          el.innerHTML = '<span class="map-pin-shape"><span class="map-pin-count">' + m.count + '</span></span>' +
-                         '<span class="map-pin-name">' + m.name + '</span>';
-          el.addEventListener('click', function() {
-            toggleMarinaInFilter(m.name);
-          });
-        } else {
-          var allInCluster = c.marinas.every(function(mm) { return selected.indexOf(mm.name) !== -1; });
-          el.className = 'map-pin map-pin--cluster' + (allInCluster ? ' is-selected' : '');
-          var detail = c.marinas.map(function(m) { return m.name + ' (' + m.count + ')'; }).join(', ');
-          el.title = c.marinas.length + ' přístavů · ' + c.totalCount + ' lodí · ' + detail + ' · klik pro ' + (allInCluster ? 'odebrání všech' : 'přidání všech') + ' do filtru';
-          el.textContent = c.totalCount;
-          var clusterMarinas = c.marinas;
-          el.addEventListener('click', function() {
-            toggleClusterInFilter(clusterMarinas);
-          });
-        }
+        el.className = 'map-pin map-pin--marina' + (isSel ? ' is-selected' : '');
+        el.style.left = p.x + '%';
+        el.style.top = p.y + '%';
+        el.title = p.name + ' — ' + p.count + ' lodí · klik pro ' + (isSel ? 'odebrání' : 'přidání') + ' do filtru';
+        el.innerHTML = '<span class="map-pin-shape"><span class="map-pin-count">' + p.count + '</span></span>' +
+                       '<span class="map-pin-name">' + p.name + '</span>';
+        el.addEventListener('click', function() { toggleMarinaInFilter(p.name); if (revealBtn) revealBtn.hidden = false; });
         pinsHost.appendChild(el);
       });
       pinsHost.dataset.rendered = '1';
+      syncLevelControl();
     }
 
     // Sleduj změny v destination combobox (chipy se přidávají/mažou) a překreslí piny.
@@ -3860,11 +3904,47 @@
       }
     }
 
-    // Zoom +/- tlačítka
-    var zoomIn  = canvas && canvas.querySelector('.map-zoom-in');
-    var zoomOut = canvas && canvas.querySelector('.map-zoom-out');
-    if (zoomIn)  zoomIn.addEventListener('click',  function() { if (zoomIdx < ZOOM_THRESHOLDS.length - 1) { zoomIdx++; renderPins(); } });
-    if (zoomOut) zoomOut.addEventListener('click', function() { if (zoomIdx > 0) { zoomIdx--; renderPins(); } });
+    // Zoom +/- : posun o jeden stupeň (globální oblasti → státy → regiony → města → mariny) + odpovídající výřez mapy.
+    var mapFrame = canvas && canvas.querySelector('.map-frame');
+    var currentBbox = MAP_BBOX[zoomIdx];
+    function applyMapView() {
+      if (!mapFrame) return;
+      var bbox = MAP_BBOX[zoomIdx];
+      if (bbox === currentBbox) return; // stejný výřez → iframe zbytečně nereloadovat
+      currentBbox = bbox;
+      mapFrame.src = 'https://www.openstreetmap.org/export/embed.html?bbox=' + encodeURIComponent(bbox) + '&layer=mapnik';
+    }
+    // Návodný stupňový ovladač místo ikon +/− — kopíruje 5 úrovní oblastí (shora nejširší po nejužší).
+    var LEVEL_LABELS = ['Světové oblasti', 'Státy', 'Regiony', 'Města', 'Přístavy'];
+    if (canvas) {
+      canvas.querySelectorAll('.map-zoom-btn').forEach(function(b) { b.remove(); }); // pryč původní +/−
+      var levelCtrl = document.createElement('div');
+      levelCtrl.className = 'map-levels';
+      levelCtrl.setAttribute('role', 'group');
+      levelCtrl.setAttribute('aria-label', 'Úroveň přiblížení mapy');
+      LEVEL_LABELS.forEach(function(label, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'map-level';
+        b.textContent = label;
+        b.setAttribute('data-level', i);
+        b.addEventListener('click', function() {
+          if (i === zoomIdx) return;
+          zoomIdx = i;
+          applyMapView();
+          renderPins();
+        });
+        levelCtrl.appendChild(b);
+      });
+      canvas.appendChild(levelCtrl);
+    }
+    function syncLevelControl() {
+      if (!canvas) return;
+      canvas.querySelectorAll('.map-level').forEach(function(b) {
+        b.classList.toggle('is-active', parseInt(b.getAttribute('data-level'), 10) === zoomIdx);
+      });
+    }
+    syncLevelControl();
   })();
 
   // ── CREW / INVITE MODALY ──────────────────────────────
@@ -4027,19 +4107,25 @@
     });
   })();
 
-  // ── AKORDEON TERMÍNŮ (detail kurzu) — „+ X dalších termínů" ──
+  // ── AKORDEON TERMÍNŮ (detail kurzu, detail zkoušky, detail průkazu) — „Zobrazit další(ch) X termínů" ──
+  function pluralTerminy(n) {
+    var mod10 = n % 10, mod100 = n % 100;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'další ' + n + ' termíny';
+    return 'dalších ' + n + ' termínů';
+  }
   (function initDatesAccordion() {
     document.querySelectorAll('[data-dates-toggle]').forEach(function(btn) {
-      var card = btn.closest('.dates-card');
-      var table = card && card.querySelector('.dates-table');
+      var wrap = btn.closest('.dates-card, .dates-group');
+      var table = wrap && wrap.querySelector('.dates-table');
       if (!table) return;
       var extra = table.querySelectorAll('.dates-row--extra').length;
       if (!extra) { btn.hidden = true; return; }
-      btn.textContent = '+ ' + extra + ' dalších termínů ▾';
+      var labelMore = 'Zobrazit ' + pluralTerminy(extra);
+      btn.textContent = labelMore;
       btn.addEventListener('click', function() {
         var open = table.classList.toggle('is-open');
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        btn.textContent = open ? 'Zobrazit méně ▴' : ('+ ' + extra + ' dalších termínů ▾');
+        btn.textContent = open ? 'Zobrazit méně' : labelMore;
       });
     });
   })();
@@ -4048,6 +4134,8 @@
   (function initKrokySwitch() {
     var btns = document.querySelectorAll('[data-kroky]');
     if (!btns.length) return;
+    var h1 = document.getElementById('licenseH1');
+    // Prerekvizita je nově prvním krokem uvnitř kroků varianty (přepíná se s nimi automaticky).
     btns.forEach(function(btn) {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
@@ -4056,6 +4144,7 @@
         document.querySelectorAll('[data-kroky-variant]').forEach(function(s) {
           s.hidden = s.getAttribute('data-kroky-variant') !== v;
         });
+        if (h1 && btn.hasAttribute('data-h1')) h1.textContent = btn.getAttribute('data-h1');
       });
     });
   })();

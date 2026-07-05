@@ -62,12 +62,8 @@
         <div class="wizard-eyebrow">Průvodce výběrem</div>
         <div class="wizard-title">Jaký průkaz potřebujete?</div>
       </div>
-      <div class="wizard-stepper">
-        <div class="wizard-step-dot is-current" data-step="1">1</div>
-        <div class="wizard-step-line"></div>
-        <div class="wizard-step-dot" data-step="2">2</div>
-        <div class="wizard-step-line"></div>
-        <div class="wizard-step-dot" data-step="3">3</div>
+      <div class="wizard-progress" id="kkWizardProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" aria-label="Průběh průvodce">
+        <span class="wizard-progress-fill" id="kkWizardBar" style="width:25%"></span>
       </div>
       <div class="wizard-step" data-step="1">
         <div class="wizard-q">Kde chcete plout?</div>
@@ -87,7 +83,6 @@
       <div class="wizard-step" data-step="3" hidden>
         <div class="wizard-q">Jak daleko od pobřeží se hodláte vydávat?</div>
         <div class="wizard-opts">
-          <button type="button" class="wizard-opt" data-value="pobrezi">Plácám se u břehu</button>
           <button type="button" class="wizard-opt" data-value="20nm">Z ostrova na ostrov (do 20 NM)</button>
           <button type="button" class="wizard-opt" data-value="200nm">Mezi zeměmi (do 200 NM)</button>
           <button type="button" class="wizard-opt" data-value="neomezeno">Přes oceán (neomezeně)</button>
@@ -96,9 +91,31 @@
       <button type="button" class="wizard-next" id="kkWizardNext" disabled>Doporučit průkaz →</button>
       <div class="wizard-result" id="kkWizardResult" hidden>
         <div class="wizard-result-label">Ideální kombinace pro vás</div>
-        <div class="wizard-result-text"><strong>Průkaz MDČR C + SRC</strong><br>Nejuniverzálnější české průkazy pro samostatnou plavbu po moři — uznávané v Chorvatsku, Řecku, Itálii i dál.</div>
-        <a href="detail-prukazu.html" class="wizard-result-cta">Zobrazit detail průkazu <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        <button type="button" class="wizard-restart" id="kkWizardRestart"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>Začít znovu</button>
+        <div class="wizard-combo">
+          <a class="wizard-course" href="detail-prukazu.html">
+            <span class="wizard-course-name">Průkaz MDČR C</span>
+            <span class="wizard-course-sub">Pobřežní mořská plavba — Chorvatsko, Řecko, Itálie</span>
+          </a>
+          <span class="wizard-combo-plus" aria-hidden="true">+</span>
+          <a class="wizard-course" href="detail-prukazu.html">
+            <span class="wizard-course-name">Průkaz VMP S</span>
+            <span class="wizard-course-sub">Vůdce malého plavidla — řeky a jezera</span>
+          </a>
+        </div>
+        <div class="wizard-path">
+          <div class="wizard-path-label">Doporučený postup</div>
+          <div class="wizard-path-chips">
+            <span class="wizard-path-chip">MDČR</span>
+            <span class="wizard-path-arrow" aria-hidden="true">→</span>
+            <span class="wizard-path-chip">VMP M</span>
+            <span class="wizard-path-arrow" aria-hidden="true">→</span>
+            <span class="wizard-path-chip">VMP S</span>
+          </div>
+        </div>
+      </div>
+      <div class="wizard-foot">
+        <button type="button" class="wizard-back" id="kkWizardBack" hidden>← Zpět</button>
+        <button type="button" class="wizard-restart" id="kkWizardRestart" hidden><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>Začít znovu</button>
       </div>
     </div>
   </div></div>
@@ -276,6 +293,26 @@
     </div>
   </div>
 
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+    <div class="sec-label">Co umíme</div>
+    <h2 class="sec-title">Dvě hlavní oblasti</h2>
+    <div class="about-areas">
+      <a class="about-area-card" href="prukazy.html">
+        <div class="about-area-img"></div>
+        <div class="about-area-body">
+          <h3 class="about-area-title">Kapitánské průkazy na moře</h3>
+          <p class="about-area-desc">MDČR C, B i A a chorvatské průkazy — od pobřežní plavby až po oceán. Teoretická i praktická příprava pod vedením instruktorů.</p>
+        </div>
+      </a>
+      <a class="about-area-card" href="prukazy.html">
+        <div class="about-area-img"></div>
+        <div class="about-area-body">
+          <h3 class="about-area-title">Kapitánské průkazy na řeky a jezera</h3>
+          <p class="about-area-desc">VMP a VRP pro Vltavu, Lipno, Mácháč i vnitrozemské cesty v zahraničí. Teorie formou samostudia v aplikaci, praxe a zkouška s námi.</p>
+        </div>
+      </a>
+    </div>
+  </div></div>
   <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
     <div class="ebook-panel">
       <div class="ebook-panel-image"></div>
