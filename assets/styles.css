@@ -21,7 +21,10 @@
       --max:      1366px;
     }
 
-    body { font-family: "Rubik","Inter","Helvetica Neue",Arial,sans-serif; font-size: 14px; color: var(--text); background: var(--bg); }
+    /* Skryté off-canvas panely (sitemap widget, mobilní filtry apod.) používají transform:translateX(100%),
+       což bez tohoto pravidla protáhne scrollovatelnou šířku dokumentu za hranu viewportu. */
+    html, body { overflow-x: hidden; }
+    body { font-family: "Rubik","Inter","Helvetica Neue",Arial,sans-serif; font-size: 14px; color: var(--text); background: var(--bg); width: 100%; }
 
     /* ── WIREFRAME BADGE ─────────────────────────── */
     .wf-badge {
@@ -1362,10 +1365,13 @@
     .card-perk--lastminute { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; font-weight: 600; }
     .boat-card:hover { border-color: var(--int); background: var(--int-soft); }
     .card-img {
+      /* Šířka je pevná, výška se dopočítá z aspect-ratio — spolehlivý směr výpočtu.
+         (Opačný směr — výška z % rodiče s auto výškou — je nespolehlivý napříč enginy.) */
       flex-shrink: 0;
+      align-self: center;
       aspect-ratio: 4 / 3;
-      height: calc(100% - 20px);
-      width: auto;
+      width: 330px;
+      height: auto;
       margin: 10px 0 10px 10px;
       border-radius: 8px;
       background: var(--cross-bg), var(--img-bg);
@@ -1431,6 +1437,12 @@
       margin-left: 2px;
     }
     .card-company a:hover { text-decoration: underline; color: var(--int-dark); }
+    /* Inline řádek parametrů lodě (rok · kajuty · lůžka · osoby · WC · délka) */
+    /* .card-meta je kompaktní verze parametrů jen pro mobil — na desktopu se místo ní
+       zobrazuje původní .card-specs mřížka (přepnuto v @media max-width:767px). */
+    .card-meta { display: none; font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+    .card-meta strong { color: var(--text); font-weight: 700; }
+    .card-meta-ft { color: var(--muted); font-weight: 400; }
     .card-specs { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 14px; }
     .spec { display: flex; flex-direction: column; gap: 1px; }
     .spec-l { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
@@ -1468,7 +1480,8 @@
     .card-status--reserved { color: #b91c1c; }
     .card-status--reserved .card-status-dot { background: #dc2626; }
     /* Status jako pouhá tečka za názvem modelu (bez labelu) */
-    .card-status--dot { display: inline-flex; vertical-align: middle; margin-left: 6px; position: relative; top: -1px; }
+    /* Tečka za názvem je jen pro mobil — na desktopu je stav vpravo nahoře (dot + label). */
+    .card-status--dot { display: none; vertical-align: middle; margin-left: 6px; position: relative; top: -1px; }
     .card-side-bottom { display: flex; flex-direction: column; gap: 10px; }
     .card-price { display: flex; flex-direction: column; gap: 2px; }
     .price-old-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 2px; }
@@ -1600,6 +1613,10 @@
     }
     .gal-item { background: var(--cross-bg), var(--img-bg); cursor: pointer; position: relative; }
     .gal-item:first-child { grid-row: 1 / 3; }
+    /* Tečky pod galerií — náznak, že jde o galerii (hlavně na mobilu, kde je vidět 1 foto) */
+    .gal-dots { display: none; justify-content: center; gap: 6px; margin: 0 0 22px; }
+    .gal-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: background .2s, width .2s; }
+    .gal-dot.is-active { background: var(--int); width: 20px; border-radius: 4px; }
     .gal-more {
       position: absolute; inset: 0; background: rgba(0,0,0,.5); display: flex; align-items: center;
       justify-content: center; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer;
@@ -1624,6 +1641,8 @@
     .pdf-label { font-size: 13px; font-weight: 600; color: var(--int); }
     .pdf-sub { font-size: 11px; color: var(--muted); }
 
+    /* Bloky vybavení ve dvou sloupcích */
+    .equip-groups { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
     .equip-group { border-top: 1px solid var(--border); padding: 14px 0; }
     .equip-group-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 10px; }
     .equip-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 2px 16px; }
@@ -1646,6 +1665,7 @@
     .extra-price { font-size: 13px; font-weight: 700; color: var(--text); margin-left: auto; flex-shrink: 0; }
 
     .desc-text { font-size: 14px; line-height: 1.7; }
+    .desc-more-text { margin-top: 14px; }
     .desc-more { color: var(--int); cursor: pointer; font-size: 13px; font-weight: 600; margin-top: 8px; display: inline-block; }
 
     .cal-legend { display: flex; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
@@ -1784,18 +1804,21 @@
       background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
     }
     .reviews-summary-overall {
-      text-align: center; align-self: center;
-      padding-right: 28px; border-right: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      align-self: center; text-align: left;
+      padding-right: 24px; border-right: 1px solid var(--border);
     }
+    .reviews-summary-overall-meta { display: flex; flex-direction: column; align-items: flex-start; }
     .reviews-summary-score {
-      font-size: 44px; font-weight: 800; line-height: 1; letter-spacing: -.02em;
+      font-size: 28px; font-weight: 800; line-height: 1; letter-spacing: -.02em;
       color: var(--text);
     }
-    .reviews-summary-stars { color: #f5a623; font-size: 18px; letter-spacing: 2px; margin: 6px 0 4px; }
-    .reviews-summary-count { font-size: 12px; color: var(--muted); }
-    .reviews-summary-criteria { display: flex; flex-direction: column; gap: 10px; }
+    .reviews-summary-scale { font-size: 15px; font-weight: 700; color: var(--muted); }
+    .reviews-summary-stars { color: #f5a623; font-size: 15px; letter-spacing: 1px; margin: 0 0 2px; }
+    .reviews-summary-count { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .reviews-summary-criteria { display: flex; flex-direction: column; gap: 9px; }
     .reviews-criterion-row {
-      display: grid; grid-template-columns: 180px 1fr 36px; gap: 12px;
+      display: grid; grid-template-columns: 155px 1fr 32px; gap: 10px;
       align-items: center; font-size: 13px;
     }
     .reviews-criterion-name { color: var(--text); }
@@ -1854,9 +1877,9 @@
 
     @media (max-width: 760px) {
       .reviews-summary { grid-template-columns: 1fr; gap: 18px; padding: 18px; }
-      .reviews-summary-overall { padding-right: 0; border-right: none; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
-      .reviews-criterion-row { grid-template-columns: 1fr 80px 30px; }
-      .reviews-criterion-name { font-size: 12px; }
+      .reviews-summary-overall { padding-right: 0; border-right: none; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+      .reviews-criterion-row { grid-template-columns: 140px 1fr 28px; gap: 8px; }
+      .reviews-criterion-name { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     }
 
     .faq-list { }
@@ -2021,10 +2044,13 @@
     .detail-sidebar { position: sticky; top: 116px; display: flex; flex-direction: column; gap: 14px; }
     .detail-sidebar > .contact-box { order: 1; } /* Monika pod Google hodnocení + Checked & Trusted */
     .cta-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); }
-    .cta-price-label { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 4px; }
-    .cta-price { font-size: 28px; font-weight: 800; letter-spacing: -.03em; margin-bottom: 2px; }
-    .cta-price-fees { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
-    .cta-price-note { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+    /* Hlavička: cena vlevo, meta (za kolik / poplatky / kauce / co je v ceně) vpravo nahoře */
+    .cta-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+    .cta-header-meta { text-align: right; flex-shrink: 0; }
+    .cta-price-label { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 2px; }
+    .cta-price { font-size: 21px; font-weight: 800; letter-spacing: -.03em; margin-bottom: 0; line-height: 1.15; }
+    .cta-price-fees { font-size: 12px; color: var(--muted); margin-bottom: 1px; }
+    .cta-price-note { font-size: 11px; color: var(--muted); margin-bottom: 0; margin-top: 2px; }
     .cta-dates { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
     .cta-date-box {
       background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
@@ -2059,6 +2085,24 @@
     .btn-reserve--inline { display: inline-block; width: auto; padding: 13px 28px; }
     .cta-disclaimer { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; }
 
+    /* Sticky cenový proužek — přichytí se na spodní hranu po odscrollování cenového bloku */
+    .price-sticky-bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+      background: var(--surface); border-top: 1px solid var(--border);
+      box-shadow: 0 -4px 20px rgba(0,0,0,.10);
+    }
+    .price-sticky-inner {
+      max-width: var(--max); margin: 0 auto; height: 56px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 0 16px;
+    }
+    .price-sticky-price { font-size: 13px; color: var(--muted); white-space: nowrap; }
+    .price-sticky-price strong { font-size: 18px; font-weight: 800; color: var(--text); }
+    .price-sticky-from, .price-sticky-unit { font-size: 12px; }
+    .price-sticky-btn { width: auto; height: 42px; padding: 0 22px; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; flex-shrink: 0; }
+    /* Jen mobil/tablet — na desktopu je sidebar CTA stále vidět */
+    @media (min-width: 768px) { .price-sticky-bar { display: none; } }
+
     .contact-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
     .contact-box-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 8px; }
     .contact-person { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
@@ -2074,6 +2118,8 @@
     .contact-link:hover { border-color: var(--int); color: var(--int); }
 
     .sp-sidebar { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+    /* Blok důvěry (Google + Checked & Trusted) přesunut pod výběr variant */
+    .detail-main .sp-sidebar { margin: 4px 0 24px; }
     .sp-sidebar-row { display: flex; align-items: center; gap: 10px; }
     .sp-sidebar-score { font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
     .sp-sidebar-stars { color: #f5a623; font-size: 14px; letter-spacing: 2px; }
@@ -2209,12 +2255,14 @@
       list-style: none; padding: 0; margin: 0;
       display: flex; flex-direction: column; gap: 8px;
     }
-    .pkg-feat { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; line-height: 1.5; color: var(--text); }
+    /* Blok (ne flex) — text volně plyne za ikonou a při zalomení má hanging indent
+       (další řádky začínají na stejném účaří jako text prvního řádku, ne pod ikonou). */
+    .pkg-feat { position: relative; padding-left: 28px; font-size: 13px; line-height: 1.5; color: var(--text); }
     .pkg-feat strong { font-weight: 700; }
     .pkg-feat-ico {
+      position: absolute; left: 0; top: 1px;
       width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
       display: inline-flex; align-items: center; justify-content: center;
-      margin-top: 1px;
     }
     .pkg-feat--ok .pkg-feat-ico { background: #ecfdf5; color: #047857; }
     .pkg-feat--no .pkg-feat-ico { background: #fee2e2; color: #b91c1c; }
@@ -2275,7 +2323,7 @@
     .bk-card-intro { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0 0 14px; }
     .bk-card-note { font-size: 11px; color: var(--muted); line-height: 1.45; margin-top: 10px; }
     .pkg-ins-row {
-      display: flex; align-items: center; gap: 14px;
+      display: flex; flex-direction: column; gap: 8px;
       background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
       padding: 14px 18px; cursor: pointer;
       transition: border-color .15s, box-shadow .15s;
@@ -2287,10 +2335,12 @@
       border-color: var(--int); background: var(--int-soft);
       box-shadow: 0 0 0 2px rgba(105, 3, 255, .1);
     }
+    .pkg-ins-row-top { display: flex; align-items: center; gap: 12px; }
     .pkg-ins-check {
       width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--int);
       cursor: pointer; margin: 0;
     }
+    .pkg-ins-row-name { flex: 1; min-width: 0; font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -.01em; }
     .pkg-ins-row-icon {
       width: 38px; height: 38px; border-radius: 8px;
       background: var(--int-soft); color: var(--int);
@@ -2298,17 +2348,8 @@
       flex-shrink: 0;
     }
     .pkg-ins-row:has(.pkg-ins-check:checked) .pkg-ins-row-icon { background: #fff; }
-    .pkg-ins-row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-    .pkg-ins-row-name { font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -.01em; }
     .pkg-ins-row-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-    .pkg-ins-row-price {
-      font-size: 14px; font-weight: 800; color: var(--text);
-      white-space: nowrap; flex-shrink: 0;
-    }
-    @media (max-width: 768px) {
-      .pkg-ins-row { flex-wrap: wrap; }
-      .pkg-ins-row-price { margin-left: auto; }
-    }
+    .pkg-ins-row-price { font-size: 14px; font-weight: 800; color: var(--text); }
 
     @media (max-width: 768px) {
       .pkg-card-inner { grid-template-columns: 1fr; }
@@ -2648,6 +2689,11 @@
     .mag-nl-input { height: 38px; padding: 0 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; font-family: inherit; min-width: 240px; }
     .mag-nl-btn { height: 38px; padding: 0 20px; background: var(--int); color: #fff; border: none; border-radius: var(--radius); font-size: 13px; font-weight: 700; font-family: inherit; cursor: pointer; white-space: nowrap; }
     .mag-nl-btn:hover { background: var(--int-dark); }
+    @media (max-width: 640px) {
+      .mag-nl-panel { flex-direction: column; align-items: stretch; }
+      .mag-nl-form { width: 100%; }
+      .mag-nl-input { min-width: 0; flex: 1; }
+    }
 
     /* ── ARTICLE DETAIL PAGE ─────────────────── */
     .art-breadcrumb { max-width: 900px; margin: 0 auto; padding: 20px 40px 0; font-size: 12px; color: var(--muted); }
@@ -2660,6 +2706,8 @@
     .art-h1 { font-size: 34px; font-weight: 800; letter-spacing: -.04em; line-height: 1.2; margin-bottom: 14px; }
     .art-perex { font-size: 16px; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
     .art-meta { font-size: 12px; color: var(--muted); display: flex; gap: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .art-meta-author { color: inherit; text-decoration: none; }
+    .art-meta-author:hover { color: var(--int); }
 
     .art-cover { max-width: 900px; margin: 0 auto; padding: 0 40px 36px; }
     .art-cover-img { width: 100%; aspect-ratio: 3/2; background: var(--cross-bg), var(--img-bg); border-radius: var(--radius); }
@@ -2939,12 +2987,14 @@
     .bk-step.done .bk-step-label { color: #16a34a; }
 
     .bk-body { max-width: var(--max); margin: 0 auto; padding: 32px 40px 60px; display: grid; grid-template-columns: 1fr 380px; gap: 28px; align-items: start; }
-    .bk-main { display: flex; flex-direction: column; gap: 20px; }
+    /* min-width:0 — bez toho grid sloupec zdědí min-content šířku zanořeného
+       nezalomitelného obsahu (např. čísla účtu) a "vyfoukne" celý grid mimo viewport. */
+    .bk-main { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
     .bk-context-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
     .bk-context-row > .bk-card { margin: 0; display: flex; flex-direction: column; height: 100%; }
     .bk-context-row > .bk-card > .bk-card-body { flex: 1; }
     @media (max-width: 760px) { .bk-context-row { grid-template-columns: 1fr; } }
-    .bk-sidebar { display: flex; flex-direction: column; gap: 16px; }
+    .bk-sidebar { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
     /* Sticky tlačítko — jen samotný button se přilepuje k spodnímu okraji viewportu.
        USP/garance zůstávají v přirozené pozici v .bk-sidebar-cta níže (vždy viditelné). */
     .bk-sticky-button {
@@ -3404,18 +3454,18 @@
 
     /* Personal recap */
     .recap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
-    .recap-field { font-size: 14px; }
+    .recap-field { font-size: 14px; min-width: 0; }
     .recap-field-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 3px; }
-    .recap-field-val { font-weight: 600; }
+    .recap-field-val { font-weight: 600; overflow-wrap: anywhere; }
 
     /* Payment methods */
-    .payment-option { border: 2px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: border-color .15s; }
+    .payment-option { border: 2px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 10px; cursor: pointer; display: flex; flex-direction: column; gap: 10px; transition: border-color .15s; }
     .payment-option:hover { border-color: var(--int); }
     .payment-option.selected,
     .payment-option:has(input:checked) { border-color: var(--int); background: var(--int-soft); }
+    .payment-option-top { display: flex; align-items: center; gap: 10px; }
     .payment-option input[type="radio"] { width: 18px; height: 18px; accent-color: var(--int); flex-shrink: 0; cursor: pointer; }
-    .payment-option-label { flex: 1; }
-    .payment-option-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+    .payment-option-title { font-size: 14px; font-weight: 700; }
     .payment-option-desc { font-size: 12px; color: var(--muted); }
     .payment-logos { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
     .payment-logo { height: 22px; padding: 3px 8px; border: 1px solid var(--border); border-radius: 4px; background: var(--surface); font-size: 10px; font-weight: 800; letter-spacing: .04em; display: flex; align-items: center; color: var(--text); white-space: nowrap; }
@@ -3423,17 +3473,19 @@
     .payment-logo.mc { color: #eb001b; }
     .payment-logo.secure { color: var(--muted); gap: 4px; font-weight: 600; }
     /* Bankovní převod — zvětšený box s QR platbou */
-    .payment-option--bank { align-items: center; gap: 24px; padding: 22px 24px; }
-    .payment-option--bank .payment-option-desc { margin-bottom: 14px; max-width: 460px; }
-    .bank-details { display: flex; flex-direction: column; gap: 7px; }
-    .bank-detail-row { display: flex; gap: 10px; font-size: 12px; line-height: 1.3; }
-    .bank-detail-l { color: var(--text); min-width: 132px; }
-    .bank-detail-v { color: var(--text); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .payment-option--bank { padding: 22px 24px; min-width: 0; }
+    .payment-option--bank .payment-option-desc { max-width: 460px; }
+    .payment-option-bank-body { display: flex; gap: 24px; align-items: flex-start; }
+    .payment-option-bank-body .bank-details { flex: 1; min-width: 0; }
+    .bank-details { display: flex; flex-direction: column; gap: 12px; }
+    .bank-detail-row { display: flex; flex-direction: column; gap: 3px; }
+    .bank-detail-l { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+    .bank-detail-v { font-size: 14px; color: var(--text); font-weight: 700; font-variant-numeric: tabular-nums; }
     .payment-qr { display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; }
     .payment-qr-svg { width: 120px; height: 120px; border: 1px solid var(--border); border-radius: 8px; background: #fff; padding: 9px; box-sizing: border-box; display: block; }
     .payment-qr-cap { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text); text-align: center; max-width: 138px; line-height: 1.3; }
     @media (max-width: 600px) {
-      .payment-option--bank { flex-wrap: wrap; }
+      .payment-option-bank-body { flex-wrap: wrap; }
       .payment-qr { width: 100%; align-items: flex-start; }
     }
     .payment-card-fields { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -3442,6 +3494,7 @@
 
     /* Confirmation page */
     .confirm-hero { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-bottom: 1px solid #bbf7d0; padding: 56px 40px 28px; text-align: center; }
+    .confirm-hero-inner { max-width: 860px; margin: 0 auto; }
     .confirm-check { width: 72px; height: 72px; background: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
     .confirm-title { font-size: 32px; font-weight: 800; letter-spacing: -.04em; color: #166534; margin-bottom: 10px; }
     .confirm-sub { font-size: 16px; color: #166534; opacity: .75; margin-bottom: 16px; }
@@ -6070,6 +6123,20 @@
     .tm-contact-item:hover { color: var(--int); }
     .tm-contact-static { color: var(--muted); }
     .tm-contact-static svg { color: var(--muted); }
+
+    /* Medailonek autora — stejná karta jako team modal, jen jako trvalý obsah stránky */
+    .author-profile-card {
+      max-width: 760px; margin: 28px auto 48px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+      display: grid; grid-template-columns: 280px 1fr;
+    }
+    .author-profile-card .tm-gallery { min-height: 100%; }
+    .author-profile-card .tm-body { padding: 32px; }
+    .author-profile-card .tm-name { font-size: 22px; }
+    @media (max-width: 640px) {
+      .author-profile-card { grid-template-columns: 1fr; }
+      .author-profile-card .tm-gallery { min-height: 240px; aspect-ratio: 4 / 3; }
+    }
     .team-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
     .team-role { font-size: 12px; color: var(--muted); }
     .team-miles {
@@ -6506,9 +6573,10 @@
       .card-company { font-size: 11px; margin-bottom: 4px; }
       .card-badges { margin-bottom: 3px; }
       .card-badges .badge, .card-badges .card-perk { font-size: 11px; }
-      .card-specs { gap: 7px 14px; margin-bottom: 0; }
-      .spec-l { font-size: 11px; }
-      .spec-v { font-size: 12px; }
+      /* Mobil: skrýt původní specs mřížku, zobrazit kompaktní meta řádek + tečku stavu u názvu */
+      .card-specs { display: none; }
+      .card-meta { display: block; font-size: 12px; margin-bottom: 0; line-height: 1.5; }
+      .card-status--dot { display: inline-flex; }
       /* Vybavení: jedna řádka, přebytek se ořízne do „+N" přes JS (fitAmenityRow) */
       .card-amenities { flex-wrap: wrap; overflow: hidden; gap: 6px; margin: 3px 0 0; }
       .amenity-tag { font-size: 11px; }
@@ -6522,9 +6590,9 @@
       .card-price { gap: 0; }
       .price-val { font-size: 14px; }
       .price-sub { font-size: 11px; margin-top: 0; }
-      /* Srdíčko (oblíbené) zcela doleva, cena vpravo */
+      /* Srdíčko (oblíbené) zcela doleva, cena vpravo; tlačítko Detail na mobilu skryté (karta je celá klikatelná) */
       .card-side-actions { flex: 0 0 auto; order: -1; }
-      .btn-view { width: auto; padding: 8px 16px; font-size: 13px; }
+      .card-side-actions .btn-view { display: none; }
 
       /* ── ULOŽENÁ VARIANTA: fotka nahoře a vyšší (stackovaný layout) ──
          Aktivní zůstává kompaktní verze výše. Tuto variantu zapneš přidáním
@@ -6574,10 +6642,27 @@
       .lb-thumbs { padding: 6px 12px 18px; }
       .gallery {
         grid-template-columns: 1fr; grid-template-rows: 220px;
+        margin-bottom: 10px;
       }
       .gal-item:not(:first-child) { display: none; }
       .gal-item:first-child { grid-row: auto; border-radius: var(--radius); }
+      .gal-dots { display: flex; }
       .specs-table-wrap { grid-template-columns: 1fr; gap: 0; }
+      /* Tabulky se na mobilu skládají pod sebe → obnovit dělicí linku mezi nimi (Sprchy | Délka) */
+      .specs-table-wrap .specs-table:not(:last-child) tr:last-child td { border-bottom: 1px solid var(--border); }
+      /* Vybavení: 2 sloupce i na mobilu, jen užší mezera */
+      .equip-groups { column-gap: 16px; }
+      .equip-list { grid-template-columns: 1fr; }
+
+      /* Hotline číslo — na mobilu výrazně menší (bylo nepřiměřeně velké 22px) */
+      .hotline-number { font-size: 16px; }
+      .contact-hotline .hotline-number { font-size: 15px; }
+
+      /* Stránka poděkování — "Co vás čeká dál" + karty (Soubory ke stažení, Sledujte nás)
+         vertikálně pod sebou na celou šířku, ne ve sloupcích vedle sebe. */
+      .confirm-next-steps { padding: 0 16px 32px; }
+      .next-steps-grid { grid-template-columns: 1fr; gap: 12px; }
+      .confirm-body { padding: 24px 16px; grid-template-columns: 1fr; gap: 20px; }
       .mini-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
       .mini-cards--scroll > .mini-card { flex: 0 0 calc((100% - 14px) / 2); }
       .mini-cards--scroll.mini-cards--4col > .mini-card { flex: 0 0 calc((100% - 14px * 2) / 3); }
@@ -6615,8 +6700,12 @@
 
       /* ── BOOKING ── */
       .bk-nav-inner { padding: 0 16px; }
-      .bk-stepper-wrap { padding: 0 16px; overflow-x: auto; }
-      .bk-stepper { min-width: 480px; } /* scroll na malých */
+      /* Krokovač na mobilu: bez labelů, čísla rozprostřená přes celou šířku (žádný scroll) */
+      .bk-stepper-wrap { padding: 0 16px; }
+      .bk-stepper { min-width: 0; }
+      .bk-step { flex: 1 1 0; }
+      .bk-step:first-child { flex: 0 0 auto; }
+      .bk-step + .bk-step::before { flex: 1; width: auto; min-width: 20px; margin: 0 6px; }
       .bk-body { padding: 16px 16px 48px; grid-template-columns: 1fr; gap: 0; }
       .bk-sidebar {
         position: static; max-height: none; overflow: visible;
@@ -6873,6 +6962,8 @@
     ══════════════════════════════════════════════════ */
 
     /* ── Hamburger button (only on mobile) ── */
+    /* Mobilní akce v hlavičce (srdíčko + panáček) — vedle hamburgeru */
+    .nav-mobile-hdr { display: none; align-items: center; gap: 6px; }
     .nav-hamburger {
       display: none;
       flex-direction: column; justify-content: center; gap: 5px;
@@ -6948,10 +7039,21 @@
        TABLET ≤ 1024px
     ════════════════════════════════════ */
     @media (max-width: 1024px) {
-      .nav-inner { padding: 0 24px; }
+      .nav-inner { padding: 0 24px; gap: 5px; }
       .nav-links  { display: none; }
       .nav-actions { display: none; }
       .nav-hamburger { display: flex; }
+      .nav-mobile-hdr { display: inline-flex; margin-left: auto; gap: 5px; }
+      .nav-mobile-hdr-fav {
+        width: 36px; height: 36px;
+        border: 1px solid var(--border); border-radius: var(--radius);
+        background: none;
+      }
+      .nav-login-btn.nav-login-btn--m {
+        width: 36px; height: 36px; min-width: 36px; padding: 0; gap: 0;
+        justify-content: center; align-items: center; font-size: 0; border-radius: var(--radius); flex-shrink: 0;
+      }
+      .nav-login-btn.nav-login-btn--m svg { width: 19px; height: 19px; flex-shrink: 0; }
 
       .inner   { padding: 44px 24px; }
       .inner-sm { padding: 32px 24px; }

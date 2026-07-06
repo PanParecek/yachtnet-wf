@@ -48,20 +48,7 @@
   </div></nav>
 
   <!-- STEPPER -->
-  <div class="bk-stepper-wrap"><div class="bk-stepper">
-    <a class="bk-step done" href="rezervace-krok-1-v1.html">
-      <div class="bk-step-num"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div class="bk-step-label">Osobní údaje</div>
-    </a>
-    <a class="bk-step active" href="rezervace-krok-2-v1.html">
-      <div class="bk-step-num">2</div>
-      <div class="bk-step-label">Kontrola a platba</div>
-    </a>
-    <a class="bk-step" href="rezervace-potvrzeni.html">
-      <div class="bk-step-num">3</div>
-      <div class="bk-step-label">Hotovo</div>
-    </a>
-  </div></div>
+  <div data-component="stepper" data-current="2" data-steps='[{"label":"Osobní údaje","href":"rezervace-krok-1-v1.html"},{"label":"Kontrola a platba","href":"rezervace-krok-2-v1.html"},{"label":"Hotovo","href":"rezervace-potvrzeni.html"}]'></div>
 
   <!-- OBSAH -->
   <div class="bk-body">
@@ -152,34 +139,31 @@
 
           <!-- Bankovní převod (zvýrazněný, s QR platbou) -->
           <label class="payment-option payment-option--bank">
-            <input type="radio" name="payment" checked />
-            <div class="payment-option-label">
-              <div class="payment-option-title">Bankovní převod</div>
-              <div class="payment-option-desc">Platba převodem — rezervaci potvrdíme po připsání na náš účet, obvykle do 2–3 pracovních dnů.</div>
+            <div class="payment-option-top">
+              <input type="radio" name="payment" checked />
+              <span class="payment-option-title">Bankovní převod</span>
+            </div>
+            <div class="payment-option-desc">Platba převodem — rezervaci potvrdíme po připsání na náš účet, obvykle do 2–3 pracovních dnů.</div>
+            <div class="payment-option-bank-body">
               <div class="bank-details">
                 <div class="bank-detail-row"><span class="bank-detail-l">Číslo účtu</span><span class="bank-detail-v">2701893461 / 2010</span></div>
                 <div class="bank-detail-row"><span class="bank-detail-l">Variabilní symbol</span><span class="bank-detail-v">78421305</span></div>
                 <div class="bank-detail-row"><span class="bank-detail-l">Částka k úhradě</span><span class="bank-detail-v">9 720 Kč</span></div>
               </div>
-            </div>
-            <div class="payment-qr">
-              <svg class="payment-qr-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" width="120" height="120" role="img" aria-label="QR kód pro platbu převodem" shape-rendering="crispEdges">
-                <rect width="25" height="25" fill="#fff"/>
-                <path fill="#1e1e1c" d="M0 0h7v7H0zM18 0h7v7h-7zM0 18h7v7H0z"/>
-                <path fill="#fff" d="M1 1h5v5H1zM19 1h5v5h-5zM1 19h5v5H1z"/>
-                <path fill="#1e1e1c" d="M2 2h3v3H2zM20 2h3v3h-3zM2 20h3v3H2z"/>
-                <path fill="#1e1e1c" d="M8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM6 8h1v1h-1zM6 10h1v1h-1zM6 12h1v1h-1zM6 14h1v1h-1zM6 16h1v1h-1zM8 0h1v1h-1zM10 0h1v1h-1zM13 0h1v1h-1zM15 0h1v1h-1zM9 1h1v1h-1zM12 1h1v1h-1zM16 1h1v1h-1zM8 2h1v1h-1zM11 2h1v1h-1zM14 2h1v1h-1zM10 3h1v1h-1zM13 3h1v1h-1zM15 3h1v1h-1zM9 4h1v1h-1zM12 4h1v1h-1zM16 4h1v1h-1zM8 5h1v1h-1zM11 5h1v1h-1zM14 5h1v1h-1zM8 7h1v1h-1zM11 7h1v1h-1zM14 7h1v1h-1zM1 8h1v1h-1zM3 8h1v1h-1zM9 8h1v1h-1zM12 8h1v1h-1zM15 8h1v1h-1zM19 8h1v1h-1zM22 8h1v1h-1zM0 9h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM10 9h1v1h-1zM13 9h1v1h-1zM16 9h1v1h-1zM18 9h1v1h-1zM21 9h1v1h-1zM24 9h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM8 10h1v1h-1zM11 10h1v1h-1zM14 10h1v1h-1zM20 10h1v1h-1zM23 10h1v1h-1zM1 11h1v1h-1zM3 11h1v1h-1zM9 11h1v1h-1zM12 11h1v1h-1zM17 11h1v1h-1zM19 11h1v1h-1zM22 11h1v1h-1zM24 11h1v1h-1zM0 12h1v1h-1zM4 12h1v1h-1zM7 12h1v1h-1zM10 12h1v1h-1zM13 12h1v1h-1zM15 12h1v1h-1zM18 12h1v1h-1zM21 12h1v1h-1zM2 13h1v1h-1zM5 13h1v1h-1zM8 13h1v1h-1zM11 13h1v1h-1zM16 13h1v1h-1zM20 13h1v1h-1zM23 13h1v1h-1zM1 14h1v1h-1zM3 14h1v1h-1zM9 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM17 14h1v1h-1zM19 14h1v1h-1zM22 14h1v1h-1zM24 14h1v1h-1zM0 15h1v1h-1zM4 15h1v1h-1zM7 15h1v1h-1zM10 15h1v1h-1zM13 15h1v1h-1zM18 15h1v1h-1zM21 15h1v1h-1zM2 16h1v1h-1zM5 16h1v1h-1zM8 16h1v1h-1zM11 16h1v1h-1zM15 16h1v1h-1zM20 16h1v1h-1zM23 16h1v1h-1zM9 17h1v1h-1zM12 17h1v1h-1zM14 17h1v1h-1zM17 17h1v1h-1zM19 17h1v1h-1zM22 17h1v1h-1zM24 17h1v1h-1zM8 18h1v1h-1zM11 18h1v1h-1zM14 18h1v1h-1zM17 18h1v1h-1zM20 18h1v1h-1zM23 18h1v1h-1zM9 19h1v1h-1zM12 19h1v1h-1zM15 19h1v1h-1zM19 19h1v1h-1zM22 19h1v1h-1zM24 19h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM13 20h1v1h-1zM16 20h1v1h-1zM18 20h1v1h-1zM21 20h1v1h-1zM9 21h1v1h-1zM12 21h1v1h-1zM14 21h1v1h-1zM17 21h1v1h-1zM20 21h1v1h-1zM23 21h1v1h-1zM8 22h1v1h-1zM11 22h1v1h-1zM15 22h1v1h-1zM19 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM10 23h1v1h-1zM13 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM21 23h1v1h-1zM9 24h1v1h-1zM12 24h1v1h-1zM14 24h1v1h-1zM17 24h1v1h-1zM20 24h1v1h-1zM23 24h1v1h-1z"/>
-              </svg>
-              <span class="payment-qr-cap"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/></svg> Naskenujte v bankovní aplikaci</span>
+              <div class="payment-qr">
+                <svg class="payment-qr-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" width="120" height="120" role="img" aria-label="QR kód pro platbu převodem" shape-rendering="crispEdges">
+                  <rect width="25" height="25" fill="#fff"/>
+                  <path fill="#1e1e1c" d="M0 0h7v7H0zM18 0h7v7h-7zM0 18h7v7H0z"/>
+                  <path fill="#fff" d="M1 1h5v5H1zM19 1h5v5h-5zM1 19h5v5H1z"/>
+                  <path fill="#1e1e1c" d="M2 2h3v3H2zM20 2h3v3h-3zM2 20h3v3H2z"/>
+                  <path fill="#1e1e1c" d="M8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM6 8h1v1h-1zM6 10h1v1h-1zM6 12h1v1h-1zM6 14h1v1h-1zM6 16h1v1h-1zM8 0h1v1h-1zM10 0h1v1h-1zM13 0h1v1h-1zM15 0h1v1h-1zM9 1h1v1h-1zM12 1h1v1h-1zM16 1h1v1h-1zM8 2h1v1h-1zM11 2h1v1h-1zM14 2h1v1h-1zM10 3h1v1h-1zM13 3h1v1h-1zM15 3h1v1h-1zM9 4h1v1h-1zM12 4h1v1h-1zM16 4h1v1h-1zM8 5h1v1h-1zM11 5h1v1h-1zM14 5h1v1h-1zM8 7h1v1h-1zM11 7h1v1h-1zM14 7h1v1h-1zM1 8h1v1h-1zM3 8h1v1h-1zM9 8h1v1h-1zM12 8h1v1h-1zM15 8h1v1h-1zM19 8h1v1h-1zM22 8h1v1h-1zM0 9h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM10 9h1v1h-1zM13 9h1v1h-1zM16 9h1v1h-1zM18 9h1v1h-1zM21 9h1v1h-1zM24 9h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM8 10h1v1h-1zM11 10h1v1h-1zM14 10h1v1h-1zM20 10h1v1h-1zM23 10h1v1h-1zM1 11h1v1h-1zM3 11h1v1h-1zM9 11h1v1h-1zM12 11h1v1h-1zM17 11h1v1h-1zM19 11h1v1h-1zM22 11h1v1h-1zM24 11h1v1h-1zM0 12h1v1h-1zM4 12h1v1h-1zM7 12h1v1h-1zM10 12h1v1h-1zM13 12h1v1h-1zM15 12h1v1h-1zM18 12h1v1h-1zM21 12h1v1h-1zM2 13h1v1h-1zM5 13h1v1h-1zM8 13h1v1h-1zM11 13h1v1h-1zM16 13h1v1h-1zM20 13h1v1h-1zM23 13h1v1h-1zM1 14h1v1h-1zM3 14h1v1h-1zM9 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM17 14h1v1h-1zM19 14h1v1h-1zM22 14h1v1h-1zM24 14h1v1h-1zM0 15h1v1h-1zM4 15h1v1h-1zM7 15h1v1h-1zM10 15h1v1h-1zM13 15h1v1h-1zM18 15h1v1h-1zM21 15h1v1h-1zM2 16h1v1h-1zM5 16h1v1h-1zM8 16h1v1h-1zM11 16h1v1h-1zM15 16h1v1h-1zM20 16h1v1h-1zM23 16h1v1h-1zM9 17h1v1h-1zM12 17h1v1h-1zM14 17h1v1h-1zM17 17h1v1h-1zM19 17h1v1h-1zM22 17h1v1h-1zM24 17h1v1h-1zM8 18h1v1h-1zM11 18h1v1h-1zM14 18h1v1h-1zM17 18h1v1h-1zM20 18h1v1h-1zM23 18h1v1h-1zM9 19h1v1h-1zM12 19h1v1h-1zM15 19h1v1h-1zM19 19h1v1h-1zM22 19h1v1h-1zM24 19h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM13 20h1v1h-1zM16 20h1v1h-1zM18 20h1v1h-1zM21 20h1v1h-1zM9 21h1v1h-1zM12 21h1v1h-1zM14 21h1v1h-1zM17 21h1v1h-1zM20 21h1v1h-1zM23 21h1v1h-1zM8 22h1v1h-1zM11 22h1v1h-1zM15 22h1v1h-1zM19 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM10 23h1v1h-1zM13 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM21 23h1v1h-1zM9 24h1v1h-1zM12 24h1v1h-1zM14 24h1v1h-1zM17 24h1v1h-1zM20 24h1v1h-1zM23 24h1v1h-1z"/>
+                </svg>
+                <span class="payment-qr-cap"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/></svg> Naskenujte v bankovní aplikaci</span>
+              </div>
             </div>
           </label>
           <!-- Kreditní / debetní karta -->
           <label class="payment-option">
-            <input type="radio" name="payment" />
-            <div class="payment-option-label">
-              <div class="payment-option-title">Platební karta</div>
-              <div class="payment-option-desc">Budete přesměrováni na platební bránu PayU — Visa, Mastercard, Maestro</div>
-            </div>
             <div class="payment-logos">
               <span class="payment-logo visa">VISA</span>
               <span class="payment-logo mc">MC</span>
@@ -190,18 +174,23 @@
               </span>
               <span class="payment-logo" style="font-size:9px;letter-spacing:.01em;">PayU</span>
             </div>
+            <div class="payment-option-top">
+              <input type="radio" name="payment" />
+              <span class="payment-option-title">Platební karta</span>
+            </div>
+            <div class="payment-option-desc">Budete přesměrováni na platební bránu PayU — Visa, Mastercard, Maestro</div>
           </label>
           <!-- Google Pay / Apple Pay -->
           <label class="payment-option">
-            <input type="radio" name="payment" />
-            <div class="payment-option-label">
-              <div class="payment-option-title">Google Pay / Apple Pay</div>
-              <div class="payment-option-desc">Rychlá platba přes váš mobilní účet</div>
-            </div>
             <div class="payment-logos">
               <span class="payment-logo" style="font-weight:700;">G Pay</span>
               <span class="payment-logo" style="font-weight:700;">Pay</span>
             </div>
+            <div class="payment-option-top">
+              <input type="radio" name="payment" />
+              <span class="payment-option-title">Google Pay / Apple Pay</span>
+            </div>
+            <div class="payment-option-desc">Rychlá platba přes váš mobilní účet</div>
           </label>
 
         </div>
@@ -283,7 +272,7 @@
         <p style="font-size:11px;color:var(--muted);text-align:center;margin:0;line-height:1.5;">Nyní zaplatíte zálohu 30 % ve výši <strong>9 720 Kč</strong>. Zbývajících 22 680 Kč doplatíte ve dvou splátkách 60 a 30 dnů před nástupem.</p>
       </div>
 
-      <div data-component="contactSpecialist"></div>
+      <div data-component="contactSpecialist" data-title="Máte otázky k rezervaci? Ozvěte se Monice."></div>
 
     </div><!-- /bk-sidebar -->
 

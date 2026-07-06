@@ -48,20 +48,7 @@
   </div></nav>
 
   <!-- STEPPER -->
-  <div class="bk-stepper-wrap"><div class="bk-stepper">
-    <a class="bk-step active" href="rezervace-krok-1-v2.html">
-      <div class="bk-step-num">1</div>
-      <div class="bk-step-label">Osobní údaje</div>
-    </a>
-    <a class="bk-step" href="rezervace-krok-2-v2.html">
-      <div class="bk-step-num">2</div>
-      <div class="bk-step-label">Kontrola a platba</div>
-    </a>
-    <a class="bk-step" href="rezervace-potvrzeni.html">
-      <div class="bk-step-num">3</div>
-      <div class="bk-step-label">Hotovo</div>
-    </a>
-  </div></div>
+  <div data-component="stepper" data-current="1" data-steps='[{"label":"Osobní údaje","href":"rezervace-krok-1-v2.html"},{"label":"Kontrola a platba","href":"rezervace-krok-2-v2.html"},{"label":"Hotovo","href":"rezervace-potvrzeni.html"}]'></div>
 
   <!-- OBSAH -->
   <div class="bk-body">
@@ -123,7 +110,7 @@
         <div data-component="bookingGuarantees" data-variant="yacht"></div>
       </div>
 
-      <div data-component="contactSpecialist"></div>
+      <div data-component="contactSpecialist" data-title="Máte otázky k rezervaci? Ozvěte se Monice."></div>
 
     </div><!-- /bk-sidebar -->
 

@@ -52,7 +52,11 @@
   </div>
 
   <div class="detail-wrap">
-    <div class="detail-type-badge">Plachetnice</div>
+    <div class="card-badges">
+      <span class="badge badge-rec">★ Doporučujeme</span>
+      <span class="card-perk card-perk--early"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Dřívější nalodění</span>
+      <span class="card-perk card-perk--motor"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Motor zdarma</span>
+    </div>
     <div class="detail-title-row">
       <h1 class="detail-h1">Bavaria C42 <span style="font-weight:400;color:var(--muted);">"Lady One"</span></h1>
       <div class="detail-controls">
@@ -76,6 +80,21 @@
       <span>· <a href="#sec-mapa">Zobrazit na mapě ↓</a></span>
     </div>
 
+    <!-- GALERIE (mezi hlavičkou a kontextovým menu) -->
+    <div class="gallery" id="sec-galerie">
+      <div class="gal-item gal-item--video">
+        <span class="gal-video-badge">Video</span>
+        <button class="gal-play-btn" type="button" aria-label="Přehrát video">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 21 12 6 21 6 3"/></svg>
+        </button>
+      </div>
+      <div class="gal-item"></div>
+      <div class="gal-item"></div>
+      <div class="gal-item"></div>
+      <div class="gal-item"><div class="gal-more">+12 fotek</div></div>
+    </div>
+    <div class="gal-dots" aria-hidden="true"><span class="gal-dot is-active"></span><span class="gal-dot"></span><span class="gal-dot"></span><span class="gal-dot"></span><span class="gal-dot"></span></div>
+
     <nav class="detail-toc" aria-label="Sekce stránky">
       <div class="detail-toc-inner">
         <div class="detail-toc-title">Bavaria C42 <span class="detail-toc-title-quote">"Lady One"</span></div>
@@ -88,8 +107,9 @@
           <a href="#sec-terminy" class="detail-toc-link">Varianty rezervace</a>
           <a href="#sec-cena" class="detail-toc-link">Cena</a>
           <a href="#sec-podminky" class="detail-toc-link">Podmínky</a>
-          <a href="#sec-recenze" class="detail-toc-link">Hodnocení</a>
           <a href="#sec-faq" class="detail-toc-link">FAQ</a>
+          <a href="#sec-recenze" class="detail-toc-link">Hodnocení</a>
+          <a href="#sec-recenze-list" class="detail-toc-link">Recenze</a>
           <a href="#sec-charter" class="detail-toc-link">Charterovka</a>
           <a href="#sec-mapa" class="detail-toc-link">Mapa</a>
         </div>
@@ -98,20 +118,6 @@
 
     <div class="detail-layout">
       <div class="detail-main">
-
-        <!-- GALERIE -->
-        <div class="gallery" id="sec-galerie">
-          <div class="gal-item gal-item--video">
-            <span class="gal-video-badge">Video</span>
-            <button class="gal-play-btn" type="button" aria-label="Přehrát video">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 21 12 6 21 6 3"/></svg>
-            </button>
-          </div>
-          <div class="gal-item"></div>
-          <div class="gal-item"></div>
-          <div class="gal-item"></div>
-          <div class="gal-item"><div class="gal-more">+12 fotek</div></div>
-        </div>
 
         <!-- TECHNICKÉ PARAMETRY -->
         <div class="detail-section" id="sec-parametry">
@@ -145,6 +151,7 @@
         <!-- VYBAVENÍ -->
         <div class="detail-section" id="sec-vybaveni">
           <div class="detail-section-title">Vybavení lodi</div>
+          <div class="equip-groups">
           <div class="equip-group"><div class="equip-group-name">Paluba</div><div class="equip-list">
             <div class="equip-list-item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Bimini</div>
             <div class="equip-list-item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Dinghy s motorem</div>
@@ -183,6 +190,7 @@
             <div class="equip-list-item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>USB zásuvky</div>
             <div class="equip-list-item missing"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Nepřímé osvětlení kabin</div>
           </div></div>
+          </div>
         </div>
 
         <!-- PŘIOBJEDNAT -->
@@ -202,7 +210,8 @@
         <div class="detail-section" id="sec-popis">
           <div class="detail-section-title">O lodi</div>
           <div class="desc-text">Vydejte se na nezapomenutelnou charterovou plavbu na palubě lodi Bavaria C42, pojmenované Lady One. Moderní plachetnice z roku 2021 od charterové společnosti Navigare Yachting na vás čeká v ACI Marina Split, Chorvatsko. Lady One pojme až 8 osob a je ideální pro pobřežní plavby podél chorvatského pobřeží a ostrovů.</div>
-          <span class="desc-more">Číst více →</span>
+          <div class="desc-text desc-more-text" hidden>Interiér nabízí tři komfortní kajuty se dvěma koupelnami, plně vybavenou lodní kuchyni a prostorný salon s panoramatickými okny. Díky moderní elektronice — autopilot, GPS chartplotter a AIS — zvládnou navigaci i méně zkušení kapitáni. Loď je pravidelně servisovaná a udržovaná v perfektním stavu.<br><br>V ceně pronájmu je koncový úklid, první noc v domovské maríně a turistická taxa. Palivo, přístavní poplatky v cizích marínách a případný skipper si hradíte zvlášť. Bavaria C42 je díky své stabilitě a snadnému ovládání ideální volbou pro rodinnou dovolenou i plavbu s přáteli po chorvatském Jadranu.</div>
+          <span class="desc-more" data-desc-toggle role="button" tabindex="0">Číst více →</span>
         </div>
 
         <!-- DOSTUPNÉ TERMÍNY -->
@@ -363,6 +372,31 @@
 
           </div>
 
+        <div class="sp-sidebar">
+          <div class="sp-sidebar-row">
+            <span class="sp-google-icon" aria-label="Google">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
+            </span>
+            <span class="sp-sidebar-score">5,0</span>
+            <span class="sp-sidebar-stars">★</span>
+          </div>
+          <div class="sp-sidebar-label">Průměrné hodnocení ze <strong>192 recenzí</strong> na Googlu</div>
+          <div class="trust-badge">
+            <span class="trust-badge-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </span>
+            <div class="trust-badge-body">
+              <div class="trust-badge-title">Checked &amp; Trusted</div>
+              <div class="trust-badge-text">Loď i charterová společnost ověřena Yachtnetem</div>
+            </div>
+          </div>
+        </div>
+
           <!-- Pojištění — informativní výpis (nevybírá se zde, lze přidat během rezervace) -->
           <div class="pkg-ins-block" id="sec-pojisteni" style="scroll-margin-top:80px;">
             <div class="pkg-ins-head">
@@ -371,35 +405,35 @@
             </div>
             <div class="pkg-ins-list">
               <div class="pkg-ins-row pkg-ins-row--static">
-                <span class="pkg-ins-row-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                </span>
-                <span class="pkg-ins-row-text">
+                <div class="pkg-ins-row-top">
                   <span class="pkg-ins-row-name">Pojištění kauce</span>
-                  <span class="pkg-ins-row-desc">Vrácení vratné kauce <strong>4 000 €</strong> i při způsobené škodě. Bez papírování po skončení plavby.</span>
-                </span>
+                  <span class="pkg-ins-row-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  </span>
+                </div>
+                <span class="pkg-ins-row-desc">Vrácení vratné kauce <strong>4 000 €</strong> i při způsobené škodě. Bez papírování po skončení plavby.</span>
                 <span class="pkg-ins-row-price">+ 2 500 Kč</span>
               </div>
 
               <div class="pkg-ins-row pkg-ins-row--static">
-                <span class="pkg-ins-row-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </span>
-                <span class="pkg-ins-row-text">
+                <div class="pkg-ins-row-top">
                   <span class="pkg-ins-row-name">Pojištění odpovědnosti</span>
-                  <span class="pkg-ins-row-desc">Krytí škod způsobených třetí osobě nebo cizímu majetku až do <strong>1 000 000 €</strong>.</span>
-                </span>
+                  <span class="pkg-ins-row-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </span>
+                </div>
+                <span class="pkg-ins-row-desc">Krytí škod způsobených třetí osobě nebo cizímu majetku až do <strong>1 000 000 €</strong>.</span>
                 <span class="pkg-ins-row-price">+ 1 800 Kč</span>
               </div>
 
               <div class="pkg-ins-row pkg-ins-row--static">
-                <span class="pkg-ins-row-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
-                </span>
-                <span class="pkg-ins-row-text">
+                <div class="pkg-ins-row-top">
                   <span class="pkg-ins-row-name">Pojištění storna</span>
-                  <span class="pkg-ins-row-desc">Vrácení <strong>až 100 %</strong> ceny rezervace při zrušení z důvodu nemoci, úrazu nebo nečekané události.</span>
-                </span>
+                  <span class="pkg-ins-row-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                  </span>
+                </div>
+                <span class="pkg-ins-row-desc">Vrácení <strong>až 100 %</strong> ceny rezervace při zrušení z důvodu nemoci, úrazu nebo nečekané události.</span>
                 <span class="pkg-ins-row-price">+ 3 200 Kč</span>
               </div>
             </div>
@@ -490,15 +524,28 @@
         </div>
 
         <!-- FAQ -->
+        <div class="detail-section" id="sec-faq">
+          <div class="detail-section-title">Časté dotazy k pronájmu</div>
+          <div class="faq-list">
+            <div class="faq-item"><button class="faq-q">Co se stane při špatném počasí? <span class="faq-q-icon">+</span></button><div class="faq-a">V případě extrémního počasí je kapitán oprávněn zůstat v přístavu. Doporučujeme sjednat si cestovní pojištění.</div></div>
+            <div class="faq-item"><button class="faq-q">Jsem pojištěn při problémech na moři? <span class="faq-q-icon">+</span></button><div class="faq-a">Každá loď je vybavena povinným pojištěním odpovědnosti za škody. Pro pokrytí kauce doporučujeme přiobjednání pojištění kauce.</div></div>
+            <div class="faq-item"><button class="faq-q">Jaký kapitánský průkaz potřebuji? <span class="faq-q-icon">+</span></button><div class="faq-a">Pro plavbu v Chorvatsku je nutný mezinárodní průkaz pro plavbu po moři (např. český MDČR C, ICC nebo ekvivalent) <strong>plus VHF radiooperátorský průkaz</strong>. Bez obou dokladů vám charterovka loď nepředá. Pokud průkaz nemáte, můžete si k pronájmu doobjednat <a href="kapitanske-kurzy.html">profesionálního skipera</a>.</div></div>
+            <div class="faq-item"><button class="faq-q">Jsou v ceně i pohonné hmoty a marína v cílovém přístavu? <span class="faq-q-icon">+</span></button><div class="faq-a">Pohonné hmoty (nafta) <strong>nejsou v ceně</strong> — loď přebíráte i vracíte s plnou nádrží, doplnění hradíte sami (typicky 50–200 € za týden podle stylu plavby). Poplatky za přespání v cizích marínách (20–100 € za noc) jsou rovněž na vás. V ceně je první noc v domovské maríně, koncový úklid lodi a turistická taxa.</div></div>
+            <div class="faq-item"><button class="faq-q">Můžu vzít na palubu dítě nebo psa? <span class="faq-q-icon">+</span></button><div class="faq-a">Děti jsou vítány bez omezení — pro děti do 12 let doporučujeme dětskou plovací vestu (lze rezervovat zdarma v sekci „Služby navíc"). Psi jsou povoleni pouze u lodí s označením <strong>Pet friendly</strong> a obvykle se vztahuje příplatek 50–100 € za pobyt. Vyžádejte si potvrzení charterovky před nástupem.</div></div>
+          </div>
+        </div>
+
         <div class="detail-section" id="sec-recenze">
-          <div class="detail-section-title">Hodnocení a recenze</div>
+          <div class="detail-section-title">Hodnocení lodi</div>
 
           <!-- Souhrn: velké skóre + breakdown podle 4 kritérií -->
           <div class="reviews-summary">
             <div class="reviews-summary-overall">
               <div class="reviews-summary-score">9,2<span class="reviews-summary-scale"> / 10</span></div>
-              <div class="reviews-summary-stars">★</div>
-              <div class="reviews-summary-count">ze 24 recenzí</div>
+              <div class="reviews-summary-overall-meta">
+                <div class="reviews-summary-stars">★</div>
+                <div class="reviews-summary-count">ze 24 recenzí</div>
+              </div>
             </div>
             <div class="reviews-summary-criteria">
               <div class="reviews-criterion-row">
@@ -533,6 +580,12 @@
               </div>
             </div>
           </div>
+
+        </div>
+
+        <!-- RECENZE (pod Častými dotazy) -->
+        <div class="detail-section" id="sec-recenze-list">
+          <div class="detail-section-title">Recenze od hostů</div>
 
           <!-- Seznam recenzí -->
           <div class="reviews-list">
@@ -606,17 +659,6 @@
           </div>
 
           <button type="button" class="reviews-more">Zobrazit všech 24 recenzí →</button>
-        </div>
-
-        <div class="detail-section" id="sec-faq">
-          <div class="detail-section-title">Časté dotazy k pronájmu</div>
-          <div class="faq-list">
-            <div class="faq-item"><button class="faq-q">Co se stane při špatném počasí? <span class="faq-q-icon">+</span></button><div class="faq-a">V případě extrémního počasí je kapitán oprávněn zůstat v přístavu. Doporučujeme sjednat si cestovní pojištění.</div></div>
-            <div class="faq-item"><button class="faq-q">Jsem pojištěn při problémech na moři? <span class="faq-q-icon">+</span></button><div class="faq-a">Každá loď je vybavena povinným pojištěním odpovědnosti za škody. Pro pokrytí kauce doporučujeme přiobjednání pojištění kauce.</div></div>
-            <div class="faq-item"><button class="faq-q">Jaký kapitánský průkaz potřebuji? <span class="faq-q-icon">+</span></button><div class="faq-a">Pro plavbu v Chorvatsku je nutný mezinárodní průkaz pro plavbu po moři (např. český MDČR C, ICC nebo ekvivalent) <strong>plus VHF radiooperátorský průkaz</strong>. Bez obou dokladů vám charterovka loď nepředá. Pokud průkaz nemáte, můžete si k pronájmu doobjednat <a href="kapitanske-kurzy.html">profesionálního skipera</a>.</div></div>
-            <div class="faq-item"><button class="faq-q">Jsou v ceně i pohonné hmoty a marína v cílovém přístavu? <span class="faq-q-icon">+</span></button><div class="faq-a">Pohonné hmoty (nafta) <strong>nejsou v ceně</strong> — loď přebíráte i vracíte s plnou nádrží, doplnění hradíte sami (typicky 50–200 € za týden podle stylu plavby). Poplatky za přespání v cizích marínách (20–100 € za noc) jsou rovněž na vás. V ceně je první noc v domovské maríně, koncový úklid lodi a turistická taxa.</div></div>
-            <div class="faq-item"><button class="faq-q">Můžu vzít na palubu dítě nebo psa? <span class="faq-q-icon">+</span></button><div class="faq-a">Děti jsou vítány bez omezení — pro děti do 12 let doporučujeme dětskou plovací vestu (lze rezervovat zdarma v sekci „Služby navíc"). Psi jsou povoleni pouze u lodí s označením <strong>Pet friendly</strong> a obvykle se vztahuje příplatek 50–100 € za pobyt. Vyžádejte si potvrzení charterovky před nástupem.</div></div>
-          </div>
         </div>
 
         <!-- CHARTEROVÁ SPOLEČNOST -->
@@ -715,46 +757,7 @@
           </div>
         </div>
 
-        <!-- MODEL PANEL -->
-        <div class="detail-section">
-          <div class="model-panel">
-            <div class="model-panel-img"></div>
-            <div>
-              <div class="model-panel-label">Model lodi</div>
-              <a href="detail-modelu.html" class="model-panel-name-link"><div class="model-panel-name">Bavaria C42</div></a>
-              <div class="model-panel-desc">Oblíbená charterová jachta střední velikosti. Výroba: 2017–2023. 12.8 m, 3–4 kajuty.</div>
-              <a href="detail-modelu.html" class="model-panel-link">Zobrazit všechny lodě tohoto modelu →</a>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /detail-main -->
-
-      <!-- STICKY SIDEBAR -->
-      <div class="detail-sidebar">
-        <div class="cta-panel">
-          <div class="cta-price-label">Cena za 7 nocí <span class="cta-price-variant" data-cta-variant hidden></span></div>
-          <div class="cta-price"><span class="cta-price-from">Od</span> <span data-cta-price>36 000 Kč</span></div>
-          <div class="cta-price-fees">+ 12 611 Kč poplatky</div>
-          <div class="cta-price-fees">+ 4 000 € vratná kauce</div>
-          <div class="cta-price-note"><a href="#sec-cena" class="cta-incl-link">Co je v ceně?</a></div>
-          <div class="cta-dates">
-            <label class="cta-date-box">
-              <span class="cta-date-label">Nalodění</span>
-              <span class="cta-date-val">Vybrat datum</span>
-              <input type="date" class="cta-date-input" value="2026-06-13" />
-            </label>
-            <label class="cta-date-box">
-              <span class="cta-date-label">Vylodění</span>
-              <span class="cta-date-val cta-date-val-empty">Vybrat datum</span>
-              <input type="date" class="cta-date-input" />
-            </label>
-          </div>
-          <div class="cta-status-row"><span class="card-status card-status--free"><span class="card-status-dot"></span>Volná</span></div>
-          <a href="#sec-balicky" class="btn-reserve" data-reserve-cta>Vybrat variantu ↓</a>
-          <div class="cta-disclaimer">Rezervace nezavazuje k okamžité platbě</div>
-        </div>
-
+        <!-- KONTAKT NA SPECIALISTU (předposlední sekce) -->
         <div class="contact-box">
           <div class="contact-box-title">Máte otázky k této lodi? Ozvěte se Monice.</div>
           <div class="contact-compact">
@@ -774,34 +777,62 @@
           </div>
         </div>
 
-        <div class="sp-sidebar">
-          <div class="sp-sidebar-row">
-            <span class="sp-google-icon" aria-label="Google">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48" aria-hidden="true">
-                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-              </svg>
-            </span>
-            <span class="sp-sidebar-score">5,0</span>
-            <span class="sp-sidebar-stars">★</span>
-          </div>
-          <div class="sp-sidebar-label">Průměrné hodnocení ze <strong>192 recenzí</strong> na Googlu</div>
-          <div class="trust-badge">
-            <span class="trust-badge-icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-            </span>
-            <div class="trust-badge-body">
-              <div class="trust-badge-title">Checked &amp; Trusted</div>
-              <div class="trust-badge-text">Loď i charterová společnost ověřena Yachtnetem</div>
+        <!-- MODEL PANEL -->
+        <div class="detail-section">
+          <div class="model-panel">
+            <div class="model-panel-img"></div>
+            <div>
+              <div class="model-panel-label">Model lodi</div>
+              <a href="detail-modelu.html" class="model-panel-name-link"><div class="model-panel-name">Bavaria C42</div></a>
+              <div class="model-panel-desc">Oblíbená charterová jachta střední velikosti. Výroba: 2017–2023. 12.8 m, 3–4 kajuty.</div>
+              <a href="detail-modelu.html" class="model-panel-link">Zobrazit všechny lodě tohoto modelu →</a>
             </div>
           </div>
         </div>
+
+      </div><!-- /detail-main -->
+
+      <!-- STICKY SIDEBAR -->
+      <div class="detail-sidebar">
+        <div class="cta-panel">
+          <div class="cta-header">
+            <div class="cta-price"><span class="cta-price-from">Od</span> <span data-cta-price>36 000 Kč</span></div>
+            <div class="cta-header-meta">
+              <div class="cta-price-label">Cena za 7 nocí <span class="cta-price-variant" data-cta-variant hidden></span></div>
+              <div class="cta-price-fees">+ 12 611 Kč poplatky</div>
+              <div class="cta-price-fees">+ 4 000 € vratná kauce</div>
+              <div class="cta-price-note"><a href="#sec-cena" class="cta-incl-link">Co je v ceně?</a></div>
+            </div>
+          </div>
+          <div class="cta-dates">
+            <label class="cta-date-box">
+              <span class="cta-date-label">Nalodění</span>
+              <span class="cta-date-val">Vybrat datum</span>
+              <input type="date" class="cta-date-input" value="2026-06-13" />
+            </label>
+            <label class="cta-date-box">
+              <span class="cta-date-label">Vylodění</span>
+              <span class="cta-date-val cta-date-val-empty">Vybrat datum</span>
+              <input type="date" class="cta-date-input" />
+            </label>
+          </div>
+          <div class="cta-status-row"><span class="card-status card-status--free"><span class="card-status-dot"></span>Volná</span></div>
+          <a href="#sec-balicky" class="btn-reserve" data-reserve-cta>Vybrat variantu ↓</a>
+          <div class="cta-disclaimer">Rezervace nezavazuje k okamžité platbě</div>
+        </div>
+
       </div><!-- /detail-sidebar -->
 
     </div><!-- /detail-layout -->
   </div><!-- /detail-wrap -->
+
+  <!-- Sticky cenový proužek — přichytí se dole po odscrollování cenového bloku (mobil) -->
+  <div class="price-sticky-bar" data-price-sticky hidden>
+    <div class="price-sticky-inner">
+      <div class="price-sticky-price"><span class="price-sticky-from">od</span> <strong data-cta-price>36 000 Kč</strong> <span class="price-sticky-unit">za 7 nocí</span></div>
+      <a href="#sec-balicky" class="btn-reserve price-sticky-btn" data-reserve-cta>Vybrat variantu ↓</a>
+    </div>
+  </div>
 
   <div data-component="footer"></div>
 </div><!-- /page-detail -->

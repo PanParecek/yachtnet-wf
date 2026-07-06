@@ -9,6 +9,25 @@
   // Při změně podoby uprav jen funkci níže — automaticky propagace všude.
   const Components = {
 
+    // Číselný krokovač funnelu (sdílený: rezervace lodi, objednávka kurzu, dárkový poukaz…).
+    // Použití: <div data-component="stepper" data-current="1"
+    //            data-steps='[{"label":"Osobní údaje","href":"rezervace-krok-1-v2.html"},…]'></div>
+    stepper: function(opts) {
+      var steps = [];
+      try { steps = JSON.parse((opts && opts.steps) || '[]'); } catch (e) { steps = []; }
+      var current = parseInt((opts && opts.current) || '1', 10) || 1;
+      var CHECK = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      var inner = steps.map(function(step, i) {
+        var n = i + 1;
+        var state = n < current ? ' done' : (n === current ? ' active' : '');
+        var num = n < current ? CHECK : String(n);
+        var tagOpen = step.href ? '<a class="bk-step' + state + '" href="' + step.href + '">' : '<div class="bk-step' + state + '">';
+        var tagClose = step.href ? '</a>' : '</div>';
+        return tagOpen + '<div class="bk-step-num">' + num + '</div><div class="bk-step-label">' + step.label + '</div>' + tagClose;
+      }).join('');
+      return '<div class="bk-stepper-wrap"><div class="bk-stepper">' + inner + '</div></div>';
+    },
+
     footer: function() {
       return '<footer class="footer">' +
         '<div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-contacts"><a class="footer-nl-contact" href="tel:+420233354050"><span class="footer-nl-contact-label">Rezervace a kurzy</span><span class="footer-nl-contact-val">+420 233 354 050</span></a><a class="footer-nl-contact" href="tel:+420211222940"><span class="footer-nl-contact-label">Non-stop servis</span><span class="footer-nl-contact-val">+420 211 222 940</span></a><a class="footer-nl-contact" href="mailto:info@yachtnet.cz"><span class="footer-nl-contact-val">info@yachtnet.cz</span></a></div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>' +
@@ -324,35 +343,37 @@
         '<div class="bk-card-head"><div class="bk-card-title">Způsob platby</div></div>' +
         '<div class="bk-card-body">' +
           '<label class="payment-option payment-option--bank">' +
-            '<input type="radio" name="payment" checked />' +
-            '<div class="payment-option-label">' +
-              '<div class="payment-option-title">Bankovní převod</div>' +
-              '<div class="payment-option-desc">Platba převodem — objednávku potvrdíme po připsání na náš účet, obvykle do 2–3 pracovních dnů.</div>' +
+            '<div class="payment-option-top">' +
+              '<input type="radio" name="payment" checked />' +
+              '<span class="payment-option-title">Bankovní převod</span>' +
+            '</div>' +
+            '<div class="payment-option-desc">Platba převodem — objednávku potvrdíme po připsání na náš účet, obvykle do 2–3 pracovních dnů.</div>' +
+            '<div class="payment-option-bank-body">' +
               '<div class="bank-details">' +
                 '<div class="bank-detail-row"><span class="bank-detail-l">Číslo účtu</span><span class="bank-detail-v">2701893461 / 2010</span></div>' +
                 '<div class="bank-detail-row"><span class="bank-detail-l">Variabilní symbol</span><span class="bank-detail-v">78421305</span></div>' +
                 '<div class="bank-detail-row"><span class="bank-detail-l">Částka k úhradě</span><span class="bank-detail-v">' + amount + '</span></div>' +
               '</div>' +
-            '</div>' +
-            '<div class="payment-qr">' + qr +
-              '<span class="payment-qr-cap"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/></svg> Naskenujte v bankovní aplikaci</span>' +
+              '<div class="payment-qr">' + qr +
+                '<span class="payment-qr-cap"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/></svg> Naskenujte v bankovní aplikaci</span>' +
+              '</div>' +
             '</div>' +
           '</label>' +
           '<label class="payment-option">' +
-            '<input type="radio" name="payment" />' +
-            '<div class="payment-option-label">' +
-              '<div class="payment-option-title">Platební karta</div>' +
-              '<div class="payment-option-desc">Budete přesměrováni na platební bránu PayU — Visa, Mastercard, Maestro</div>' +
-            '</div>' +
             '<div class="payment-logos"><span class="payment-logo visa">VISA</span><span class="payment-logo mc">MC</span><span class="payment-logo">Maestro</span><span class="payment-logo secure"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>SSL</span><span class="payment-logo" style="font-size:9px;letter-spacing:.01em;">PayU</span></div>' +
+            '<div class="payment-option-top">' +
+              '<input type="radio" name="payment" />' +
+              '<span class="payment-option-title">Platební karta</span>' +
+            '</div>' +
+            '<div class="payment-option-desc">Budete přesměrováni na platební bránu PayU — Visa, Mastercard, Maestro</div>' +
           '</label>' +
           '<label class="payment-option">' +
-            '<input type="radio" name="payment" />' +
-            '<div class="payment-option-label">' +
-              '<div class="payment-option-title">Google Pay / Apple Pay</div>' +
-              '<div class="payment-option-desc">Rychlá platba přes váš mobilní účet</div>' +
-            '</div>' +
             '<div class="payment-logos"><span class="payment-logo" style="font-weight:700;">G Pay</span><span class="payment-logo" style="font-weight:700;">Pay</span></div>' +
+            '<div class="payment-option-top">' +
+              '<input type="radio" name="payment" />' +
+              '<span class="payment-option-title">Google Pay / Apple Pay</span>' +
+            '</div>' +
+            '<div class="payment-option-desc">Rychlá platba přes váš mobilní účet</div>' +
           '</label>' +
         '</div>' +
       '</div>';
@@ -523,7 +544,9 @@
         ]}
       ]},
       { href: 'magazin.html', title: 'Magazín', id: 'page-magazine', group: true, children: [
-        { href: 'detail-clanku.html', title: 'Článek', id: 'page-article' }
+        { href: 'detail-clanku.html', title: 'Článek', id: 'page-article', children: [
+          { href: 'medailonek-autora.html', title: 'Medailonek autora', id: 'page-author' }
+        ]}
       ]},
       { href: 'prihlaseni.html', title: 'Přihlášení', id: 'page-login', group: true, children: [
         { href: 'registrace.html', title: 'Registrace', id: 'page-register' },
@@ -1449,8 +1472,10 @@
     };
     const statusKey = b.status || (b.reserved ? 'reserved' : 'free');
     const status = statusMap[statusKey] || statusMap.free;
-    // Status = jen barevná tečka (bez labelu), umístěná za název modelu. Vysvětlení jen v title.
-    const statusHtml = '<span class="card-status card-status--dot ' + status.cls + '" title="' + status.label + '"><span class="card-status-dot"></span></span>';
+    // Desktop: plná verze (tečka + label) vpravo nahoře v .card-side-top — původní umístění.
+    const statusFullHtml = '<span class="card-status ' + status.cls + '"><span class="card-status-dot"></span>' + status.label + '</span>';
+    // Mobil (přes CSS): jen tečka za názvem modelu, bez labelu — vysvětlení v title. Na desktopu skrytá.
+    const statusDotHtml = '<span class="card-status card-status--dot ' + status.cls + '" title="' + status.label + '"><span class="card-status-dot"></span></span>';
     return `
       <div class="boat-card" data-href="detail-lodi.html" role="link" tabindex="0">
         <div class="card-img" data-img-idx="0" data-img-total="5">
@@ -1461,7 +1486,7 @@
         <div class="card-body">
           <div>
             <div class="card-badges">${rec}${perksHtml}</div>
-            <div class="card-name">${b.name} ${statusHtml}</div>
+            <div class="card-name">${b.name} ${statusDotHtml}</div>
             <div class="card-boat-name">"${b.boatName || "Lady One"}"</div>
             ${ratingHtml}
             <div class="card-marina">🇭🇷 <a href="oblast.html" style="color:var(--int);text-decoration:none;">${b.marina}${MARINA_CITY[b.marina] ? ' (' + MARINA_CITY[b.marina] + ')' : ''}</a></div>
@@ -1474,11 +1499,14 @@
               <div class="spec"><span class="spec-l">WC</span><span class="spec-v">${wc}</span></div>
               <div class="spec"><span class="spec-l">Délka</span><span class="spec-v">${b.len}${lenFt ? ' <span class="spec-sub">(' + lenFt + ')</span>' : ''}</span></div>
             </div>
+            <div class="card-meta"><strong>${b.year}</strong> · <strong>${b.cabins}</strong> kajut · <strong>${b.berths}</strong> lůžek · <strong>${persons}</strong> osob · <strong>${wc}</strong> WC · <strong>${b.len}</strong>${lenFt ? ' <span class="card-meta-ft">(' + lenFt + ')</span>' : ''}</div>
           </div>
           <div class="card-amenities">${tags}</div>
         </div>
         <div class="card-side">
-          <div class="card-side-top"></div>
+          <div class="card-side-top">
+            ${statusFullHtml}
+          </div>
           <div class="card-side-bottom">
             <div class="card-price">
               ${oldPrice}
@@ -1491,6 +1519,7 @@
             </div>
             <div class="card-side-actions">
               <button class="card-icon-btn" type="button" aria-label="Přidat do oblíbených" data-fav-id="${favId}" data-fav-name='${favName.replace(/'/g, "&apos;")}'><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="card-icon-tooltip" role="tooltip">Přidat do oblíbených</span></button>
+              <button class="btn-view" onclick="window.location.href='detail-lodi.html'">Detail →</button>
             </div>
           </div>
         </div>
@@ -1681,6 +1710,24 @@
     const open = answer.style.display === "block";
     answer.style.display = open ? "none" : "block";
     if (icon) icon.textContent = open ? "+" : "−";
+  });
+
+  // ── "Číst více" (O lodi) — rozbalí/sbalí skrytý delší text ──
+  document.addEventListener("click", function(e) {
+    const btn = e.target.closest("[data-desc-toggle]");
+    if (!btn) return;
+    const more = btn.parentElement.querySelector(".desc-more-text");
+    if (!more) return;
+    const willShow = more.hidden;
+    more.hidden = !willShow;
+    btn.textContent = willShow ? "Zobrazit méně ↑" : "Číst více →";
+  });
+  document.addEventListener("keydown", function(e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const btn = e.target.closest("[data-desc-toggle]");
+    if (!btn) return;
+    e.preventDefault();
+    btn.click();
   });
 
   // Hero animace při prvním načtení (page-home se nezobrazuje přes showPage)
@@ -2251,11 +2298,7 @@
     '<div class="nav-select-wrap">' +
       '<svg class="nav-sel-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.5 9h3a2 2 0 0 1 0 4H11v1.5M11 7.5V9"/></svg>' +
       '<select class="nav-select"><option>Kč</option><option>€</option><option>$</option></select>' +
-    '</div>' +
-    '<button class="nav-login-btn" onclick="closeMobileNav();">' +
-      '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' +
-      'Přihlásit se' +
-    '</button>';
+    '</div>';
 
   function closeMobileNav() {
     document.querySelectorAll('.nav-hamburger.open').forEach(function(btn) {
@@ -2297,10 +2340,37 @@
     });
   }
 
+  // Mobilní akce v hlavičce: srdíčko (oblíbené) + panáček (účet), nalevo od hamburgeru.
+  function buildMobileHeaderActions() {
+    var wrap = document.createElement('div');
+    wrap.className = 'nav-mobile-hdr';
+    var fav = document.createElement('button');
+    fav.className = 'nav-icon-btn nav-mobile-hdr-fav';
+    fav.type = 'button';
+    fav.setAttribute('title', 'Oblíbené');
+    fav.setAttribute('aria-label', 'Oblíbené');
+    fav.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+    fav.onclick = function() { window.location.href = 'oblibene.html'; };
+    var user = document.createElement('button');
+    user.className = 'nav-login-btn nav-login-btn--m';
+    user.type = 'button';
+    user.setAttribute('aria-label', 'Účet');
+    user.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+    wrap.appendChild(fav);
+    wrap.appendChild(user);
+    return wrap;
+  }
+
   function initHamburgers() {
     document.querySelectorAll('.nav-inner').forEach(function(inner) {
       var nav = inner.parentElement;
       var existingBtn = inner.querySelector('.nav-hamburger');
+
+      if (!inner.querySelector('.nav-mobile-hdr')) {
+        var mob = buildMobileHeaderActions();
+        if (existingBtn) inner.insertBefore(mob, existingBtn);
+        else inner.appendChild(mob);
+      }
 
       if (existingBtn) {
         // Stránka již má hamburger (page-home) — najít existující menu a propojit
@@ -3409,7 +3479,7 @@
     }
 
     document.querySelectorAll('.team-card[data-tm-name]').forEach(function(card) {
-      card.addEventListener('click', function() { open(card); });
+      card.addEventListener('click', function() { window.location.href = 'medailonek-autora.html'; });
     });
     modal.addEventListener('click', function(e) {
       if (e.target.closest('[data-tm-close]')) close();
@@ -4708,23 +4778,23 @@
   (function initPackagePicker() {
     var radios = document.querySelectorAll('input[name="reservation-package"]');
     if (!radios.length) return;
-    var priceEl    = document.querySelector('[data-cta-price]');
+    var priceEls   = document.querySelectorAll('[data-cta-price]');
     var variantEl  = document.querySelector('[data-cta-variant]');
-    var priceFrom  = document.querySelector('.cta-price .cta-price-from');
+    var priceFroms = document.querySelectorAll('.cta-price-from, .price-sticky-from');
     var ctaBtns    = document.querySelectorAll('[data-reserve-cta]');
 
     var LABELS = { basic: 'Basic', flex: 'Flex', premium: 'Premium' };
-    var DEFAULT_PRICE = priceEl ? priceEl.textContent.trim() : '';
+    var DEFAULT_PRICE = priceEls[0] ? priceEls[0].textContent.trim() : '';
 
     function setSelected(radio) {
       var card = radio.closest('.pkg-card');
       var price = card && card.querySelector('.pkg-price-val');
-      if (priceEl && price) priceEl.textContent = price.textContent.trim();
+      if (price) priceEls.forEach(function(el) { el.textContent = price.textContent.trim(); });
       if (variantEl) {
         variantEl.textContent = '· ' + (LABELS[radio.value] || radio.value);
         variantEl.hidden = false;
       }
-      if (priceFrom) priceFrom.hidden = true;
+      priceFroms.forEach(function(el) { el.hidden = true; });
       ctaBtns.forEach(function(btn) {
         btn.textContent = 'Pokračovat k rezervaci →';
         btn.setAttribute('href', 'rezervace-krok-1-v2.html');
@@ -4733,9 +4803,9 @@
     }
 
     function setUnselected() {
-      if (priceEl) priceEl.textContent = DEFAULT_PRICE;
+      priceEls.forEach(function(el) { el.textContent = DEFAULT_PRICE; });
       if (variantEl) { variantEl.textContent = ''; variantEl.hidden = true; }
-      if (priceFrom) priceFrom.hidden = false;
+      priceFroms.forEach(function(el) { el.hidden = false; });
       ctaBtns.forEach(function(btn) {
         btn.textContent = 'Vybrat variantu ↓';
         btn.setAttribute('href', '#sec-balicky');
@@ -4754,6 +4824,19 @@
     });
     var checked = Array.prototype.find.call(radios, function(r) { return r.checked; });
     if (checked) setSelected(checked); else setUnselected();
+  })();
+
+  // ── STICKY CENOVÝ PROUŽEK — zobrazí se po odscrollování cenového bloku nad viewport ──
+  (function initPriceSticky() {
+    var bar = document.querySelector('[data-price-sticky]');
+    var panel = document.querySelector('.cta-panel');
+    if (!bar || !panel || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries) {
+      var e = entries[0];
+      var show = !e.isIntersecting && e.boundingClientRect.top < 0;
+      bar.hidden = !show;
+    }, { threshold: 0 });
+    io.observe(panel);
   })();
 
   // ── TERM SLIDER ARROWS ─────────────────────────────────
