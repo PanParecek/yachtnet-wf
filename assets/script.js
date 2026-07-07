@@ -28,6 +28,37 @@
       return '<div class="bk-stepper-wrap"><div class="bk-stepper">' + inner + '</div></div>';
     },
 
+    // Navigace uživatelského účtu (sdílená napříč všemi stránkami Mého účtu).
+    // Použití: <div data-component="accountNav" data-active="rezervace"></div>
+    // Na detailových podstránkách (mimo hlavní záložku) přidej data-active-href, aby
+    // aktivní položka odkazovala zpět na nadřazenou stránku sekce (jinak href="#").
+    accountNav: function(opts) {
+      var active = (opts && opts.active) || '';
+      var activeHref = (opts && opts.activeHref) || '#';
+      var ITEMS = [
+        { key: 'rezervace', href: 'seznam-rezervaci.html', label: 'Moje rezervace', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' },
+        { key: 'pojisteni', href: 'moje-pojisteni.html', label: 'Pojištění', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>' },
+        { key: 'posadka', href: 'crew.html', label: 'Členové posádky', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>' },
+        { key: 'prukazy', href: 'prukazy.html', label: 'Průkazy', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>' },
+        { key: 'kurzy', href: 'moje-kurzy.html', label: 'Moje kurzy', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>' },
+        { key: 'udaje', href: 'ucet.html', label: 'Osobní údaje', icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' }
+      ];
+      var itemsHtml = ITEMS.map(function(it) {
+        var isActive = it.key === active;
+        var href = isActive ? activeHref : it.href;
+        return '<a class="account-nav-item' + (isActive ? ' active' : '') + '" href="' + href + '">' + it.icon + it.label + '</a>';
+      }).join('');
+      return '<aside class="account-sidebar">' +
+        '<div class="account-nav-user">' +
+          '<div class="account-nav-avatar"></div>' +
+          '<div class="account-nav-name">Jaroslav Zimmermann</div>' +
+          '<div class="account-nav-email">jara.da.zimmermann@ckpolnimarsaleklegal.cz</div>' +
+        '</div>' +
+        itemsHtml +
+        '<a class="account-nav-item" href="#" style="margin-top:auto;color:var(--muted);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Odhlásit se</a>' +
+      '</aside>';
+    },
+
     footer: function() {
       return '<footer class="footer">' +
         '<div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-contacts"><a class="footer-nl-contact" href="tel:+420233354050"><span class="footer-nl-contact-label">Rezervace a kurzy</span><span class="footer-nl-contact-val">+420 233 354 050</span></a><a class="footer-nl-contact" href="tel:+420211222940"><span class="footer-nl-contact-label">Non-stop servis</span><span class="footer-nl-contact-val">+420 211 222 940</span></a><a class="footer-nl-contact" href="mailto:info@yachtnet.cz"><span class="footer-nl-contact-val">info@yachtnet.cz</span></a></div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>' +
@@ -302,8 +333,8 @@
           '<div class="bk-form-grid">' +
             '<div class="bk-field"><label class="bk-label" for="f-name">Jméno <sup>*</sup></label><input class="bk-input" id="f-name" type="text" placeholder="Např. Jan" /></div>' +
             '<div class="bk-field"><label class="bk-label" for="f-surname">Příjmení <sup>*</sup></label><input class="bk-input" id="f-surname" type="text" placeholder="Např. Novák" /></div>' +
-            '<div class="bk-field"><label class="bk-label" for="f-email">E-mail <sup>*</sup></label><input class="bk-input" id="f-email" type="email" placeholder="jan.novak@email.cz" /></div>' +
-            '<div class="bk-field"><label class="bk-label" for="f-phone">Telefon <sup>*</sup></label><div class="phone-row"><select class="phone-prefix"><option>🇨🇿 +420</option><option>🇸🇰 +421</option><option>🇩🇪 +49</option><option>🇦🇹 +43</option><option>🇵🇱 +48</option><option>🇬🇧 +44</option><option>🇺🇸 +1</option></select><input class="bk-input" id="f-phone" type="tel" placeholder="775 123 456" style="flex:1;" /></div></div>' +
+            '<div class="bk-field bk-field--email"><label class="bk-label" for="f-email">E-mail <sup>*</sup></label><input class="bk-input" id="f-email" type="email" placeholder="jan.novak@email.cz" /></div>' +
+            '<div class="bk-field bk-field--phone"><label class="bk-label" for="f-phone">Telefon <sup>*</sup></label><div class="phone-row"><select class="phone-prefix"><option>🇨🇿 +420</option><option>🇸🇰 +421</option><option>🇩🇪 +49</option><option>🇦🇹 +43</option><option>🇵🇱 +48</option><option>🇬🇧 +44</option><option>🇺🇸 +1</option></select><input class="bk-input" id="f-phone" type="tel" placeholder="775 123 456" style="flex:1;" /></div></div>' +
           '</div>' +
           '<p style="font-size:12px;color:var(--muted);margin-top:14px;line-height:1.6;">Potvrzení a veškerá komunikace bude zaslána na zadaný e-mail. Telefonní číslo slouží pro urgentní kontakt.</p>' +
         '</div>' +
@@ -360,19 +391,19 @@
             '</div>' +
           '</label>' +
           '<label class="payment-option">' +
-            '<div class="payment-logos"><span class="payment-logo visa">VISA</span><span class="payment-logo mc">MC</span><span class="payment-logo">Maestro</span><span class="payment-logo secure"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>SSL</span><span class="payment-logo" style="font-size:9px;letter-spacing:.01em;">PayU</span></div>' +
             '<div class="payment-option-top">' +
               '<input type="radio" name="payment" />' +
               '<span class="payment-option-title">Platební karta</span>' +
             '</div>' +
+            '<div class="payment-logos"><span class="payment-logo visa">VISA</span><span class="payment-logo mc">MC</span><span class="payment-logo">Maestro</span><span class="payment-logo secure"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>SSL</span><span class="payment-logo" style="font-size:9px;letter-spacing:.01em;">PayU</span></div>' +
             '<div class="payment-option-desc">Budete přesměrováni na platební bránu PayU — Visa, Mastercard, Maestro</div>' +
           '</label>' +
           '<label class="payment-option">' +
-            '<div class="payment-logos"><span class="payment-logo" style="font-weight:700;">G Pay</span><span class="payment-logo" style="font-weight:700;">Pay</span></div>' +
             '<div class="payment-option-top">' +
               '<input type="radio" name="payment" />' +
               '<span class="payment-option-title">Google Pay / Apple Pay</span>' +
             '</div>' +
+            '<div class="payment-logos"><span class="payment-logo" style="font-weight:700;">G Pay</span><span class="payment-logo" style="font-weight:700;">Pay</span></div>' +
             '<div class="payment-option-desc">Rychlá platba přes váš mobilní účet</div>' +
           '</label>' +
         '</div>' +
@@ -2362,7 +2393,10 @@
   }
 
   function initHamburgers() {
-    document.querySelectorAll('.nav-inner').forEach(function(inner) {
+    // .bk-nav-inner (booking funnel + potvrzení) sdílí stejný .nav-actions vzor, ale
+    // mobilní hamburger/ikonky se dřív injektovaly jen do .nav-inner — na mobilu/tabletu
+    // tak zmizely veškeré ovladače (telefon, jazyk, měna, účet) beze zbytku.
+    document.querySelectorAll('.nav-inner, .bk-nav-inner').forEach(function(inner) {
       var nav = inner.parentElement;
       var existingBtn = inner.querySelector('.nav-hamburger');
 
@@ -2785,11 +2819,11 @@
   // Na stránce pronajem-lodi.html vykresli výpis lodí hned po načtení.
   if (document.getElementById('boatsGrid')) {
     renderAllBoats();
-    // Uložená alt. varianta karty „fotka nahoře" (viz styles.css .boats-list--photo-top).
-    // Zobrazíš ji přidáním ?variant=photo-top do URL (jen na mobilní šířce < 768px).
-    if (/[?&]variant=photo-top(&|$)/.test(location.search)) {
+    // Výchozí karta na mobilu je „fotka nahoře" (viz styles.css .boats-list--photo-top).
+    // Starší kompaktní variantu (fotka vlevo) zobrazíš přidáním ?variant=compact do URL.
+    if (!/[?&]variant=compact(&|$)/.test(location.search)) {
       document.getElementById('boatsGrid').classList.add('boats-list--photo-top');
-      fitAllAmenityRows(); // změna šířky → přepočítej ořez vybavení
+      fitAllAmenityRows(); // změna varianty → přepočítej ořez vybavení
     }
   }
 
@@ -4958,4 +4992,38 @@
         if (e.key === 'Escape' && modal && !modal.hidden) closeModal();
       });
     }
+  })();
+
+  // ── NAVIGACE MÉHO ÚČTU na mobilu/tabletu — dropdown pod ikonkou panáčka ──
+  // Na stránkách účtu (kde existuje .account-sidebar) přepíná ikonka panáčka v hlavičce
+  // na ≤1024px místo navigace na "Moje rezervace" tento dropdown se seznamem sekcí.
+  // Na desktopu (>1024px) zůstává původní chování (navigace) beze změny.
+  (function initAccountNavDropdown() {
+    var sidebar = document.querySelector('.account-sidebar');
+    if (!sidebar) return;
+    function isCompact() { return window.innerWidth <= 1024; }
+    function closeDropdown() { sidebar.classList.remove('account-sidebar--open'); }
+    function toggleDropdown() { sidebar.classList.toggle('account-sidebar--open'); }
+
+    document.querySelectorAll('.nav-login-btn').forEach(function(btn) {
+      // Přepsat (ne přidat capture listener) — .onclick nastavený dřív v initAuth() je na
+      // stejném elementu (cíli), takže capture-fáze tam nemá přednost před ním a firil by se
+      // až po něm (prohlížeč by stihl navigovat pryč dřív, než capture listener stačil zabránit).
+      var prevOnclick = btn.onclick;
+      btn.onclick = function(e) {
+        if (!isCompact()) { // desktop: ponechat původní chování (navigace)
+          if (typeof prevOnclick === 'function') prevOnclick.call(btn, e);
+          return;
+        }
+        e.preventDefault();
+        toggleDropdown();
+      };
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!sidebar.classList.contains('account-sidebar--open')) return;
+      if (e.target.closest('.account-sidebar') || e.target.closest('.nav-login-btn')) return;
+      closeDropdown();
+    });
+    window.addEventListener('resize', function() { if (!isCompact()) closeDropdown(); });
   })();

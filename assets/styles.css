@@ -1152,7 +1152,13 @@
       .model-card { flex: 0 0 calc((100% - 16px * 2) / 3); }
     }
     @media (max-width: 767px) {
-      .models-grid { margin: 0 -16px; padding: 0 16px 12px; }
+      /* margin/padding trik na scroll-snap kontejneru: Chrome počáteční scrollLeft nastaví
+         rovnou na hodnotu paddingu (jako by "odscrolloval" mezeru pryč hned při vykreslení),
+         takže první karta byla vizuálně nalepená na okraj. Mezera musí být reálný obsah
+         (margin na první/poslední kartě), ne padding kontejneru — ten scroll-snap nesundá. */
+      .models-grid { margin: 0 -16px; padding-bottom: 12px; scroll-padding-left: 16px; }
+      .models-grid > *:first-child { margin-left: 16px; }
+      .models-grid > *:last-child { margin-right: 16px; }
       .model-card { flex: 0 0 240px; }
     }
     .model-img {
@@ -3516,6 +3522,7 @@
     .confirm-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
     .confirm-card-head { padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
     .confirm-card-body { padding: 20px; }
+    .recap-summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px 32px; }
 
     .dl-item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
     .dl-item:last-child { border-bottom: none; }
@@ -3537,7 +3544,10 @@
     .mag-teaser-thumb { width: 64px; height: 44px; background: var(--cross-bg), var(--img-bg); border-radius: 4px; flex-shrink: 0; }
     .mag-teaser-title { font-size: 13px; font-weight: 600; line-height: 1.4; color: var(--text); }
 
-    .confirm-next-steps { max-width: 860px; margin: 0 auto; padding: 0 40px 40px; }
+    .confirm-next-steps { max-width: 860px; margin: 0 auto; padding: 40px 40px; }
+    /* Sekce Založte si účet / Máte otázky — sdílí stejnou max-width/gutter logiku jako
+       .confirm-next-steps, ale ponechává si vlastní padding-bottom (inline v HTML). */
+    .confirm-wrap { max-width: 860px; margin: 0 auto; padding-left: 40px; padding-right: 40px; }
     .next-steps-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
     .next-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .next-step-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
@@ -3982,6 +3992,12 @@
     .account-sidebar > .account-nav-item:last-child { margin-left: auto; }
     /* Odhlásit se je poslední — sedí hned za .account-nav-user (oba jsou posunuté doprava). */
     .account-main { padding: 28px; background: var(--bg); flex: 1; width: 100%; max-width: var(--max); margin: 0 auto; }
+    /* Detail rezervace / Můj kurz — hlavní obsah + boční panel (Akce, kontakt) vedle sebe */
+    .account-main--split { display: grid; grid-template-columns: 1fr 340px; gap: 28px; }
+    /* min-width:0 — bez toho grid sloupec zdědí min-content šířku zanořeného
+       nezalomitelného obsahu (tabulka, dlouhý nadpis…) a "vyfoukne" grid mimo viewport. */
+    .account-main--split > div { min-width: 0; }
+    .account-main-sticky { position: sticky; top: 20px; display: flex; flex-direction: column; gap: 16px; }
     .account-section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 20px; }
     .account-section-title { font-size: 15px; font-weight: 700; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
     .section-title-note { font-size: 12px; font-weight: 500; color: var(--muted); margin-left: 2px; }
@@ -4107,6 +4123,13 @@
     .license-mine-thumb-label { position: absolute; bottom: 10px; left: 12px; background: rgba(30,30,28,.85); color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 4px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
     .license-mine-thumb-zoom { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; background: rgba(30,30,28,.7); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; pointer-events: none; }
     .license-mine-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+    /* Člen posádky (detail) — Identifikace: dvě dl vedle sebe, na 200px štítek (Systémové údaje) */
+    .crew-id-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .crew-syslist { grid-template-columns: 200px 1fr; }
+    .crew-history-row {
+      display: flex; justify-content: space-between; gap: 10px;
+      padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    }
     .license-mine-info dl { display: grid; grid-template-columns: 150px 1fr; row-gap: 12px; column-gap: 14px; margin: 0; font-size: 13px; }
     .license-mine-info dt { color: var(--muted); font-weight: 500; padding-top: 1px; }
     .license-mine-info dd { font-weight: 600; color: var(--text); margin: 0; }
@@ -4133,6 +4156,8 @@
     .badge-pending { background: var(--int-soft); color: var(--int); }
     .badge-done { background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
     .badge-prereserved { background: #fff7ed; color: #c2410c; }
+    .res-card-title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .res-card-price { text-align: right; font-size: 13px; color: var(--muted); }
 
     /* Payment meta v kartách předrezervací */
     .res-payment-meta {
@@ -6387,6 +6412,77 @@
     ════════════════════════════════ */
     @media (max-width: 1024px) {
 
+      /* ── ACCOUNT / DETAIL REZERVACE (tablet + mobil) ── */
+      .account-layout { min-height: auto; }
+      .account-main { padding: 20px 16px; }
+      /* Detail rezervace / Můj kurz — boční panel (Akce, kontakt) pod hlavní obsah, ne vedle
+         (na 1fr 340px by se hlavní sloupec i na tabletu vešel jen do pár desítek/stovek pixelů,
+         a vnořené 3sloupcové mřížky (rate-sum-grid, param-grid) by se do něj vešly namačkané). */
+      .account-main--split { grid-template-columns: 1fr; gap: 20px; }
+      .account-main-sticky { position: static; }
+      /* Crew list — tabulka se nedá rozumně stackovat, ať aspoň scrolluje, ne přeteče stránku */
+      .crew-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+
+      /* Fakturační adresa (vyplněná) — na desktopu 1/3 širokého sloupce, na tabletu/mobilu by to bylo pár desítek px */
+      [data-billing-box] { max-width: none !important; }
+
+      /* Hodnocení (modal) — kritérium na celou šířku, hvězdičky pod popiskem místo vedle (byly vyfouklé) */
+      .rate-criterion { flex-direction: column; align-items: stretch; gap: 8px; }
+      .rate-criterion .rate-stars-input { align-self: flex-start; }
+
+      /* Záložky Rezervace/Smlouvy/Crew/Plavba/Loď — vodorovný scroll místo zalomení/oříznutí */
+      .res-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .res-tabs::-webkit-scrollbar { display: none; }
+      .res-tab { flex-shrink: 0; white-space: nowrap; }
+
+      /* Člen posádky (detail) — Identifikace: 2 dl vedle sebe se mačkaly (150px štítek + zbytek
+         v ~1/2 sloupce), Systémové údaje mělo štítek 200px pevně — na mobilu/tabletu vše pod sebe. */
+      .crew-id-cols { grid-template-columns: 1fr; gap: 20px; }
+      .crew-syslist { grid-template-columns: 130px 1fr; }
+      .crew-history-row { flex-wrap: wrap; }
+
+      /* Přidat člena posádky — E-mail/Telefon potřebují delší obsah než se vejde ve 2 sloupcích, pod sebe */
+      .acc-row:has(input[type="email"]),
+      .acc-row:has(input[type="password"]) { grid-template-columns: 1fr; }
+      /* Select boxy (Pohlaví, Země, Národnost…) — 14px na trigeru i v rozbaleném seznamu možností
+         působilo drobně; 16px navíc na mobilu brání iOS automatickému přiblížení po focusu. */
+      .acc-input, .acc-input option { font-size: 16px; }
+
+      /* Doplňkové služby — cena (a counter u SUP prkna) se nevešly vedle textu a mačkaly se;
+         text (název, štítky, popis) jde na celou šířku, cena/counter na vlastní řádek dole vpravo.
+         flex: 0 0 <šířka> (ne jen flex-basis) — jinak flex-shrink zděděný z .extra-item-info{flex:1}
+         dovolí prohlížeči text smrsknout místo aby cenu/counter zalomil na nový řádek. */
+      .extra-item { flex-wrap: wrap; }
+      .extra-item-info { flex: 0 0 calc(100% - 32px); }
+      .extra-item-price { flex: 0 0 auto; margin-left: auto; }
+      .qty-stepper { flex: 0 0 auto; margin-left: auto; }
+      .extra-item:has(.qty-stepper) .extra-item-price { margin-left: 8px; }
+
+      /* Dokumenty (Faktura, Smlouva…) — odkaz "Stáhnout" se mačkal vedle názvu souboru;
+         název/meta na celou šířku vedle ikony PDF, tlačítko/tlačítka dolů na vlastní řádek. */
+      .doc-item { flex-wrap: wrap; }
+      .doc-info { flex: 0 0 calc(100% - 56px); }
+      .doc-action, .doc-actions { flex: 0 0 auto; margin-left: auto; }
+
+      /* Přehled plateb — řádek (název+status / cena+tlačítko) se nevejde vedle sebe,
+         tlačítko "Uhradit" se překrývalo s textem → cena+tlačítko na vlastní řádek pod název. */
+      .res-pay-row { flex-wrap: wrap; }
+      .res-pay-row-head { flex-basis: 100%; }
+      .res-pay-row-val { margin-left: auto; }
+
+      /* Informace o základně — Parkování / Charterová společnost: štítek (min-width:130px) +
+         hodnota vedle sebe se v úzkém kontejneru lámaly do žebříčku. Na mobilu/tabletu pod sebe. */
+      .plavba-row { flex-direction: column; gap: 2px; }
+      .plavba-row-label { min-width: 0; }
+
+      /* Postup rezervace — kroky v jedné vodorovně posuvné řadě místo 6 vyfouklých sloupců */
+      .res-steps {
+        grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 92px;
+        overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      }
+      .res-steps::-webkit-scrollbar { display: none; }
+      .res-step { min-width: 92px; }
+
       /* Nav */
       .nav-inner,
       .bk-nav-inner { padding: 0 24px; }
@@ -6414,6 +6510,35 @@
       /* Booking */
       .bk-stepper-wrap { padding: 0 24px; }
       .bk-body { padding: 24px 24px 48px; grid-template-columns: 1fr 320px; gap: 20px; }
+      /* Kontaktní formulář (rezervace lodi/kurzu, doplňkové služby): e-mail na celou šířku,
+         telefon vlastní řádek pod ním — do 2 sloupců (Jméno/Příjmení) se stejně nevejde. */
+      .bk-field--email, .bk-field--phone { grid-column: 1 / -1; }
+      /* Shrnutí rezervace na poslední straně — jeden parametr na řádek místo 3 sloupců */
+      .recap-summary-grid { grid-template-columns: 1fr; }
+
+      /* Navigace Mého účtu — místo vodorovné posuvné lišty dropdown pod ikonkou panáčka
+         v hlavičce (viz initAccountNavDropdown v script.js). */
+      .account-sidebar {
+        display: none; position: fixed; top: 56px; right: 16px; z-index: 200;
+        width: 260px; max-width: calc(100vw - 32px);
+        flex-direction: column; flex-wrap: nowrap; align-items: stretch;
+        padding: 6px 0; background: var(--surface);
+        border: 1px solid var(--border); border-radius: var(--radius);
+        box-shadow: 0 10px 30px rgba(0,0,0,.16);
+      }
+      .account-sidebar::after { content: none; }
+      .account-sidebar.account-sidebar--open { display: flex; }
+      .account-nav-user {
+        padding: 12px 16px; margin-right: 0; border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .account-nav-item {
+        padding: 12px 16px; border-bottom: none; white-space: normal;
+      }
+      .account-nav-item.active { border-bottom-color: transparent; background: var(--int-soft); }
+      .account-sidebar > .account-nav-item:last-child {
+        margin-left: 0; border-top: 1px solid var(--border); margin-top: 6px;
+      }
 
       /* Magazine */
       .mag-hero-h1 { font-size: 28px; }
@@ -6660,7 +6785,8 @@
 
       /* Stránka poděkování — "Co vás čeká dál" + karty (Soubory ke stažení, Sledujte nás)
          vertikálně pod sebou na celou šířku, ne ve sloupcích vedle sebe. */
-      .confirm-next-steps { padding: 0 16px 32px; }
+      .confirm-next-steps { padding: 28px 16px 32px; }
+      .confirm-wrap { padding-left: 16px; padding-right: 16px; }
       .next-steps-grid { grid-template-columns: 1fr; gap: 12px; }
       .confirm-body { padding: 24px 16px; grid-template-columns: 1fr; gap: 20px; }
       .mini-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -6719,19 +6845,19 @@
       .auth-content { padding: 24px 0; }
       .auth-card { padding: 24px 20px; border-radius: 8px; }
 
-      /* ── ACCOUNT (mobile) — sidebar horizontálně scrollable ── */
-      .account-layout { min-height: auto; }
-      .account-sidebar { padding: 0; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
-      .account-sidebar::-webkit-scrollbar { display: none; }
-      .account-nav-user {
-        padding: 10px 14px; flex-shrink: 0;
+      /* Karta rezervace (seznam-rezervaci) — kompaktní mobilní přeskládání:
+         thumbnail zmenšen, titulek/štítek smí zalomit, kroky jedou v jedné
+         vodorovně posuvné řadě místo 6 vyfouklých sloupců, cena je souhrnný
+         řádek dole (jedna řádka navíc, žádné plýtvání výškou). */
+      .res-card { display: flex; flex-flow: row wrap; align-items: flex-start; gap: 8px 12px; padding: 12px; }
+      .res-thumb { width: 64px; height: 48px; aspect-ratio: auto; }
+      .res-card > div:not(.res-thumb):not(.res-card-price) { flex: 1 1 0; min-width: 0; }
+      .res-card-title-row { flex-wrap: wrap; }
+      .res-meta { gap: 3px 10px; }
+      .res-card-price {
+        flex-basis: 100%; text-align: right; font-size: 16px; font-weight: 800; color: var(--text);
+        margin-top: 2px; padding-top: 8px; border-top: 1px dashed var(--border);
       }
-      .account-nav-email { display: none; } /* příliš dlouhé pro úzký horizontální bar */
-      .account-nav-item {
-        flex-shrink: 0; padding: 14px 12px; font-size: 13px;
-      }
-      .account-sidebar > .account-nav-item:last-child { margin-left: 0; }
-      .account-main { padding: 20px 16px; }
 
       /* ── COMPANIES ── */
       .alpha-nav { gap: 3px; }

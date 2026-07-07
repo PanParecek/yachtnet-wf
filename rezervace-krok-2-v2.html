@@ -155,18 +155,18 @@
         </div>
       </div>
 
-      <!-- STICKY button (jen samotné tlačítko se přilepuje k spodnímu okraji viewportu) -->
-      <div class="bk-sticky-button">
-        <button class="btn-booking reserve" onclick="window.location.href='rezervace-potvrzeni.html'">Zaplatit zálohu 30 % — 9 720 Kč</button>
-      </div>
-
-      <!-- Statický blok pod sticky tlačítkem — VOP + microtext -->
+      <!-- VOP + microtext — musí být nad CTA tlačítkem (souhlas se odškrtává před platbou, ne po) -->
       <div class="bk-sidebar-cta">
         <div class="vop-row" style="margin:0 0 12px;">
           <input type="checkbox" id="vop" />
           <label for="vop" style="font-size:12px;">Souhlasím s <a href="#" style="color:var(--int);font-weight:600;">VOP</a> a <a href="#" style="color:var(--int);font-weight:600;">Zásadami ochrany osobních údajů</a></label>
         </div>
         <p style="font-size:11px;color:var(--muted);text-align:center;margin:0;line-height:1.5;">Nyní zaplatíte zálohu 30 % ve výši <strong>9 720 Kč</strong>. Zbývajících 22 680 Kč doplatíte ve dvou splátkách 60 a 30 dnů před nástupem.</p>
+      </div>
+
+      <!-- STICKY button (jen samotné tlačítko se přilepuje k spodnímu okraji viewportu) -->
+      <div class="bk-sticky-button">
+        <button class="btn-booking reserve" onclick="window.location.href='rezervace-potvrzeni.html'">Zaplatit zálohu 30 % — 9 720 Kč</button>
       </div>
 
       <div data-component="contactSpecialist" data-title="Máte otázky k rezervaci? Ozvěte se Monice."></div>
