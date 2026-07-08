@@ -26,7 +26,7 @@
        což bez tohoto pravidla protáhne scrollovatelnou šířku dokumentu za hranu viewportu. */
     html, body { overflow-x: hidden; }
     /* position:relative — kotva pro .wf-cmt-overlay (komentáře); padding-top — místo pro fixní .wfbar nahoře. */
-    body { font-family: "Rubik","Inter","Helvetica Neue",Arial,sans-serif; font-size: 14px; color: var(--text); background: var(--bg); width: 100%; position: relative; padding-top: var(--wfbar-h); }
+    body { font-family: "Rubik","Inter","Helvetica Neue",Arial,sans-serif; font-size: 14px; color: var(--text); background: var(--bg); width: 100%; position: relative; }
 
     /* ── WIREFRAME BADGE ─────────────────────────── */
     .wf-badge {
@@ -1210,6 +1210,16 @@
     .sidebar-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
     .sidebar-title { font-size: 14px; font-weight: 700; }
     .sidebar-reset { font-size: 12px; color: var(--int); cursor: pointer; text-decoration: underline; }
+    /* Sticky patička filtru — na desktopu skrytá, zapíná se v ≤1024 (mobil + tablet). */
+    .sidebar-foot { display: none; }
+    .sidebar-apply {
+      display: block; width: 100%; padding: 13px 16px;
+      border: none; border-radius: 8px;
+      background: var(--int); color: #fff;
+      font-family: inherit; font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: background .15s;
+    }
+    .sidebar-apply:hover { background: #5602cc; }
     .search-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
     .chip {
       display: flex; align-items: center; gap: 5px;
@@ -1254,6 +1264,18 @@
     .filter-info:hover .filter-info-tip,
     .filter-info:focus .filter-info-tip { opacity: 1; visibility: visible; }
     .filter-hint { font-size: 11px; color: var(--muted); margin-top: 6px; font-style: italic; }
+    /* Íčko u stavu Předrezervovaná v kartě lodi: karta má overflow:hidden, tak tooltip pod íčko
+       a zarovnaný doprava, aby se nevešel mimo kartu ani nahoru. */
+    .card-status .filter-info-tip {
+      bottom: auto; top: calc(100% + 8px);
+      left: auto; right: -4px; transform: none;
+      width: 230px;
+    }
+    .card-status .filter-info-tip::after {
+      top: auto; bottom: 100%;
+      left: auto; right: 6px; transform: none;
+      border-top-color: transparent; border-bottom-color: #1e1e1c;
+    }
     .filter-search-wrap { position: relative; margin-bottom: 10px; }
     .filter-search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
     .filter-search-input {
@@ -1434,11 +1456,14 @@
       border-right: 1px solid var(--border);
     }
     .card-name { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
-    .card-marina { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    /* Marina + charterovka na jednom řádku, odděleny tečkou */
+    .card-locline { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 0; margin-bottom: 12px; }
+    .card-marina { font-size: 12px; color: var(--muted); margin-bottom: 0; }
     .card-company {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; color: var(--muted); margin-bottom: 12px;
+      font-size: 11px; color: var(--muted); margin-bottom: 0;
     }
+    .card-company::before { content: "·"; margin: 0 8px; color: var(--muted); }
     .card-company svg { color: var(--muted); flex-shrink: 0; }
     .card-company a {
       color: var(--int); text-decoration: none; font-weight: 600;
@@ -1497,6 +1522,8 @@
     .price-from { font-size: 13px; font-weight: 600; color: var(--muted); }
     .price-val { font-size: 22px; font-weight: 700; line-height: 1.1; }
     .price-val--sale { color: var(--int); }
+    /* Sleva v % decentně za přeškrtnutou cenou — bez štítku, fialově. */
+    .price-off { font-size: 11px; font-weight: 700; color: var(--int); letter-spacing: .01em; }
     .price-unit { font-size: 11px; color: var(--muted); }
     .price-fees { font-size: 11px; color: var(--muted); margin-top: 2px; }
     .price-sub { font-size: 11px; color: var(--muted); }
@@ -1963,6 +1990,12 @@
     .mini-cards--scroll.mini-cards--4col > .mini-card {
       flex: 0 0 calc((100% - 14px * 3) / 4);
     }
+    /* .model-thumb-card v mini-cards--scroll slideru (Podobné lodě / K dispozici nyní) —
+       stejná šířka jako .mini-card, komponenta jinak nemá vlastní flex-basis mimo .models-grid. */
+    .mini-cards--scroll > .model-thumb-card {
+      flex: 0 0 calc((100% - 14px * 2) / 3);
+      scroll-snap-align: start;
+    }
     .mini-cards-arrows { display: flex; justify-content: center; gap: 8px; }
 
     /* Sekční hlavička s odkazem + šipkami (Destinace státu apod.) */
@@ -2051,6 +2084,9 @@
     /* Sticky sidebar (detail) */
     .detail-sidebar { position: sticky; top: 116px; display: flex; flex-direction: column; gap: 14px; }
     .detail-sidebar > .contact-box { order: 1; } /* Monika pod Google hodnocení + Checked & Trusted */
+    /* Na desktopu je kontakt na Moniku ve sticky sidebaru vpravo; na mobilu/tabletu (viz @media max-width:1024px)
+       se místo toho zobrazuje kopie dole v hlavním sloupci, protože sidebar se na mobilu přesouvá nahoru. */
+    .detail-main > .contact-box { display: none; }
     .cta-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); }
     /* Hlavička: cena vlevo, meta (za kolik / poplatky / kauce / co je v ceně) vpravo nahoře */
     .cta-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
@@ -2621,7 +2657,6 @@
     .badge { font-size: 10px; font-weight: 700; letter-spacing: .03em; padding: 2px 7px; border-radius: 4px; }
     .badge-rec { background: #facc15; color: #422006; border: 1px solid #ca8a04; font-weight: 800; }
     .badge-dis { background: #dc2626; color: #fff; border: 1px solid #b91c1c; font-weight: 800; }
-    .card-boat-name { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
     .price-old { font-size: 11px; text-decoration: line-through; color: var(--muted); }
     .card-icon-btn { width: 30px; height: 30px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); cursor: pointer; font-size: 14px; position: relative; display: inline-flex; align-items: center; justify-content: center; }
     .card-icon-tooltip {
@@ -3056,6 +3091,9 @@
     .voucher-toggle { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text); }
     .voucher-toggle input { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--int); cursor: pointer; }
     .voucher-form { display: flex; gap: 10px; margin-top: 14px; }
+    /* .voucher-form{display:flex} má vyšší prioritu než UA pravidlo [hidden]{display:none}
+       (author styl vždy vyhraje nad user-agent stylem) — bez tohoto bylo pole vidět vždy. */
+    .voucher-form[hidden] { display: none; }
     .voucher-form .voucher-input { flex: 1; margin: 0; }
     .voucher-form .voucher-apply { flex-shrink: 0; white-space: nowrap; width: auto; }
 
@@ -3567,7 +3605,6 @@
     .filter-group-title    { font-size: 12px; color: var(--text); }
     .equip-group-name      { font-size: 12px; color: var(--text); }
     .card-marina           { font-size: 13px; color: var(--text); }
-    .card-boat-name        { font-size: 13px; color: var(--text); }
     .model-specs           { font-size: 13px; color: var(--text); }
     .pdf-sub               { font-size: 12px; color: var(--text); }
     .extra-desc            { font-size: 12px; color: var(--text); }
@@ -3948,6 +3985,8 @@
       display: flex; align-items: stretch; flex-wrap: wrap;
       position: relative;
     }
+    /* Plovoucí sidebar (doplněný mimo stránky účtu) je čistě dropdown pro ≤1024 — na desktopu skrytý. */
+    .account-sidebar--floating { display: none; }
     /* Šedá linka na celou šířku ve výšce border-bottom nav-itemů.
        Active item má vlastní 2px fialový border, který šedou přepíše ve své šířce. */
     .account-sidebar::after {
@@ -4148,8 +4187,14 @@
     .crew-row { display: grid; grid-template-columns: 2fr 2fr 1fr auto; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
 
     /* Reservations */
-    .res-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; background: var(--surface); margin-bottom: 10px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: start; cursor: pointer; transition: border-color .15s; }
+    .res-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; background: var(--surface); margin-bottom: 10px; display: grid; grid-template-columns: auto 1fr auto; column-gap: 16px; row-gap: 0; align-items: start; cursor: pointer; transition: border-color .15s; }
     .res-card:hover { border-color: var(--int); }
+    /* Rozvržení karty: foto | info | cena v ř.1, pruh se stavy (res-steps) v ř.2 pod info.
+       Na ≤1024 se pruh roztáhne přes celou šířku a začíná už pod fotkou (viz níže). */
+    .res-thumb { grid-column: 1; grid-row: 1; }
+    .res-info { grid-column: 2; grid-row: 1; min-width: 0; }
+    .res-card-price { grid-column: 3; grid-row: 1; }
+    .res-steps { grid-column: 2; grid-row: 2; }
     .res-thumb { width: 80px; aspect-ratio: 3/2; border-radius: 6px; background: var(--cross-bg), var(--img-bg); flex-shrink: 0; }
     .res-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
     .res-meta { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; color: var(--muted); }
@@ -6445,6 +6490,20 @@
       .courses-grid { grid-template-columns: 1fr; gap: 16px; }
       .courses-arrows { display: none; }
 
+      /* Hlavní CTA (Pokračovat / Zaplatit) na mobilu i tabletu: vidět hned od začátku kroku
+         jako plovoucí lišta u spodní hrany, ale jakmile doscrollujeme k jeho původní pozici
+         (v .bk-sidebar nad kontaktem na Moniku), sticky se zruší a tlačítko zůstane na svém
+         přirozeném místě. Přepínání .is-floating + placeholder (bez skoku) řeší initBookingSticky(). */
+      .bk-sticky-button { position: static; margin: 0; }
+      .bk-sticky-button.is-floating {
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 500;
+        padding: 12px 16px;
+        background: var(--surface); border-top: 1px solid var(--border);
+        box-shadow: 0 -6px 20px rgba(0,0,0,.08);
+      }
+      .bk-sticky-ph { flex-shrink: 0; }
+      .bk-body { padding-bottom: 96px; }
+
       /* ── ACCOUNT / DETAIL REZERVACE (tablet + mobil) ── */
       .account-layout { min-height: auto; }
       .account-main { padding: 20px 16px; }
@@ -6466,7 +6525,11 @@
       /* Záložky Rezervace/Smlouvy/Crew/Plavba/Loď — vodorovný scroll místo zalomení/oříznutí */
       .res-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
       .res-tabs::-webkit-scrollbar { display: none; }
-      .res-tab { flex-shrink: 0; white-space: nowrap; }
+      /* Užší taby — dřív měly stejný padding/gap jako na desktopu, takže vypadaly
+         "roztažené" (velká mezera mezi textem a číslem, mezi taby navzájem). */
+      .res-tab { flex-shrink: 0; white-space: nowrap; padding: 10px 10px; gap: 5px; font-size: 13px; }
+      .res-tabs { gap: 2px; }
+      .res-tab-count { min-width: 18px; height: 18px; padding: 0 5px; font-size: 10px; }
 
       /* Člen posádky (detail) — Identifikace: 2 dl vedle sebe se mačkaly (150px štítek + zbytek
          v ~1/2 sloupce), Systémové údaje mělo štítek 200px pevně — na mobilu/tabletu vše pod sebe. */
@@ -6508,8 +6571,11 @@
       .plavba-row { flex-direction: column; gap: 2px; }
       .plavba-row-label { min-width: 0; }
 
-      /* Postup rezervace — kroky v jedné vodorovně posuvné řadě místo 6 vyfouklých sloupců */
+      /* Postup rezervace — kroky v jedné vodorovně posuvné řadě místo 6 vyfouklých sloupců.
+         Pruh se roztáhne přes celou šířku karty (přes všechny sloupce) a začíná už pod fotkou,
+         ať se zbytečně neplýtvá místem. */
       .res-steps {
+        grid-column: 1 / -1; grid-row: 2;
         grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 92px;
         overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
       }
@@ -6529,12 +6595,22 @@
       /* Results */
       .results-layout { grid-template-columns: 260px 1fr; }
       .boats-main { padding: 20px 20px; }
+      /* Sticky patička filtru na mobilu + tabletu — přilepená ke spodku sidebaru (bleed do jeho paddingu). */
+      .sidebar-foot {
+        display: block; position: sticky; bottom: 0;
+        margin: 16px -20px -24px; padding: 12px 20px;
+        background: var(--surface); border-top: 1px solid var(--border);
+        z-index: 5;
+      }
       .card-img { width: 220px; }
       .card-side { width: 160px; }
 
       /* Detail */
       .detail-wrap { padding: 20px 24px 48px; }
       .detail-layout { grid-template-columns: 1fr 280px; gap: 24px; }
+      /* Na mobilu/tabletu se kontakt na Moniku zobrazuje dole v hlavním sloupci, ne v sidebaru */
+      .detail-main > .contact-box { display: block; }
+      .detail-sidebar > .contact-box { display: none; }
       .gallery { grid-template-rows: 170px 170px; }
       .why-grid { grid-template-columns: repeat(2, 1fr); }
       .detail-toc-inner { padding: 0 24px; gap: 16px; }
@@ -6542,7 +6618,7 @@
 
       /* Booking */
       .bk-stepper-wrap { padding: 0 24px; }
-      .bk-body { padding: 24px 24px 48px; grid-template-columns: 1fr 320px; gap: 20px; }
+      .bk-body { padding: 24px 24px 96px; grid-template-columns: 1fr 320px; gap: 20px; }
       /* Kontaktní formulář (rezervace lodi/kurzu, doplňkové služby): e-mail na celou šířku,
          telefon vlastní řádek pod ním — do 2 sloupců (Jméno/Příjmení) se stejně nevejde. */
       .bk-field--email, .bk-field--phone { grid-column: 1 / -1; }
@@ -6724,11 +6800,11 @@
         justify-content: flex-start; font-size: 12px;
       }
       .card-name { font-size: 14px; margin-bottom: 0; }
-      .card-boat-name { font-size: 12px; }
       .card-rating { margin: 1px 0; font-size: 12px; }
       .card-rating-stars { font-size: 12px; }
-      .card-marina { font-size: 12px; margin-bottom: 1px; }
-      .card-company { font-size: 11px; margin-bottom: 4px; }
+      .card-locline { margin-bottom: 4px; }
+      .card-marina { font-size: 12px; margin-bottom: 0; }
+      .card-company { font-size: 11px; margin-bottom: 0; }
       .card-badges { margin-bottom: 3px; }
       .card-badges .badge, .card-badges .card-perk { font-size: 11px; }
       /* Mobil: skrýt původní specs mřížku, zobrazit kompaktní meta řádek + tečku stavu u názvu */
@@ -6772,7 +6848,9 @@
         padding: 10px 0 0; border-top: 1px solid var(--border);
       }
       .boats-list--photo-top .card-side-top { flex-shrink: 0; margin-bottom: 0; }
-      .boats-list--photo-top .card-side-bottom { flex: 1; flex-direction: row; align-items: center; justify-content: flex-end; }
+      /* justify-content:space-between (ne flex-end) — srdíčko (.card-side-actions, order:-1)
+         doleva, cena doprava, místo aby byly obě namačkané u pravého okraje. */
+      .boats-list--photo-top .card-side-bottom { flex: 1; flex-direction: row; align-items: center; justify-content: space-between; }
 
       /* Pagination */
       .pagination { gap: 4px; }
@@ -6865,7 +6943,7 @@
       .bk-step { flex: 1 1 0; }
       .bk-step:first-child { flex: 0 0 auto; }
       .bk-step + .bk-step::before { flex: 1; width: auto; min-width: 20px; margin: 0 6px; }
-      .bk-body { padding: 16px 16px 48px; grid-template-columns: 1fr; gap: 0; }
+      .bk-body { padding: 16px 16px 96px; grid-template-columns: 1fr; gap: 0; }
       .bk-sidebar {
         position: static; max-height: none; overflow: visible;
         margin-top: 24px; scrollbar-width: auto;
@@ -6882,13 +6960,16 @@
          thumbnail zmenšen, titulek/štítek smí zalomit, kroky jedou v jedné
          vodorovně posuvné řadě místo 6 vyfouklých sloupců, cena je souhrnný
          řádek dole (jedna řádka navíc, žádné plýtvání výškou). */
-      .res-card { display: flex; flex-flow: row wrap; align-items: flex-start; gap: 8px 12px; padding: 12px; }
-      .res-thumb { width: 64px; height: 48px; aspect-ratio: auto; }
-      .res-card > div:not(.res-thumb):not(.res-card-price) { flex: 1 1 0; min-width: 0; }
+      /* Karta rezervace na mobilu: foto | info v ř.1, pruh se stavy přes celou šířku v ř.2
+         (začíná pod fotkou), cena vlastní řádek dole. */
+      .res-card { grid-template-columns: auto 1fr; gap: 8px 12px; padding: 12px; }
+      .res-thumb { grid-column: 1; grid-row: 1; width: 64px; height: 48px; aspect-ratio: auto; }
+      .res-info { grid-column: 2; grid-row: 1; }
+      .res-steps { grid-column: 1 / -1; grid-row: 2; }
       .res-card-title-row { flex-wrap: wrap; }
       .res-meta { gap: 3px 10px; }
       .res-card-price {
-        flex-basis: 100%; text-align: right; font-size: 16px; font-weight: 800; color: var(--text);
+        grid-column: 1 / -1; grid-row: 3; text-align: right; font-size: 16px; font-weight: 800; color: var(--text);
         margin-top: 2px; padding-top: 8px; border-top: 1px dashed var(--border);
       }
 
@@ -7001,16 +7082,7 @@
       .auth-card { border-radius: 0; border-left: none; border-right: none; }
     }
 
-    /* ── PLOVOUCÍ WIREFRAME SITEMAP (button + boční panel) ── */
-    .yn-sm-fab {
-      position: fixed; bottom: 16px; right: 16px; z-index: 1200;
-      width: 44px; height: 44px; border-radius: 10px;
-      background: var(--text); color: #fff; border: none; cursor: pointer;
-      display: inline-flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 14px rgba(0,0,0,.22); transition: background .15s, transform .12s;
-    }
-    .yn-sm-fab:hover { background: var(--int); }
-    .yn-sm-fab:active { transform: scale(.94); }
+    /* ── WIREFRAME SITEMAP (boční panel, otevírá se z odkazu Sitemap ve wfbar liště) ── */
     .yn-sm-overlay {
       position: fixed; inset: 0; z-index: 1200;
       background: rgba(0,0,0,.4); opacity: 0; pointer-events: none;
@@ -7053,13 +7125,13 @@
       font-size: 12px; font-weight: 700; color: var(--int); text-decoration: none; text-align: center;
     }
     .yn-sm-foot:hover { background: var(--int-soft); }
-    @media (max-width: 767px) {
-      .yn-sm-fab { bottom: 12px; right: 12px; width: 40px; height: 40px; }
-    }
 
     /* ── WFBAR — horní černá lišta s nástroji wireframu (stejná komponenta jako Potten & Pannen) ── */
     .wfbar {
-      position: fixed; top: 0; left: 0; right: 0; height: var(--wfbar-h); z-index: 1090;
+      /* sticky (ne fixed) — zabírá reálné místo v normal flow, takže .nav (sticky top:var(--wfbar-h))
+         nemusí kompenzovat přes body padding-top. S fixed + body padding-top se offset kvůli
+         html,body{overflow-x:hidden} (dělá z body sticky containing block) sčítal 2× — mezera 40px místo 20px. */
+      position: sticky; top: 0; left: 0; right: 0; height: var(--wfbar-h); z-index: 1090; flex-shrink: 0;
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
       padding: 0 16px; background: #1a1a1a; color: rgba(255,255,255,.85);
       font-size: 11px; line-height: 1; letter-spacing: .02em;
@@ -7271,7 +7343,9 @@
 
     /* ── Mobile nav overlay ── */
     .nav-mobile-menu {
-      display: none; position: fixed; top: 56px; left: 0; right: 0; bottom: 0;
+      /* top = výška hlavičky (56px) + horní WF lišta (--wfbar-h) — jinak menu
+         začínalo uprostřed hlavičky a překrývalo její spodní část. */
+      display: none; position: fixed; top: calc(var(--wfbar-h) + 56px); left: 0; right: 0; bottom: 0;
       z-index: 98; background: var(--surface);
       border-top: 1px solid var(--border);
       overflow-y: auto; padding: 8px 0 32px;
@@ -7329,7 +7403,8 @@
        TABLET ≤ 1024px
     ════════════════════════════════════ */
     @media (max-width: 1024px) {
-      .nav-inner { padding: 0 24px; gap: 5px; }
+      .nav-inner,
+      .bk-nav-inner { padding: 0 24px; gap: 5px; }
       .nav-links  { display: none; }
       .nav-actions { display: none; }
       .nav-hamburger { display: flex; }

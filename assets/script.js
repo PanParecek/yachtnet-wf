@@ -659,17 +659,15 @@
     renderSitemap();
   }
 
-  // ── PLOVOUCÍ WIREFRAME SITEMAP (dostupná na každé stránce) ──
-  // Hamburger button vpravo nahoře otevře boční panel se stromem všech stránek.
+  // ── WIREFRAME SITEMAP PANEL (dostupný na každé stránce) ──
+  // Otevírá se z odkazu Sitemap v horní wfbar liště (viz initWfbar níže) — samostatné
+  // plovoucí tlačítko bylo zrušeno, jakmile lišta nahoře přebrala jeho funkci.
   // Reuse SITEMAP_TREE + renderSitemapNode. Markup se injektuje do <body>.
   function initSitemapWidget() {
-    if (!document.body || document.querySelector('.yn-sm-fab')) return;
+    if (!document.body || document.querySelector('.yn-sm-panel')) return;
     var total = countSitemapNodes(SITEMAP_TREE);
     var tree = '<ul class="sm-tree">' + SITEMAP_TREE.map(function(n) { return '<li>' + renderSitemapNode(n) + '</li>'; }).join('') + '</ul>';
     var html =
-      '<button class="yn-sm-fab" type="button" aria-label="Mapa stránek (wireframe)" aria-expanded="false">' +
-        '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>' +
-      '</button>' +
       '<div class="yn-sm-overlay" data-yn-sm-close hidden></div>' +
       '<aside class="yn-sm-panel" aria-hidden="true" aria-label="Mapa stránek (wireframe)">' +
         '<div class="yn-sm-head">' +
@@ -682,7 +680,6 @@
       '</aside>';
     document.body.insertAdjacentHTML('beforeend', html);
 
-    var fab = document.querySelector('.yn-sm-fab');
     var panel = document.querySelector('.yn-sm-panel');
     var overlay = document.querySelector('.yn-sm-overlay');
 
@@ -697,7 +694,8 @@
       overlay.hidden = false;
       requestAnimationFrame(function() { overlay.classList.add('show'); panel.classList.add('open'); });
       panel.setAttribute('aria-hidden', 'false');
-      fab.setAttribute('aria-expanded', 'true');
+      var smLink = document.querySelector('[data-wfbar-sitemap]');
+      if (smLink) smLink.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
       var cur = panel.querySelector('.sm-node--current');
       if (cur) cur.scrollIntoView({ block: 'center' });
@@ -706,11 +704,19 @@
       panel.classList.remove('open');
       overlay.classList.remove('show');
       panel.setAttribute('aria-hidden', 'true');
-      fab.setAttribute('aria-expanded', 'false');
+      var smLinkClosing = document.querySelector('[data-wfbar-sitemap]');
+      if (smLinkClosing) smLinkClosing.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
       setTimeout(function() { if (!panel.classList.contains('open')) overlay.hidden = true; }, 260);
     }
-    fab.addEventListener('click', openPanel);
+    // Delegace na document — wfbar (a tedy [data-wfbar-sitemap]) se injektuje až později
+    // v initWfbar(), takže v okamžiku volání initSitemapWidget ještě nemusí v DOM existovat.
+    document.addEventListener('click', function(e) {
+      if (e.target.closest && e.target.closest('[data-wfbar-sitemap]')) {
+        e.preventDefault();
+        openPanel();
+      }
+    });
     panel.querySelectorAll('[data-yn-sm-close]').forEach(function(el) { el.addEventListener('click', closePanel); });
     overlay.addEventListener('click', closePanel);
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && panel.classList.contains('open')) closePanel(); });
@@ -1400,7 +1406,7 @@
 
   // ── BOAT DATA ──────────────────────────────────────────
   const BOATS = [
-    { name:"Bavaria C42", boatName:"Lady One", cat:"Plachetnice", marina:"ACI Marina Split", company:"Sunsail", year:2021, len:"12.8 m", cabins:3, berths:6, price:"36 000 Kč", rec:true,
+    { name:"Bavaria C42", boatName:"Lady One", cat:"Plachetnice", marina:"ACI Marina Split", company:"Sunsail", year:2021, len:"12.8 m", cabins:3, berths:6, price:"36 000 Kč", discount:10, rec:true,
       perks:["early-checkin","free-motor"],
       amenities:["Bimini","Autopilot","GPS / Chartplotter","VHF radiostanice","Záchranný balíček","Kokpitový stůl"] },
     { name:"Jeanneau Sun Odyssey 54", boatName:"Blue Wind", cat:"Plachetnice", marina:"Marina Lav", company:"Navigare Yachting", year:2020, len:"16.5 m", cabins:5, berths:10, price:"80 000 Kč", discount:15, status:"prereserved",
@@ -1475,16 +1481,18 @@
     'Marina Zadar': 'Zadar'
   };
 
-  function boatCard(b) {
+  function boatCard(b, _i) {
     // Vybavení: vykreslíme všechny štítky + skrytý „+N" chip. Po renderu je fitAmenityRow()
     // ořízne na jednu řádku a doplní správný počet skrytých do „+N" (nikdy nezalomí na 2 řádky).
     const tags = b.amenities.map(a => `<span class="amenity-tag">${a}</span>`).join("") +
       `<span class="amenity-tag amenity-tag--more" hidden>+0</span>`;
-    const discountBadge = b.discount ? `<span class="badge badge-dis">−${b.discount} %</span>` : "";
+    // Sleva na všech kartách: kdo ji nemá v datech, dostane deterministický fallback (varíruje dle indexu).
+    const disc = b.discount != null ? b.discount : [12, 8, 15, 10, 20, 7][(_i || 0) % 6];
     const rec = b.rec ? `<span class="badge badge-rec">★ Doporučujeme</span>` : "";
-    const oldPriceVal = b.discount ? `${Math.round(parseInt(b.price.replace(/\D/g,"")) / (1 - b.discount/100)).toLocaleString("cs")} Kč` : "";
-    const oldPrice = b.discount ? `<div class="price-old-row"><span class="price-old">${oldPriceVal}</span>${discountBadge}</div>` : "";
-    const priceClass = b.discount ? "price-val price-val--sale" : "price-val";
+    const oldPriceVal = `${Math.round(parseInt(b.price.replace(/\D/g,"")) / (1 - disc/100)).toLocaleString("cs")} Kč`;
+    // Bez štítku — sleva v % jen decentně za přeškrtnutou původní cenou.
+    const oldPrice = `<div class="price-old-row"><span class="price-old">${oldPriceVal}</span><span class="price-off">−${disc} %</span></div>`;
+    const priceClass = "price-val price-val--sale";
     const favId = ((b.name || '') + '-' + (b.boatName || '')).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     const favName = (b.name || '') + (b.boatName ? ' "' + b.boatName + '"' : '');
     const perksHtml = renderPerks(b.perks);
@@ -1498,13 +1506,17 @@
     const ratingHtml = '<div class="card-rating" title="Hodnocení modelu ' + b.name + '"><span class="card-rating-stars">★</span><span class="card-rating-val">' + ratingVal + ' / 10</span><span class="card-rating-count">(' + ratingCount + ' hodnocení)</span></div>';
     const statusMap = {
       reserved:    { cls: 'card-status--reserved',    label: 'Rezervovaná' },
-      prereserved: { cls: 'card-status--prereserved', label: 'Předrezervovaná' },
+      prereserved: { cls: 'card-status--prereserved', label: 'Předrezervovaná', tip: 'Loď je předběžně rezervovaná jiným zájemcem — rezervace zatím není potvrzená a čeká na zaplacení zálohy. Můžete si ji nezávazně poznamenat; pokud předrezervace propadne, dáme vám vědět.' },
       free:        { cls: 'card-status--free',        label: 'Volná' }
     };
     const statusKey = b.status || (b.reserved ? 'reserved' : 'free');
     const status = statusMap[statusKey] || statusMap.free;
+    // Íčko s vysvětlením stavu (stejná komponenta jako u filtru plachet) — jen tam, kde je definovaný tip.
+    const statusTipHtml = status.tip
+      ? '<span class="filter-info" tabindex="0" aria-label="Co znamená ' + status.label + '"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span class="filter-info-tip" role="tooltip">' + status.tip + '</span></span>'
+      : '';
     // Desktop: plná verze (tečka + label) vpravo nahoře v .card-side-top — původní umístění.
-    const statusFullHtml = '<span class="card-status ' + status.cls + '"><span class="card-status-dot"></span>' + status.label + '</span>';
+    const statusFullHtml = '<span class="card-status ' + status.cls + '"><span class="card-status-dot"></span>' + status.label + statusTipHtml + '</span>';
     // Mobil (přes CSS): jen tečka za názvem modelu, bez labelu — vysvětlení v title. Na desktopu skrytá.
     const statusDotHtml = '<span class="card-status card-status--dot ' + status.cls + '" title="' + status.label + '"><span class="card-status-dot"></span></span>';
     return `
@@ -1517,11 +1529,12 @@
         <div class="card-body">
           <div>
             <div class="card-badges">${rec}${perksHtml}</div>
-            <div class="card-name">${b.name} ${statusDotHtml}</div>
-            <div class="card-boat-name">"${b.boatName || "Lady One"}"</div>
+            <div class="card-name">${b.name} · "${b.boatName || "Lady One"}" ${statusDotHtml}</div>
             ${ratingHtml}
-            <div class="card-marina">🇭🇷 <a href="oblast.html" style="color:var(--int);text-decoration:none;">${b.marina}${MARINA_CITY[b.marina] ? ' (' + MARINA_CITY[b.marina] + ')' : ''}</a></div>
-            <div class="card-company"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>Charterovka <a href="charterova-spolecnost.html">${b.company || "Yachtnet partner"}</a></div>
+            <div class="card-locline">
+              <span class="card-marina">🇭🇷 <a href="oblast.html" style="color:var(--int);text-decoration:none;">${b.marina}${MARINA_CITY[b.marina] ? ' (' + MARINA_CITY[b.marina] + ')' : ''}</a></span>
+              <span class="card-company"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>Charterovka <a href="charterova-spolecnost.html">${b.company || "Yachtnet partner"}</a></span>
+            </div>
             <div class="card-specs">
               <div class="spec"><span class="spec-l">Rok</span><span class="spec-v">${b.year}</span></div>
               <div class="spec"><span class="spec-l">Kajuty</span><span class="spec-v">${b.cabins}</span></div>
@@ -1593,8 +1606,12 @@
     var visible = fit;
     for (var j = visible; j < total; j++) tags[j].hidden = true;
     more.textContent = '+' + (total - visible);
-    // pokud „+N" přeteče na druhou řádku, uber štítky po jednom
-    while (visible > 1 && more.offsetTop > firstTop) {
+    // pokud „+N" přeteče na druhou řádku, uber štítky po jednom.
+    // Pozor: .card-body má justify-content:space-between, takže se .card-amenities
+    // (a s ním i tags[0]) posune, jakmile se sníží počet řádků štítků — porovnávat
+    // proti "starému" firstTop (změřenému před skrytím, v jiné poloze) je chyba,
+    // vždy to vyjde jako přetečení. Musí se srovnávat proti aktuální poloze tags[0].
+    while (visible > 1 && more.offsetTop > tags[0].offsetTop) {
       visible--;
       tags[visible].hidden = true;
       more.textContent = '+' + (total - visible);
@@ -1603,6 +1620,13 @@
   function fitAllAmenityRows() {
     document.querySelectorAll('#boatsGrid .card-amenities').forEach(fitAmenityRow);
   }
+  // Karta se může vodorovně zúžit/rozšířit i po prvním vykreslení (změna velikosti okna) —
+  // přepočítat, kolik štítků se vejde na řádek.
+  var amenityResizeTimer = null;
+  window.addEventListener('resize', function() {
+    clearTimeout(amenityResizeTimer);
+    amenityResizeTimer = setTimeout(fitAllAmenityRows, 150);
+  });
 
   function renderAllBoats() {
     const grid = document.getElementById("boatsGrid");
@@ -3292,7 +3316,7 @@
   document.addEventListener('click', function(e) {
     var card = e.target.closest('.boat-card[data-href]');
     if (!card) return;
-    if (e.target.closest('a, button')) return;
+    if (e.target.closest('a, button, .filter-info')) return;
     window.location.href = card.dataset.href;
   });
 
@@ -4998,30 +5022,51 @@
   })();
 
   // ── NAVIGACE MÉHO ÚČTU na mobilu/tabletu — dropdown pod ikonkou panáčka ──
-  // Na stránkách účtu (kde existuje .account-sidebar) přepíná ikonka panáčka v hlavičce
-  // na ≤1024px místo navigace na "Moje rezervace" tento dropdown se seznamem sekcí.
-  // Na desktopu (>1024px) zůstává původní chování (navigace) beze změny.
+  // Přihlášená ikonka panáčka (fialová) má na ≤1024px jediný cíl: otevřít dropdown se
+  // sekcemi účtu. Žádný mezikrok přes stránku „Moje rezervace". Na stránkách účtu je
+  // sidebar vykreslený inline (a slouží i jako dropdown); jinde ho doplníme jako plovoucí
+  // dropdown, aby panáček fungoval stejně na celém webu. Na desktopu (>1024px) zůstává
+  // původní chování (navigace) beze změny.
   (function initAccountNavDropdown() {
-    var sidebar = document.querySelector('.account-sidebar');
-    if (!sidebar) return;
     function isCompact() { return window.innerWidth <= 1024; }
+
+    var sidebar = document.querySelector('.account-sidebar');
+    if (!sidebar && typeof Components !== 'undefined' && Components.accountNav) {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = Components.accountNav({});
+      sidebar = tmp.firstElementChild;
+      if (sidebar) {
+        sidebar.classList.add('account-sidebar--floating');
+        document.body.appendChild(sidebar);
+        // „Odhlásit se" v plovoucím dropdownu (u inline sidebaru to řeší initAuth výše).
+        sidebar.querySelectorAll('.account-nav-item').forEach(function(item) {
+          if (item.textContent.trim() === 'Odhlásit se') {
+            item.addEventListener('click', function(e) {
+              e.preventDefault();
+              try { sessionStorage.removeItem('yn_loggedin'); } catch (err) {}
+              window.location.href = 'index.html';
+            });
+          }
+        });
+      }
+    }
+    if (!sidebar) return;
+
     function closeDropdown() { sidebar.classList.remove('account-sidebar--open'); }
     function toggleDropdown() { sidebar.classList.toggle('account-sidebar--open'); }
 
-    document.querySelectorAll('.nav-login-btn').forEach(function(btn) {
-      // Přepsat (ne přidat capture listener) — .onclick nastavený dřív v initAuth() je na
-      // stejném elementu (cíli), takže capture-fáze tam nemá přednost před ním a firil by se
-      // až po něm (prohlížeč by stihl navigovat pryč dřív, než capture listener stačil zabránit).
-      var prevOnclick = btn.onclick;
-      btn.onclick = function(e) {
-        if (!isCompact()) { // desktop: ponechat původní chování (navigace)
-          if (typeof prevOnclick === 'function') prevOnclick.call(btn, e);
-          return;
-        }
-        e.preventDefault();
-        toggleDropdown();
-      };
-    });
+    // Listener v capture fázi na dokumentu má přednost před .onclick tlačítka (které nastavuje
+    // i obnovuje initAuth → renderNav), takže přesměrování na „Moje rezervace" zachytíme spolehlivě
+    // i po přihlášení během session. Odhlášená ikonka (outline) sem nespadá → otevře login modal.
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.nav-login-btn');
+      if (!btn) return;
+      if (!isCompact()) return;                                       // desktop → původní navigace
+      if (!btn.classList.contains('nav-login-btn--account')) return;  // nepřihlášený → login modal
+      e.preventDefault();
+      e.stopPropagation();
+      toggleDropdown();
+    }, true);
 
     document.addEventListener('click', function(e) {
       if (!sidebar.classList.contains('account-sidebar--open')) return;
@@ -5031,10 +5076,51 @@
     window.addEventListener('resize', function() { if (!isCompact()) closeDropdown(); });
   })();
 
+  // ── STICKY CTA v krocích rezervace (mobil + tablet) ──
+  // CTA je vidět hned od začátku kroku jako plovoucí lišta u spodní hrany, ale jakmile
+  // doscrollujeme k jeho původní pozici (v .bk-sidebar nad kontaktem na Moniku), sticky se
+  // zruší a tlačítko zůstane na svém přirozeném místě. Placeholder drží ve flow stejné místo,
+  // takže při přepnutí nedochází ke skoku. Na desktopu (>1024) řeší přilepení čisté CSS sticky.
+  (function initBookingSticky() {
+    var bars = document.querySelectorAll('.bk-sticky-button');
+    if (!bars.length) return;
+    function isCompact() { return window.innerWidth <= 1024; }
+    bars.forEach(function(bar) {
+      var ph = document.createElement('div');
+      ph.className = 'bk-sticky-ph';
+      ph.setAttribute('aria-hidden', 'true');
+      bar.parentNode.insertBefore(ph, bar);
+
+      function update() {
+        if (!isCompact()) {
+          if (bar.classList.contains('is-floating')) bar.classList.remove('is-floating');
+          ph.style.height = '0px';
+          return;
+        }
+        var floating = bar.classList.contains('is-floating');
+        var barH = bar.offsetHeight;
+        var naturalTop = ph.getBoundingClientRect().top;
+        // Přirozený spodní okraj tlačítka pod spodní hranou viewportu → nechat plavat u dna.
+        if (naturalTop + barH > window.innerHeight) {
+          if (!floating) { ph.style.height = barH + 'px'; bar.classList.add('is-floating'); }
+        } else {
+          // Doscrollováno k původní pozici → ukotvit na místě.
+          if (floating) { bar.classList.remove('is-floating'); ph.style.height = '0px'; }
+        }
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      window.addEventListener('load', update);
+      update();
+    });
+  })();
+
   // ── WFBAR — horní černá lišta s nástroji wireframu (stejná komponenta jako Potten & Pannen) ──
-  // Vlevo název projektu, vpravo Sitemap (přeposílá klik na .yn-sm-fab) a Komentáře
-  // (ovladač si sám přebere initComments() níže). Vkládá se hned, ne až v DOMContentLoaded —
-  // script.js je na stránce až za <body>, takže document.body už existuje.
+  // Vlevo název projektu, vpravo Sitemap (posluchač je na initSitemapWidget() výše, přes
+  // delegaci na document) a Komentáře (ovladač si sám přebere initComments() níže).
+  // Vkládá se hned, ne až v DOMContentLoaded — script.js je na stránce až za <body>,
+  // takže document.body už existuje.
   (function initWfbar() {
     if (window.self !== window.top) return;
     if (!document.body || document.querySelector('.wfbar')) return;
@@ -5047,15 +5133,6 @@
         '</nav>' +
       '</div>';
     document.body.insertAdjacentHTML('afterbegin', html);
-
-    var smLink = document.querySelector('[data-wfbar-sitemap]');
-    if (smLink) {
-      smLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        var fab = document.querySelector('.yn-sm-fab');
-        if (fab) fab.click();
-      });
-    }
   })();
 
   // ── PIN-KOMENTÁŘE — portováno z Potten & Pannen (comments.js), beze změny funkčnosti.
@@ -5766,7 +5843,7 @@
       if (!target.closest) return false;
       return !!target.closest(
         '.wf-cmt-bubble, .wf-cmt-popover, .wf-cmt-modal-backdrop, .wf-cmt-pin,'
-        + ' .yn-sm-panel, .yn-sm-fab, .yn-sm-overlay, .wfbar'
+        + ' .yn-sm-panel, .yn-sm-overlay, .wfbar'
       );
     }
 

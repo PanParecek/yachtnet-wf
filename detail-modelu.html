@@ -39,7 +39,32 @@
   <div class="brand-hero"><div class="brand-hero-inner"><div><div style="font-size:12px;color:var(--muted);margin-bottom:6px;"><a  href="detail-znacky.html" style="color:var(--int);text-decoration:none;">Elan</a> / Modely</div><h1 style="font-size:26px;font-weight:800;margin-bottom:4px;">Elan 45 Impression</h1><div style="font-size:14px;color:var(--muted);">Plachetnice · 13,8 m · 4 kajuty · 8 lůžek</div><button class="btn-view" style="margin-top:16px;" onclick="window.location.href='pronajem-lodi.html'">Všechny Elan 45 Impression →</button></div></div></div>
   <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
     <div class="sec-label">Galerie</div><h2 class="sec-title">Elan 45 Impression ve fotografiích</h2>
-    <div class="gallery-grid"><div class="gallery-cell tall" style="grid-row:span 2;"></div><div class="gallery-cell"></div><div class="gallery-cell"></div><div class="gallery-cell"></div><div class="gallery-cell"></div></div>
+    <!-- Stejná galerie jako na detail-lodi.html, jen bez video dlaždice (žádné video k modelu) -->
+    <div class="gallery" id="sec-galerie">
+      <div class="gal-item"></div>
+      <div class="gal-item"></div>
+      <div class="gal-item"></div>
+      <div class="gal-item"></div>
+      <div class="gal-item"><div class="gal-more">+12 fotek</div></div>
+    </div>
+    <div class="gal-dots" aria-hidden="true"><span class="gal-dot is-active"></span><span class="gal-dot"></span><span class="gal-dot"></span><span class="gal-dot"></span><span class="gal-dot"></span></div>
+  </div></div>
+  <div class="band-alt"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
+    <div class="sec-label">K dispozici nyní</div><h2 class="sec-title" style="margin-bottom:24px;">Konkrétní lodě modelu Elan 45 Impression</h2>
+    <div class="mini-cards-slider">
+      <div class="mini-cards mini-cards--scroll" id="modelBoats">
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Elan 45 · "Mariner"</div><div class="mini-card-meta">ACI Marina Split · 2020 · 4 kajuty</div><div class="mini-card-price">od 52 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Elan 45 · "Adriatic Wind"</div><div class="mini-card-meta">Plachetnice · Marina Trogir · 2019</div><div class="mini-card-price">od 49 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Elan 45 · "Lady One"</div><div class="mini-card-meta">Plachetnice · ACI Marina Split · 2021</div><div class="mini-card-price">od 54 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Elan 45 · "Blue Horizon"</div><div class="mini-card-meta">Plachetnice · Marina Kaštela · 2020</div><div class="mini-card-price">od 51 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Elan 45 · "Sirena"</div><div class="mini-card-meta">Plachetnice · Marina Šibenik · 2022</div><div class="mini-card-price">od 56 000 Kč / týden</div></div></div>
+        <div class="mini-card" onclick="window.location.href='detail-lodi.html'"><div class="mini-card-img"></div><div class="mini-card-body"><div class="mini-card-name">Elan 45 · "Ocean Dream"</div><div class="mini-card-meta">Plachetnice · Marina Zadar · 2021</div><div class="mini-card-price">od 53 000 Kč / týden</div></div></div>
+      </div>
+      <div class="mini-cards-arrows" style="margin-top:16px;">
+        <button class="mini-cards-arrow" type="button" data-target="modelBoats" data-dir="-1" aria-label="Předchozí"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="mini-cards-arrow" type="button" data-target="modelBoats" data-dir="1" aria-label="Další"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
   </div></div>
   <div class="band"><div style="max-width:var(--max);margin:0 auto;padding:32px 28px;">
     <div class="sec-label">Popis</div><h2 class="sec-title">O modelu Elan 45 Impression</h2>
@@ -52,6 +77,33 @@
     <div class="faq-item"><div class="faq-q">Jaká je minimální délka pronájmu?</div><div class="faq-a">Standardně 7 nocí (sobota–sobota). U vybraných charterových společností je možný i kratší pronájem mimo hlavní sezónu.</div></div>
   </div></div>
   <div data-component="footer"></div>
+</div>
+
+<!-- Lightbox pro galerii — stejný jako na detail-lodi.html -->
+<div class="lightbox" id="galleryLightbox" hidden aria-hidden="true" role="dialog" aria-label="Galerie fotek">
+  <button class="lb-close" type="button" data-lb-close aria-label="Zavřít">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <button class="lb-nav lb-nav-prev" type="button" data-lb-prev aria-label="Předchozí">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="lb-nav lb-nav-next" type="button" data-lb-next aria-label="Další">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <div class="lb-stage">
+    <div class="lb-image" id="lbImage" style="--zoom:1;"></div>
+  </div>
+  <div class="lb-toolbar">
+    <div class="lb-zoom-group">
+      <button class="lb-zoom-btn" type="button" data-lb-zoom="-1" aria-label="Zmenšit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+      <button class="lb-zoom-btn" type="button" data-lb-zoom="1" aria-label="Zvětšit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="lb-thumbs" id="lbThumbs"></div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════
