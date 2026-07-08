@@ -61,7 +61,7 @@
 
     footer: function() {
       return '<footer class="footer">' +
-        '<div class="footer-newsletter"><div class="footer-nl-title">Získejte vždy čerstvé informace<br>ze světa jachtingu!</div><div class="footer-nl-contacts"><a class="footer-nl-contact" href="tel:+420233354050"><span class="footer-nl-contact-label">Rezervace a kurzy</span><span class="footer-nl-contact-val">+420 233 354 050</span></a><a class="footer-nl-contact" href="tel:+420211222940"><span class="footer-nl-contact-label">Non-stop servis</span><span class="footer-nl-contact-val">+420 211 222 940</span></a><a class="footer-nl-contact" href="mailto:info@yachtnet.cz"><span class="footer-nl-contact-val">info@yachtnet.cz</span></a></div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>' +
+        '<div class="footer-newsletter"><div class="footer-nl-contacts"><a class="footer-nl-contact" href="tel:+420233354050"><span class="footer-nl-contact-label">Rezervace a kurzy</span><span class="footer-nl-contact-val">+420 233 354 050</span></a><a class="footer-nl-contact" href="tel:+420211222940"><span class="footer-nl-contact-label">Non-stop servis</span><span class="footer-nl-contact-val">+420 211 222 940</span></a><a class="footer-nl-contact" href="mailto:info@yachtnet.cz"><span class="footer-nl-contact-val">info@yachtnet.cz</span></a></div><div class="footer-nl-title">Zajímavosti, novinky, články, ale třeba i slevové akce přímo do vaší schránky!</div><div class="footer-nl-form"><div class="footer-nl-row"><input class="footer-nl-input" type="email" placeholder="Vaše e-mailová adresa" /><button class="footer-nl-btn">Odebírat</button></div><label class="footer-nl-consent"><input type="checkbox" /> Souhlasím se zásadami ochrany osobních údajů</label></div></div>' +
         '<div class="footer-cols-wrap"><div class="footer-cols">' +
           '<div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Kariéra</a></li><li><a href="mapa-stranek.html">Mapa stránek</a></li></ul></div>' +
           '<div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="detail-kategorie.html">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>' +
@@ -3219,6 +3219,9 @@
         }
       });
     }
+    // Stejná "fotka nahoře" karta jako na pronajem-lodi.html (viz styles.css .boats-list--photo-top,
+    // efekt jen na mobilu — pravidla jsou uvnitř @media max-width:767px).
+    grid.classList.add('boats-list--photo-top');
     render();
   })();
 
@@ -5026,4 +5029,793 @@
       closeDropdown();
     });
     window.addEventListener('resize', function() { if (!isCompact()) closeDropdown(); });
+  })();
+
+  // ── WFBAR — horní černá lišta s nástroji wireframu (stejná komponenta jako Potten & Pannen) ──
+  // Vlevo název projektu, vpravo Sitemap (přeposílá klik na .yn-sm-fab) a Komentáře
+  // (ovladač si sám přebere initComments() níže). Vkládá se hned, ne až v DOMContentLoaded —
+  // script.js je na stránce až za <body>, takže document.body už existuje.
+  (function initWfbar() {
+    if (window.self !== window.top) return;
+    if (!document.body || document.querySelector('.wfbar')) return;
+    var html =
+      '<div class="wfbar" role="region" aria-label="Wireframe nástroje">' +
+        '<span class="wfbar__brand">Yachtnet wireframe</span>' +
+        '<nav class="wfbar__links" aria-label="Nástroje wireframu">' +
+          '<a class="wfbar__link" href="#" data-wfbar-sitemap>Sitemap</a>' +
+          '<a class="wfbar__link" href="#" data-wfbar-comments>Komentáře <span class="wfbar__count" data-wfbar-cmt-count>(0)</span></a>' +
+        '</nav>' +
+      '</div>';
+    document.body.insertAdjacentHTML('afterbegin', html);
+
+    var smLink = document.querySelector('[data-wfbar-sitemap]');
+    if (smLink) {
+      smLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        var fab = document.querySelector('.yn-sm-fab');
+        if (fab) fab.click();
+      });
+    }
+  })();
+
+  // ── PIN-KOMENTÁŘE — portováno z Potten & Pannen (comments.js), beze změny funkčnosti.
+  // Sdílí stejný Supabase backend (publishable klíč, veřejný záměrně), stránky odlišuje
+  // prefixem 'yn-' místo 'pp-'. Ovladač komentářů = odkaz [data-wfbar-comments] ve wfbaru.
+  (function initComments() {
+    'use strict';
+
+    var SUPABASE_URL = 'https://comzoybjvsglnhftnqgr.supabase.co';
+    var SUPABASE_KEY = 'sb_publishable_4PkGzHCUGmnEg_tf86e5Gg_r9l52XCN';
+    var SUPABASE_HEADERS = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+    };
+
+    function getPageId() {
+      var path = window.location.pathname;
+      if (path.indexOf('/_backup/') !== -1) return null;
+      path = path.replace(/\/+$/, '');
+      var name = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+      if (name.indexOf('.') === -1) name += '.html';
+      return 'yn-' + name;
+    }
+
+    var PAGE_ID = getPageId();
+    if (PAGE_ID === null) return;
+
+    var comments = [];
+    var commentMode = false;
+    var draftPin = null;
+    var openPopover = null;
+    var reviewerName = null;
+    try { reviewerName = localStorage.getItem('wf-reviewer-name') || null; } catch (e) {}
+
+    function formatTimestamp(iso) {
+      try {
+        var d = new Date(iso);
+        return d.toLocaleString('en-GB', {
+          year: 'numeric', month: 'short', day: '2-digit',
+          hour: '2-digit', minute: '2-digit',
+        });
+      } catch (e) { return iso; }
+    }
+
+    function getRoots() { return comments.filter(function (c) { return !c.parent_id; }); }
+    function getReplies(rootId) {
+      return comments.filter(function (c) { return c.parent_id === rootId; });
+    }
+    function getOpenRootCount() {
+      return getRoots().filter(function (c) { return !c.resolved; }).length;
+    }
+
+    function fetchComments() {
+      var url = SUPABASE_URL + '/rest/v1/comments?page=eq.'
+        + encodeURIComponent(PAGE_ID) + '&order=created_at.asc';
+      return fetch(url, { headers: SUPABASE_HEADERS })
+        .then(function (r) { if (!r.ok) throw new Error('Fetch failed: ' + r.status); return r.json(); });
+    }
+
+    function insertComment(payload) {
+      return fetch(SUPABASE_URL + '/rest/v1/comments', {
+        method: 'POST',
+        headers: Object.assign({}, SUPABASE_HEADERS, { 'Prefer': 'return=representation' }),
+        body: JSON.stringify(payload),
+      }).then(function (r) {
+        if (!r.ok) throw new Error('Insert failed: ' + r.status);
+        return r.json();
+      }).then(function (data) { return data[0]; });
+    }
+
+    function updateComment(id, payload) {
+      var url = SUPABASE_URL + '/rest/v1/comments?id=eq.' + encodeURIComponent(id);
+      return fetch(url, {
+        method: 'PATCH',
+        headers: Object.assign({}, SUPABASE_HEADERS, { 'Prefer': 'return=representation' }),
+        body: JSON.stringify(payload),
+      }).then(function (r) {
+        if (!r.ok) throw new Error('Update failed: ' + r.status);
+        return r.json();
+      }).then(function (data) { return data[0]; });
+    }
+
+    function showNameModal(onSaved) {
+      var backdrop = document.createElement('div');
+      backdrop.className = 'wf-cmt-modal-backdrop';
+      var modal = document.createElement('div');
+      modal.className = 'wf-cmt-modal';
+
+      var h = document.createElement('h3'); h.textContent = "What's your name?";
+      var p = document.createElement('p'); p.textContent = "We'll use this to label your comments.";
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.maxLength = 60;
+      input.placeholder = 'e.g. Marek';
+      input.value = reviewerName || '';
+
+      var actions = document.createElement('div');
+      actions.className = 'wf-cmt-modal-actions';
+      var cancelBtn = document.createElement('button');
+      cancelBtn.className = 'wf-cmt-btn wf-cmt-btn-secondary';
+      cancelBtn.type = 'button';
+      cancelBtn.textContent = 'Cancel';
+      var saveBtn = document.createElement('button');
+      saveBtn.className = 'wf-cmt-btn wf-cmt-btn-primary';
+      saveBtn.type = 'button';
+      saveBtn.textContent = 'Save';
+
+      actions.appendChild(cancelBtn);
+      actions.appendChild(saveBtn);
+      modal.appendChild(h);
+      modal.appendChild(p);
+      modal.appendChild(input);
+      modal.appendChild(actions);
+      backdrop.appendChild(modal);
+      document.body.appendChild(backdrop);
+      input.focus();
+      input.select();
+
+      function close() { backdrop.remove(); }
+      function save() {
+        var name = input.value.trim().substring(0, 60);
+        if (!name) { input.focus(); return; }
+        reviewerName = name;
+        try { localStorage.setItem('wf-reviewer-name', name); } catch (e) {}
+        close();
+        if (onSaved) onSaved();
+      }
+      cancelBtn.addEventListener('click', close);
+      saveBtn.addEventListener('click', save);
+      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') save(); });
+      backdrop.addEventListener('click', function (e) { if (e.target === backdrop) close(); });
+    }
+
+    function ensureName(callback) {
+      if (reviewerName) { callback(); return; }
+      showNameModal(callback);
+    }
+
+    var bubbleEl = null;
+    var badgeEl = null;
+    var usingBar = false;
+
+    var BUBBLE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>';
+    var CLOSE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+
+    function setBubbleIcon(on) {
+      if (!bubbleEl) return;
+      var svg = bubbleEl.querySelector('svg');
+      if (svg) svg.outerHTML = on ? CLOSE_SVG : BUBBLE_SVG;
+    }
+
+    function renderBubble() {
+      var barLink = document.querySelector('[data-wfbar-comments]');
+      if (barLink) {
+        usingBar = true;
+        bubbleEl = barLink;
+        badgeEl = barLink.querySelector('[data-wfbar-cmt-count]');
+        barLink.addEventListener('click', function (e) { e.preventDefault(); setCommentMode(!commentMode); });
+        return;
+      }
+      bubbleEl = document.createElement('button');
+      bubbleEl.className = 'wf-cmt-bubble';
+      bubbleEl.type = 'button';
+      bubbleEl.title = 'Toggle comment mode';
+      bubbleEl.setAttribute('aria-label', 'Toggle comment mode');
+      bubbleEl.innerHTML = BUBBLE_SVG + '<span class="wf-cmt-bubble-badge hidden">0</span>';
+      badgeEl = bubbleEl.querySelector('.wf-cmt-bubble-badge');
+      bubbleEl.addEventListener('click', function () { setCommentMode(!commentMode); });
+      document.body.appendChild(bubbleEl);
+    }
+
+    function updateBadge() {
+      var n = getOpenRootCount();
+      if (badgeEl) {
+        if (usingBar) {
+          badgeEl.textContent = '(' + n + ')';
+        } else if (n === 0) {
+          badgeEl.classList.add('hidden');
+        } else {
+          badgeEl.classList.remove('hidden'); badgeEl.textContent = String(n);
+        }
+      }
+      setSidepanelBadgeForCurrentPage(n);
+    }
+
+    function pageFromHref(href) {
+      if (!href) return null;
+      var name = href.split('#')[0].split('?')[0];
+      name = name.split('/').pop();
+      return 'yn-' + (name || 'index.html');
+    }
+
+    function setTreeBadge(anchor, n) {
+      var existing = anchor.querySelector('.wf-cmt-tree-badge');
+      if (n <= 0) { if (existing) existing.remove(); return; }
+      if (existing) { existing.textContent = String(n); return; }
+      var badge = document.createElement('span');
+      badge.className = 'wf-cmt-tree-badge';
+      badge.textContent = String(n);
+      var idTag = anchor.querySelector('.sm-node-id');
+      if (idTag) anchor.insertBefore(badge, idTag); else anchor.appendChild(badge);
+    }
+
+    function setSidepanelBadgeForCurrentPage(n) {
+      document.querySelectorAll('.sm-node[href]').forEach(function (a) {
+        if (pageFromHref(a.getAttribute('href')) === PAGE_ID) setTreeBadge(a, n);
+      });
+    }
+
+    function fetchOpenCountsPerPage() {
+      var url = SUPABASE_URL + '/rest/v1/comments?select=page&parent_id=is.null&resolved=eq.false';
+      return fetch(url, { headers: SUPABASE_HEADERS })
+        .then(function (r) {
+          if (!r.ok) throw new Error('Counts fetch: ' + r.status);
+          return r.json();
+        })
+        .then(function (rows) {
+          var counts = {};
+          rows.forEach(function (r) { counts[r.page] = (counts[r.page] || 0) + 1; });
+          return counts;
+        });
+    }
+
+    function annotateSidepanel(counts) {
+      document.querySelectorAll('.sm-node[href]').forEach(function (a) {
+        var page = pageFromHref(a.getAttribute('href'));
+        if (!page) return;
+        setTreeBadge(a, counts[page] || 0);
+      });
+    }
+
+    function setCommentMode(on) {
+      commentMode = on;
+      if (on) {
+        document.body.classList.add('wf-cmt-mode');
+        bubbleEl.classList.add('active');
+        setBubbleIcon(true);
+      } else {
+        document.body.classList.remove('wf-cmt-mode');
+        bubbleEl.classList.remove('active');
+        setBubbleIcon(false);
+        cancelDraftPin();
+      }
+    }
+
+    var overlayEl = null;
+
+    function renderOverlay() {
+      overlayEl = document.createElement('div');
+      overlayEl.className = 'wf-cmt-overlay';
+      document.body.appendChild(overlayEl);
+      syncOverlayHeight();
+      window.addEventListener('resize', syncOverlayHeight);
+    }
+
+    function syncOverlayHeight() {
+      if (!overlayEl) return;
+      overlayEl.style.height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight
+      ) + 'px';
+    }
+
+    function renderPins() {
+      if (!overlayEl) return;
+      while (overlayEl.firstChild) overlayEl.removeChild(overlayEl.firstChild);
+
+      var roots = getRoots();
+      roots.forEach(function (root, idx) {
+        var pinEl = createPinEl(root, idx + 1);
+        overlayEl.appendChild(pinEl);
+      });
+      updateBadge();
+      syncOverlayHeight();
+    }
+
+    function createPinEl(comment, displayNumber) {
+      var pinEl = document.createElement('button');
+      pinEl.className = 'wf-cmt-pin color-' + pinColorOf(comment)
+        + (comment.resolved ? ' resolved' : '');
+      pinEl.type = 'button';
+      pinEl.style.left = comment.x_pct + '%';
+      pinEl.style.top = comment.y_pct_px + 'px';
+      pinEl.textContent = String(displayNumber);
+      pinEl.setAttribute('aria-label', 'Comment #' + displayNumber);
+      pinEl.addEventListener('mousedown', function (e) {
+        if (e.button !== 0) return;
+        e.preventDefault();
+        e.stopPropagation();
+        startPinDrag(e, comment, pinEl);
+      });
+      return pinEl;
+    }
+
+    var DRAG_THRESHOLD_PX = 5;
+    var dragState = null;
+
+    function startPinDrag(e, comment, pinEl) {
+      dragState = {
+        dragging: false,
+        comment: comment,
+        pinEl: pinEl,
+        startX: e.clientX,
+        startY: e.clientY,
+        origLeft: pinEl.style.left,
+        origTop: pinEl.style.top,
+      };
+      document.addEventListener('mousemove', onPinDragMove);
+      document.addEventListener('mouseup', onPinDragEnd);
+    }
+
+    function pinPositionFromEvent(e) {
+      var width = Math.max(document.body.scrollWidth, document.documentElement.scrollWidth);
+      var docX = e.clientX + window.scrollX;
+      var docY = e.clientY + window.scrollY;
+      return {
+        x_pct: parseFloat((docX / width * 100).toFixed(2)),
+        y_pct_px: Math.round(docY),
+      };
+    }
+
+    function onPinDragMove(e) {
+      if (!dragState) return;
+      var dx = e.clientX - dragState.startX;
+      var dy = e.clientY - dragState.startY;
+      if (!dragState.dragging) {
+        if (Math.abs(dx) < DRAG_THRESHOLD_PX && Math.abs(dy) < DRAG_THRESHOLD_PX) return;
+        dragState.dragging = true;
+        dragState.pinEl.classList.add('dragging');
+        document.body.style.userSelect = 'none';
+        closePopover();
+      }
+      var pos = pinPositionFromEvent(e);
+      dragState.pinEl.style.left = pos.x_pct + '%';
+      dragState.pinEl.style.top = pos.y_pct_px + 'px';
+    }
+
+    function onPinDragEnd(e) {
+      if (!dragState) return;
+      document.removeEventListener('mousemove', onPinDragMove);
+      document.removeEventListener('mouseup', onPinDragEnd);
+      var state = dragState;
+      dragState = null;
+
+      if (!state.dragging) {
+        openCommentPopover(state.comment, state.pinEl);
+        return;
+      }
+
+      state.pinEl.classList.remove('dragging');
+      document.body.style.userSelect = '';
+      var pos = pinPositionFromEvent(e);
+      var comment = state.comment;
+      updateComment(comment.id, { x_pct: pos.x_pct, y_pct_px: pos.y_pct_px }).then(function (updated) {
+        var idx = comments.findIndex(function (c) { return c.id === comment.id; });
+        if (idx >= 0) comments[idx] = updated;
+        comment.x_pct = updated.x_pct;
+        comment.y_pct_px = updated.y_pct_px;
+      }).catch(function (err) {
+        state.pinEl.style.left = state.origLeft;
+        state.pinEl.style.top = state.origTop;
+        console.warn('[wf-cmt] Failed to save pin position:', err);
+      });
+    }
+
+    function createDraftPinEl(x_pct, y_pct_px) {
+      var pinEl = document.createElement('div');
+      pinEl.className = 'wf-cmt-pin draft';
+      pinEl.style.left = x_pct + '%';
+      pinEl.style.top = y_pct_px + 'px';
+      pinEl.textContent = '+';
+      overlayEl.appendChild(pinEl);
+      return pinEl;
+    }
+
+    function closePopover() {
+      if (openPopover) {
+        openPopover.el.remove();
+        openPopover = null;
+      }
+    }
+
+    function positionPopover(popoverEl, anchorEl) {
+      var anchorRect = anchorEl.getBoundingClientRect();
+      var popRect = popoverEl.getBoundingClientRect();
+      var vw = window.innerWidth, vh = window.innerHeight;
+      var sx = window.scrollX, sy = window.scrollY;
+
+      var left = anchorRect.right + 12 + sx;
+      var top = anchorRect.top + sy;
+
+      if (left + popRect.width > sx + vw - 8) {
+        left = anchorRect.left + sx - popRect.width - 12;
+      }
+      if (left < sx + 8) left = sx + 8;
+      if (top + popRect.height > sy + vh - 8) {
+        top = sy + vh - popRect.height - 8;
+      }
+      if (top < sy + 8) top = sy + 8;
+
+      popoverEl.style.left = left + 'px';
+      popoverEl.style.top = top + 'px';
+    }
+
+    var COLORS = ['red', 'green', 'orange', 'blue', 'pink'];
+
+    function pinColorOf(comment) {
+      var c = comment && comment.color;
+      return COLORS.indexOf(c) === -1 ? 'red' : c;
+    }
+
+    function buildColorPicker(currentColor, onChange) {
+      var picker = document.createElement('div');
+      picker.className = 'wf-cmt-color-picker';
+      COLORS.forEach(function (color) {
+        var sw = document.createElement('button');
+        sw.type = 'button';
+        sw.className = 'wf-cmt-color-swatch color-' + color
+          + (color === currentColor ? ' active' : '');
+        sw.setAttribute('aria-label', 'Set color: ' + color);
+        sw.setAttribute('data-color', color);
+        sw.addEventListener('click', function (e) {
+          e.stopPropagation();
+          picker.querySelectorAll('.wf-cmt-color-swatch').forEach(function (s) {
+            s.classList.toggle('active', s.getAttribute('data-color') === color);
+          });
+          onChange(color);
+        });
+        picker.appendChild(sw);
+      });
+      return picker;
+    }
+
+    function buildPopoverShell(title) {
+      var pop = document.createElement('div');
+      pop.className = 'wf-cmt-popover';
+
+      var header = document.createElement('div');
+      header.className = 'wf-cmt-popover-header';
+      var titleEl = document.createElement('div');
+      titleEl.className = 'wf-cmt-popover-title';
+      titleEl.textContent = title;
+      var closeBtn = document.createElement('button');
+      closeBtn.className = 'wf-cmt-popover-close';
+      closeBtn.type = 'button';
+      closeBtn.setAttribute('aria-label', 'Close');
+      closeBtn.textContent = '×';
+      closeBtn.addEventListener('click', closePopover);
+      header.appendChild(titleEl);
+      header.appendChild(closeBtn);
+      pop.appendChild(header);
+
+      return { pop: pop, titleEl: titleEl };
+    }
+
+    function openCommentPopover(rootComment, pinEl) {
+      closePopover();
+
+      var shell = buildPopoverShell('Comment #' + (getRoots().indexOf(rootComment) + 1));
+      var pop = shell.pop;
+
+      if (rootComment.resolved) {
+        var badge = document.createElement('span');
+        badge.className = 'wf-cmt-popover-resolved-badge';
+        badge.textContent = 'Resolved';
+        shell.titleEl.appendChild(badge);
+      }
+
+      var thread = document.createElement('div');
+      thread.className = 'wf-cmt-popover-thread';
+      function renderThreadInto(container) {
+        while (container.firstChild) container.removeChild(container.firstChild);
+        var messages = [rootComment].concat(getReplies(rootComment.id));
+        messages.forEach(function (msg) {
+          var wrap = document.createElement('div');
+          wrap.className = 'wf-cmt-message';
+          var meta = document.createElement('div');
+          var author = document.createElement('span');
+          author.className = 'wf-cmt-message-author';
+          author.textContent = msg.author;
+          var time = document.createElement('span');
+          time.className = 'wf-cmt-message-time';
+          time.textContent = formatTimestamp(msg.created_at);
+          meta.appendChild(author);
+          meta.appendChild(time);
+          var body = document.createElement('div');
+          body.className = 'wf-cmt-message-body';
+          body.textContent = msg.body;
+          wrap.appendChild(meta);
+          wrap.appendChild(body);
+          container.appendChild(wrap);
+        });
+      }
+      renderThreadInto(thread);
+      pop.appendChild(thread);
+
+      var footer = document.createElement('div');
+      footer.className = 'wf-cmt-popover-footer';
+
+      var textarea = document.createElement('textarea');
+      textarea.className = 'wf-cmt-textarea';
+      textarea.maxLength = 2000;
+      textarea.placeholder = 'Reply…';
+
+      var actions = document.createElement('div');
+      actions.className = 'wf-cmt-actions';
+      var resolveBtn = document.createElement('button');
+      resolveBtn.className = 'wf-cmt-btn wf-cmt-btn-secondary wf-cmt-btn-resolve';
+      resolveBtn.type = 'button';
+      resolveBtn.textContent = rootComment.resolved ? 'Mark open' : 'Mark resolved';
+      var right = document.createElement('div');
+      right.className = 'wf-cmt-actions-right';
+      var sendBtn = document.createElement('button');
+      sendBtn.className = 'wf-cmt-btn wf-cmt-btn-primary';
+      sendBtn.type = 'button';
+      sendBtn.textContent = 'Send reply';
+      right.appendChild(sendBtn);
+      actions.appendChild(resolveBtn);
+      actions.appendChild(right);
+
+      var errEl = document.createElement('div');
+      errEl.className = 'wf-cmt-error';
+      errEl.style.display = 'none';
+
+      footer.appendChild(textarea);
+      footer.appendChild(actions);
+      footer.appendChild(errEl);
+      pop.appendChild(footer);
+
+      document.body.appendChild(pop);
+      positionPopover(pop, pinEl);
+      openPopover = { el: pop, comment: rootComment };
+
+      var colorPicker = buildColorPicker(pinColorOf(rootComment), function (newColor) {
+        var prevColor = pinColorOf(rootComment);
+        updateComment(rootComment.id, { color: newColor }).then(function (updated) {
+          var idx = comments.findIndex(function (c) { return c.id === rootComment.id; });
+          if (idx >= 0) comments[idx] = updated;
+          rootComment.color = updated.color;
+          renderPins();
+        }).catch(function (err) {
+          colorPicker.querySelectorAll('.wf-cmt-color-swatch').forEach(function (s) {
+            s.classList.toggle('active', s.getAttribute('data-color') === prevColor);
+          });
+          errEl.textContent = 'Failed: ' + err.message;
+          errEl.style.display = 'block';
+        });
+      });
+      shell.titleEl.appendChild(colorPicker);
+
+      sendBtn.addEventListener('click', function () {
+        var body = textarea.value.trim();
+        if (!body) { textarea.focus(); return; }
+        ensureName(function () {
+          sendBtn.disabled = true;
+          errEl.style.display = 'none';
+          insertComment({
+            page: PAGE_ID,
+            parent_id: rootComment.id,
+            author: reviewerName,
+            body: body,
+          }).then(function (saved) {
+            comments.push(saved);
+            textarea.value = '';
+            renderThreadInto(thread);
+            sendBtn.disabled = false;
+          }).catch(function (err) {
+            errEl.textContent = 'Failed to send: ' + err.message;
+            errEl.style.display = 'block';
+            sendBtn.disabled = false;
+          });
+        });
+      });
+
+      resolveBtn.addEventListener('click', function () {
+        resolveBtn.disabled = true;
+        var newState = !rootComment.resolved;
+        updateComment(rootComment.id, { resolved: newState }).then(function (updated) {
+          var idx = comments.findIndex(function (c) { return c.id === rootComment.id; });
+          if (idx >= 0) comments[idx] = updated;
+          rootComment.resolved = updated.resolved;
+          resolveBtn.textContent = updated.resolved ? 'Mark open' : 'Mark resolved';
+          var existingBadge = shell.titleEl.querySelector('.wf-cmt-popover-resolved-badge');
+          if (updated.resolved && !existingBadge) {
+            var b = document.createElement('span');
+            b.className = 'wf-cmt-popover-resolved-badge';
+            b.textContent = 'Resolved';
+            shell.titleEl.appendChild(b);
+          } else if (!updated.resolved && existingBadge) {
+            existingBadge.remove();
+          }
+          renderPins();
+          resolveBtn.disabled = false;
+        }).catch(function (err) {
+          errEl.textContent = 'Failed: ' + err.message;
+          errEl.style.display = 'block';
+          resolveBtn.disabled = false;
+        });
+      });
+    }
+
+    function openDraftPopover(draftEl, x_pct, y_pct_px) {
+      closePopover();
+
+      var shell = buildPopoverShell('New comment');
+      var pop = shell.pop;
+
+      var thread = document.createElement('div');
+      thread.className = 'wf-cmt-popover-thread';
+      var hint = document.createElement('div');
+      hint.style.color = 'var(--gray-500)';
+      hint.style.fontSize = '13px';
+      hint.style.padding = '4px 0';
+      hint.textContent = 'Posted as: ' + (reviewerName || '(name will be asked on save)');
+      thread.appendChild(hint);
+      pop.appendChild(thread);
+
+      var footer = document.createElement('div');
+      footer.className = 'wf-cmt-popover-footer';
+      var textarea = document.createElement('textarea');
+      textarea.className = 'wf-cmt-textarea';
+      textarea.maxLength = 2000;
+      textarea.placeholder = 'Type your comment…';
+      var actions = document.createElement('div');
+      actions.className = 'wf-cmt-actions';
+      var right = document.createElement('div');
+      right.className = 'wf-cmt-actions-right';
+      var cancelBtn = document.createElement('button');
+      cancelBtn.className = 'wf-cmt-btn wf-cmt-btn-secondary';
+      cancelBtn.type = 'button';
+      cancelBtn.textContent = 'Cancel';
+      var saveBtn = document.createElement('button');
+      saveBtn.className = 'wf-cmt-btn wf-cmt-btn-primary';
+      saveBtn.type = 'button';
+      saveBtn.textContent = 'Save';
+      right.appendChild(cancelBtn);
+      right.appendChild(saveBtn);
+      actions.appendChild(document.createElement('div'));
+      actions.appendChild(right);
+      var errEl = document.createElement('div');
+      errEl.className = 'wf-cmt-error';
+      errEl.style.display = 'none';
+      footer.appendChild(textarea);
+      footer.appendChild(actions);
+      footer.appendChild(errEl);
+      pop.appendChild(footer);
+
+      document.body.appendChild(pop);
+      positionPopover(pop, draftEl);
+      openPopover = { el: pop, draft: true };
+      textarea.focus();
+
+      var selectedColor = 'blue';
+      var colorPicker = buildColorPicker(selectedColor, function (newColor) {
+        selectedColor = newColor;
+      });
+      shell.titleEl.appendChild(colorPicker);
+
+      cancelBtn.addEventListener('click', function () { cancelDraftPin(); });
+
+      saveBtn.addEventListener('click', function () {
+        var body = textarea.value.trim();
+        if (!body) { textarea.focus(); return; }
+        ensureName(function () {
+          hint.textContent = 'Posted as: ' + reviewerName;
+          saveBtn.disabled = true;
+          errEl.style.display = 'none';
+          insertComment({
+            page: PAGE_ID,
+            parent_id: null,
+            author: reviewerName,
+            body: body,
+            x_pct: x_pct,
+            y_pct_px: y_pct_px,
+            color: selectedColor,
+          }).then(function (saved) {
+            comments.push(saved);
+            if (draftPin && draftPin.el) draftPin.el.remove();
+            draftPin = null;
+            closePopover();
+            renderPins();
+          }).catch(function (err) {
+            errEl.textContent = 'Failed to save: ' + err.message;
+            errEl.style.display = 'block';
+            saveBtn.disabled = false;
+          });
+        });
+      });
+    }
+
+    function startDraftPin(x_pct, y_pct_px) {
+      cancelDraftPin();
+      var el = createDraftPinEl(x_pct, y_pct_px);
+      draftPin = { el: el, x_pct: x_pct, y_pct_px: y_pct_px };
+      openDraftPopover(el, x_pct, y_pct_px);
+    }
+
+    function cancelDraftPin() {
+      if (draftPin) {
+        if (draftPin.el) draftPin.el.remove();
+        draftPin = null;
+      }
+      if (openPopover && openPopover.draft) closePopover();
+    }
+
+    function isComponentClick(target) {
+      if (!target.closest) return false;
+      return !!target.closest(
+        '.wf-cmt-bubble, .wf-cmt-popover, .wf-cmt-modal-backdrop, .wf-cmt-pin,'
+        + ' .yn-sm-panel, .yn-sm-fab, .yn-sm-overlay, .wfbar'
+      );
+    }
+
+    function onDocumentClick(e) {
+      if (!commentMode) return;
+      if (isComponentClick(e.target)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var docX = e.clientX + window.scrollX;
+      var docY = e.clientY + window.scrollY;
+      var width = Math.max(document.body.scrollWidth, document.documentElement.scrollWidth);
+      var x_pct = (docX / width) * 100;
+      var y_pct_px = Math.round(docY);
+      startDraftPin(parseFloat(x_pct.toFixed(2)), y_pct_px);
+    }
+
+    function init() {
+      renderBubble();
+      renderOverlay();
+      fetchComments().then(function (data) {
+        comments = data;
+        renderPins();
+      }).catch(function (err) {
+        console.warn('[wf-cmt] Failed to load comments:', err);
+      });
+      fetchOpenCountsPerPage().then(annotateSidepanel).catch(function (err) {
+        console.warn('[wf-cmt] Failed to load sidepanel counts:', err);
+      });
+      document.addEventListener('click', onDocumentClick, true);
+      document.addEventListener('click', function (e) {
+        if (!openPopover) return;
+        if (commentMode) return;
+        if (openPopover.el.contains(e.target)) return;
+        if (e.target.closest && e.target.closest('.wf-cmt-pin')) return;
+        if (e.target.closest && e.target.closest('.wf-cmt-modal-backdrop')) return;
+        closePopover();
+        cancelDraftPin();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        if (openPopover) { closePopover(); cancelDraftPin(); return; }
+        if (commentMode) setCommentMode(false);
+      });
+      window.addEventListener('load', syncOverlayHeight);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   })();
