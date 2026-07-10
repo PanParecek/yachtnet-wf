@@ -66,7 +66,7 @@
           '<div class="footer-col"><div class="footer-logo-mark"><img src="img/logo-yachtnet.svg" alt="Yachtnet" /></div><ul><li><a href="#">Blog</a></li><li><a href="kontakt.html">Kontakt</a></li><li><a href="#">Ochrana osobních údajů</a></li><li><a href="#">Nastavení cookies</a></li><li><a href="#">Obchodní podmínky</a></li><li><a href="#">Kariéra</a></li><li><a href="mapa-stranek.html">Mapa stránek</a></li></ul></div>' +
           '<div class="footer-col"><div class="footer-col-title">Typ pronájmu</div><ul><li><a href="#">Plachetnice</a></li><li><a href="detail-kategorie.html">Katamarán</a></li><li><a href="#">Motorová loď</a></li><li><a href="#">Gulet</a></li><li><a href="#">Říční loď</a></li></ul></div>' +
           '<div class="footer-col"><div class="footer-col-title">Kapitánské kurzy</div><ul><li><a href="kapitanske-kurzy.html">Přehled kurzů</a></li><li><a href="kurzy-na-mori.html">Kurzy na moře</a></li><li><a href="detail-prukazu.html">Průkaz MDČR C</a></li><li><a href="detail-prukazu.html">Chorvatský průkaz B</a></li><li><a href="detail-prukazu.html">SRC — Radiotelefon</a></li><li><a href="terminy-kurzu.html">Termíny kurzů</a></li><li><a href="srovnani-prukazu.html">Srovnání průkazů</a></li></ul></div>' +
-          '<div class="footer-col"><div class="footer-col-title">Přehledy</div><ul><li><a href="destinace.html">Země</a></li><li><a href="#">Města</a></li><li><a href="#">Maríny</a></li><li><a href="charterove-spolecnosti.html">Charterové společnosti</a></li><li><a href="prehled-znacek.html">Výrobci lodí</a></li><li><a href="#">Modely lodí</a></li><li><a href="#">FAQs k pronájmu</a></li></ul></div>' +
+          '<div class="footer-col"><div class="footer-col-title">Přehledy</div><ul><li><a href="destinace.html">Země</a></li><li><a href="destinace-mesto.html">Města</a></li><li><a href="#">Maríny</a></li><li><a href="charterove-spolecnosti.html">Charterové společnosti</a></li><li><a href="prehled-znacek.html">Výrobci lodí</a></li><li><a href="#">Modely lodí</a></li><li><a href="#">FAQs k pronájmu</a></li></ul></div>' +
           '<div class="footer-col"><div class="yp-badge"><div class="yp-badge-head">Checked <span class="yp-amp">&amp;</span> Trusted</div><div class="yp-badge-name"><div class="yp-badge-name-1">Yacht-Pool</div><div class="yp-badge-name-2">International</div></div><div class="yp-badge-tagline">Financial Security<br>System</div></div></div>' +
           '<div class="footer-col"><div class="footer-col-title">Sledujte nás</div><div class="footer-social"><a class="social-box" href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a><a class="social-box" href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a class="social-box" href="#" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.6-.46-5.32c-.25-.94-1-1.68-1.94-1.93C18.88 4.29 12 4.29 12 4.29s-6.88 0-8.6.46c-.94.25-1.69 1-1.94 1.93C1 8.4 1 12 1 12s0 3.6.46 5.32c.25.94 1 1.68 1.94 1.93 1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46c.94-.25 1.69-1 1.94-1.93C23 15.6 23 12 23 12zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg></a><a class="social-box" href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></a></div><div class="footer-help" style="margin-top:20px;"><strong>Jak vám můžeme pomoci?</strong>Potřebujete poradit s výběrem?<button class="footer-help-btn">Kontaktovat podporu</button></div></div>' +
         '</div></div>' +
@@ -540,11 +540,15 @@
               { href: 'rezervace-potvrzeni.html', title: 'Potvrzení rezervace', id: 'page-booking-confirm' }
             ]}
           ]}
-        ]}
+        ]},
+        { href: 'jak-funguje-pronajem.html', title: 'Jak funguje pronájem', id: 'page-how-rental' },
+        { href: 'pojisteni.html', title: 'Pojištění a kauce', id: 'page-insurance' },
+        { href: 'casto-se-ptate.html', title: 'Často se ptáte (FAQ)', id: 'page-faq' }
       ]},
       { href: 'destinace.html', title: 'Přehled destinací', id: 'page-destinations', group: true, children: [
         { href: 'destinace-stat.html', title: 'Země', id: 'page-country' },
         { href: 'oblast.html', title: 'Oblast / region', id: 'page-destination' },
+        { href: 'destinace-mesto.html', title: 'Město (rozcestník přístavů)', id: 'page-city' },
         { href: 'pristav.html', title: 'Marina', id: 'page-marina' }
       ]},
       { href: 'kategorie-lodi.html', title: 'Kategorie lodí', id: 'page-categories', group: true, children: [
@@ -2236,9 +2240,9 @@
         { label: 'Charterové společnosti', href: 'charterove-spolecnosti.html' }
       ]},
       { title: 'Informace', items: [
-        { label: 'Jak funguje pronájem?', href: '#' },
-        { label: 'Pojištění', href: '#' },
-        { label: 'Často se ptáte', href: '#' }
+        { label: 'Jak funguje pronájem?', href: 'jak-funguje-pronajem.html' },
+        { label: 'Pojištění', href: 'pojisteni.html' },
+        { label: 'Často se ptáte', href: 'casto-se-ptate.html' }
       ]}
     ],
     article: { eyebrow: 'Z magazínu', title: 'Jak vybrat správnou loď?', href: 'detail-clanku.html' }
@@ -3922,7 +3926,7 @@
       entries.forEach(function(e) {
         toc.classList.toggle('is-stuck', !e.isIntersecting);
       });
-    }, { rootMargin: '-56px 0px 0px 0px', threshold: 0 });
+    }, { rootMargin: '-76px 0px 0px 0px', threshold: 0 }); // WF lišta (20) + nav (56)
     stuckObs.observe(h1);
   })();
 
@@ -3964,8 +3968,63 @@
         if (visible[sections[i].id]) { topId = sections[i].id; break; }
       }
       if (topId) setActive(topId);
-    }, { rootMargin: '-120px 0px -55% 0px', threshold: 0 });
+    }, { rootMargin: '-140px 0px -55% 0px', threshold: 0 });
     sections.forEach(function(s) { observer.observe(s); });
+  })();
+
+  // Detail page – priority+ nav: na tabletu/mobilu (≤1024) záložky, co se nevejdou,
+  // schovej do „hamburger" dropdownu na konci řady. Přepočítává se při resize.
+  (function initDetailTocPriority() {
+    var toc = document.querySelector('.detail-toc');
+    if (!toc) return;
+    var inner = toc.querySelector('.detail-toc-inner');
+    var linksWrap = toc.querySelector('.detail-toc-links');
+    if (!inner || !linksWrap) return;
+    var allLinks = Array.prototype.slice.call(linksWrap.querySelectorAll('.detail-toc-link'));
+    if (!allLinks.length) return;
+
+    var more = document.createElement('div');
+    more.className = 'detail-toc-more';
+    more.hidden = true;
+    var moreBtn = document.createElement('button');
+    moreBtn.type = 'button';
+    moreBtn.className = 'detail-toc-more-btn';
+    moreBtn.setAttribute('aria-label', 'Další sekce');
+    moreBtn.setAttribute('aria-expanded', 'false');
+    moreBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+    var menu = document.createElement('div');
+    menu.className = 'detail-toc-more-menu';
+    menu.hidden = true;
+    more.appendChild(moreBtn);
+    more.appendChild(menu);
+    inner.appendChild(more);
+
+    var mq = window.matchMedia('(max-width: 1024px)');
+    function closeMenu() { menu.hidden = true; moreBtn.setAttribute('aria-expanded', 'false'); }
+    function openMenu() { menu.hidden = false; moreBtn.setAttribute('aria-expanded', 'true'); }
+
+    function layout() {
+      closeMenu();
+      // reset — všechny odkazy zpět do řady, ve správném pořadí
+      allLinks.forEach(function(l) { linksWrap.appendChild(l); });
+      if (!mq.matches) { more.hidden = true; return; }
+      more.hidden = false; // zobraz hamburger, ať řada počítá s jeho šířkou
+      var wrapRight = linksWrap.getBoundingClientRect().right;
+      var overflow = null;
+      for (var i = 0; i < allLinks.length; i++) {
+        if (allLinks[i].getBoundingClientRect().right > wrapRight + 0.5) { overflow = allLinks.slice(i); break; }
+      }
+      if (!overflow) { more.hidden = true; return; }
+      overflow.forEach(function(l) { menu.appendChild(l); });
+    }
+
+    moreBtn.addEventListener('click', function(e) { e.stopPropagation(); menu.hidden ? openMenu() : closeMenu(); });
+    menu.addEventListener('click', function(e) { if (e.target.closest('.detail-toc-link')) closeMenu(); });
+    document.addEventListener('click', function(e) { if (!more.contains(e.target)) closeMenu(); });
+
+    var t = null;
+    window.addEventListener('resize', function() { clearTimeout(t); t = setTimeout(layout, 120); });
+    layout();
   })();
 
   // ── MAPA / SEZNAM TOGGLE + RENDER PINŮ (pronajem-lodi) ─
@@ -4186,12 +4245,16 @@
       currentBbox = bbox;
       mapFrame.src = 'https://www.openstreetmap.org/export/embed.html?bbox=' + encodeURIComponent(bbox) + '&layer=mapnik';
     }
-    // Návodný stupňový ovladač místo ikon +/− — kopíruje 5 úrovní oblastí (shora nejširší po nejužší).
+    // Návodný stupňový ovladač — kopíruje 5 úrovní oblastí (shora nejširší po nejužší).
+    // Kompaktní "hrabičky" (.map-zoom-ladder, v HTML) najetím/tapnutím rozbalí tento seznam pilulek.
     var LEVEL_LABELS = ['Světové oblasti', 'Státy', 'Regiony', 'Města', 'Přístavy'];
+    var ladder = document.getElementById('mapZoomLadder');
     if (canvas) {
       canvas.querySelectorAll('.map-zoom-btn').forEach(function(b) { b.remove(); }); // pryč původní +/−
       var levelCtrl = document.createElement('div');
       levelCtrl.className = 'map-levels';
+      levelCtrl.id = 'mapLevels';
+      levelCtrl.hidden = true;
       levelCtrl.setAttribute('role', 'group');
       levelCtrl.setAttribute('aria-label', 'Úroveň přiblížení mapy');
       LEVEL_LABELS.forEach(function(label, i) {
@@ -4201,20 +4264,58 @@
         b.textContent = label;
         b.setAttribute('data-level', i);
         b.addEventListener('click', function() {
-          if (i === zoomIdx) return;
-          zoomIdx = i;
-          applyMapView();
-          renderPins();
+          if (i !== zoomIdx) {
+            zoomIdx = i;
+            applyMapView();
+            renderPins();
+          }
+          closeLevelCtrl();
         });
         levelCtrl.appendChild(b);
       });
       canvas.appendChild(levelCtrl);
+
+      var closeTimer = null;
+      function openLevelCtrl() {
+        clearTimeout(closeTimer);
+        levelCtrl.hidden = false;
+      }
+      function closeLevelCtrl() {
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(function() { levelCtrl.hidden = true; }, 150);
+      }
+      if (ladder) {
+        ladder.addEventListener('mouseenter', openLevelCtrl);
+        ladder.addEventListener('mouseleave', closeLevelCtrl);
+        ladder.addEventListener('focus', openLevelCtrl);
+        ladder.addEventListener('click', function() { levelCtrl.hidden ? openLevelCtrl() : closeLevelCtrl(); });
+        ladder.querySelectorAll('.map-zoom-rung').forEach(function(rung) {
+          rung.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var i = parseInt(rung.getAttribute('data-level'), 10);
+            if (i !== zoomIdx) {
+              zoomIdx = i;
+              applyMapView();
+              renderPins();
+            }
+            closeLevelCtrl();
+          });
+        });
+      }
+      levelCtrl.addEventListener('mouseenter', openLevelCtrl);
+      levelCtrl.addEventListener('mouseleave', closeLevelCtrl);
     }
     function syncLevelControl() {
       if (!canvas) return;
       canvas.querySelectorAll('.map-level').forEach(function(b) {
         b.classList.toggle('is-active', parseInt(b.getAttribute('data-level'), 10) === zoomIdx);
       });
+      if (ladder) {
+        ladder.setAttribute('aria-valuenow', zoomIdx);
+        ladder.querySelectorAll('.map-zoom-rung').forEach(function(r) {
+          r.classList.toggle('is-active', parseInt(r.getAttribute('data-level'), 10) === zoomIdx);
+        });
+      }
     }
     syncLevelControl();
   })();
@@ -4400,6 +4501,24 @@
         btn.textContent = open ? 'Zobrazit méně' : labelMore;
       });
     });
+  })();
+
+  // ── PŘEPÍNAČ FILTRU SROVNÁNÍ (srovnání průkazů) — moře / řeky / rádiové ──
+  (function initCompareSwitch() {
+    var btns = document.querySelectorAll('.compare-switch-btn');
+    if (!btns.length) return;
+    function activate(filter) {
+      var match = Array.prototype.filter.call(btns, function(b) { return b.getAttribute('data-filter') === filter; })[0];
+      if (!match) return;
+      btns.forEach(function(b) { b.classList.toggle('is-active', b === match); });
+      document.querySelectorAll('[data-filter-table]').forEach(function(el) {
+        el.hidden = el.getAttribute('data-filter-table') !== filter;
+      });
+    }
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() { activate(btn.getAttribute('data-filter')); });
+    });
+    if (window.location.hash === '#river') activate('river');
   })();
 
   // ── PŘEPÍNAČ VARIANT KROKŮ (detail průkazu) — C / B ──

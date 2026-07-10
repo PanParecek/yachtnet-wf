@@ -57,17 +57,13 @@
           <button type="button" class="compare-switch-btn" data-filter="river">Pro řeky</button>
           <button type="button" class="compare-switch-btn" data-filter="radio">Rádiové</button>
         </div>
-        <div class="kurzy-switch kurzy-view-toggle" role="tablist" aria-label="Zobrazení">
-          <a class="kurzy-switch-btn" href="vsechny-kurzy.html" title="Seznam" aria-label="Zobrazit jako seznam"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></a>
-          <a class="kurzy-switch-btn is-active" href="srovnani-prukazu.html" title="Tabulka" aria-label="Zobrazit jako tabulku"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></a>
-        </div>
       </div>
     </div>
   </div>
 
   <div class="band">
     <div style="max-width:var(--max);margin:0 auto;padding:0 28px 56px;">
-      <div class="compare-wrap">
+      <div class="compare-wrap" data-filter-table="sea">
         <table class="compare-table">
           <thead>
             <tr>
@@ -291,13 +287,155 @@
         </table>
       </div>
 
-      <div class="compare-hint" style="margin-top:28px;padding:18px 22px;background:var(--int-soft);border:1px solid #dcd0ff;border-radius:10px;display:flex;gap:16px;align-items:center;">
+      <div class="compare-hint" data-filter-table="sea" style="margin-top:28px;padding:18px 22px;background:var(--int-soft);border:1px solid #dcd0ff;border-radius:10px;display:flex;gap:16px;align-items:center;">
         <div style="width:40px;height:40px;border-radius:50%;background:var(--int);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         </div>
         <div style="font-size:14px;line-height:1.6;">
           <strong>Nevíte si rady?</strong> 95 % našich studentů si vybírá <strong>MDČR C + SRC</strong> — kombinace pro charter v Chorvatsku, Řecku i Itálii za cca 23 000 Kč. Pokud potřebujete jen rychle a levně do Chorvatska, stačí <strong>Chorvatský B</strong> za víkend. Ohledně vašeho plánu volejte Pavla na <a href="tel:+420602100200" style="color:var(--int);">+420 602 100 200</a>.
         </div>
+      </div>
+
+      <div class="compare-wrap" data-filter-table="river" hidden>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="compare-feature-col">Co srovnáváme</th>
+              <th class="compare-plan-head compare-plan-head--featured">
+                <div class="compare-plan-ribbon">Nejoblíbenější</div>
+                <div class="compare-plan-name">M20</div>
+                <div class="compare-plan-tag">Motorové do 20 kW</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">4 500 Kč</span></div>
+                <a class="compare-plan-btn compare-plan-btn--primary" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+              <th class="compare-plan-head">
+                <div class="compare-plan-name">M</div>
+                <div class="compare-plan-tag">Motorové bez omezení</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">5 200 Kč</span></div>
+                <a class="compare-plan-btn" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+              <th class="compare-plan-head">
+                <div class="compare-plan-name">S20</div>
+                <div class="compare-plan-tag">Plachetnice do 20 kW</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">4 800 Kč</span></div>
+                <a class="compare-plan-btn" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+              <th class="compare-plan-head">
+                <div class="compare-plan-name">S</div>
+                <div class="compare-plan-tag">Plachetnice bez omezení</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">5 500 Kč</span></div>
+                <a class="compare-plan-btn" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+              <th class="compare-plan-head">
+                <div class="compare-plan-name">C</div>
+                <div class="compare-plan-tag">Vodní skútr</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">4 500 Kč</span></div>
+                <a class="compare-plan-btn" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+              <th class="compare-plan-head">
+                <div class="compare-plan-name">I</div>
+                <div class="compare-plan-tag">Mezinárodní osvědčení</div>
+                <div class="compare-plan-price"><span class="compare-plan-from">Od</span><span class="compare-plan-num">1 500 Kč</span></div>
+                <a class="compare-plan-btn" href="detail-prukazu.html">Zvolit →</a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="compare-section-row"><td colspan="7">Rozsah a limity</td></tr>
+            <tr>
+              <td class="compare-feature"><span>Typ plavidla</span></td>
+              <td class="is-featured">Motorové</td>
+              <td>Motorové</td>
+              <td>Plachetnice s motorem</td>
+              <td>Plachetnice s motorem</td>
+              <td>Vodní skútr</td>
+              <td>Motorové i plachetnice</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Maximální výkon motoru</span></td>
+              <td class="is-featured">Do 20 kW</td>
+              <td>Bez omezení</td>
+              <td>Do 20 kW</td>
+              <td>Bez omezení</td>
+              <td>Bez omezení</td>
+              <td>Bez omezení</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Rozsah platnosti</span><span class="compare-feature-hint">Kde smíte s průkazem plout</span></td>
+              <td class="is-featured">ČR — řeky a jezera</td>
+              <td>ČR — řeky a jezera</td>
+              <td>ČR — řeky a jezera</td>
+              <td>ČR — řeky a jezera</td>
+              <td>ČR — vyhrazené úseky</td>
+              <td class="cmp-yes">Mezinárodní vodní cesty</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Minimální věk</span></td>
+              <td class="is-featured">15 let</td>
+              <td>18 let</td>
+              <td>15 let</td>
+              <td>18 let</td>
+              <td>15 let</td>
+              <td>18 let</td>
+            </tr>
+            <tr class="compare-section-row"><td colspan="7">Kurz a zkouška</td></tr>
+            <tr>
+              <td class="compare-feature"><span>Vyžaduje jiný průkaz</span></td>
+              <td class="is-featured cmp-no">Ne</td>
+              <td class="cmp-no">Ne</td>
+              <td class="cmp-no">Ne</td>
+              <td class="cmp-no">Ne</td>
+              <td class="cmp-no">Ne</td>
+              <td class="cmp-partial">Ano — M, S nebo C</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Teoretická příprava</span></td>
+              <td class="is-featured">Mobilní aplikace</td>
+              <td>Mobilní aplikace</td>
+              <td>Mobilní aplikace</td>
+              <td>Mobilní aplikace</td>
+              <td>Mobilní aplikace</td>
+              <td class="cmp-neutral">Nevyžaduje se</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Praktický výcvik</span></td>
+              <td class="is-featured"><strong>1 den na přehradě</strong></td>
+              <td>1 den na přehradě</td>
+              <td>1 den na přehradě</td>
+              <td>1 den na přehradě</td>
+              <td>Půl dne</td>
+              <td class="cmp-neutral">Nevyžaduje se</td>
+            </tr>
+            <tr>
+              <td class="compare-feature"><span>Místo zkoušky</span></td>
+              <td class="is-featured">Státní plavební správa</td>
+              <td>Státní plavební správa</td>
+              <td>Státní plavební správa</td>
+              <td>Státní plavební správa</td>
+              <td>Státní plavební správa</td>
+              <td>Vydání na počkání</td>
+            </tr>
+            <tr class="compare-section-row"><td colspan="7">Platnost</td></tr>
+            <tr>
+              <td class="compare-feature"><span>Doba platnosti</span></td>
+              <td class="is-featured cmp-yes"><strong>Doživotní</strong></td>
+              <td class="cmp-yes">Doživotní</td>
+              <td class="cmp-yes">Doživotní</td>
+              <td class="cmp-yes">Doživotní</td>
+              <td class="cmp-yes">Doživotní</td>
+              <td class="cmp-yes">Doživotní</td>
+            </tr>
+            <tr class="compare-footer-row">
+              <td class="compare-feature">Vybrat průkaz</td>
+              <td class="is-featured"><a class="compare-plan-btn compare-plan-btn--primary" href="detail-prukazu.html">M20 →</a></td>
+              <td><a class="compare-plan-btn" href="detail-prukazu.html">M →</a></td>
+              <td><a class="compare-plan-btn" href="detail-prukazu.html">S20 →</a></td>
+              <td><a class="compare-plan-btn" href="detail-prukazu.html">S →</a></td>
+              <td><a class="compare-plan-btn" href="detail-prukazu.html">C →</a></td>
+              <td><a class="compare-plan-btn" href="detail-prukazu.html">I →</a></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

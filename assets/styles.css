@@ -24,7 +24,9 @@
 
     /* Skryté off-canvas panely (sitemap widget, mobilní filtry apod.) používají transform:translateX(100%),
        což bez tohoto pravidla protáhne scrollovatelnou šířku dokumentu za hranu viewportu. */
-    html, body { overflow-x: hidden; }
+    /* overflow-x: clip (ne hidden) — clip zabrání vodorovnému posunu, ale NEvytváří scroll-kontejner,
+       takže position:sticky (kontextové menu detailu, cenový sidebar) funguje vůči viewportu. */
+    html, body { overflow-x: clip; }
     /* position:relative — kotva pro .wf-cmt-overlay (komentáře); padding-top — místo pro fixní .wfbar nahoře. */
     body { font-family: "Rubik","Inter","Helvetica Neue",Arial,sans-serif; font-size: 14px; color: var(--text); background: var(--bg); width: 100%; position: relative; }
 
@@ -829,10 +831,13 @@
       grid-template-rows: 280px 280px;
       gap: 6px; border-radius: var(--radius) var(--radius) 0 0; overflow: hidden;
     }
+    /* Bez promo pruhu pod maticí — zaoblit všechny čtyři rohy (varianta destinací 02) */
+    .mosaic--flush { border-radius: var(--radius); }
     .country {
       position: relative; overflow: hidden; cursor: pointer;
       display: flex; align-items: flex-end;
       background: var(--cross-bg), var(--img-bg);
+      text-decoration: none;
     }
     .country:hover .country-overlay { opacity: 1; }
     .country-img {
@@ -1205,7 +1210,6 @@
     .sidebar {
       border-right: 1px solid var(--border); background: var(--surface);
       padding: 24px 20px; display: flex; flex-direction: column; gap: 0;
-      position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto;
     }
     .sidebar-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
     .sidebar-title { font-size: 14px; font-weight: 700; }
@@ -1583,7 +1587,8 @@
 
     /* Sticky horizontální obsah stránky */
     .detail-toc {
-      position: sticky; top: 56px; z-index: 50;
+      /* pod hlavičkou: WF lišta (--wfbar-h) + výška navigace (56px), jinak se schová pod menu */
+      position: sticky; top: calc(var(--wfbar-h) + 56px); z-index: 50;
       background: transparent;
       border-top: 1px solid transparent;
       border-bottom: 1px solid var(--border);
@@ -1633,10 +1638,31 @@
     }
     .detail-toc-link:hover { color: var(--int); }
     .detail-toc-link.active { color: var(--int); border-bottom-color: var(--int); }
-    /* Anchor scroll offset – nech sekci pod sticky nav + toc */
+    /* Priority+ „hamburger" pro přebytek záložek — jen tablet/mobil (zapíná JS + @media ≤1024). */
+    .detail-toc-more { display: none; align-items: center; flex-shrink: 0; position: relative; }
+    .detail-toc-more-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; padding: 0; margin-left: 2px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      color: var(--text); cursor: pointer;
+    }
+    .detail-toc-more-btn:hover { border-color: var(--int); color: var(--int); }
+    .detail-toc-more-menu {
+      position: absolute; top: calc(100% + 6px); right: 0; z-index: 60;
+      min-width: 180px; padding: 6px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.16);
+      display: flex; flex-direction: column;
+    }
+    .detail-toc-more-menu[hidden] { display: none; }
+    .detail-toc-more-menu .detail-toc-link {
+      padding: 9px 12px; border-bottom: none; border-radius: 6px; white-space: nowrap;
+    }
+    .detail-toc-more-menu .detail-toc-link:hover { background: var(--int-soft); }
+    /* Anchor scroll offset – nech sekci pod sticky nav + toc (WF lišta + nav + toc) */
     #sec-galerie, #sec-parametry, #sec-vybaveni, #sec-extras, #sec-popis,
     #sec-terminy, #sec-cena, #sec-podminky, #sec-faq, #sec-charter, #sec-mapa {
-      scroll-margin-top: 116px;
+      scroll-margin-top: calc(var(--wfbar-h) + 116px);
     }
 
     .detail-layout { display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: start; }
@@ -2041,6 +2067,10 @@
     .port-tile--wide { grid-column: span 2; }
     .port-tile--wide .port-tile-name { font-size: 16px; }
     .port-tile--wide .port-tile-count { font-size: 12px; }
+    /* Varianta se stejně velkými kartami — 4 sloupce (1/4 gridu), bez hero/wide dlaždic (rozcestník města) */
+    .ports-grid--even { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 190px; }
+    .ports-grid--even .port-tile-name { font-size: 15px; }
+    .ports-grid--even .port-tile-count { font-size: 12px; }
     .detail-section-head {
       display: flex; align-items: center; justify-content: space-between;
       gap: 16px; flex-wrap: wrap; margin-bottom: 16px;
@@ -2082,7 +2112,7 @@
     .model-panel-link { font-size: 12px; color: var(--int); font-weight: 600; text-decoration: none; margin-top: 4px; display: inline-block; }
 
     /* Sticky sidebar (detail) */
-    .detail-sidebar { position: sticky; top: 116px; display: flex; flex-direction: column; gap: 14px; }
+    .detail-sidebar { position: sticky; top: calc(var(--wfbar-h) + 116px); display: flex; flex-direction: column; gap: 14px; }
     .detail-sidebar > .contact-box { order: 1; } /* Monika pod Google hodnocení + Checked & Trusted */
     /* Na desktopu je kontakt na Moniku ve sticky sidebaru vpravo; na mobilu/tabletu (viz @media max-width:1024px)
        se místo toho zobrazuje kopie dole v hlavním sloupci, protože sidebar se na mobilu přesouvá nahoru. */
@@ -2144,8 +2174,8 @@
     .price-sticky-price strong { font-size: 18px; font-weight: 800; color: var(--text); }
     .price-sticky-from, .price-sticky-unit { font-size: 12px; }
     .price-sticky-btn { width: auto; height: 42px; padding: 0 22px; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; flex-shrink: 0; }
-    /* Jen mobil/tablet — na desktopu je sidebar CTA stále vidět */
-    @media (min-width: 768px) { .price-sticky-bar { display: none; } }
+    /* Mobil i tablet (≤1024) — na desktopu je sticky sidebar CTA stále vidět, tam se spodní lišta skryje */
+    @media (min-width: 1025px) { .price-sticky-bar { display: none; } }
 
     .contact-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
     .contact-box-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 8px; }
@@ -2255,7 +2285,7 @@
       .pkg-step-num { width: 30px; height: 30px; font-size: 13px; }
       .pkg-steps::before { left: 14px; }
     }
-    .pkg-list { display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 116px; }
+    .pkg-list { display: flex; flex-direction: column; gap: 12px; scroll-margin-top: calc(var(--wfbar-h) + 116px); }
     .pkg-card {
       display: block; cursor: pointer; position: relative; text-decoration: none; color: inherit;
       border: 1px solid var(--border); border-radius: 10px; background: var(--surface);
@@ -2830,7 +2860,7 @@
 
     .dest-index-wrap { max-width: var(--max); margin: 0 auto; padding: 0 40px 60px; }
 
-    .dest-country-section { border-top: 1px solid var(--border); padding: 32px 0 8px; }
+    .dest-country-section { border-top: 1px solid var(--border); padding: 32px 0 8px; scroll-margin-top: 84px; }
     .dest-country-head {
       display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px;
     }
@@ -4571,11 +4601,30 @@
     .map-zoom-btn:hover { border-color: var(--int); color: var(--int); }
     .map-zoom-in { top: 14px; }
     .map-zoom-out { top: 52px; }
-    /* Návodný stupňový ovladač zoomu (nahrazuje ikonky +/−) */
+    /* Hrabičky — kompaktní ovladač úrovně přiblížení; najetím/tapnutím se rozbalí .map-levels vlevo od nich */
+    .map-zoom-ladder {
+      position: absolute; top: 14px; right: 14px; z-index: 4;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+      width: 30px; padding: 10px 8px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.12);
+      cursor: pointer;
+    }
+    .map-zoom-rung { height: 3px; border-radius: 999px; background: var(--border); transition: background .15s, width .15s; }
+    .map-zoom-rung:nth-child(1) { width: 26px; }
+    .map-zoom-rung:nth-child(2) { width: 21px; }
+    .map-zoom-rung:nth-child(3) { width: 16px; }
+    .map-zoom-rung:nth-child(4) { width: 12px; }
+    .map-zoom-rung:nth-child(5) { width: 8px; }
+    .map-zoom-rung.is-active { background: var(--int); height: 4px; }
+    .map-zoom-ladder:hover .map-zoom-rung, .map-zoom-ladder:focus-within .map-zoom-rung { background: #b8c2c9; }
+    .map-zoom-ladder:hover .map-zoom-rung.is-active, .map-zoom-ladder:focus-within .map-zoom-rung.is-active { background: var(--int); }
+    /* Návodný stupňový ovladač zoomu — rozbalí se vlevo od hraviček při najetí/tapnutí */
     .map-levels {
-      position: absolute; top: 14px; right: 14px; z-index: 3;
+      position: absolute; top: 14px; right: 54px; z-index: 3;
       display: flex; flex-direction: column; align-items: stretch; gap: 5px;
     }
+    .map-levels[hidden] { display: none; }
     .map-level {
       border: 1px solid var(--border); background: var(--surface); color: var(--text);
       font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;
@@ -5406,7 +5455,8 @@
 
     /* Sticky kontextové menu — sdílená komponenta (detail-prukazu atd.) */
     .page-toc {
-      position: sticky; top: 56px; z-index: 50;
+      /* pod hlavičkou: WF lišta (--wfbar-h) + výška navigace (56px) */
+      position: sticky; top: calc(var(--wfbar-h) + 56px); z-index: 50;
       background: var(--bg);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
@@ -6613,8 +6663,13 @@
       .detail-sidebar > .contact-box { display: none; }
       .gallery { grid-template-rows: 170px 170px; }
       .why-grid { grid-template-columns: repeat(2, 1fr); }
-      .detail-toc-inner { padding: 0 24px; gap: 16px; }
-      .detail-toc-title { padding-right: 16px; font-size: 13px; }
+      /* Kontextové menu na tabletu/mobilu: model+název skryté (i po přichycení), ať mají záložky celou šířku;
+         záložky přimáčknuté k sobě, přebytek se sbalí do hamburgeru (.detail-toc-more, priority+ v JS). */
+      .detail-toc-inner { padding: 0 16px; gap: 6px; }
+      .detail-toc.is-stuck .detail-toc-title { display: none; }
+      .detail-toc-links { gap: 0; overflow: hidden; }
+      .detail-toc-link { padding: 12px 9px; font-size: 12px; }
+      .detail-toc-more:not([hidden]) { display: flex; }
 
       /* Booking */
       .bk-stepper-wrap { padding: 0 24px; }
@@ -6864,9 +6919,9 @@
         order: -1; /* Cena nahoře na mobilu */
         margin-bottom: 24px;
       }
-      .detail-toc-inner { padding: 0 16px; gap: 12px; }
+      .detail-toc-inner { padding: 0 12px; gap: 6px; }
       .detail-toc-title { padding-right: 12px; font-size: 12px; border-right-width: 1px; }
-      .detail-toc-link { padding: 10px 12px; font-size: 12px; }
+      .detail-toc-link { padding: 11px 8px; font-size: 12px; }
 
       /* Lightbox */
       .lb-stage { padding: 60px 16px 4px; }
